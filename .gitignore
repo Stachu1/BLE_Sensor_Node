@@ -23,6 +23,7 @@ Thumbs.db
 **/fp-cache/
 **/fp-info-cache
 **/sym_cache/
+**/*.kicad_prl
 **/cache/
 
 # Fabrication / generated outputs

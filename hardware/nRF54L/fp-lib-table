@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "BLE_Sensor_Node") (type "KiCad") (uri "${KIPRJMOD}/library/BLE_Sensor_Node.pretty") (options "") (descr ""))
+)

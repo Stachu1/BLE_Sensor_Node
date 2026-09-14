@@ -1,0 +1,4 @@
+(design_block_lib_table
+	(version 7)
+	(lib (name "Nordic") (type "KiCad") (uri "C:/Users/SBA.OJ/Documents/KiCad/10.0/nordic-lib-kicad/blocks/nRF54L.kicad_blocks") (options "") (descr ""))
+)
