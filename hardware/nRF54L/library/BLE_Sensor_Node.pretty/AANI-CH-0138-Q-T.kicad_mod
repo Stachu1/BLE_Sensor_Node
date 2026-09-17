@@ -7,7 +7,7 @@
 		(at 0 -4.7 0)
 		(unlocked yes)
 		(layer "F.SilkS")
-		(uuid "4944d8e3-02e4-4c71-a35c-8f4178d899e8")
+		(uuid "907582fd-5aec-4aa5-bd71-f556ab32aeed")
 		(effects
 			(font
 				(size 1 1)
@@ -19,7 +19,7 @@
 		(at 0 1 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "1a6aab15-b6d9-42f0-b5ce-926be113014a")
+		(uuid "970dc2f3-3858-4e9c-aa7a-823b596d69b9")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "493914fc-e6e2-42be-9dd7-b3f2e0914305")
+		(uuid "e8276bc5-3e36-44df-bee7-c4a5501fcdef")
 		(effects
 			(font
 				(size 1 1)
@@ -45,7 +45,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "9d117a33-488e-4aad-a24b-5ab1d9556d04")
+		(uuid "659c01fd-d0b9-4d44-a260-544d87313399")
 		(effects
 			(font
 				(size 1 1)
@@ -64,13 +64,13 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "5bfdf73c-0ae9-4421-9f21-782803807b4f")
+		(uuid "edf3673f-bd07-431f-8a41-fe4764599cb4")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 2.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "3b55653e-2be2-4c9f-8041-d1bb00a2e173")
+		(uuid "c6a7ded8-68c9-4750-95e0-8b8dab03b770")
 		(effects
 			(font
 				(size 1 1)
@@ -83,28 +83,39 @@
 		(size 0.8 2.4)
 		(property pad_prop_bga)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "a4fddbba-8c58-4ee5-b237-ee8b84170a31")
+		(uuid "36071bf2-814a-4ace-8e2f-6123971fdc97")
 	)
 	(pad "2" smd rect
 		(at 0 -0.75)
 		(size 2.9 0.85)
 		(property pad_prop_bga)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "64ff89bc-40cd-4e18-902f-389fa87570cb")
+		(uuid "79fef2fc-04eb-40cc-80ad-8c4ccad76e5c")
 	)
 	(pad "3" smd rect
 		(at 3.25 0)
 		(size 0.8 2.4)
 		(property pad_prop_bga)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "250bc8c8-2371-4b29-a6e1-1a9ffad360c2")
+		(uuid "f55d27c4-9c4c-4222-9154-323345a2ed7c")
 	)
 	(pad "4" smd rect
 		(at 0 0.75)
 		(size 2.9 0.85)
 		(property pad_prop_bga)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "93cdd3fa-0125-4bdf-9461-9946d7ab42d6")
+		(uuid "a93cfad9-1fc0-4bb2-b2f7-a963463c3f49")
 	)
 	(embedded_fonts no)
+	(model "${KIPRJMOD}/library/3d_models/AANI-CH-0138-Q-T.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
 )

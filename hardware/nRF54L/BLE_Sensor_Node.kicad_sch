@@ -414,7 +414,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_DFN_QFN:QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6mm_ThermalVias"
+			(property "Footprint" "BLE_Sensor_Node:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
 				(at 0 -73.66 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3943,6 +3943,10 @@
 		(uuid "3e706e2c-6428-4d30-8d76-249a2e62cdf9")
 	)
 	(no_connect
+		(at 179.07 132.08)
+		(uuid "3fbe8859-5cf3-4d43-8504-16d97e12e255")
+	)
+	(no_connect
 		(at 179.07 165.1)
 		(uuid "4b97e4b1-61b1-45b0-93a2-943d30c11624")
 	)
@@ -3983,10 +3987,6 @@
 		(uuid "7f2341c4-1914-4c8a-93ec-3f1470e3d8d9")
 	)
 	(no_connect
-		(at 179.07 124.46)
-		(uuid "8ac27aa8-998f-4a89-b4e7-1e720f6b0a3a")
-	)
-	(no_connect
 		(at 179.07 144.78)
 		(uuid "921cf3b0-9826-4f77-a34e-ef5b39f12c15")
 	)
@@ -3995,12 +3995,12 @@
 		(uuid "960736c3-97e2-49a1-b2b2-b90851a90638")
 	)
 	(no_connect
-		(at 179.07 121.92)
-		(uuid "b1eb852c-7441-40bd-8cae-182298b1c6ac")
-	)
-	(no_connect
 		(at 179.07 190.5)
 		(uuid "be4b773a-ed78-4439-a318-72f6729b04a0")
+	)
+	(no_connect
+		(at 179.07 127)
+		(uuid "c772722a-f44b-42b8-b067-bfe2c8d2f4df")
 	)
 	(no_connect
 		(at 179.07 177.8)
@@ -4534,7 +4534,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 127) (xy 179.07 127)
+			(xy 167.64 121.92) (xy 179.07 121.92)
 		)
 		(stroke
 			(width 0)
@@ -4714,7 +4714,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 132.08) (xy 179.07 132.08)
+			(xy 167.64 124.46) (xy 179.07 124.46)
 		)
 		(stroke
 			(width 0)
@@ -5003,7 +5003,7 @@
 		(uuid "26ab7f89-c62a-46af-b7a8-14cd89581f85")
 	)
 	(label "INT"
-		(at 167.64 132.08 0)
+		(at 167.64 124.46 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5073,7 +5073,7 @@
 		(uuid "9726ae06-917c-4086-95e3-0796d2d17537")
 	)
 	(label "SDA"
-		(at 167.64 127 0)
+		(at 167.64 121.92 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5425,8 +5425,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "02df337c-e7e5-45f5-9d8d-16ed800dc25d")
-		(property "Reference" "C10"
-			(at 267.97 97.7962 0)
+		(property "Reference" "C7"
+			(at 267.97 97.7899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5437,7 +5437,7 @@
 			)
 		)
 		(property "Value" "2.2u"
-			(at 267.97 100.3362 0)
+			(at 267.97 100.3299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5500,7 +5500,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C10")
+					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -5524,8 +5524,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "05e5d106-1301-4b1b-b7ae-3cf2d56056c8")
-		(property "Reference" "C5"
-			(at 248.92 102.8762 0)
+		(property "Reference" "C6"
+			(at 248.92 102.8699 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5536,7 +5536,7 @@
 			)
 		)
 		(property "Value" "2.2u"
-			(at 248.92 105.4162 0)
+			(at 248.92 105.4099 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5599,7 +5599,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C5")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -5722,8 +5722,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0e3aaf58-b219-4c38-abfd-3cb600d59c15")
-		(property "Reference" "C11"
-			(at 276.86 148.5962 0)
+		(property "Reference" "C16"
+			(at 276.86 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5734,7 +5734,7 @@
 			)
 		)
 		(property "Value" "0.3p"
-			(at 276.86 151.1362 0)
+			(at 276.86 151.1299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5797,7 +5797,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C11")
+					(reference "C16")
 					(unit 1)
 				)
 			)
@@ -5973,10 +5973,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1e580a6c-eae9-4f7a-95cb-baa1ea287c37")
 		(property "Reference" "U3"
@@ -6272,7 +6272,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6mm_ThermalVias"
+		(property "Footprint" "BLE_Sensor_Node:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
 			(at 207.01 220.98 0)
 			(hide yes)
 			(show_name no)
@@ -6930,8 +6930,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "418ab1fa-e5f5-48ae-ae4b-5bc6ca4d843b")
-		(property "Reference" "C7"
-			(at 256.54 148.5962 0)
+		(property "Reference" "C14"
+			(at 256.54 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6942,7 +6942,7 @@
 			)
 		)
 		(property "Value" "1.5p"
-			(at 256.54 151.1362 0)
+			(at 256.54 151.1299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7005,7 +7005,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C7")
+					(reference "C14")
 					(unit 1)
 				)
 			)
@@ -7024,12 +7024,12 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "42df3965-7a02-481a-8cde-b20c9a42d077")
-		(property "Reference" "C14"
+		(property "Reference" "C11"
 			(at 54.61 196.8562 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7104,7 +7104,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C14")
+					(reference "C11")
 					(unit 1)
 				)
 			)
@@ -7270,7 +7270,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
 			(at 237.49 215.9 0)
 			(hide yes)
 			(show_name no)
@@ -7327,8 +7327,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "43bb3b07-30d9-4ee3-b992-f47d4b024023")
-		(property "Reference" "C12"
-			(at 279.4 97.7962 0)
+		(property "Reference" "C8"
+			(at 279.4 97.7899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7339,7 +7339,7 @@
 			)
 		)
 		(property "Value" "10n"
-			(at 279.4 100.3362 0)
+			(at 279.4 100.3299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7402,7 +7402,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C12")
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -7545,7 +7545,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
 			(at 237.49 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -8254,8 +8254,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6df42191-b36f-461f-8789-da46f5968041")
-		(property "Reference" "C9"
-			(at 266.7 148.5962 0)
+		(property "Reference" "C15"
+			(at 266.7 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8266,7 +8266,7 @@
 			)
 		)
 		(property "Value" "2.0p"
-			(at 266.7 151.1362 0)
+			(at 266.7 151.1299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8329,7 +8329,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C9")
+					(reference "C15")
 					(unit 1)
 				)
 			)
@@ -8441,7 +8441,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 167.64 127 90)
+		(at 167.64 121.92 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8451,7 +8451,7 @@
 		(dnp no)
 		(uuid "77d370e2-4ecf-4956-bd96-9c629bada2ee")
 		(property "Reference" "TP6"
-			(at 163.068 127 90)
+			(at 163.068 121.92 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8462,7 +8462,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 162.56 125.7301 90)
+			(at 162.56 120.6501 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8474,7 +8474,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
-			(at 167.64 121.92 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8485,7 +8485,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 167.64 121.92 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8496,7 +8496,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 167.64 127 0)
+			(at 167.64 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8530,8 +8530,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7a536f15-058a-415d-ad8f-54a7ad65532a")
-		(property "Reference" "C8"
-			(at 266.7 78.7462 0)
+		(property "Reference" "C5"
+			(at 266.7 78.7399 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8542,7 +8542,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 266.7 81.2862 0)
+			(at 266.7 81.2799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8605,7 +8605,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C8")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -8624,12 +8624,12 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "7bb7088b-ad93-486c-990c-2e8fe907f477")
-		(property "Reference" "C15"
+		(property "Reference" "C12"
 			(at 49.53 224.7962 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8704,7 +8704,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C15")
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -9090,7 +9090,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
 			(at 237.49 213.36 0)
 			(hide yes)
 			(show_name no)
@@ -9142,10 +9142,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "a20259d9-eb7a-4339-a31b-4f15dd082855")
 		(property "Reference" "U2"
 			(at 68.58 189.23 0)
@@ -9348,8 +9348,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a293ce20-9e10-4acf-9e68-4164ddf766d1")
-		(property "Reference" "C4"
-			(at 254 193.0462 0)
+		(property "Reference" "C13"
+			(at 254 193.0399 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9360,7 +9360,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 254 195.5862 0)
+			(at 254 195.5799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9423,7 +9423,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C4")
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -9784,7 +9784,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 167.64 132.08 90)
+		(at 167.64 124.46 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9794,7 +9794,7 @@
 		(dnp no)
 		(uuid "b5452733-b481-4cf4-89c1-f655a56c20b1")
 		(property "Reference" "TP8"
-			(at 163.068 132.08 90)
+			(at 163.068 124.46 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9805,7 +9805,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 162.56 130.8101 90)
+			(at 162.56 123.1901 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9817,7 +9817,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
-			(at 167.64 127 0)
+			(at 167.64 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9828,7 +9828,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 167.64 127 0)
+			(at 167.64 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9839,7 +9839,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 167.64 132.08 0)
+			(at 167.64 124.46 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10365,8 +10365,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dabe4012-7299-4bd7-a958-18371135a069")
-		(property "Reference" "C13"
-			(at 290.83 97.7962 0)
+		(property "Reference" "C9"
+			(at 290.83 97.7899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10377,7 +10377,7 @@
 			)
 		)
 		(property "Value" "10n"
-			(at 290.83 100.3362 0)
+			(at 290.83 100.3299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10440,7 +10440,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C13")
+					(reference "C9")
 					(unit 1)
 				)
 			)
@@ -10486,7 +10486,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
 			(at 237.49 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -10700,8 +10700,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e9045955-3efe-4f48-a3ea-c8d9e53adefb")
-		(property "Reference" "C6"
-			(at 255.27 78.7462 0)
+		(property "Reference" "C4"
+			(at 255.27 78.7399 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10712,7 +10712,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 255.27 81.2862 0)
+			(at 255.27 81.2799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10775,7 +10775,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C6")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -10890,7 +10890,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ea06ab69-97ea-4aa4-b3a1-baa42e27b497")
-		(property "Reference" "C16"
+		(property "Reference" "C10"
 			(at 64.77 125.7362 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10965,7 +10965,7 @@
 		(instances
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
-					(reference "C16")
+					(reference "C10")
 					(unit 1)
 				)
 			)

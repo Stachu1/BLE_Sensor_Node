@@ -13440,7 +13440,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6mm_ThermalVias"
+		(property "Footprint" "BLE_Sensor_Node:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
 			(at 0 -73.66 0)
 			(show_name no)
 			(do_not_autoplace no)
