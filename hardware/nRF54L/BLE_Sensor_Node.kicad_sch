@@ -1519,6 +1519,183 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector:Conn_Coaxial_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0.254 3.048 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_Coaxial_Small"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "small coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "BNC SMA SMB SMC LEMO coaxial connector CINCH RCA MCX MMCX U.FL UMRF"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*BNC* *SMA* *SMB* *SMC* *Cinch* *LEMO* *UMRF* *MCX* *U.FL*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn_Coaxial_Small_0_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy -0.508 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 0.508)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Conn_Coaxial_Small_1_1"
+				(arc
+					(start 1.3484 0.0039)
+					(mid 0.327 -1.308)
+					(end -1.1916 -0.6311)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -1.1916 0.6311)
+					(mid 0.327 1.3081)
+					(end 1.3484 -0.0039)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -2.54 0 0)
+					(length 1.27)
+					(name "In"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 0 180)
+					(length 1.27)
+					(name "Ext"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Connector:TestPoint"
 			(pin_numbers
 				(hide yes)
@@ -2959,6 +3136,146 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:R_Small_US"
 			(pin_numbers
 				(hide yes)
@@ -3733,7 +4050,7 @@
 		(uuid "120d9f20-9c12-44b8-a700-3b72d06b9e13")
 	)
 	(junction
-		(at 254 147.32)
+		(at 247.65 147.32)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1bb7fc80-be35-4bd4-9739-64306053f551")
@@ -3787,7 +4104,7 @@
 		(uuid "51f33fb0-9468-4aeb-bf16-e882a6e4d23a")
 	)
 	(junction
-		(at 274.32 147.32)
+		(at 267.97 147.32)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5257d4a6-c6fc-4ac7-8501-c731a2173e9f")
@@ -3799,7 +4116,7 @@
 		(uuid "547b0a8d-2e1e-4216-8055-ba7004a468c5")
 	)
 	(junction
-		(at 264.16 147.32)
+		(at 257.81 147.32)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "560ab160-eeb9-4206-b505-213d3884c277")
@@ -3835,7 +4152,7 @@
 		(uuid "76d98d27-6ed4-45c9-b889-7bbf78428735")
 	)
 	(junction
-		(at 264.16 153.67)
+		(at 257.81 153.67)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "77c12bc0-2295-4dc4-b37e-78ba2a6b7491")
@@ -3889,6 +4206,12 @@
 		(uuid "c3040831-2b71-4a17-aa6b-ef969a3ff37b")
 	)
 	(junction
+		(at 276.86 147.32)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c5c34f46-7dce-47d9-8e3e-80e6c6d1c7b5")
+	)
+	(junction
 		(at 55.88 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3913,7 +4236,7 @@
 		(uuid "f6906c7e-548a-42b8-bd0a-4d6114532b50")
 	)
 	(junction
-		(at 274.32 153.67)
+		(at 267.97 153.67)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fe83ab8f-25ef-41a0-962f-13961124ad21")
@@ -4044,6 +4367,16 @@
 	)
 	(wire
 		(pts
+			(xy 284.48 149.86) (xy 281.94 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "03c35a93-25ea-41a5-86c7-8a43e50a341f")
+	)
+	(wire
+		(pts
 			(xy 251.46 198.12) (xy 251.46 196.85)
 		)
 		(stroke
@@ -4094,7 +4427,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 153.67) (xy 274.32 152.4)
+			(xy 267.97 153.67) (xy 267.97 152.4)
 		)
 		(stroke
 			(width 0)
@@ -4214,7 +4547,17 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 147.32) (xy 246.38 147.32)
+			(xy 276.86 148.59) (xy 276.86 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "332cc540-119c-4481-8bbb-1bf26800bb56")
+	)
+	(wire
+		(pts
+			(xy 234.95 147.32) (xy 240.03 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4234,7 +4577,7 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 153.67) (xy 274.32 153.67)
+			(xy 257.81 153.67) (xy 267.97 153.67)
 		)
 		(stroke
 			(width 0)
@@ -4274,7 +4617,17 @@
 	)
 	(wire
 		(pts
-			(xy 254 147.32) (xy 251.46 147.32)
+			(xy 284.48 154.94) (xy 284.48 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4db4f1e9-d75f-4f72-bd3b-b5f49bd799b9")
+	)
+	(wire
+		(pts
+			(xy 247.65 147.32) (xy 245.11 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4294,7 +4647,7 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 153.67) (xy 264.16 152.4)
+			(xy 257.81 153.67) (xy 257.81 152.4)
 		)
 		(stroke
 			(width 0)
@@ -4314,7 +4667,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 147.32) (xy 289.56 147.32)
+			(xy 267.97 147.32) (xy 289.56 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4404,7 +4757,7 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 147.32) (xy 264.16 147.32)
+			(xy 255.27 147.32) (xy 257.81 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4471,6 +4824,16 @@
 			(type default)
 		)
 		(uuid "71297a09-5d5e-4d90-bcb5-99cb298411e5")
+	)
+	(wire
+		(pts
+			(xy 276.86 156.21) (xy 281.94 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7732df12-242b-4f89-b1ab-fc5d4c03321c")
 	)
 	(wire
 		(pts
@@ -4614,7 +4977,17 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 147.32) (xy 274.32 147.32)
+			(xy 281.94 149.86) (xy 281.94 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "97f7f8c5-63b4-4c53-a7a7-3f5006fef4bd")
+	)
+	(wire
+		(pts
+			(xy 265.43 147.32) (xy 267.97 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4744,7 +5117,7 @@
 	)
 	(wire
 		(pts
-			(xy 254 153.67) (xy 264.16 153.67)
+			(xy 247.65 153.67) (xy 257.81 153.67)
 		)
 		(stroke
 			(width 0)
@@ -4814,7 +5187,7 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 147.32) (xy 266.7 147.32)
+			(xy 257.81 147.32) (xy 260.35 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4894,7 +5267,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 156.21) (xy 274.32 153.67)
+			(xy 267.97 156.21) (xy 267.97 153.67)
 		)
 		(stroke
 			(width 0)
@@ -4924,7 +5297,7 @@
 	)
 	(wire
 		(pts
-			(xy 254 153.67) (xy 254 152.4)
+			(xy 247.65 153.67) (xy 247.65 152.4)
 		)
 		(stroke
 			(width 0)
@@ -4944,7 +5317,7 @@
 	)
 	(wire
 		(pts
-			(xy 256.54 147.32) (xy 254 147.32)
+			(xy 250.19 147.32) (xy 247.65 147.32)
 		)
 		(stroke
 			(width 0)
@@ -5712,7 +6085,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 274.32 149.86 0)
+		(at 267.97 149.86 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5723,7 +6096,7 @@
 		(fields_autoplaced yes)
 		(uuid "0e3aaf58-b219-4c38-abfd-3cb600d59c15")
 		(property "Reference" "C16"
-			(at 276.86 148.5899 0)
+			(at 270.51 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5734,7 +6107,7 @@
 			)
 		)
 		(property "Value" "0.3p"
-			(at 276.86 151.1299 0)
+			(at 270.51 151.1299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5745,7 +6118,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 274.32 149.86 0)
+			(at 267.97 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5756,7 +6129,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 274.32 149.86 0)
+			(at 267.97 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5767,7 +6140,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 274.32 149.86 0)
+			(at 267.97 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5778,7 +6151,7 @@
 			)
 		)
 		(property "DigiKey" "490-17132-1-ND"
-			(at 274.32 149.86 0)
+			(at 267.97 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6744,7 +7117,7 @@
 	)
 	(symbol
 		(lib_id "Device:L_Small")
-		(at 269.24 147.32 90)
+		(at 262.89 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6755,7 +7128,7 @@
 		(fields_autoplaced yes)
 		(uuid "38fa7fbc-0fbc-4dd7-928a-bd4672508f63")
 		(property "Reference" "L4"
-			(at 269.24 142.24 90)
+			(at 262.89 142.24 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6765,7 +7138,7 @@
 			)
 		)
 		(property "Value" "3.5n"
-			(at 269.24 144.78 90)
+			(at 262.89 144.78 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6775,7 +7148,7 @@
 			)
 		)
 		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
-			(at 269.24 147.32 0)
+			(at 262.89 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6786,7 +7159,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 269.24 147.32 0)
+			(at 262.89 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6797,7 +7170,7 @@
 			)
 		)
 		(property "Description" "Inductor, small symbol"
-			(at 269.24 147.32 0)
+			(at 262.89 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6808,7 +7181,7 @@
 			)
 		)
 		(property "DigiKey" "490-15430-1-ND"
-			(at 269.24 147.32 0)
+			(at 262.89 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6920,7 +7293,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 254 149.86 0)
+		(at 247.65 149.86 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6931,7 +7304,7 @@
 		(fields_autoplaced yes)
 		(uuid "418ab1fa-e5f5-48ae-ae4b-5bc6ca4d843b")
 		(property "Reference" "C14"
-			(at 256.54 148.5899 0)
+			(at 250.19 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6942,7 +7315,7 @@
 			)
 		)
 		(property "Value" "1.5p"
-			(at 256.54 151.1299 0)
+			(at 250.19 151.1299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6953,7 +7326,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 254 149.86 0)
+			(at 247.65 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6964,7 +7337,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 254 149.86 0)
+			(at 247.65 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6975,7 +7348,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 254 149.86 0)
+			(at 247.65 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6986,7 +7359,7 @@
 			)
 		)
 		(property "DigiKey" "712-QLCD250Q1R5B1GV001TCT-ND"
-			(at 254 149.86 0)
+			(at 247.65 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7416,7 +7789,7 @@
 	)
 	(symbol
 		(lib_id "Device:L_Small")
-		(at 248.92 147.32 90)
+		(at 242.57 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7427,7 +7800,7 @@
 		(fields_autoplaced yes)
 		(uuid "477b86e4-d198-499b-a5ca-1c817bfa4626")
 		(property "Reference" "L2"
-			(at 248.92 142.24 90)
+			(at 242.57 142.24 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7437,7 +7810,7 @@
 			)
 		)
 		(property "Value" "2.7n"
-			(at 248.92 144.78 90)
+			(at 242.57 144.78 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7447,7 +7820,7 @@
 			)
 		)
 		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
-			(at 248.92 147.32 0)
+			(at 242.57 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7458,7 +7831,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 147.32 0)
+			(at 242.57 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7469,7 +7842,7 @@
 			)
 		)
 		(property "Description" "Inductor, small symbol"
-			(at 248.92 147.32 0)
+			(at 242.57 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7480,7 +7853,7 @@
 			)
 		)
 		(property "DigiKey" "490-15398-1-ND"
-			(at 248.92 147.32 0)
+			(at 242.57 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8164,6 +8537,85 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 284.48 156.21 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "69dc227f-be48-4812-8f47-5e4407800a6b")
+		(property "Reference" "#PWR021"
+			(at 284.48 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 284.48 161.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 284.48 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 284.48 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 284.48 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bab7992b-d2fe-4583-85dd-bb3aa7d81113")
+		)
+		(instances
+			(project "BLE_Sensor_Node"
+				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
+					(reference "#PWR021")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 64.77 208.28 0)
 		(mirror y)
 		(unit 1)
@@ -8244,7 +8696,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 264.16 149.86 0)
+		(at 257.81 149.86 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8255,7 +8707,7 @@
 		(fields_autoplaced yes)
 		(uuid "6df42191-b36f-461f-8789-da46f5968041")
 		(property "Reference" "C15"
-			(at 266.7 148.5899 0)
+			(at 260.35 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8266,7 +8718,7 @@
 			)
 		)
 		(property "Value" "2.0p"
-			(at 266.7 151.1299 0)
+			(at 260.35 151.1299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8277,7 +8729,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 264.16 149.86 0)
+			(at 257.81 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8288,7 +8740,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 264.16 149.86 0)
+			(at 257.81 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8299,7 +8751,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 264.16 149.86 0)
+			(at 257.81 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8310,7 +8762,7 @@
 			)
 		)
 		(property "DigiKey" "490-11205-1-ND"
-			(at 264.16 149.86 0)
+			(at 257.81 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8961,7 +9413,7 @@
 	)
 	(symbol
 		(lib_id "Device:L_Small")
-		(at 259.08 147.32 90)
+		(at 252.73 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8972,7 +9424,7 @@
 		(fields_autoplaced yes)
 		(uuid "9194c9de-63c9-4db8-9734-7537d84a7f7c")
 		(property "Reference" "L3"
-			(at 259.08 142.24 90)
+			(at 252.73 142.24 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8982,7 +9434,7 @@
 			)
 		)
 		(property "Value" "3.5n"
-			(at 259.08 144.78 90)
+			(at 252.73 144.78 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8992,7 +9444,7 @@
 			)
 		)
 		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
-			(at 259.08 147.32 0)
+			(at 252.73 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9003,7 +9455,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 259.08 147.32 0)
+			(at 252.73 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9014,7 +9466,7 @@
 			)
 		)
 		(property "Description" "Inductor, small symbol"
-			(at 259.08 147.32 0)
+			(at 252.73 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9025,7 +9477,7 @@
 			)
 		)
 		(property "DigiKey" "490-15430-1-ND"
-			(at 259.08 147.32 0)
+			(at 252.73 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9939,6 +10391,87 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 276.86 152.4 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp yes)
+		(uuid "bfd141b2-4837-439c-ae9c-e2a9e179795e")
+		(property "Reference" "R4"
+			(at 278.384 150.368 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "R"
+			(at 278.638 153.162 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 275.082 152.4 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 276.86 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 276.86 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "c34e7409-b5f0-4470-8347-93a2e812f386")
+		)
+		(pin "1"
+			(uuid "37fdede3-60d5-4e10-be45-c2c279e8e156")
+		)
+		(instances
+			(project "BLE_Sensor_Node"
+				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
+					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 74.93 132.08 270)
 		(unit 1)
@@ -10276,7 +10809,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 274.32 156.21 0)
+		(at 267.97 156.21 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10287,7 +10820,7 @@
 		(fields_autoplaced yes)
 		(uuid "d8639670-3a6f-4db5-a973-80ba5efa54e1")
 		(property "Reference" "#PWR05"
-			(at 274.32 162.56 0)
+			(at 267.97 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10298,7 +10831,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 274.32 161.29 0)
+			(at 267.97 161.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10309,7 +10842,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 274.32 156.21 0)
+			(at 267.97 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10320,7 +10853,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 274.32 156.21 0)
+			(at 267.97 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10331,7 +10864,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 274.32 156.21 0)
+			(at 267.97 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10683,6 +11216,99 @@
 			(project "BLE_Sensor_Node"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_Coaxial_Small")
+		(at 284.48 152.4 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp yes)
+		(uuid "e2704415-68b9-42f2-8280-81ed633e057c")
+		(property "Reference" "J1"
+			(at 285.75 150.114 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_Coaxial_Small"
+			(at 287.02 153.1503 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical"
+			(at 284.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 284.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "small coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)"
+			(at 284.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "H11891CT-ND"
+			(at 284.48 152.4 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "91671ae7-f2ff-4e98-bdec-fcf1d81ec412")
+		)
+		(pin "2"
+			(uuid "f0a2a034-914c-42a8-9fb1-417c16522525")
+		)
+		(instances
+			(project "BLE_Sensor_Node"
+				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
+					(reference "J1")
 					(unit 1)
 				)
 			)
