@@ -5,7 +5,7 @@
 	(uuid "3be841bb-f0fa-4f59-8a52-40b0b50ca4ae")
 	(paper "A3")
 	(title_block
-		(title "BLE Sensor Node (nRF54L variant)")
+		(title "BSN-N54 - BLE Sensor Node, nRF54L variant")
 		(date "2026-09-17")
 		(rev "A")
 	)
@@ -5772,7 +5772,7 @@
 			(uuid "323ff7be-da30-4a39-90bc-12895bdb9076")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "R1")
 					(unit 1)
@@ -5871,7 +5871,7 @@
 			(uuid "0398b7ca-dc22-486d-91cb-15caab1d36fd")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C7")
 					(unit 1)
@@ -5970,7 +5970,7 @@
 			(uuid "bc67b7b5-9cd6-41c2-adaa-997a04f57911")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C6")
 					(unit 1)
@@ -6069,7 +6069,7 @@
 			(uuid "4321d8df-3f6b-4af7-89df-7bcc91010a0f")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C2")
 					(unit 1)
@@ -6168,7 +6168,7 @@
 			(uuid "f49abeb7-4670-4601-8abb-8de13f9dc9c8")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C16")
 					(unit 1)
@@ -6253,7 +6253,7 @@
 			(uuid "4f328ce8-fbca-4822-808b-32f28969075c")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP7")
 					(unit 1)
@@ -6332,7 +6332,7 @@
 			(uuid "78535390-5a2e-4deb-b34e-14b691a0926b")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP5")
 					(unit 1)
@@ -6435,7 +6435,7 @@
 			(uuid "a52bac54-4cee-401a-affe-0fea510ace0a")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "U3")
 					(unit 1)
@@ -6514,7 +6514,7 @@
 			(uuid "ffb023ad-681e-4855-83fc-5cfedf5dbe1c")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR04")
 					(unit 1)
@@ -6605,7 +6605,7 @@
 			(uuid "94a10b15-a7bc-4295-a19f-fdb20ba6be8b")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "L6")
 					(unit 1)
@@ -6837,7 +6837,7 @@
 			(uuid "72f118c1-74d5-4448-ac5c-b93a9a8a7a19")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "U1")
 					(unit 1)
@@ -6935,7 +6935,7 @@
 			(uuid "ad08621c-9ccb-4e70-ba88-32f8d9703910")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "X1")
 					(unit 1)
@@ -7014,7 +7014,7 @@
 			(uuid "944a7a83-eadd-45bf-9b72-8828ad0dff08")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR017")
 					(unit 1)
@@ -7107,7 +7107,7 @@
 			(uuid "45342569-16f3-4db4-8153-35e4cdfe97fd")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "X2")
 					(unit 1)
@@ -7198,7 +7198,7 @@
 			(uuid "9ac84331-0e92-42ba-85c7-7a681d125e06")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "L4")
 					(unit 1)
@@ -7283,7 +7283,7 @@
 			(uuid "826d2902-6d06-4b3e-a96d-6b258b83b753")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR013")
 					(unit 1)
@@ -7376,7 +7376,7 @@
 			(uuid "38ab9a44-17ca-49c7-b50a-5ae6e9742a37")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C14")
 					(unit 1)
@@ -7475,7 +7475,7 @@
 			(uuid "c4905529-89c9-4364-93b7-501a40ba1a65")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C11")
 					(unit 1)
@@ -7568,7 +7568,7 @@
 			(uuid "84ea34c3-2b14-4c74-9ae6-a58a98248f55")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "BT1")
 					(unit 1)
@@ -7647,7 +7647,7 @@
 			(uuid "729a095c-bac3-4d6b-adcf-556ad43dcd30")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP4")
 					(unit 1)
@@ -7740,7 +7740,7 @@
 			(uuid "03d1e508-7cad-401e-a025-2a8f757fe1cb")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C8")
 					(unit 1)
@@ -7837,7 +7837,7 @@
 			(uuid "8873afcb-0466-48cd-91ea-239e5752e634")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "L2")
 					(unit 1)
@@ -7922,7 +7922,7 @@
 			(uuid "80a6d8e6-b714-4cc1-9b86-17c793ddce16")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP2")
 					(unit 1)
@@ -8004,7 +8004,7 @@
 			(uuid "8f11cfe2-019f-486d-bbdd-18e5f0964f74")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "L7")
 					(unit 1)
@@ -8081,7 +8081,7 @@
 			(uuid "b653d261-f3e6-41d3-9ab5-46a7cbe023b0")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR016")
 					(unit 1)
@@ -8160,7 +8160,7 @@
 			(uuid "eb39e3fc-872d-48dd-8645-db4a9470e288")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR014")
 					(unit 1)
@@ -8239,7 +8239,7 @@
 			(uuid "cad171de-320f-4f8b-a6f7-0e04b9245677")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR03")
 					(unit 1)
@@ -8316,7 +8316,7 @@
 			(uuid "6e211eca-fd17-4e55-9e43-754ae751da8a")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR015")
 					(unit 1)
@@ -8395,7 +8395,7 @@
 			(uuid "8109890c-6436-444d-952c-b009b6c4d0e3")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR06")
 					(unit 1)
@@ -8488,7 +8488,7 @@
 			(uuid "a68d3305-79bf-4039-971c-008a591d4e1f")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C1")
 					(unit 1)
@@ -8573,7 +8573,7 @@
 			(uuid "bab7992b-d2fe-4583-85dd-bb3aa7d81113")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR021")
 					(unit 1)
@@ -8653,7 +8653,7 @@
 			(uuid "87311820-ba8e-4d2e-80d9-74e81cbcb1cd")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR08")
 					(unit 1)
@@ -8746,7 +8746,7 @@
 			(uuid "304d83d3-baa1-4710-b596-bd49b9ed0190")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C15")
 					(unit 1)
@@ -8844,7 +8844,7 @@
 			(uuid "cb19829f-68a4-440c-bd0e-763770a2931a")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "FB1")
 					(unit 1)
@@ -8929,7 +8929,7 @@
 			(uuid "fdffaaf8-8c44-495a-be1a-087f4658a84b")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP6")
 					(unit 1)
@@ -9022,7 +9022,7 @@
 			(uuid "5e044821-5525-494e-92e5-0c307efb8ada")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C5")
 					(unit 1)
@@ -9121,7 +9121,7 @@
 			(uuid "e4d35032-1cf4-42e5-8cc8-914d3ea92ce4")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C12")
 					(unit 1)
@@ -9198,7 +9198,7 @@
 			(uuid "a3bf050f-7d04-47ec-8a66-d7b47cc12e06")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR018")
 					(unit 1)
@@ -9277,7 +9277,7 @@
 			(uuid "2c256fdf-44ca-411d-9eca-c98fce96b856")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR02")
 					(unit 1)
@@ -9370,7 +9370,7 @@
 			(uuid "cc968e14-4a18-4437-8fd2-d44bcb6c5f8c")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "L5")
 					(unit 1)
@@ -9461,7 +9461,7 @@
 			(uuid "270cead6-5a3d-4f6a-8d37-c7a3c2daafae")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "L3")
 					(unit 1)
@@ -9546,7 +9546,7 @@
 			(uuid "dc3f5cfe-b362-40e2-886d-5d6285739991")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP1")
 					(unit 1)
@@ -9648,7 +9648,7 @@
 			(uuid "cf2cc34d-c2b4-4ecd-b2c8-62c213c5fe80")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "U2")
 					(unit 1)
@@ -9747,7 +9747,7 @@
 			(uuid "588ce478-fae6-4fdc-bf46-1ff9d4aa28f8")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "AE1")
 					(unit 1)
@@ -9840,7 +9840,7 @@
 			(uuid "e2b82bf0-2b3e-4972-9da1-acb92010f000")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C13")
 					(unit 1)
@@ -9919,7 +9919,7 @@
 			(uuid "1688a947-9275-4a4e-bbb5-e2e53e974852")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR01")
 					(unit 1)
@@ -10018,7 +10018,7 @@
 			(uuid "79ec39b1-0e20-4a31-9957-c4e7be7b0d9f")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C3")
 					(unit 1)
@@ -10114,7 +10114,7 @@
 			(uuid "e72f24c7-5f31-4a11-8ba2-6527efad6294")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "R2")
 					(unit 1)
@@ -10193,7 +10193,7 @@
 			(uuid "0a9435aa-6ba0-4988-b731-4af388355a9a")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#FLG02")
 					(unit 1)
@@ -10272,7 +10272,7 @@
 			(uuid "99eaa57e-3f2b-4f44-a104-8bf7ad27375a")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP8")
 					(unit 1)
@@ -10349,7 +10349,7 @@
 			(uuid "a2ff4383-88ec-4338-8e6d-ea3d928d49c6")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR010")
 					(unit 1)
@@ -10430,7 +10430,7 @@
 			(uuid "37fdede3-60d5-4e10-be45-c2c279e8e156")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "R4")
 					(unit 1)
@@ -10509,7 +10509,7 @@
 			(uuid "50e2b3c4-8dbc-4edf-ad9f-e1f67294fecc")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#FLG01")
 					(unit 1)
@@ -10602,7 +10602,7 @@
 			(uuid "f03074b7-4570-4d1a-87ab-3dc5e4105dc5")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "L1")
 					(unit 1)
@@ -10687,7 +10687,7 @@
 			(uuid "6a5037d9-6293-41af-ad5e-d6c93827e314")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR019")
 					(unit 1)
@@ -10766,7 +10766,7 @@
 			(uuid "a6304560-936b-4310-a33d-c66482444f45")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR09")
 					(unit 1)
@@ -10845,7 +10845,7 @@
 			(uuid "4b11d6c0-e5fa-4e73-9548-fe75beb1d873")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR05")
 					(unit 1)
@@ -10938,7 +10938,7 @@
 			(uuid "db5dd506-f1b1-4232-ae81-9a5755249390")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C9")
 					(unit 1)
@@ -11023,7 +11023,7 @@
 			(uuid "8c5eb84f-7c16-4843-9168-bbcc2b306bec")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "TP3")
 					(unit 1)
@@ -11101,7 +11101,7 @@
 			(uuid "8ac7ddca-3e67-4697-8328-4d456dac2d72")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR011")
 					(unit 1)
@@ -11180,7 +11180,7 @@
 			(uuid "ee0b688c-b3d5-4147-b076-ca5347ebe631")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR020")
 					(unit 1)
@@ -11273,7 +11273,7 @@
 			(uuid "f0a2a034-914c-42a8-9fb1-417c16522525")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "J1")
 					(unit 1)
@@ -11366,7 +11366,7 @@
 			(uuid "84689fd7-5591-4fef-add4-3133781ffb7b")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C4")
 					(unit 1)
@@ -11463,7 +11463,7 @@
 			(uuid "37e24db7-6a82-4fa1-8f0c-84cd3ba1091e")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "R3")
 					(unit 1)
@@ -11556,7 +11556,7 @@
 			(uuid "4cb6f6f8-93b2-461d-9417-468e97e3a7d4")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "C10")
 					(unit 1)
@@ -11633,7 +11633,7 @@
 			(uuid "6288070a-587b-427b-944c-26b74a713634")
 		)
 		(instances
-			(project "BLE_Sensor_Node"
+			(project "BSN-N54"
 				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
 					(reference "#PWR012")
 					(unit 1)

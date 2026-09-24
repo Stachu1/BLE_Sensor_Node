@@ -1,4 +1,6 @@
-# nRF54L variant
+# BSN-N54 (Nordic nRF54L variant)
+
+KiCad project: `BSN-N54.kicad_pro`. See the root README for the board naming scheme.
 
 ## ANT-pin matching network
 

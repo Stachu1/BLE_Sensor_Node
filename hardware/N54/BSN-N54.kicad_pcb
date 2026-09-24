@@ -208,7 +208,7 @@
 		(property ki_fp_filters "Sensirion*DFN*1EP*2x2mm*P1mm*EP0.7x1.6mm*")
 		(path "/a20259d9-eb7a-4339-a31b-4f15dd082855")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -518,7 +518,7 @@
 		(property ki_fp_filters "Crystal*")
 		(path "/33821ebc-9d21-4111-a68c-1c5d6a10db91")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -748,7 +748,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/6df42191-b36f-461f-8789-da46f5968041")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -920,7 +920,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/477b86e4-d198-499b-a5ca-1c817bfa4626")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1072,7 +1072,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/43bb3b07-30d9-4ee3-b992-f47d4b024023")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1246,7 +1246,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/42df3965-7a02-481a-8cde-b20c9a42d077")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1407,7 +1407,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/4a3366f8-e06b-45d1-9d3c-6f97d2293d1b")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1563,7 +1563,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/e980c428-17d2-4f61-8765-e6ee01506d84")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1716,7 +1716,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/b5452733-b481-4cf4-89c1-f655a56c20b1")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1847,7 +1847,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/af54ac3a-0d6a-4f2c-ac24-222b7fc39c86")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2000,7 +2000,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/77d370e2-4ecf-4956-bd96-9c629bada2ee")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2129,7 +2129,7 @@
 		(property ki_fp_filters "Crystal*")
 		(path "/29b02a17-1428-4287-8cc5-0b4401248005")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2315,7 +2315,7 @@
 		)
 		(path "/1e580a6c-eae9-4f7a-95cb-baa1ea287c37")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2610,7 +2610,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/bfd141b2-4837-439c-ae9c-e2a9e179795e")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2778,7 +2778,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/019e490f-d0af-4d6d-8584-7672f732c526")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2931,7 +2931,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/1be7eed3-88c2-42ae-8392-c4f121c62457")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3041,7 +3041,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/4976c516-dc90-4177-89ac-dba5fadbf7aa")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3172,7 +3172,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/2473017b-7a2b-4fbe-865d-c7d5239384ff")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3305,7 +3305,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/9a7f772f-99d8-4f07-9a78-7fb819aa58d1")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3427,7 +3427,7 @@
 		(property ki_fp_filters "*BNC* *SMA* *SMB* *SMC* *Cinch* *LEMO* *UMRF* *MCX* *U.FL*")
 		(path "/e2704415-68b9-42f2-8280-81ed633e057c")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3835,7 +3835,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/083eca6c-ac7b-4147-be18-80bea82765aa")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4009,7 +4009,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/0e3aaf58-b219-4c38-abfd-3cb600d59c15")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4183,7 +4183,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/38fa7fbc-0fbc-4dd7-928a-bd4672508f63")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4335,7 +4335,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/dabe4012-7299-4bd7-a958-18371135a069")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4509,7 +4509,7 @@
 		(property ki_fp_filters "Inductor_* L_* *Ferrite*")
 		(path "/70a70715-a17a-4168-915f-7608eac18b9e")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4662,7 +4662,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/16fa2933-7de8-4313-9616-99d66154c495")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4793,7 +4793,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/e9045955-3efe-4f48-a3ea-c8d9e53adefb")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4967,7 +4967,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/7a536f15-058a-415d-ad8f-54a7ad65532a")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5139,7 +5139,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/8b4b7a7d-7f4d-4fcd-915d-7f4a2c41c117")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5295,7 +5295,7 @@
 		(property ki_fp_filters "QFN*48*1EP*6x6mm*P0.4mm*EP4.6x4.6mm*")
 		(path "/28dda6ab-819f-49c5-af98-44d0f8f11747")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6472,7 +6472,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/68510b22-e204-4501-87a4-18612c2104e1")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6646,7 +6646,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/05e5d106-1301-4b1b-b7ae-3cf2d56056c8")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6799,7 +6799,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/db3f564b-d87d-485c-845b-7a497bb14704")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6930,7 +6930,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/02df337c-e7e5-45f5-9d8d-16ed800dc25d")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -7104,7 +7104,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/7bb7088b-ad93-486c-990c-2e8fe907f477")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -7269,7 +7269,7 @@
 		)
 		(path "/a2102072-3b99-49d9-a820-16df529eaacb")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -7433,7 +7433,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/418ab1fa-e5f5-48ae-ae4b-5bc6ca4d843b")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -7607,7 +7607,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/9194c9de-63c9-4db8-9734-7537d84a7f7c")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -7759,7 +7759,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/c6ffa837-74e7-4f47-9eb8-2cfd9f0708e8")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -7913,7 +7913,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/ace5fae5-1102-4bc1-88b1-47020a5b1a20")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -8085,7 +8085,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/ea06ab69-97ea-4aa4-b3a1-baa42e27b497")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -8238,7 +8238,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/436b3baf-8357-465d-9189-38e6b2bdcafa")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -8369,7 +8369,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/a293ce20-9e10-4acf-9e68-4164ddf766d1")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -8580,7 +8580,7 @@
 		)
 		(path "/42e1b5e1-4d47-47c9-8df3-588aee2b8649")
 		(sheetname "/")
-		(sheetfile "BLE_Sensor_Node.kicad_sch")
+		(sheetfile "BSN-N54.kicad_sch")
 		(units
 			(unit
 				(name "A")

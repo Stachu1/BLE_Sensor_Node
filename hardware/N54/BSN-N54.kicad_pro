@@ -513,7 +513,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "BLE_Sensor_Node.kicad_pro",
+    "filename": "BSN-N54.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -840,8 +840,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "BLE_Sensor_Node.kicad_sch",
-        "name": "BLE_Sensor_Node",
+        "filename": "BSN-N54.kicad_sch",
+        "name": "BSN-N54",
         "uuid": "3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
       }
     ],
@@ -851,7 +851,7 @@
   "sheets": [
     [
       "3be841bb-f0fa-4f59-8a52-40b0b50ca4ae",
-      "BLE_Sensor_Node"
+      "BSN-N54"
     ]
   ],
   "text_variables": {},
