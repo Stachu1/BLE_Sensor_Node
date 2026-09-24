@@ -1,4 +1,4 @@
 (sym_lib_table
 	(version 7)
-	(lib (name "BLE_Sensor_Node") (type "KiCad") (uri "${KIPRJMOD}/library/BLE_Sensor_Node.kicad_sym") (options "") (descr ""))
+	(lib (name "BSN-N54") (type "KiCad") (uri "${KIPRJMOD}/library/BSN-N54.kicad_sym") (options "") (descr ""))
 )

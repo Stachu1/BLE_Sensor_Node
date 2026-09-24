@@ -37,7 +37,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "BSN-N54:AANI-CH-0138-Q-T"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -60,6 +60,17 @@
 			)
 		)
 		(property "Description" "Antenna"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "535-AANI-CH-0138-Q-TCT-ND"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -212,7 +223,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BLE_Sensor_Node:HDC2010"
+		(property "Footprint" "BSN-N54:HDC2010"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13440,7 +13451,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BLE_Sensor_Node:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
+		(property "Footprint" "BSN-N54:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
 			(at 0 -73.66 0)
 			(show_name no)
 			(do_not_autoplace no)

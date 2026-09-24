@@ -1,4 +1,4 @@
 (fp_lib_table
 	(version 7)
-	(lib (name "BLE_Sensor_Node") (type "KiCad") (uri "${KIPRJMOD}/library/BLE_Sensor_Node.pretty") (options "") (descr ""))
+	(lib (name "BSN-C23") (type "KiCad") (uri "${KIPRJMOD}/library/BSN-C23.pretty") (options "") (descr ""))
 )

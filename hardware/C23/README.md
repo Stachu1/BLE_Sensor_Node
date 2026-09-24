@@ -7,7 +7,7 @@ KiCad project: `BSN-C23.kicad_pro`. See the root README for the board naming sch
 This project started as a copy of `BSN-N54-A` (board outline, power, sensors, antenna and
 test points). Some parts are still nRF54L-specific and need to be replaced:
 
-- [ ] U1: swap the nRF54L05 symbol/footprint for the CC2340R5 (package TBD)
+- [ ] U1: swap the nRF54L05 for the CC2340R52E0RGER (VQFN-24 4x4, RGE)
 - [ ] Decoupling and power tree for the CC2340R5 (DC/DC inductor, VDDS/VDDR caps)
 - [ ] 48 MHz HF crystal (the CC2340R5 uses 48 MHz; Y1 is currently the nRF 32 MHz part)
 - [ ] RF matching network and filter per the TI CC2340R5 reference design
@@ -20,25 +20,22 @@ KiCad design blocks, so the design blocks table is empty for now.
 
 | Resource | Format | Link |
 |---|---|---|
-| CC2340R5 symbol + footprint + STEP (RKP VQFN-40 5x5) | KiCad v6+ export via Ultra Librarian (free login) | https://vendor.ultralibrarian.com/TI/embedded/?gpn=CC2340R5&package=RKP&pin=40 |
-| Same for RGE VQFN-24 4x4 | Ultra Librarian | https://vendor.ultralibrarian.com/TI/embedded/?gpn=CC2340R5&package=RGE&pin=24 |
-| LP-EM-CC2340R53 LaunchPad design files (RKP) | Allegro/OrCAD + schematic/layout PDF, BOM, Gerbers, ODB++ | https://www.ti.com/lit/zip/SWRC397 |
+| CC2340R5 symbol + footprint + STEP (RGE VQFN-24 4x4) | KiCad v6+ export via Ultra Librarian (free login) | https://vendor.ultralibrarian.com/TI/embedded/?gpn=CC2340R5&package=RGE&pin=24 |
+| LP-EM-CC2340R53 LaunchPad design files (uses the 40-pin RKP package, but the RF, crystal and DC/DC circuits carry over) | Allegro/OrCAD + schematic/layout PDF, BOM, Gerbers, ODB++ | https://www.ti.com/lit/zip/SWRC397 |
 | LP-EM-CC2340R53 user guide | PDF | https://www.ti.com/lit/pdf/SWRU637 |
 | CC234x/CC27xx hardware configuration & PCB design (SWRA834) | PDF | https://www.ti.com/lit/pdf/SWRA834 |
 | Product page (packages, docs) | Web | https://www.ti.com/product/CC2340R5 |
 
-### CC2340R5 parts in `library/`
+### CC2340R5 part in the `BSN-C23` library
 
-| Part | Symbol | Footprint | 3D model | Source |
-|---|---|---|---|---|
-| CC2340R52E0RKPR (VQFN-40 5x5) | `CC2340R52E0RKPR` | `RKP0040B-*` | `RKP0040B.step` | Ultra Librarian |
-| CC2340R52E0RGER (VQFN-24 4x4) | `CC2340R52E0RGER` | `Texas_RGE0024B_VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm_ThermalVias` | `Texas_RGE0024H_VQFN-24-1EP_4x4mm_P0.5mm_EP2.7x2.7mm.step` | See below |
+| Part | Symbol | Footprint | 3D model |
+|---|---|---|---|
+| CC2340R52E0RGER (VQFN-24 4x4) | `CC2340R52E0RGER` | `Texas_RGE0024B_VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm_ThermalVias` | `Texas_RGE0024H_VQFN-24-1EP_4x4mm_P0.5mm_EP2.7x2.7mm.step` |
 
-The RGE parts were made here rather than downloaded:
+These were made here from the datasheet and KiCad's stock library rather than downloaded:
 
 - **Symbol:** drawn from the datasheet (SWRS272F), Figure 6-2 and Tables 6-1 to 6-13. The exposed pad is pin 25 (GND).
 - **Footprint:** KiCad's stock `VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm_ThermalVias`, renamed. It matches TI's RGE0024B land pattern (2.45 mm pad, 9 vias on a 0.975 mm grid). The signal pads are 0.775 mm long versus 0.6 mm in TI's example.
 - **3D model:** KiCad has no STEP file for the 2.45 mm pad version. This one is the TI RGE0024H body, which is identical apart from a 2.7 mm exposed pad hidden under the package.
 
-Suggested route: import the Ultra Librarian symbol and footprint into `library/`, then copy the
-RF matching network, crystals and DC/DC layout from the SWRC397 LaunchPad files.
+Next step: copy the RF matching network, crystals and DC/DC layout from the SWRC397 LaunchPad files.

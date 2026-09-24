@@ -2246,7 +2246,7 @@
 			)
 		)
 	)
-	(footprint "BLE_Sensor_Node:HDC2010"
+	(footprint "BSN-C23:HDC2010"
 		(layer "F.Cu")
 		(uuid "2ca0cfdf-6d39-453c-afd2-a105c112a1ba")
 		(at 159.2 106 90)
@@ -5216,7 +5216,7 @@
 			)
 		)
 	)
-	(footprint "BLE_Sensor_Node:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
+	(footprint "BSN-C23:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
 		(locked yes)
 		(layer "F.Cu")
 		(uuid "af0ee34a-b9c0-483d-b8dc-efea6024609b")
@@ -6381,7 +6381,7 @@
 			(uuid "a61af009-1f1d-4453-8d37-517f3094ed86")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/library/3d_models/QFN-48-1EP_6x6_P04mm.STEP"
+		(model "${KIPRJMOD}/library/3d_models/VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -7199,7 +7199,7 @@
 			)
 		)
 	)
-	(footprint "BLE_Sensor_Node:AANI-CH-0138-Q-T"
+	(footprint "BSN-C23:AANI-CH-0138-Q-T"
 		(layer "F.Cu")
 		(uuid "baa5772c-42cd-4e36-bf89-14590d65aacb")
 		(at 150 84.75)

@@ -47,7 +47,7 @@ BSN-N54-A
 | Part | Values | Meaning |
 |---|---|---|
 | Board | `BSN` | BLE Sensor Node. Never changes. |
-| Variant | `N54`, `C23` | Vendor letter + MCU family number. Stays the same across parts in one family (e.g. nRF54L05/L10/L15). |
+| Variant | `N54`, `C23` | First letter of the MCU part prefix (**n**RF54 → N, **C**C2340 → C) + MCU family number. Stays the same across parts in one family (e.g. nRF54L05/L10/L15). |
 | Revision | `A`, `B`, `C` | Bare-PCB revision. Bumped only when copper or fab outputs change, i.e. when new boards are ordered. |
 | Assembly option *(optional)* | e.g. `-UFL` | Population option on the same bare PCB (e.g. U.FL fitted instead of the chip antenna). Does not change the revision. |
 

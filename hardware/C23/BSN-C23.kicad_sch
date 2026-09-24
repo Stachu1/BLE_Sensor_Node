@@ -10,7 +10,7 @@
 		(rev "A")
 	)
 	(lib_symbols
-		(symbol "BLE_Sensor_Node:Antenna"
+		(symbol "BSN-C23:Antenna"
 			(pin_numbers
 				(hide yes)
 			)
@@ -194,7 +194,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "BLE_Sensor_Node:CC2340R52E0RGER"
+		(symbol "BSN-C23:CC2340R52E0RGER"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -220,7 +220,7 @@
 					)
 				)
 			)
-			(property "Footprint" "BLE_Sensor_Node:Texas_RGE0024B_VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm_ThermalVias"
+			(property "Footprint" "BSN-C23:Texas_RGE0024B_VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm_ThermalVias"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -741,7 +741,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "BLE_Sensor_Node:HDC2010Y"
+		(symbol "BSN-C23:HDC2010Y"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -767,7 +767,7 @@
 					)
 				)
 			)
-			(property "Footprint" "BLE_Sensor_Node:HDC2010"
+			(property "Footprint" "BSN-C23:HDC2010"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -935,7 +935,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "BLE_Sensor_Node:nRF54L05-QFXX"
+		(symbol "BSN-C23:nRF54L05-QFXX"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -961,7 +961,7 @@
 					)
 				)
 			)
-			(property "Footprint" "BLE_Sensor_Node:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
+			(property "Footprint" "BSN-C23:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
 				(at 0 -73.66 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -6888,7 +6888,7 @@
 		)
 	)
 	(symbol
-		(lib_id "BLE_Sensor_Node:HDC2010Y")
+		(lib_id "BSN-C23:HDC2010Y")
 		(at 67.31 226.06 0)
 		(unit 1)
 		(body_style 1)
@@ -6919,7 +6919,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BLE_Sensor_Node:HDC2010"
+		(property "Footprint" "BSN-C23:HDC2010"
 			(at 67.31 226.06 0)
 			(hide yes)
 			(show_name no)
@@ -6991,7 +6991,7 @@
 		)
 	)
 	(symbol
-		(lib_id "BLE_Sensor_Node:CC2340R52E0RGER")
+		(lib_id "BSN-C23:CC2340R52E0RGER")
 		(at 140.97 168.91 0)
 		(unit 1)
 		(body_style 1)
@@ -7022,7 +7022,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BLE_Sensor_Node:Texas_RGE0024B_VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm_ThermalVias"
+		(property "Footprint" "BSN-C23:Texas_RGE0024B_VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm_ThermalVias"
 			(at 140.97 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -7321,7 +7321,7 @@
 		)
 	)
 	(symbol
-		(lib_id "BLE_Sensor_Node:nRF54L05-QFXX")
+		(lib_id "BSN-C23:nRF54L05-QFXX")
 		(at 207.01 147.32 0)
 		(unit 1)
 		(body_style 1)
@@ -7352,7 +7352,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BLE_Sensor_Node:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
+		(property "Footprint" "BSN-C23:VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm_ThermalVias"
 			(at 207.01 220.98 0)
 			(hide yes)
 			(show_name no)
@@ -10364,7 +10364,7 @@
 		)
 	)
 	(symbol
-		(lib_id "BLE_Sensor_Node:Antenna")
+		(lib_id "BSN-C23:Antenna")
 		(at 312.42 142.24 0)
 		(unit 1)
 		(body_style 1)
@@ -10397,7 +10397,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "BLE_Sensor_Node:AANI-CH-0138-Q-T"
+		(property "Footprint" "BSN-C23:AANI-CH-0138-Q-T"
 			(at 312.42 142.24 0)
 			(hide yes)
 			(show_name no)

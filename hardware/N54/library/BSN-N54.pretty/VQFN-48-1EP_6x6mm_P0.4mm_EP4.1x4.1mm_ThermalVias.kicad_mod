@@ -938,7 +938,7 @@
 		(uuid "8b6cffcb-9689-48f7-a70b-2d7b3d18b4af")
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/library/3d_models/QFN-48-1EP_6x6_P04mm.STEP"
+	(model "${KIPRJMOD}/library/3d_models/VQFN-48-1EP_6x6mm_P0.4mm_EP4.1x4.1mm.step"
 		(offset
 			(xyz 0 0 0)
 		)
