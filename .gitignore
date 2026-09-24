@@ -18,6 +18,7 @@ Thumbs.db
 **/*.sch~
 **/*.kicad_sch~
 **/*.autosave
+**/~*.lck
 
 # KiCad cache / library local files (can be regenerated)
 **/fp-cache/

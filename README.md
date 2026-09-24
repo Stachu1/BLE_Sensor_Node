@@ -75,7 +75,7 @@ Boards:
 | Board | MCU | Status |
 |---|---|---|
 | `BSN-N54-A` | nRF54L05 | Rev A layout done |
-| `BSN-C23-A` | CC2340R5 | Not started |
+| `BSN-C23-A` | CC2340R5 | Copied from `BSN-N54-A`, MCU swap in progress |
 
 ## Status
 
