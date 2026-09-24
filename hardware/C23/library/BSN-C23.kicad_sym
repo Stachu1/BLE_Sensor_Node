@@ -508,7 +508,7 @@
 				)
 			)
 			(pin input line
-				(at -15.24 -7.62 0)
+				(at -15.24 -10.16 0)
 				(length 2.54)
 				(name "RSTN"
 					(effects
@@ -652,7 +652,7 @@
 				)
 			)
 			(pin passive line
-				(at -15.24 -12.7 0)
+				(at -15.24 -15.24 0)
 				(length 2.54)
 				(name "X48P"
 					(effects
@@ -670,7 +670,7 @@
 				)
 			)
 			(pin passive line
-				(at -15.24 -15.24 0)
+				(at -15.24 -17.78 0)
 				(length 2.54)
 				(name "X48N"
 					(effects

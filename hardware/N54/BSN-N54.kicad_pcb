@@ -7417,7 +7417,7 @@
 				)
 			)
 		)
-		(property "DigiKey" "712-QLCD250Q1R5B1GV001TCT-ND"
+		(property "DigiKey" "490-8087-1-ND"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")

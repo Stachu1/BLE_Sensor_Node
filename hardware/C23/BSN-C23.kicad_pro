@@ -597,6 +597,18 @@
       "/ANT": [
         "RF"
       ],
+      "/X32N": [
+        "OSC"
+      ],
+      "/X32P": [
+        "OSC"
+      ],
+      "/X48N": [
+        "OSC"
+      ],
+      "/X48P": [
+        "OSC"
+      ],
       "/XC1": [
         "OSC"
       ],
@@ -615,7 +627,7 @@
         "RF"
       ],
       "Net-(C11-Pad1)": [
-        "RF"
+        "DCDC"
       ],
       "Net-(C14-Pad1)": [
         "RF"
@@ -624,6 +636,12 @@
         "RF"
       ],
       "Net-(C16-Pad1)": [
+        "RF"
+      ],
+      "Net-(C18-Pad1)": [
+        "RF"
+      ],
+      "Net-(C20-Pad1)": [
         "RF"
       ],
       "Net-(C7-Pad1)": [
@@ -639,6 +657,9 @@
         "RF"
       ],
       "Net-(U1-DCC)": [
+        "DCDC"
+      ],
+      "Net-(U1-DCDC)": [
         "DCDC"
       ],
       "Net-(U1-DECA)": [
@@ -677,6 +698,10 @@
       {
         "netclass": "SWD",
         "pattern": "*SW*"
+      },
+      {
+        "netclass": "OSC",
+        "pattern": "/X*"
       }
     ]
   },
@@ -845,7 +870,7 @@
         "uuid": "3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
       }
     ],
-    "used_designators": "L5-7,AE1,BT1,#PWR2-21,Y1-2,TP1-8,U1,U3-4,C4,C14-16,#FLG1-2,R2-4,J1",
+    "used_designators": "L1-7,AE1,BT1,#PWR1-28,Y1-2,TP1-10,U1-4,C1-25,#FLG1-2,R1-4,J1,X1-2",
     "variants": []
   },
   "sheets": [
