@@ -9119,7 +9119,7 @@
 			)
 		)
 	)
-	(gr_text "RST"
+	(gr_text "SDA"
 		(at 160.1 103.4 0)
 		(layer "F.SilkS")
 		(uuid "e3bc58fa-c0a1-4585-a034-4d1711738a52")
@@ -9130,7 +9130,7 @@
 			)
 		)
 	)
-	(gr_text "RST"
+	(gr_text "SCL"
 		(at 160.8 100.8 0)
 		(layer "F.SilkS")
 		(uuid "928e6e25-9210-40ad-a4d1-366cd2c751fd")
@@ -9141,7 +9141,7 @@
 			)
 		)
 	)
-	(gr_text "RST"
+	(gr_text "INT"
 		(at 164.5 105.5 0)
 		(layer "F.SilkS")
 		(uuid "29506589-6e67-4225-bc4e-1161cd17467c")
