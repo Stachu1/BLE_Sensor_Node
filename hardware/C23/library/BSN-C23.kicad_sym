@@ -48,7 +48,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://abracon.com/datasheets/AANI-CH-0138-Q.pdf"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)

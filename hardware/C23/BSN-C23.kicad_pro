@@ -623,8 +623,10 @@
       ],
       "GND": [
         "DCDC",
-        "OSC",
         "RF"
+      ],
+      "Net-(C10-Pad1)": [
+        "DCDC"
       ],
       "Net-(C11-Pad1)": [
         "DCDC"
@@ -642,6 +644,12 @@
         "RF"
       ],
       "Net-(C20-Pad1)": [
+        "RF"
+      ],
+      "Net-(C6-Pad1)": [
+        "RF"
+      ],
+      "Net-(C6-Pad2)": [
         "RF"
       ],
       "Net-(C7-Pad1)": [
@@ -720,7 +728,7 @@
     "annotate_start_num": 0,
     "annotation": {
       "method": 0,
-      "sort_order": 0
+      "sort_order": 1
     },
     "bom_export_filename": "${PROJECTNAME}.csv",
     "bom_fmt_presets": [],
@@ -870,7 +878,7 @@
         "uuid": "3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
       }
     ],
-    "used_designators": "L1-7,AE1,BT1,#PWR1-28,Y1-2,TP1-10,U1-4,C1-25,#FLG1-2,R1-4,J1,X1-2",
+    "used_designators": "L1-7,AE1,BT1,#PWR1-28,Y1-2,TP1-10,U1-4,C1-25,#FLG1-3,R1-4,J1,X1-2",
     "variants": []
   },
   "sheets": [
