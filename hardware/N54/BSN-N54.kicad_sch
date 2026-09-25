@@ -45,7 +45,7 @@
 					(justify right)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "BSN-N54:AANI-CH-0138-Q-T"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -56,7 +56,7 @@
 					)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "https://abracon.com/datasheets/AANI-CH-0138-Q.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -68,6 +68,17 @@
 				)
 			)
 			(property "Description" "Antenna"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey" "535-AANI-CH-0138-Q-TCT-ND"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -5853,7 +5864,7 @@
 				)
 			)
 		)
-		(property "DigiKey" "490-12731-1-ND"
+		(property "DigiKey" "445-9028-1-ND"
 			(at 265.43 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -5952,7 +5963,7 @@
 				)
 			)
 		)
-		(property "DigiKey" "490-12731-1-ND"
+		(property "DigiKey" "445-9028-1-ND"
 			(at 246.38 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -6150,7 +6161,7 @@
 				)
 			)
 		)
-		(property "DigiKey" "490-17132-1-ND"
+		(property "DigiKey" "490-11248-1-ND"
 			(at 267.97 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -7722,7 +7733,7 @@
 				)
 			)
 		)
-		(property "DigiKey" "490-3194-1-ND"
+		(property "DigiKey" "490-4516-1-ND"
 			(at 276.86 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -10551,7 +10562,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
 			(at 237.49 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -10920,7 +10931,7 @@
 				)
 			)
 		)
-		(property "DigiKey" "490-3194-1-ND"
+		(property "DigiKey" "490-4516-1-ND"
 			(at 288.29 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -11538,7 +11549,7 @@
 				)
 			)
 		)
-		(property "DigiKey" "490-9969-1-ND"
+		(property "DigiKey" "490-GRM21BR60J107ME15KCT-ND"
 			(at 67.31 127 0)
 			(hide yes)
 			(show_name no)
