@@ -4289,10 +4289,6 @@
 		(uuid "51b168d6-9961-4c55-b310-4537eb9105be")
 	)
 	(no_connect
-		(at 179.07 149.86)
-		(uuid "5597149b-9815-45f7-b163-46eb2003edd8")
-	)
-	(no_connect
 		(at 179.07 152.4)
 		(uuid "5b9c181f-4411-4c5f-b40e-28b57aa363bc")
 	)
@@ -4307,10 +4303,6 @@
 	(no_connect
 		(at 179.07 185.42)
 		(uuid "7528e1cc-ec8d-4099-9da5-a16120993566")
-	)
-	(no_connect
-		(at 179.07 147.32)
-		(uuid "7911486c-7dc6-4bef-bbfe-eafc237ef8c1")
 	)
 	(no_connect
 		(at 179.07 162.56)
@@ -5068,6 +5060,16 @@
 	)
 	(wire
 		(pts
+			(xy 172.72 147.32) (xy 179.07 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3b5dd46-1b31-47e4-8df7-f4a1edf65a8d")
+	)
+	(wire
+		(pts
 			(xy 207.01 207.01) (xy 207.01 205.74)
 		)
 		(stroke
@@ -5268,6 +5270,16 @@
 	)
 	(wire
 		(pts
+			(xy 172.72 149.86) (xy 179.07 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea77045c-ed72-464f-9513-2feb6739a798")
+	)
+	(wire
+		(pts
 			(xy 302.26 147.32) (xy 312.42 147.32)
 		)
 		(stroke
@@ -5396,6 +5408,16 @@
 		)
 		(uuid "316e2410-70c6-4c52-8876-f1d73a4ade1f")
 	)
+	(label "RXD"
+		(at 172.72 149.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "35960612-7081-4f99-96f1-cc90be332ef2")
+	)
 	(label "SCL"
 		(at 167.64 129.54 0)
 		(effects
@@ -5405,6 +5427,16 @@
 			(justify left bottom)
 		)
 		(uuid "3e379de0-f246-45b5-8930-59bac6b8bd37")
+	)
+	(label "TXD"
+		(at 172.72 147.32 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "664a268f-2903-47fe-9d92-284917536788")
 	)
 	(label "XC1"
 		(at 172.72 96.52 0)
@@ -8024,6 +8056,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 172.72 149.86 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "54e2b6d9-33a7-4195-8c0b-f1c3e88c92ec")
+		(property "Reference" "TP10"
+			(at 168.148 149.86 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 167.64 148.5901 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+			(at 172.72 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 172.72 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 172.72 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9ec6b995-a74f-4dc7-a0be-2c0c55a005ad")
+		)
+		(instances
+			(project "BSN-N54"
+				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
+					(reference "TP10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:VDD")
 		(at 97.79 201.93 0)
 		(unit 1)
@@ -9481,6 +9592,85 @@
 			(project "libmanagement"
 				(path "/c295071d-5c9a-4cd9-a258-3019b1f2fb2e"
 					(reference "L3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 172.72 147.32 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "9573cf4a-ab17-428d-950f-139f8c351885")
+		(property "Reference" "TP9"
+			(at 168.148 147.32 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 167.64 146.0501 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+			(at 172.72 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 172.72 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 172.72 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "175d1ce7-4ab6-4eca-a068-762a53a23b60")
+		)
+		(instances
+			(project "BSN-N54"
+				(path "/3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
+					(reference "TP9")
 					(unit 1)
 				)
 			)
