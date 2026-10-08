@@ -1,9 +1,9 @@
-Default	True	2.0	3
-DCDC	True	2.0	3
-GND	True	2.0	3
-I2C	True	2.0	3
-OSC	True	2.0	3
-RF	True	2.0	3
+Default	False	2.0	3
+DCDC	False	2.0	3
+GND	False	2.0	3
+I2C	False	2.0	3
+OSC	False	2.0	3
+RF	False	2.0	3
 SWD	True	2.0	3
-VDD	True	2.0	3
+VDD	False	2.0	3
 False	True	False
