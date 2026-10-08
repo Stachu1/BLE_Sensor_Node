@@ -1,16 +1,1 @@
 (version 1)
-
-(rule "Keepout around via 151.4/95.8 - F.Cu"
-    (layer "F.Cu")
-    (condition "A.Type == 'Via' && A.Position_X > 151.39mm && A.Position_X < 151.41mm && A.Position_Y > 95.79mm && A.Position_Y < 95.81mm && B.Type == 'Zone'")
-    (constraint physical_clearance (min 0.3mm)))
-
-(rule "Keepout around via 151.4/95.8 - In1.Cu"
-    (layer "In1.Cu")
-    (condition "A.Type == 'Via' && A.Position_X > 151.39mm && A.Position_X < 151.41mm && A.Position_Y > 95.79mm && A.Position_Y < 95.81mm && B.Type == 'Zone'")
-    (constraint physical_clearance (min 0.3mm)))
-
-(rule "Keepout around via 151.4/95.8 - In2.Cu"
-    (layer "In2.Cu")
-    (condition "A.Type == 'Via' && A.Position_X > 151.39mm && A.Position_X < 151.41mm && A.Position_Y > 95.79mm && A.Position_Y < 95.81mm && B.Type == 'Zone'")
-    (constraint physical_clearance (min 0.3mm)))
