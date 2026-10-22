@@ -50,3 +50,7 @@ mfg/
 **/*.DS_Store%
 
 docs/private/
+
+# Python
+**/__pycache__/
+*.pyc

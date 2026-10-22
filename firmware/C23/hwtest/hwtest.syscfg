@@ -1,0 +1,58 @@
+// @cliArgs --device "CC2340R5RGE" --package "RGE" --rtos "freertos"
+
+/*
+ *  hwtest.syscfg - BSN-C23-A bring-up firmware (no BLE stack)
+ *
+ *  Pin map: see ../common/bsn_board.h
+ */
+
+/* ======== Kernel ======== */
+const FreeRTOS = scripting.addModule("/freertos/FreeRTOS");
+FreeRTOS.heapSize = 0x2000;
+scripting.addModule("/ti/posix/freertos/Settings");
+
+/* ======== Board ======== */
+// Without a --board, the generated Board_init() still bit-bangs a LaunchPad SPI-flash
+// shutdown sequence on DIO11/13/21/24, which are UART TX, HDC INT and I2C SCL here.
+const Board = scripting.addModule("/ti/drivers/Board");
+Board.generateInitializationFunctions = false;
+
+/* ======== Device configuration (CCFG) ======== */
+const CCFG = scripting.addModule("/ti/devices/CCFG");
+// X2 (32.768 kHz crystal) is not fitted on rev A, so use the internal RC oscillator.
+CCFG.srcClkLF = "LF RCOSC";
+// The ROM serial bootloader is disabled once this image is flashed (SDK default);
+// recover over SWD with "make erase". Never enable its pin trigger: the default
+// trigger pin DIO21 is the HDC2010 INT line.
+
+/* ======== UART (log output on TP2, input on TP6) ======== */
+const UART2 = scripting.addModule("/ti/drivers/UART2", {}, false);
+const uart = UART2.addInstance();
+uart.$name = "CONFIG_UART_LOG";
+uart.baudRates = [115200];
+uart.uart.txPin.$assign = "DIO13";
+uart.uart.rxPin.$assign = "DIO20_A11";
+uart.txPinInstance.initialOutputState = "High";
+
+/* ======== I2C (HDC2010 / SHTC3) ======== */
+const I2C = scripting.addModule("/ti/drivers/I2C", {}, false);
+const i2c = I2C.addInstance();
+i2c.$name = "CONFIG_I2C_SENSOR";
+i2c.i2c.sdaPin.$assign = "DIO12";
+i2c.i2c.sclPin.$assign = "DIO24_A7";
+
+/* ======== GPIO ======== */
+const GPIO = scripting.addModule("/ti/drivers/GPIO");
+// HDC2010 DRDY/INT. The pin is high-Z until the sensor is configured, so a pull-down
+// keeps it from floating.
+const hdcInt = GPIO.addInstance();
+hdcInt.$name = "CONFIG_GPIO_HDC_INT";
+hdcInt.mode = "Input";
+hdcInt.pull = "Pull Down";
+hdcInt.interruptTrigger = "Rising Edge";
+hdcInt.gpioPin.$assign = "DIO21_A10";
+
+/* ======== Drivers used by the self-test ======== */
+scripting.addModule("/ti/drivers/Power");
+scripting.addModule("/ti/drivers/BatteryMonitor");
+scripting.addModule("/ti/drivers/Temperature");
