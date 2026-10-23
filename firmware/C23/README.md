@@ -7,6 +7,7 @@ Firmware for `BSN-C23-A` boards. The bring-up and early test procedure is in
 |---|---|---|
 | [`hwtest/`](hwtest) | `bsn_c23_hwtest.out` | Bring-up self-test with no BLE stack. It checks clocks, supply, I2C, the HDC2010 and its INT line, prints PASS/FAIL on the UART, then logs readings every 2 s. |
 | [`ble_sensor/`](ble_sensor) | `bsn_c23_ble_sensor.out` | The sensor node. Reads the HDC2010 every 10 s and broadcasts temperature, humidity and battery as [BTHome v2](https://bthome.io/format/) advertisements (non-connectable, 1 s interval). |
+| [`cwtest/`](cwtest) | `bsn_c23_cwtest.out` | RF test. Transmits an unmodulated carrier forever (default 2440 MHz, 0 dBm) for harmonic and spurious measurements. See [RF carrier test](#rf-carrier-test). |
 | [`common/`](common) | | Board pin map (`bsn_board.h`), UART logger, HDC2010 and SHTC3 drivers |
 | [`test/`](test) | | Host unit tests for the drivers and the BTHome payload, run against a fake I2C bus |
 
@@ -117,6 +118,26 @@ Alternatives:
 - **UniFlash** (https://www.ti.com/tool/UNIFLASH) is a GUI that loads the same `.out` or `.hex` with the same probe.
 - **ROM serial bootloader**: not usable on rev A. The UART pins don't match any of the ROM bootloader's
   pin sets (see BRINGUP.md, "Notes for rev B"), and the CCFG generated here disables it after the first flash.
+
+## RF carrier test
+
+`cwtest` starts a continuous unmodulated carrier at boot and never stops it. It prints the frequency,
+the actual PA setting and VDDS once on the UART, then leaves the UART idle.
+
+```sh
+cd firmware/C23/cwtest
+make flash                                # 2440 MHz, 0 dBm (the power ble_sensor advertises at)
+make flash FREQ_MHZ=2402 TX_DBM=8         # 2360..2500 MHz; -20..+8 dBm, rounded down to the PA table
+```
+
+Changing `FREQ_MHZ`, `TX_DBM` or `TX_HALF_DB` rebuilds automatically. To stop the carrier, flash another image.
+
+- Run it from the bench supply. A continuous carrier draws several mA (more at +8 dBm), which a CR2032 can't
+  supply for long, and the sagging voltage changes the output.
+- Disconnect the probe and UART adapter during the measurement, or at least keep their cables away from the
+  antenna. They can pick up and re-radiate harmonics.
+- 2nd to 5th harmonics are at 4.88, 7.32, 9.76 and 12.2 GHz for a 2440 MHz carrier. Check 2402 and 2480 MHz
+  as well (the BLE advertising channels 37 and 39).
 
 ## Debugging in CCS
 

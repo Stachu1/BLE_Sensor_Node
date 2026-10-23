@@ -1,0 +1,76 @@
+// @cliArgs --device "CC2340R5RGE" --package "RGE" --rtos "freertos"
+
+/*
+ *  cwtest.syscfg - BSN-C23-A continuous-wave RF test (no BLE stack)
+ *
+ *  Derived from the TI LPF3 SDK rfCarrierWave example (BSD-3-Clause).
+ *  Pin map: see ../common/bsn_board.h
+ */
+
+/* ======== Kernel ======== */
+const FreeRTOS = scripting.addModule("/freertos/FreeRTOS");
+FreeRTOS.heapSize = 0x2000;
+scripting.addModule("/ti/posix/freertos/Settings");
+
+/* ======== Board ======== */
+// Without a --board, the generated Board_init() still bit-bangs a LaunchPad SPI-flash
+// shutdown sequence on DIO11/13/21/24, which are UART TX, HDC INT and I2C SCL here.
+const Board = scripting.addModule("/ti/drivers/Board");
+Board.generateInitializationFunctions = false;
+
+/* ======== RCL ======== */
+scripting.addModule("/ti/drivers/RCL");
+
+/* ======== Radio configuration ======== */
+// The BLE 1M PHY settings, with only the TX test command exported. The PHY is
+// irrelevant for an unmodulated carrier, but it provides LRF_config and the PA table.
+const commonRf = system.getScript("/ti/prop_rf/prop_rf_common.js");
+const defaultPhy = system.getScript("/ti/prop_rf/rf_config/LP_EM_CC2340R5_rf_defaults.js").defaultBlePhyList[0];
+const customStack = scripting.addModule("/ti/devices/radioconfig/custom");
+const phyInst = commonRf.addBlePhy(customStack, defaultPhy);
+phyInst.codeExportConfig.symGenMethod = "Legacy";
+phyInst.codeExportConfig.cmdList_ble = ["cmdGenericTxTest"];
+
+/* ======== RF design ======== */
+const rfDesign = scripting.addModule("ti/devices/radioconfig/rfdesign");
+const rfDesignSettings = system.getScript("/ti/common/lprf_rf_design_settings.js").rfDesignSettings;
+for (const setting in rfDesignSettings)
+{
+    rfDesign[setting] = rfDesignSettings[setting];
+}
+
+/* ======== Device configuration (CCFG) ======== */
+const CCFG = scripting.addModule("/ti/devices/CCFG");
+const ccfgSettings = system.getScript("/ti/common/lprf_ccfg_settings.js").ccfgSettings;
+for (const setting in ccfgSettings)
+{
+    CCFG[setting] = ccfgSettings[setting];
+}
+// X2 (32.768 kHz crystal) is not fitted on rev A, so use the internal RC oscillator.
+CCFG.srcClkLF = "LF RCOSC";
+// The ROM serial bootloader is disabled once this image is flashed (SDK default);
+// recover over SWD with "make erase". Never enable its pin trigger: the default
+// trigger pin DIO21 is the HDC2010 INT line.
+
+/* ======== UART (log output on TP2) ======== */
+const UART2 = scripting.addModule("/ti/drivers/UART2", {}, false);
+const uart = UART2.addInstance();
+uart.$name = "CONFIG_UART_LOG";
+uart.baudRates = [115200];
+uart.uart.txPin.$assign = "DIO13";
+uart.uart.rxPin.$assign = "DIO20_A11";
+uart.txPinInstance.initialOutputState = "High";
+
+/* ======== GPIO ======== */
+const GPIO = scripting.addModule("/ti/drivers/GPIO");
+// HDC2010 DRDY/INT. The sensor is left unconfigured, so its INT pin stays high-Z;
+// the pull-down keeps the input from floating.
+const hdcInt = GPIO.addInstance();
+hdcInt.$name = "CONFIG_GPIO_HDC_INT";
+hdcInt.mode = "Input";
+hdcInt.pull = "Pull Down";
+hdcInt.gpioPin.$assign = "DIO21_A10";
+
+/* ======== Other drivers ======== */
+scripting.addModule("/ti/drivers/Power");
+scripting.addModule("/ti/drivers/BatteryMonitor");
