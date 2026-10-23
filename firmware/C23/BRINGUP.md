@@ -204,6 +204,11 @@ Or on a phone, install **nRF Connect for Mobile** (Nordic) or **TI SimpleLink Co
       and the UART must not show `critical error` or a reset.
 - [ ] Optional: Home Assistant with the BTHome integration discovers the node automatically.
 
+> **Rev A antenna match.** As assembled, AE1 sits behind the TI reference values, which don't fit this
+> layout. VNA matching on an RF-only board found L2 = 3.3 nH with 2.0 pF shunt on the L3 pads (no battery).
+> The battery still detunes it, so the values aren't final (see `hardware/C23/testing/ANTENNA_MATCHING.md`).
+> Treat RSSI from a board with the reference values as a pre-tuning baseline.
+
 If nothing is seen on the phone while the UART log looks fine, suspect the RF path (C7/L1/C8/C6/L2/L3,
 antenna feed) or HFXT accuracy (stage 6), not the firmware.
 
@@ -246,6 +251,11 @@ Panasonic CR2032 datasheet. Later tuning knobs: advertising interval (`ble_senso
    same TX power.
 3. **Antenna matching.** J1 (U.FL) and the C9/L4 path are DNP on rev A. Antenna impedance or VNA work
    needs a board reworked with J1 fitted. Record any rework in `hardware/C23/README.md` (board becomes `A*`).
+   - [x] Antenna side matched without the battery (2026-10-23): L2 3.3 nH, L3 pads 2.0 pF,
+         S11 < −11 dB in band. See `hardware/C23/testing/ANTENNA_MATCHING.md`.
+   - [ ] Re-match with the battery fitted (currently −3.1 dB at 2.44 GHz).
+   - [ ] Fit the final values on a working board and compare RSSI with the reference values.
+   - Do this before the range test in step 2, otherwise the range data compares an untuned C23 against the N54.
 
 ---
 
@@ -255,7 +265,7 @@ Copy one row per board.
 
 | Board | S0 VDD–GND | S1 I (blank) | S1 VDDR / VDDD | S2 SWD | S3 hwtest | BLE address | S4 seen / RSSI@1m | S5 standby | S6 offset | Notes |
 |---|---|---|---|---|---|---|---|---|---|---|
-| #1 | | | | | | | | | | |
+| #1 | No shorts (diode mode) | ~4 mA steady | | PASS | 13/13 PASS | FC:DE:C5:73:2F:4E | Seen (`bsn_scan.py`) / not measured | | | Antenna untuned. J-Link: needs a power cycle after `jflash` (see stage 4). |
 | #2 | | | | | | | | | | |
 
 ---
