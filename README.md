@@ -75,7 +75,7 @@ Boards:
 | Board | MCU | Status |
 |---|---|---|
 | `BSN-N54-A` | nRF54L05 | Rev A layout done |
-| `BSN-C23-A` | CC2340R5 | Ordered and assembled. Board #1 flashed and advertising BTHome; antenna matched without battery, re-match with battery pending |
+| `BSN-C23-A` | CC2340R5 | Ordered and assembled. Board #1 flashed and advertising BTHome; antenna matched with the battery connector fitted (L2 4.3 nH, L3 2.1 pF) |
 
 ## Status
 

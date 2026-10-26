@@ -205,8 +205,8 @@ Or on a phone, install **nRF Connect for Mobile** (Nordic) or **TI SimpleLink Co
 - [ ] Optional: Home Assistant with the BTHome integration discovers the node automatically.
 
 > **Rev A antenna match.** As assembled, AE1 sits behind the TI reference values, which don't fit this
-> layout. VNA matching on an RF-only board found L2 = 3.3 nH with 2.0 pF shunt on the L3 pads (no battery).
-> The battery still detunes it, so the values aren't final (see `hardware/C23/testing/ANTENNA_MATCHING.md`).
+> layout. VNA matching on an RF-only board with the battery connector fitted found L2 = 4.3 nH with 2.1 pF
+> shunt on the L3 pads (see `hardware/C23/testing/ANTENNA_MATCHING.md`).
 > Treat RSSI from a board with the reference values as a pre-tuning baseline.
 
 If nothing is seen on the phone while the UART log looks fine, suspect the RF path (C7/L1/C8/C6/L2/L3,
@@ -253,7 +253,8 @@ Panasonic CR2032 datasheet. Later tuning knobs: advertising interval (`ble_senso
    needs a board reworked with J1 fitted. Record any rework in `hardware/C23/README.md` (board becomes `A*`).
    - [x] Antenna side matched without the battery (2026-10-23): L2 3.3 nH, L3 pads 2.0 pF,
          S11 < −11 dB in band. See `hardware/C23/testing/ANTENNA_MATCHING.md`.
-   - [ ] Re-match with the battery fitted (currently −3.1 dB at 2.44 GHz).
+   - [x] Re-match with the battery connector fitted (2026-10-26): L2 4.3 nH, L3 pads 2.1 pF,
+         −32 dB at 2.44 GHz, S11 < −10 dB in band.
    - [ ] Fit the final values on a working board and compare RSSI with the reference values.
    - Do this before the range test in step 2, otherwise the range data compares an untuned C23 against the N54.
 

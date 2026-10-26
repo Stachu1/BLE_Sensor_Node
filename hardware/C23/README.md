@@ -22,6 +22,9 @@ J1 (U.FL), L4. Everything else is fitted.
 | L3 | 7.3 nH | 490-6844-1-ND |
 | AE1 | Chip antenna | AANI-CH-0138-Q-T |
 
+**Tuned antenna match** (VNA, battery connector fitted, see below): L2 = **4.3 nH**, **2.1 pF** on the
+L3 pads instead of the 7.3 nH. Not yet fitted on board #1.
+
 ### Bring-up status
 
 Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/BRINGUP.md).
@@ -31,22 +34,24 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 | #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. Still has the TI reference RF values. |
 | RF test | (no MCU) | Antenna-only board used for VNA matching, see below. |
 
-### Antenna matching (in progress)
+### Antenna matching
 
 Full notes and data: [`testing/ANTENNA_MATCHING.md`](testing/ANTENNA_MATCHING.md).
 
 The TI reference values don't fit this layout. At 2.44 GHz the bare antenna is about 6.4 − j13 Ω, and
-6.7 nH for L2 is about three times too much. On the RF-only test board (2026-10-23, Keysight P9370B through J1):
+6.7 nH for L2 is about three times too much. On the RF-only test board (Keysight P9370B through J1):
 
-| Configuration | L2 (series) | L3 pads (shunt) | S11 at 2.44 GHz | Worst in 2.40–2.48 GHz |
-|---|---|---|---|---|
-| TI reference | 6.7 nH | 7.3 nH | not measured | — |
-| **Matched, no battery** | **3.3 nH** | **2.0 pF** | **−18.8 dB** | **−11.0 dB** |
-| Same, battery fitted | 3.3 nH | 2.0 pF | −3.1 dB (9.5 + j12.3 Ω) | — |
+| Date | Configuration | L2 (series) | L3 pads (shunt) | S11 at 2.44 GHz | Worst in 2.40–2.48 GHz |
+|---|---|---|---|---|---|
+| — | TI reference | 6.7 nH | 7.3 nH | not measured | — |
+| 2026-10-23 | Matched, no battery | 3.3 nH | 2.0 pF | −18.8 dB | −11.0 dB |
+| 2026-10-23 | Same, battery fitted | 3.3 nH | 2.0 pF | −3.1 dB (9.5 + j12.3 Ω) | — |
+| 2026-10-26 | **Matched, battery connector fitted** | **4.3 nH** | **2.1 pF** | **−32.1 dB** | **−10.3 dB** |
 
-The coin cell detunes the antenna and lowers its resistance to about a third. **The match isn't final:**
-it still has to be redone with the battery fitted (calculated L2 ≈ 3.6 nH, 3.9–4.0 pF shunt). Until then,
-RSSI and range numbers from board #1, which has the reference values, are only a pre-tuning baseline.
+The battery connector raises the board and detunes the antenna, lowering its resistance to about a third;
+with the connector fitted, the coin cell in or out makes almost no difference. **Use 4.3 nH + 2.1 pF.**
+Until they are fitted on a working board, RSSI and range numbers from board #1 (reference values) are
+only a pre-tuning baseline.
 
 ### Rework log
 
@@ -55,6 +60,7 @@ Hand-modified boards are marked `A*` (see the root README).
 | Board | Date | Change | Reason |
 |---|---|---|---|
 | RF test | 2026-10-23 | No MCU, C8 or L1. J1 (U.FL) fitted, one 15 pF series bridged, L2 = 3.3 nH, 2.0 pF on the L3 pads | Antenna matching with a VNA |
+| RF test | 2026-10-26 | Battery connector fitted, L2 = 4.3 nH, 2.1 pF on the L3 pads | Re-match with the battery connector |
 
 Known issues to fix in rev B are listed at the end of [`BRINGUP.md`](../../firmware/C23/BRINGUP.md#notes-for-rev-b).
 
