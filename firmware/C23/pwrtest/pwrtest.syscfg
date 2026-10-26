@@ -44,8 +44,8 @@ const hdcInt = GPIO.addInstance();
 hdcInt.$name = "CONFIG_GPIO_HDC_INT";
 hdcInt.mode = "Input";
 hdcInt.pull = "Pull Down";
-// DRDY wake-up in MODE=sensor_irq. Without a trigger, enabling the interrupt has no defined edge.
-hdcInt.interruptTrigger = "Rising Edge";
+// No interrupt trigger here: MODE=sensor_irq sets the rising edge at runtime, so the
+// static modes keep the pin configuration they were first measured with.
 hdcInt.gpioPin.$assign = "DIO21_A10";
 
 /* ======== Other drivers ======== */

@@ -48,12 +48,17 @@ make                       # SysConfig + compile + link -> build/<name>.out and 
 make clean
 ```
 
-For power measurements, build the sensor without any UART logging (run `make clean` first, because
-changing flags doesn't trigger a rebuild):
+`ble_sensor` takes build options for power measurements. Changing them rebuilds automatically:
 
 ```sh
-make clean && make EXTRA_CFLAGS=-DBSN_LOG_ENABLE=0
+make LOG=0                              # no UART logging (always use for current measurements)
+make LOG=0 ADV_MS=100 TX_DBM=0          # advertising interval (ms) and TX power (dBm, rounded down to the PA table)
+make LOG=0 SENSOR_S=0                   # read the sensor once at boot, then never wake for it
+make LOG=0 SENSOR_S=0 ADV=0             # start the BLE stack but never advertise (floor with the stack idle)
 ```
+
+Defaults: `LOG=1`, `SENSOR_S=10`, `ADV_MS=0` (keep `ble_sensor.syscfg`, 1 s), `TX_DBM=0`, `ADV=1`.
+Results: [`hardware/C23/testing/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/Power/POWER_MEASUREMENTS.md).
 
 Host unit tests need any host C compiler (`gcc`, `clang`, or `zig cc` via `pip install ziglang`):
 

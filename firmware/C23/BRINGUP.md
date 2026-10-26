@@ -222,7 +222,7 @@ Build without logging:
 
 ```sh
 cd firmware/C23/ble_sensor
-make clean && make EXTRA_CFLAGS=-DBSN_LOG_ENABLE=0 && make flash
+make LOG=0 && make flash
 ```
 
 Measure with the best tool available (Nordic PPK2, Joulescope, LP-XDS110ET EnergyTrace, or a DMM on the µA
@@ -272,7 +272,7 @@ Copy one row per board.
 
 | Board | S0 VDD–GND | S1 I (blank) | S1 VDDR / VDDD | S2 SWD | S3 hwtest | BLE address | S4 seen / RSSI@1m | S5 standby | S6 offset | Notes |
 |---|---|---|---|---|---|---|---|---|---|---|
-| #1 | No shorts (diode mode) | ~4 mA steady | | PASS | 13/13 PASS | FC:DE:C5:73:2F:4E | Seen (`bsn_scan.py`) / not measured | 0.925 µA (`pwrtest`, U2 fitted) | | Antenna untuned. J-Link: needs a power cycle after `jflash` (see stage 4). |
+| #1 | No shorts (diode mode) | ~4 mA steady | | PASS | 13/13 PASS | FC:DE:C5:73:2F:4E | Seen (`bsn_scan.py`) / not measured | 0.366 µA (`pwrtest`, U2 fitted) | | Antenna matched (A\*). J-Link: needs a power cycle after `jflash` (see stage 4). |
 | #2 | | | | | | | | | | |
 
 ---

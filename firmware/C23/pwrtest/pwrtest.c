@@ -198,6 +198,8 @@ static void runSensorIrq(void)
             sleep(3600);
         }
     }
+    GPIO_setConfig(CONFIG_GPIO_HDC_INT,
+                   GPIO_CFG_INPUT | GPIO_CFG_PULL_DOWN_INTERNAL | GPIO_CFG_IN_INT_RISING);
     GPIO_setCallback(CONFIG_GPIO_HDC_INT, drdyCallback);
     GPIO_enableInt(CONFIG_GPIO_HDC_INT);
     Hdc2010_startAuto(i2c, HDC2010_I2C_ADDR, HDC_AMM);

@@ -23,7 +23,7 @@ J1 (U.FL), L4. Everything else is fitted.
 | AE1 | Chip antenna | AANI-CH-0138-Q-T |
 
 **Tuned antenna match** (VNA, battery connector fitted, see below): L2 = **4.3 nH**, **2.1 pF** on the
-L3 pads instead of the 7.3 nH. Not yet fitted on board #1.
+L3 pads instead of the 7.3 nH. Fitted on board #1 (2026-10-26).
 
 ### Bring-up status
 
@@ -31,7 +31,7 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 
 | Board | BLE address | Status |
 |---|---|---|
-| #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. Still has the TI reference RF values. **U2 (SHTC3) is fitted.** Standby 0.925 µA, shutdown 0.420 µA, see [Current measurements](#current-measurements). |
+| #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. A\*: antenna side matched (L2 4.3 nH, 2.1 pF on the L3 pads). **U2 (SHTC3) is fitted.** Floor 0.366 µA, 16.1 µA with 1 s advertising, see [Current measurements](#current-measurements). |
 | RF test | (no MCU) | Antenna-only board used for VNA matching, see below. |
 | RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/RF/RF_CARRIER.md`](testing/RF/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
 
@@ -39,9 +39,11 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 
 Full notes and data: [`testing/Power/POWER_MEASUREMENTS.md`](testing/Power/POWER_MEASUREMENTS.md).
 
-Board #1 at 3.0 V with the `pwrtest` firmware: standby floor **0.925 µA**, shutdown floor **0.420 µA**. A sensor reading costs
-**9.5 µC** with timer polling and **3.6 µC** when the HDC2010 auto mode wakes the MCU over DRDY. The SHTC3, if fitted,
-idles at about 45 µA after power-on until the firmware puts it to sleep.
+Board #1 at 3.0 V: sleep floor **0.366 µA** (with or without the BLE stack). One advertising event at 0 dBm costs
+**12.6 µC** (+34 % at 2.0 V, −8 % at −8 dBm, +116 % at +8 dBm). A sensor reading costs **9.56 µC** with timer polling
+and **3.72 µC** when the HDC2010 auto mode wakes the MCU over DRDY. The full `ble_sensor` (1 s advertising, sensor
+every 10 s) averages **16.1 µA**. The SHTC3, if fitted, idles at about 45 µA after power-on until the firmware puts it
+to sleep. Always clear the debug state with a full power-on reset before measuring (see the notes).
 
 ### Antenna matching
 
@@ -70,6 +72,7 @@ Hand-modified boards are marked `A*` (see the root README).
 |---|---|---|---|
 | RF test | 2026-10-23 | No MCU, C8 or L1. J1 (U.FL) fitted, one 15 pF series bridged, L2 = 3.3 nH, 2.0 pF on the L3 pads | Antenna matching with a VNA |
 | RF test | 2026-10-26 | Battery connector fitted, L2 = 4.3 nH, 2.1 pF on the L3 pads | Re-match with the battery connector |
+| #1 | 2026-10-26 | L2 = 4.3 nH, 2.1 pF on the L3 pads (antenna side). PA-side pi network unchanged (TI reference) | Fit the tuned match |
 
 Known issues to fix in rev B are listed at the end of [`BRINGUP.md`](../../firmware/C23/BRINGUP.md#notes-for-rev-b).
 

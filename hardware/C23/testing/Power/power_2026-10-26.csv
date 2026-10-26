@@ -1,8 +1,21 @@
-id,date,board,firmware,build_args,state,vdd_V,meter,range,samples,mean_uA,stdev_uA,sem_uA,event_period_ms,floor_uA,charge_per_event_uC,charge_err_uC,notes
-1,2026-10-26,BSN-C23-A #1,pwrtest,MODE=standby (before SHTC3 fix),standby; SHTC3 idle,3.0,Keysight 34461A,uA,1,44,,,,,,,SHTC3 never sent its sleep command
-2,2026-10-26,BSN-C23-A #1,pwrtest,MODE=standby,standby; sensors asleep,3.0,Keysight 34461A,uA,500,0.925,0.293,0.013,,,,,readings 0.4-1.1 uA
-3,2026-10-26,BSN-C23-A #1,pwrtest,MODE=shutdown,shutdown; sensors asleep,3.0,Keysight 34461A,uA,500,0.420,0.052,0.002,,,,,board baseline incl. SHTC3 and flux
-4,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor PERIOD_MS=1000,timer polling,3.0,Keysight 34461A,1 mA,500,7.7,112,5.0,1000,0.925,6.8,5,superseded by 5 (meter window vs 1 Hz pulses)
-5,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor PERIOD_MS=97,timer polling,3.0,Keysight 34461A,1 mA,500,95.0,0.8,0.036,101.0,0.925,9.50,0.04,period from 297 events in 30 s
-6,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor_irq HDC_AMM=7,DRDY wake from standby,3.0,Keysight 34461A,1 mA,500,18.7,15.8,0.71,202.7,0.925,3.60,0.15,period from 148 events in 30 s
-7,2026-10-26,BSN-C23-A #1,pwrtest,MODE=shutdown_wake HDC_AMM=7,DRDY wake from shutdown,3.0,Keysight 34461A,10 mA,800,76,72,2.5,202.7,0.420,15.3,0.5,1 mA range overloaded; period as 6
+id,date,board,firmware,build_args,state,reset,vdd_V,tx_dBm,range,samples,mean_uA,stdev_uA,sem_uA,event_period_ms,floor_uA,charge_per_event_uC,charge_err_uC,status,notes
+F1,2026-10-26,BSN-C23-A #1,pwrtest,MODE=standby (before SHTC3 fix),standby; SHTC3 idle,PSU off/on,3.0,,uA,1,44,,,,,,,valid,SHTC3 never sent its sleep command
+F2,2026-10-26,BSN-C23-A #1,pwrtest,MODE=standby,standby,PSU off/on,3.0,,uA,500,0.925,0.293,0.013,,,,,superseded,debug state not cleared (no TP9 short)
+F3,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV=0,standby; BLE stack idle,PSU off/on,3.0,,uA,500,0.367,0.300,0.013,,,,,valid,
+F4,2026-10-26,BSN-C23-A #1,pwrtest,MODE=standby,standby,TP9 short,3.04,,uA,600,0.366,0.290,0.012,,,,,valid,reference floor
+S1,2026-10-26,BSN-C23-A #1,pwrtest,MODE=shutdown,shutdown,PSU off/on,3.0,,uA,500,0.420,0.052,0.002,,,,,unresolved,
+S2,2026-10-26,BSN-C23-A #1,pwrtest,MODE=shutdown,shutdown,TP9 short,3.04,,uA,,0.9,,,,,,,unresolved,approximate; shutdown may have been refused
+R1,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor PERIOD_MS=1000,timer polling,PSU off/on,3.0,,1 mA,500,7.7,112,5.0,1000,0.366,7.3,5,superseded,too few events per meter reading
+R2,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor PERIOD_MS=97,timer polling,PSU off/on,3.0,,1 mA,500,95.0,0.8,0.036,101.0,0.366,9.56,0.04,valid,period from 297 events in 30 s
+R3,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor_irq HDC_AMM=7,DRDY wake from standby,PSU off/on,3.0,,1 mA,500,18.7,15.8,0.71,202.7,0.366,3.72,0.15,valid,period from 148 events in 30 s
+R4,2026-10-26,BSN-C23-A #1,pwrtest,MODE=shutdown_wake HDC_AMM=7,DRDY wake from shutdown,PSU off/on,3.0,,10 mA,800,76,72,2.5,202.7,0.42-0.9,15.2,0.5,valid (floor unresolved),1 mA range overloaded; period as R3
+A1,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=50 TX_DBM=0,advertising,TP9 short,3.04,0,10 mA,500,230,47,2.1,55,0.366,12.63,0.12,valid,
+A2,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=100 TX_DBM=0,advertising,PSU off/on,3.0,0,10 mA,500,119.5,33,1.5,105,0.366,12.51,0.16,valid,
+A3,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=200 TX_DBM=0,advertising,PSU off/on,3.0,0,10 mA,500,54.5,57.2,2.6,205,0.366,11.10,0.52,superseded,about one event per meter reading
+V1,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=50 TX_DBM=0,advertising,none (PSU adjusted),2.73,0,10 mA,500,253,55,2.5,55,0.366,13.89,0.14,valid,
+V2,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=50 TX_DBM=0,advertising,none (PSU adjusted),2.416,0,10 mA,500,275,58,2.6,55,0.366,15.10,0.14,valid,
+V3,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=50 TX_DBM=0,advertising,none (PSU adjusted),2.005,0,10 mA,500,308,70,3.1,55,0.366,16.92,0.17,valid,
+P1,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=50 TX_DBM=-8,advertising,TP9 short,3.04,-8,10 mA,500,212,47,2.1,55,0.366,11.64,0.14,valid,
+P2,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=50 TX_DBM=4,advertising,TP9 short,3.04,4,10 mA,500,327,72,3.2,55,0.366,17.96,0.18,valid,
+P3,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=0 ADV_MS=50 TX_DBM=8,advertising,TP9 short,3.04,8,10 mA,500,497,110,4.9,55,0.366,27.32,0.27,valid,
+E1,2026-10-26,BSN-C23-A #1,ble_sensor,LOG=0 SENSOR_S=10 ADV_MS=1000 TX_DBM=0,full firmware,TP9 short,3.04,0,10 mA,1300,16.1,29.5,0.82,,,,,valid,max 131.8 uA; model 13.9 uA + 1 s wake-ups

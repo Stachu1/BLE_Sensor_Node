@@ -30,8 +30,21 @@
 #include "shtc3.h"
 
 #define FW_VERSION          "ble_sensor 0.1.0"
-#define SENSOR_PERIOD_S     10
 #define SENSOR_STACK_SIZE   1536
+
+/* Build-time overrides for current measurements (see makefile) */
+#ifndef SENSOR_PERIOD_S
+#define SENSOR_PERIOD_S     10 /* 0: read once at boot, then the sensor task parks */
+#endif
+#ifndef ADV_INTERVAL_MS
+#define ADV_INTERVAL_MS     0  /* 0: keep the interval from ble_sensor.syscfg */
+#endif
+#ifndef ADV_ENABLE
+#define ADV_ENABLE          1  /* 0: start the stack but never advertise (floor with the stack idle) */
+#endif
+#ifndef ADV_TX_DBM
+#define ADV_TX_DBM          0
+#endif
 
 /* Advertising data; the stack transmits straight from this buffer */
 static uint8_t advData[BTHOME_ADV_MAX_LEN];
@@ -62,11 +75,13 @@ static BLEAppUtil_AdvInit_t advInit =
     .advParam        = &advParams1
 };
 
+#if ADV_ENABLE
 static const BLEAppUtil_AdvStart_t advStart =
 {
     .enableOptions       = GAP_ADV_ENABLE_OPTIONS_USE_MAX,
     .durationOrMaxEvents = 0
 };
+#endif
 
 BLEAppUtil_GeneralParams_t appMainParams =
 {
@@ -140,16 +155,25 @@ static void App_StackInitDoneHandler(gapDeviceInitDoneEvent_t *initDone)
     LOG("[BLE] stack ready, address %s\r\n", BLEAppUtil_convertBdAddr2Str(initDone->devAddr));
 
     advInit.advDataLen = (uint16)BtHome_buildAdv(advData, &reading, (const char *)attDeviceName);
+#if ADV_INTERVAL_MS > 0
+    /* Interval in 0.625 ms units */
+    advParams1.primIntMin = (uint32)ADV_INTERVAL_MS * 8 / 5;
+    advParams1.primIntMax = advParams1.primIntMin;
+#endif
+    /* The stack rounds down to the nearest PA table entry */
+    advParams1.txPower = ADV_TX_DBM;
 
     st = BLEAppUtil_registerEventHandler(&advEventHandler);
     if (st == SUCCESS)
     {
         st = BLEAppUtil_initAdvSet(&advHandle, &advInit);
     }
+#if ADV_ENABLE
     if (st == SUCCESS)
     {
         st = BLEAppUtil_advStart(advHandle, &advStart);
     }
+#endif
     if (st == SUCCESS)
     {
         advRunning = true;
@@ -219,6 +243,18 @@ static void *sensorThread(void *arg0)
         /* Ask the BLE task to reload the payload, and retry once a second until
          * it has (advertising may not have started yet, or a reload failed). */
         BLEAppUtil_invokeFunctionNoData(Adv_reload);
+#if SENSOR_PERIOD_S == 0
+        /* Sensor off: keep this reading in the payload, then never wake again */
+        while (ADV_ENABLE && advLoadedId != next.packetId)
+        {
+            sleep(1);
+            BLEAppUtil_invokeFunctionNoData(Adv_reload);
+        }
+        while (1)
+        {
+            sleep(3600);
+        }
+#endif
         for (t = 0; t < SENSOR_PERIOD_S; t++)
         {
             sleep(1);

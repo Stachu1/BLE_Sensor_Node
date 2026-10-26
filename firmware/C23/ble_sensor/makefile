@@ -46,4 +46,25 @@ CFLAGS := \
     -DMBEDTLS_CONFIG_FILE=\"configs/config-hsm.h\" \
     -DMBEDTLS_PSA_CRYPTO_CONFIG_FILE=\"configs/config-psa-crypto-hsm.h\"
 
+# Build-time options, mainly for current measurements:
+#   make LOG=0 SENSOR_S=0 ADV_MS=100 TX_DBM=0
+#   LOG=0       compile out all UART logging
+#   SENSOR_S    sensor period in s; 0 = read once at boot, then never wake for it
+#   ADV_MS      advertising interval in ms (20..10240); 0 = keep ble_sensor.syscfg
+#   TX_DBM      TX power, rounded down to the PA table
+#   ADV=0       start the BLE stack but never advertise
+LOG      ?= 1
+SENSOR_S ?= 10
+ADV_MS   ?= 0
+TX_DBM   ?= 0
+ADV      ?= 1
+CFLAGS += -DBSN_LOG_ENABLE=$(LOG) -DSENSOR_PERIOD_S=$(SENSOR_S) -DADV_INTERVAL_MS=$(ADV_MS) \
+          -DADV_TX_DBM=$(TX_DBM) -DADV_ENABLE=$(ADV)
+
+# Rebuild whatever depends on the options when they change
+PARAMS := $(LOG) $(SENSOR_S) $(ADV_MS) $(TX_DBM) $(ADV)
+$(shell mkdir -p build && (echo '$(PARAMS)' | cmp -s - build/params || echo '$(PARAMS)' > build/params))
+
 include ../rules.mak
+
+$(OBJ)/app_main.obj $(OBJ)/bsn_log.obj: build/params

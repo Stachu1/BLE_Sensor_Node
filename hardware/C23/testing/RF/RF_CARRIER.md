@@ -61,7 +61,11 @@ better estimate.
 
 ## Open items
 
-- [ ] Confirm the frequency offset and output power on a spectrum analyser / power meter (uni), including the
-      2414 MHz image.
+- [ ] **Before Wednesday 2026-10-28 (office):** check whether bypassing the PA-side pi network (C7, L1, C8)
+      improves the output power, using the VNA-as-receiver setup above at the same PA settings. Settle the
+      pi network here, because soldering 0402 at the uni is impractical.
+- [ ] **Wednesday 2026-10-28 (uni, 28 GHz spectrum analyser):** with the final pi network fitted, measure the
+      output power and confirm the frequency offset, including the 2414 MHz image. This visit should only
+      confirm the result, with no rework.
 - [ ] Measure the offset with trim 44 on a second board, to separate a design offset from crystal spread.
 - [ ] Harmonics and spurious emissions (2nd–5th harmonic at 4.88–12.2 GHz) on the spectrum analyser.
