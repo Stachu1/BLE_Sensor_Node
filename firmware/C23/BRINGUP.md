@@ -247,6 +247,12 @@ Panasonic CR2032 datasheet. Later tuning knobs: advertising interval (`ble_senso
      SmartRF Studio loads its own firmware, so re-flash afterwards.
    - If the offset is consistently off across boards, set `CCFG.overrideHfxtCapArray = true` and tune
      `hfxtCapArrayQ1/Q2` in both `.syscfg` files: higher values mean more load capacitance, so a lower frequency.
+   - Without a spectrum analyser, a VNA works as a receiver: trace `A,2` (port 1 receiver, source port 2,
+     RF power off), span 1–10 MHz around the carrier. Setup and caveats are in `hardware/C23/testing/RF_CARRIER.md`.
+   - [x] 2026-10-26, `cwtest` on an MCU-only board: factory trim (35) +30.3 ppm, trim 44 +2.2 ppm. Q1 = Q2 = 44
+         is now set in both `.syscfg` files (about 3 ppm per step). Output at the U.FL: −2.1 dBm at the 0 dBm
+         setting, +6.7 dBm at +8 dBm.
+   - [ ] Confirm on a spectrum analyser, and check a second board with trim 44.
 2. **Range / RSSI vs distance** in an open corridor, side by side with the N54 board, both broadcasting at the
    same TX power.
 3. **Antenna matching.** J1 (U.FL) and the C9/L4 path are DNP on rev A. Antenna impedance or VNA work

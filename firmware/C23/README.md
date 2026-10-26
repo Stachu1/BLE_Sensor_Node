@@ -122,7 +122,7 @@ Alternatives:
 ## RF carrier test
 
 `cwtest` starts a continuous unmodulated carrier at boot and never stops it. It prints the frequency,
-the actual PA setting and VDDS once on the UART, then leaves the UART idle.
+the actual PA setting, VDDS and the HFXT cap trim in use once on the UART, then leaves the UART idle.
 
 ```sh
 cd firmware/C23/cwtest
@@ -131,6 +131,9 @@ make flash FREQ_MHZ=2402 TX_DBM=8         # 2360..2500 MHz; -20..+8 dBm, rounded
 ```
 
 Changing `FREQ_MHZ`, `TX_DBM` or `TX_HALF_DB` rebuilds automatically. To stop the carrier, flash another image.
+With a J-Link instead of the XDS110, use `make jflash` and power-cycle the board afterwards.
+
+Frequency offset and output power measured on rev A: [`hardware/C23/testing/RF_CARRIER.md`](../../hardware/C23/testing/RF_CARRIER.md).
 
 - Run it from the bench supply. A continuous carrier draws several mA (more at +8 dBm), which a CR2032 can't
   supply for long, and the sagging voltage changes the output.
@@ -159,7 +162,7 @@ These come from the rev A schematic (`hardware/C23/BSN-C23.kicad_sch`). If the h
 | `CCFG.srcClkLF = "LF RCOSC"` | X2 (32.768 kHz) is DNP. With the default "LF XOSC" the device would wait for a crystal that isn't there. The BLE module then adds 1500 ppm of sleep-clock margin, which costs a little extra RX-window time in connections but nothing for a pure broadcaster. |
 | ROM bootloader pin trigger off | The CC23xx default trigger pin is DIO21, which is the HDC2010 INT line on this board. |
 | Pull-down on DIO21 | The HDC2010 INT output is high-Z until configured. A floating input wastes current. |
-| HFXT cap-array trims left at the SDK defaults | The defaults are tuned for the LaunchPad crystal. Measure the frequency offset (BRINGUP.md, stage 6) and set `CCFG.overrideHfxtCapArray` if needed. |
+| HFXT cap-array trim overridden to Q1 = Q2 = 44 | With the factory trim (35) the carrier was +30 ppm high. 44 brings it to +2 ppm (BRINGUP.md stage 6, `hardware/C23/testing/RF_CARRIER.md`). Set in `ble_sensor.syscfg` and `cwtest.syscfg`. |
 | Public BLE address | Uses the factory address from FCFG, so the address printed by hwtest is the one you'll see in a scanner. |
 | BTHome v2 payload | Open format that Home Assistant, Theengs and BTHome-aware scanner apps decode with no custom code. Layout is in `ble_sensor/bthome.c`. |
 | Broadcaster only, no GATT | Lowest power and smallest stack. A connectable variant with the Device Information Service (hardware revision) can be added later. |

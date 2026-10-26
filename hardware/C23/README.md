@@ -33,6 +33,7 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 |---|---|---|
 | #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. Still has the TI reference RF values. |
 | RF test | (no MCU) | Antenna-only board used for VNA matching, see below. |
+| RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/RF_CARRIER.md`](testing/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
 
 ### Antenna matching
 

@@ -8,12 +8,19 @@
  * Frequency and output power are set at build time (see makefile):
  *   make FREQ_MHZ=2440 TX_DBM=0
  *
+ * The HFXT cap trim is set in cwtest.syscfg.
+ *
  * The configuration is printed once on the UART (TP2, 115200 8N1). After that
  * the UART is idle, so it adds nothing to the spectrum.
  *
  * Based on the TI LPF3 SDK rfCarrierWave example (BSD-3-Clause).
  */
 #include <stdint.h>
+
+#include <ti/devices/DeviceFamily.h>
+#include DeviceFamily_constructPath(inc/hw_types.h)
+#include DeviceFamily_constructPath(inc/hw_memmap.h)
+#include DeviceFamily_constructPath(inc/hw_ckmd.h)
 
 #include <ti/drivers/BatteryMonitor.h>
 #include <ti/drivers/GPIO.h>
@@ -83,6 +90,10 @@ void *mainThread(void *arg0)
     LOG("TX power     : %d%s dBm (requested %d%s dBm)\r\n",
         used.dBm, used.fraction ? ".5" : "", CW_TX_DBM, CW_TX_HALF_DB ? ".5" : "");
     LOG("VDDS         : %u mV\r\n", BatteryMonitor_getVoltage());
+    uint32_t capTarg = HWREG(CKMD_BASE + CKMD_O_HFXTTARG);
+    LOG("HFXT cap trim: Q1 %u, Q2 %u\r\n",
+        (unsigned int)((capTarg & CKMD_HFXTTARG_Q1CAP_M) >> CKMD_HFXTTARG_Q1CAP_S),
+        (unsigned int)((capTarg & CKMD_HFXTTARG_Q2CAP_M) >> CKMD_HFXTTARG_Q2CAP_S));
 
     st = RCL_Command_submit(rcl, &cwCmd);
     if (st >= RCL_CommandStatus_Finished)
