@@ -141,4 +141,4 @@ Impedances in ohms. "In band" is 2.40–2.48 GHz.
       distance and orientation for the TI reference values, the new values, and one step either side.
 - [ ] Rev B: move the battery further from AE1, or at least outside the antenna keep-out area in the
       AANI-CH-0138 datasheet.
-- [x] Update the RF network table in [`../README.md`](../README.md) with the battery-connector values.
+- [x] Update the RF network table in [`../../README.md`](../../README.md) with the battery-connector values.

@@ -31,13 +31,21 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 
 | Board | BLE address | Status |
 |---|---|---|
-| #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. Still has the TI reference RF values. |
+| #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. Still has the TI reference RF values. **U2 (SHTC3) is fitted.** Standby 0.925 µA, shutdown 0.420 µA, see [Current measurements](#current-measurements). |
 | RF test | (no MCU) | Antenna-only board used for VNA matching, see below. |
-| RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/RF_CARRIER.md`](testing/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
+| RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/RF/RF_CARRIER.md`](testing/RF/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
+
+### Current measurements
+
+Full notes and data: [`testing/Power/POWER_MEASUREMENTS.md`](testing/Power/POWER_MEASUREMENTS.md).
+
+Board #1 at 3.0 V with the `pwrtest` firmware: standby floor **0.925 µA**, shutdown floor **0.420 µA**. A sensor reading costs
+**9.5 µC** with timer polling and **3.6 µC** when the HDC2010 auto mode wakes the MCU over DRDY. The SHTC3, if fitted,
+idles at about 45 µA after power-on until the firmware puts it to sleep.
 
 ### Antenna matching
 
-Full notes and data: [`testing/ANTENNA_MATCHING.md`](testing/ANTENNA_MATCHING.md).
+Full notes and data: [`testing/RF/ANTENNA_MATCHING.md`](testing/RF/ANTENNA_MATCHING.md).
 
 The TI reference values don't fit this layout. At 2.44 GHz the bare antenna is about 6.4 − j13 Ω, and
 6.7 nH for L2 is about three times too much. On the RF-only test board (Keysight P9370B through J1):

@@ -13,7 +13,7 @@ BLE      := $(SDK_DIR)/source/ti/ble
 LIB_OPT  := $(BLE)/stack_util/lib_opt/src
 
 SRCS := app_main.c bthome.c main_freertos.c osal_icall_ble.c \
-    $(COMMON_DIR)/bsn_log.c $(COMMON_DIR)/hdc2010.c \
+    $(COMMON_DIR)/bsn_log.c $(COMMON_DIR)/hdc2010.c $(COMMON_DIR)/shtc3.c \
     $(BLE)/app_util/framework/src/bleapputil_task.c \
     $(BLE)/app_util/framework/src/bleapputil_init.c \
     $(BLE)/app_util/framework/src/bleapputil_process.c \

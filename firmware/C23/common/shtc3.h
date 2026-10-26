@@ -16,6 +16,13 @@
 /* Wakes the sensor and reads its ID register. Returns true only if the ID matches an SHTC3. */
 bool Shtc3_probe(I2C_Handle i2c, uint16_t *id);
 
+/*
+ * Sends the sleep command. After power-on the SHTC3 idles at about 45 uA until
+ * it is told to sleep (0.3 uA), so call this at boot even if U2 is never used.
+ * Returns false if nothing acknowledged (U2 not fitted, or already asleep).
+ */
+bool Shtc3_sleep(I2C_Handle i2c);
+
 /* Wake, measure (normal mode, T first, no clock stretching), sleep. Blocks for about 13 ms. */
 bool Shtc3_measure(I2C_Handle i2c, int16_t *temp_cC, uint16_t *rh_cP);
 

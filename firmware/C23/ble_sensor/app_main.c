@@ -27,6 +27,7 @@
 #include "bsn_log.h"
 #include "bthome.h"
 #include "hdc2010.h"
+#include "shtc3.h"
 
 #define FW_VERSION          "ble_sensor 0.1.0"
 #define SENSOR_PERIOD_S     10
@@ -180,6 +181,12 @@ static void *sensorThread(void *arg0)
     i2c = I2C_open(CONFIG_I2C_SENSOR, &i2cParams);
     hdcOk = (i2c != NULL) && Hdc2010_init(i2c, HDC2010_I2C_ADDR);
     LOG("[SNS] HDC2010 %s\r\n", hdcOk ? "ok" : "NOT FOUND - advertising battery only");
+    /* After power-on the SHTC3 idles at about 45 uA until told to sleep. U2 is
+     * DNP on rev A, but some boards have it fitted; a NACK means it is absent. */
+    if (i2c != NULL && Shtc3_sleep(i2c))
+    {
+        LOG("[SNS] SHTC3 fitted, put to sleep\r\n");
+    }
 
     while (1)
     {

@@ -72,6 +72,14 @@ bool Hdc2010_init(I2C_Handle i2c, uint8_t addr)
            writeReg(i2c, addr, REG_MEAS_CFG, 0x00);
 }
 
+bool Hdc2010_startAuto(I2C_Handle i2c, uint8_t addr, uint8_t rate)
+{
+    /* Same INT setup as Hdc2010_init, plus the AMM rate. MEAS_TRIG starts the sequence. */
+    return writeReg(i2c, addr, REG_RESET_INT_CFG,
+                    (uint8_t)((rate & 0x07) << 4) | CFG_DRDY_INT_EN | CFG_INT_POL_HIGH) &&
+           writeReg(i2c, addr, REG_MEAS_CFG, MEAS_TRIG);
+}
+
 bool Hdc2010_trigger(I2C_Handle i2c, uint8_t addr)
 {
     return writeReg(i2c, addr, REG_MEAS_CFG, MEAS_TRIG);

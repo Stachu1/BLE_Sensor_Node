@@ -29,6 +29,22 @@ bool Hdc2010_readIds(I2C_Handle i2c, uint8_t addr, uint16_t *manufId, uint16_t *
  */
 bool Hdc2010_init(I2C_Handle i2c, uint8_t addr);
 
+/* Auto measurement mode rates (register 0x0E, AMM[2:0]) */
+#define HDC2010_AMM_120S        1
+#define HDC2010_AMM_60S         2
+#define HDC2010_AMM_10S         3
+#define HDC2010_AMM_5S          4
+#define HDC2010_AMM_1S          5
+#define HDC2010_AMM_0S5         6
+#define HDC2010_AMM_0S2         7
+
+/*
+ * Call after Hdc2010_init. The sensor then measures on its own at the given
+ * rate (HDC2010_AMM_*) and raises INT when each result is ready. INT stays high
+ * until the status register is read (Hdc2010_readStatus).
+ */
+bool Hdc2010_startAuto(I2C_Handle i2c, uint8_t addr, uint8_t rate);
+
 /* Starts one T+RH conversion (about 1.3 ms at 14 bit). */
 bool Hdc2010_trigger(I2C_Handle i2c, uint8_t addr);
 

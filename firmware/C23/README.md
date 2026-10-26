@@ -8,6 +8,7 @@ Firmware for `BSN-C23-A` boards. The bring-up and early test procedure is in
 | [`hwtest/`](hwtest) | `bsn_c23_hwtest.out` | Bring-up self-test with no BLE stack. It checks clocks, supply, I2C, the HDC2010 and its INT line, prints PASS/FAIL on the UART, then logs readings every 2 s. |
 | [`ble_sensor/`](ble_sensor) | `bsn_c23_ble_sensor.out` | The sensor node. Reads the HDC2010 every 10 s and broadcasts temperature, humidity and battery as [BTHome v2](https://bthome.io/format/) advertisements (non-connectable, 1 s interval). |
 | [`cwtest/`](cwtest) | `bsn_c23_cwtest.out` | RF test. Transmits an unmodulated carrier forever (default 2440 MHz, 0 dBm) for harmonic and spurious measurements. See [RF carrier test](#rf-carrier-test). |
+| [`pwrtest/`](pwrtest) | `bsn_c23_pwrtest.out` | Current measurements. Holds the board in one power state per build (standby, shutdown, sensor polling, DRDY wake), with no BLE and no UART. See [Current test](#current-test). |
 | [`common/`](common) | | Board pin map (`bsn_board.h`), UART logger, HDC2010 and SHTC3 drivers |
 | [`test/`](test) | | Host unit tests for the drivers and the BTHome payload, run against a fake I2C bus |
 
@@ -133,7 +134,7 @@ make flash FREQ_MHZ=2402 TX_DBM=8         # 2360..2500 MHz; -20..+8 dBm, rounded
 Changing `FREQ_MHZ`, `TX_DBM` or `TX_HALF_DB` rebuilds automatically. To stop the carrier, flash another image.
 With a J-Link instead of the XDS110, use `make jflash` and power-cycle the board afterwards.
 
-Frequency offset and output power measured on rev A: [`hardware/C23/testing/RF_CARRIER.md`](../../hardware/C23/testing/RF_CARRIER.md).
+Frequency offset and output power measured on rev A: [`hardware/C23/testing/RF/RF_CARRIER.md`](../../hardware/C23/testing/RF/RF_CARRIER.md).
 
 - Run it from the bench supply. A continuous carrier draws several mA (more at +8 dBm), which a CR2032 can't
   supply for long, and the sagging voltage changes the output.
@@ -141,6 +142,32 @@ Frequency offset and output power measured on rev A: [`hardware/C23/testing/RF_C
   antenna. They can pick up and re-radiate harmonics.
 - 2nd to 5th harmonics are at 4.88, 7.32, 9.76 and 12.2 GHz for a 2440 MHz carrier. Check 2402 and 2480 MHz
   as well (the BLE advertising channels 37 and 39).
+
+## Current test
+
+`pwrtest` puts the board into one fixed state, chosen at build time, for an ammeter in series with the supply.
+Results and procedure: [`hardware/C23/testing/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/Power/POWER_MEASUREMENTS.md).
+
+```sh
+cd firmware/C23/pwrtest
+make jflash MODE=standby                 # standby forever: the sleep floor
+make jflash MODE=shutdown                # shutdown: the board baseline
+make jflash MODE=idle                    # standby disallowed, CPU in WFI
+make jflash MODE=active                  # CPU spinning
+make jflash MODE=sensor PERIOD_MS=97     # HDC2010 polled by the MCU timer
+make jflash MODE=sensor_irq HDC_AMM=7    # HDC2010 auto mode, DRDY wakes the MCU from standby
+make jflash MODE=shutdown_wake HDC_AMM=7 # HDC2010 auto mode, DRDY wakes the MCU from shutdown
+```
+
+Every build puts the SHTC3 to sleep at boot (`SHTC3_SLEEP=0` leaves it idle) and waits 5 s before entering its state.
+Changing a parameter rebuilds automatically.
+
+- After `jflash`, unplug **all** J-Link wires and do a full power-on reset (TP9 at 0 V). Otherwise the CC2340 stays
+  in the ROM at a few mA, or the probe keeps the debug logic powered.
+- Bypass the ammeter while flashing; its µA-range shunt starves the board when the debugger wakes it.
+- For the event modes, run the events at 5–10 Hz so every meter reading averages several of them. Get the charge
+  per event from `(I_avg − I_floor) × period`. The real period can be read from `sensorEvents` over SWD
+  (address in `build/bsn_c23_pwrtest.map`).
 
 ## Debugging in CCS
 
@@ -162,7 +189,7 @@ These come from the rev A schematic (`hardware/C23/BSN-C23.kicad_sch`). If the h
 | `CCFG.srcClkLF = "LF RCOSC"` | X2 (32.768 kHz) is DNP. With the default "LF XOSC" the device would wait for a crystal that isn't there. The BLE module then adds 1500 ppm of sleep-clock margin, which costs a little extra RX-window time in connections but nothing for a pure broadcaster. |
 | ROM bootloader pin trigger off | The CC23xx default trigger pin is DIO21, which is the HDC2010 INT line on this board. |
 | Pull-down on DIO21 | The HDC2010 INT output is high-Z until configured. A floating input wastes current. |
-| HFXT cap-array trim overridden to Q1 = Q2 = 44 | With the factory trim (35) the carrier was +30 ppm high. 44 brings it to +2 ppm (BRINGUP.md stage 6, `hardware/C23/testing/RF_CARRIER.md`). Set in `ble_sensor.syscfg` and `cwtest.syscfg`. |
+| HFXT cap-array trim overridden to Q1 = Q2 = 44 | With the factory trim (35) the carrier was +30 ppm high. 44 brings it to +2 ppm (BRINGUP.md stage 6, `hardware/C23/testing/RF/RF_CARRIER.md`). Set in `ble_sensor.syscfg` and `cwtest.syscfg`. |
 | Public BLE address | Uses the factory address from FCFG, so the address printed by hwtest is the one you'll see in a scanner. |
 | BTHome v2 payload | Open format that Home Assistant, Theengs and BTHome-aware scanner apps decode with no custom code. Layout is in `ble_sensor/bthome.c`. |
 | Broadcaster only, no GATT | Lowest power and smallest stack. A connectable variant with the Device Information Service (hardware revision) can be added later. |

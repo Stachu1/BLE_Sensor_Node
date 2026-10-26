@@ -71,6 +71,11 @@ bool Shtc3_probe(I2C_Handle i2c, uint16_t *id)
     return (*id & ID_MASK) == ID_SHTC3;
 }
 
+bool Shtc3_sleep(I2C_Handle i2c)
+{
+    return sendCmd(i2c, CMD_SLEEP);
+}
+
 bool Shtc3_measure(I2C_Handle i2c, int16_t *temp_cC, uint16_t *rh_cP)
 {
     uint8_t b[6];

@@ -1,0 +1,8 @@
+id,date,board,firmware,build_args,state,vdd_V,meter,range,samples,mean_uA,stdev_uA,sem_uA,event_period_ms,floor_uA,charge_per_event_uC,charge_err_uC,notes
+1,2026-10-26,BSN-C23-A #1,pwrtest,MODE=standby (before SHTC3 fix),standby; SHTC3 idle,3.0,Keysight 34461A,uA,1,44,,,,,,,SHTC3 never sent its sleep command
+2,2026-10-26,BSN-C23-A #1,pwrtest,MODE=standby,standby; sensors asleep,3.0,Keysight 34461A,uA,500,0.925,0.293,0.013,,,,,readings 0.4-1.1 uA
+3,2026-10-26,BSN-C23-A #1,pwrtest,MODE=shutdown,shutdown; sensors asleep,3.0,Keysight 34461A,uA,500,0.420,0.052,0.002,,,,,board baseline incl. SHTC3 and flux
+4,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor PERIOD_MS=1000,timer polling,3.0,Keysight 34461A,1 mA,500,7.7,112,5.0,1000,0.925,6.8,5,superseded by 5 (meter window vs 1 Hz pulses)
+5,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor PERIOD_MS=97,timer polling,3.0,Keysight 34461A,1 mA,500,95.0,0.8,0.036,101.0,0.925,9.50,0.04,period from 297 events in 30 s
+6,2026-10-26,BSN-C23-A #1,pwrtest,MODE=sensor_irq HDC_AMM=7,DRDY wake from standby,3.0,Keysight 34461A,1 mA,500,18.7,15.8,0.71,202.7,0.925,3.60,0.15,period from 148 events in 30 s
+7,2026-10-26,BSN-C23-A #1,pwrtest,MODE=shutdown_wake HDC_AMM=7,DRDY wake from shutdown,3.0,Keysight 34461A,10 mA,800,76,72,2.5,202.7,0.420,15.3,0.5,1 mA range overloaded; period as 6

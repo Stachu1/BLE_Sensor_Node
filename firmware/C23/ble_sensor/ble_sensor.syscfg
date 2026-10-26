@@ -60,7 +60,7 @@ CCFG.srcClkLF = "LF RCOSC";
 // HFXT load-capacitance trim (internal cap array, 6 bits, 0..63). Higher values
 // add load capacitance and lower the frequency. Measured at 2440 MHz: factory
 // default 35 = +30.3 ppm, 39 = +16.8 ppm, 44 = +2.2 ppm
-// (hardware/C23/testing/RF_CARRIER.md). Keep Q1 and Q2 within one step of each
+// (hardware/C23/testing/RF/RF_CARRIER.md). Keep Q1 and Q2 within one step of each
 // other, and keep the same values in ble_sensor.syscfg and cwtest.syscfg.
 CCFG.overrideHfxtCapArray = true;
 CCFG.hfxtCapArrayQ1 = 44;

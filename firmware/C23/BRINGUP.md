@@ -206,7 +206,7 @@ Or on a phone, install **nRF Connect for Mobile** (Nordic) or **TI SimpleLink Co
 
 > **Rev A antenna match.** As assembled, AE1 sits behind the TI reference values, which don't fit this
 > layout. VNA matching on an RF-only board with the battery connector fitted found L2 = 4.3 nH with 2.1 pF
-> shunt on the L3 pads (see `hardware/C23/testing/ANTENNA_MATCHING.md`).
+> shunt on the L3 pads (see `hardware/C23/testing/RF/ANTENNA_MATCHING.md`).
 > Treat RSSI from a board with the reference values as a pre-tuning baseline.
 
 If nothing is seen on the phone while the UART log looks fine, suspect the RF path (C7/L1/C8/C6/L2/L3,
@@ -248,7 +248,7 @@ Panasonic CR2032 datasheet. Later tuning knobs: advertising interval (`ble_senso
    - If the offset is consistently off across boards, set `CCFG.overrideHfxtCapArray = true` and tune
      `hfxtCapArrayQ1/Q2` in both `.syscfg` files: higher values mean more load capacitance, so a lower frequency.
    - Without a spectrum analyser, a VNA works as a receiver: trace `A,2` (port 1 receiver, source port 2,
-     RF power off), span 1–10 MHz around the carrier. Setup and caveats are in `hardware/C23/testing/RF_CARRIER.md`.
+     RF power off), span 1–10 MHz around the carrier. Setup and caveats are in `hardware/C23/testing/RF/RF_CARRIER.md`.
    - [x] 2026-10-26, `cwtest` on an MCU-only board: factory trim (35) +30.3 ppm, trim 44 +2.2 ppm. Q1 = Q2 = 44
          is now set in both `.syscfg` files (about 3 ppm per step). Output at the U.FL: −2.1 dBm at the 0 dBm
          setting, +6.7 dBm at +8 dBm.
@@ -258,7 +258,7 @@ Panasonic CR2032 datasheet. Later tuning knobs: advertising interval (`ble_senso
 3. **Antenna matching.** J1 (U.FL) and the C9/L4 path are DNP on rev A. Antenna impedance or VNA work
    needs a board reworked with J1 fitted. Record any rework in `hardware/C23/README.md` (board becomes `A*`).
    - [x] Antenna side matched without the battery (2026-10-23): L2 3.3 nH, L3 pads 2.0 pF,
-         S11 < −11 dB in band. See `hardware/C23/testing/ANTENNA_MATCHING.md`.
+         S11 < −11 dB in band. See `hardware/C23/testing/RF/ANTENNA_MATCHING.md`.
    - [x] Re-match with the battery connector fitted (2026-10-26): L2 4.3 nH, L3 pads 2.1 pF,
          −32 dB at 2.44 GHz, S11 < −10 dB in band.
    - [ ] Fit the final values on a working board and compare RSSI with the reference values.
@@ -272,7 +272,7 @@ Copy one row per board.
 
 | Board | S0 VDD–GND | S1 I (blank) | S1 VDDR / VDDD | S2 SWD | S3 hwtest | BLE address | S4 seen / RSSI@1m | S5 standby | S6 offset | Notes |
 |---|---|---|---|---|---|---|---|---|---|---|
-| #1 | No shorts (diode mode) | ~4 mA steady | | PASS | 13/13 PASS | FC:DE:C5:73:2F:4E | Seen (`bsn_scan.py`) / not measured | | | Antenna untuned. J-Link: needs a power cycle after `jflash` (see stage 4). |
+| #1 | No shorts (diode mode) | ~4 mA steady | | PASS | 13/13 PASS | FC:DE:C5:73:2F:4E | Seen (`bsn_scan.py`) / not measured | 0.925 µA (`pwrtest`, U2 fitted) | | Antenna untuned. J-Link: needs a power cycle after `jflash` (see stage 4). |
 | #2 | | | | | | | | | | |
 
 ---
