@@ -11,6 +11,16 @@
 #define BSN_LOG_ENABLE 1
 #endif
 
+/*
+ * Define BSN_LOG_RAM=1 to also copy the log into a RAM ring buffer, for boards
+ * without a UART adapter. Read bsnLogRam and bsnLogRamPos (total bytes written)
+ * over SWD; tools/jlink_log.py does this with a J-Link.
+ */
+#ifndef BSN_LOG_RAM
+#define BSN_LOG_RAM 0
+#endif
+#define BSN_LOG_RAM_SIZE 8192
+
 /* Prints a value in hundredths (e.g. 0.01 degC) as "-0.50". Use with CENTI_ARG(v). */
 #define CENTI_FMT    "%s%d.%02d"
 #define CENTI_ARG(v) ((v) < 0 ? "-" : ""), ((v) < 0 ? -(int)(v) : (int)(v)) / 100, \

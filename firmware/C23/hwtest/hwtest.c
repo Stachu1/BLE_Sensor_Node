@@ -289,6 +289,11 @@ void *mainThread(void *arg0)
     BatteryMonitor_init();
     Temperature_init();
 
+#if BSN_LOG_RAM
+    /* The log is read over SWD, and the J-Link can't attach to a device in standby */
+    Power_setConstraint(PowerLPF3_DISALLOW_STANDBY);
+#endif
+
     LOG_INIT(CONFIG_UART_LOG);
     LOG("\r\n\r\n==== %s-%s %s (built " __DATE__ " " __TIME__ ") ====\r\n",
         BSN_BOARD_NAME, BSN_HW_REVISION, FW_VERSION);

@@ -125,6 +125,20 @@ Alternatives:
 - **ROM serial bootloader**: not usable on rev A. The UART pins don't match any of the ROM bootloader's
   pin sets (see BRINGUP.md, "Notes for rev B"), and the CCFG generated here disables it after the first flash.
 
+### Without a UART adapter
+
+`hwtest` can keep its log in RAM, to be read back over the J-Link:
+
+```sh
+cd firmware/C23/hwtest
+make clean && make jflash EXTRA_CFLAGS=-DBSN_LOG_RAM=1    # then power-cycle the board
+python ../tools/jlink_log.py build/bsn_c23_hwtest.map     # prints the log; the target keeps running
+```
+
+This build keeps the device out of standby, because the J-Link can't attach to a CC2340 in standby
+("No CFG-AP detected", even with nRESET wired). The same applies to any image that sleeps: to reflash one,
+retry `jflash` in a loop while power-cycling the board, so that a connect attempt lands in the boot window.
+
 ## RF carrier test
 
 `cwtest` starts a continuous unmodulated carrier at boot and never stops it. It prints the frequency,

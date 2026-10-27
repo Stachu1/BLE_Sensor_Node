@@ -16,6 +16,12 @@ static UART2_Handle logUart;
 static SemaphoreP_Struct lockStruct;
 static SemaphoreP_Handle lock;
 
+#if BSN_LOG_RAM
+#include <stdint.h>
+char bsnLogRam[BSN_LOG_RAM_SIZE];
+volatile uint32_t bsnLogRamPos;
+#endif
+
 void BsnLog_init(unsigned int uartIndex)
 {
     UART2_Params params;
@@ -48,6 +54,13 @@ void BsnLog_printf(const char *fmt, ...)
     {
         SemaphoreP_pend(lock, SemaphoreP_WAIT_FOREVER);
         UART2_write(logUart, buf, (size_t)n, NULL);
+#if BSN_LOG_RAM
+        for (int i = 0; i < n; i++)
+        {
+            bsnLogRam[bsnLogRamPos % BSN_LOG_RAM_SIZE] = buf[i];
+            bsnLogRamPos++;
+        }
+#endif
         SemaphoreP_post(lock);
     }
 }
