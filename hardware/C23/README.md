@@ -34,6 +34,7 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 | #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. A\*: antenna side matched (L2 4.3 nH, 2.1 pF on the L3 pads). **U2 (SHTC3) is fitted.** Floor 0.366 µA, 16.1 µA with 1 s advertising, see [Current measurements](#current-measurements). |
 | RF test | (no MCU) | Antenna-only board used for VNA matching, see below. |
 | RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/RF/RF_CARRIER.md`](testing/RF/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
+| RF CW no-pi | | As RF CW, but with the PA-side pi network removed (see the rework log). `hwtest` PASS. For the conducted power and harmonics comparison with RF CW. |
 
 ### Current measurements
 
@@ -73,6 +74,7 @@ Hand-modified boards are marked `A*` (see the root README).
 | RF test | 2026-10-23 | No MCU, C8 or L1. J1 (U.FL) fitted, one 15 pF series bridged, L2 = 3.3 nH, 2.0 pF on the L3 pads | Antenna matching with a VNA |
 | RF test | 2026-10-26 | Battery connector fitted, L2 = 4.3 nH, 2.1 pF on the L3 pads | Re-match with the battery connector |
 | #1 | 2026-10-26 | L2 = 4.3 nH, 2.1 pF on the L3 pads (antenna side). PA-side pi network unchanged (TI reference) | Fit the tuned match |
+| RF CW no-pi | 2026-10-27 | MCU, X1 and J1 only. C7 and C8 not fitted, L1 shorted with solder, 15 pF series cap to J1 kept as the DC block | Check whether the pi network is needed for harmonics, and its effect on output power |
 
 Known issues to fix in rev B are listed at the end of [`BRINGUP.md`](../../firmware/C23/BRINGUP.md#notes-for-rev-b).
 

@@ -61,11 +61,10 @@ better estimate.
 
 ## Open items
 
-- [ ] **Before Wednesday 2026-10-28 (office):** check whether bypassing the PA-side pi network (C7, L1, C8)
-      improves the output power, using the VNA-as-receiver setup above at the same PA settings. Settle the
-      pi network here, because soldering 0402 at the uni is impractical.
-- [ ] **Wednesday 2026-10-28 (uni, 28 GHz spectrum analyser):** with the final pi network fitted, measure the
-      output power and confirm the frequency offset, including the 2414 MHz image. This visit should only
-      confirm the result, with no rework.
+- [x] **2026-10-27:** instead of reworking this board, a second CW board was built without the pi network
+      ("RF CW no-pi" in [`../../README.md`](../../README.md): C7/C8 off, L1 shorted, 15 pF DC block kept). This board
+      re-measured on 2026-10-27: +9 kHz, −2.5 dBm at 0 dBm, consistent with the table above.
+- [ ] **Wednesday 2026-10-28 (uni, 28 GHz spectrum analyser):** output power, frequency offset (including the
+      2414 MHz image) and harmonics of both CW boards, with and without the pi network. No rework at the uni.
 - [ ] Measure the offset with trim 44 on a second board, to separate a design offset from crystal spread.
 - [ ] Harmonics and spurious emissions (2nd–5th harmonic at 4.88–12.2 GHz) on the spectrum analyser.
