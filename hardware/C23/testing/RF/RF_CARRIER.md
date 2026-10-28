@@ -29,7 +29,8 @@ only signal.
   about ±1 dB.
 - **Image response:** a wide sweep (file 01) shows a second peak of the same level 26 MHz below the carrier,
   at 2414 MHz. The VNA receiver has no image filter, so this is the image of the 2440 MHz carrier, not a
-  second signal from the board. Confirm on a spectrum analyser.
+  second signal from the board. The spectrum analyser confirmed it (nothing at 2414 MHz, see
+  [Harmonics](#harmonics-spectrum-analyser-2026-10-28)).
 
 ## Measurements
 
@@ -59,12 +60,75 @@ better estimate.
    the shortfall is the PA itself at each setting, or the PA reacting to a load slightly different from TI's
    reference. The steps are +3.0 dB (0 → +4) and +5.8 dB (+4 → +8) instead of 4 dB each.
 
+## Harmonics (spectrum analyser, 2026-10-28)
+
+Both CW boards (with and without the pi network) on the uni's R&S Spectrum Rider FPH (model 26, firmware
+2.11), conducted at J1 through an SMA to U.FL pigtail of about 15 cm plus adapters. Flashed with `make jflash`,
+then J-Link unplugged and power-cycled. The CSV dates (11/11/2022) come from the analyser's clock.
+
+**Result:** **the pi network is needed, and with it the board passes** at the +8 dBm setting at 2440 and 2480 MHz,
+with at least 9.5 dB of margin. Without it, H3 fails the FCC limit at 0 dBm (by 0.6 dB) and H2 and H3 fail it
+at +8 dBm (by 8 and 13 dB).
+
+**Settings:** each harmonic on its own 3 MHz span, RBW = VBW 30 kHz, Auto Peak detector, RF attenuation 30 dB,
+preamp off, reference level +10 dBm. In a wide span the trace points are 15–20 MHz apart and with a sample or
+RMS detector the carrier read about 4.5 dB low, which is why each harmonic got its own span.
+
+**Reading the files:** the saved marker comes from peak search. Where no harmonic rises above the noise, it
+lands on a noise spike up to 1.5 MHz away. The levels below are the trace maximum within ±60 kHz of n × the
+measured carrier frequency instead; "< x" means nothing above the noise floor there.
+
+**Limits used:** −41.2 dBm for harmonics in FCC restricted bands (H2 4.5–5.15 GHz, H3 7.25–7.75 GHz,
+H5 10.6–12.7 GHz), −30 dBm ETSI spurious for the rest. The FCC limit is for radiated power (EIRP), so the
+conducted levels are only a stand-in for it.
+
+All levels in dBm, as read (no cable correction):
+
+| Board, setting, carrier | H1 | H2 | H3 | H4 | H5 | Files |
+|---|---|---|---|---|---|---|
+| pi network, 0 dBm, 2440 MHz | −3.2 | < −57 | < −59 | < −57 | < −57 | `harm_01`–`harm_05` |
+| no pi, 0 dBm, 2440 MHz | −1.7 | −46.0 | **−40.6** ✗ | −45.7 | −54.4 | `harm_11`–`harm_15` |
+| pi network, +8 dBm, 2440 MHz | +5.2 | < −56 | −55.7 | < −58 | **−50.7** | `harm_21`–`harm_25` |
+| no pi, +8 dBm, 2440 MHz | +5.4 | **−33.1** ✗ | **−28.6** ✗ | −39.4 | −45.9 | `harm_31`–`harm_35` |
+| pi network, +8 dBm, 2480 MHz | +4.5 | < −55 | < −58 | < −54 | −52.3 | `harm_41`–`harm_45` |
+
+**Wide sweep** ([`sweep_01_nopi_8dBm_10MHz-15GHz.png`](sweep_01_nopi_8dBm_10MHz-15GHz.png) and `.csv`): the no-pi
+board at +8 dBm, 10 MHz–15 GHz, RBW 100 kHz, 20 dB attenuation. The only peaks are the carrier and H2–H5, at
+the same levels as the narrow-span files (within 0.6 dB). No other spurs and no 6th harmonic above the
+floor of about −58 dBm. The point covering 2414 MHz reads −60.8 dBm, so **the 2414 MHz peak seen on the VNA was
+the VNA's own image response**, not a signal from the board. The delta markers D2–D5 on the screenshot are
+not on the harmonics; ignore their values.
+
+**Cable loss (estimate, not measured):** 1.13/1.37 mm micro-coax plus the U.FL, SMA and N adapters, about
+0.5 dB at 2.4 GHz, 1 dB at 7.3 GHz and 1–2 dB at 12.2 GHz (U.FL is only rated to 6 GHz). The FPH read the N54
+0.7 dB below the cable-corrected VNA, which fits. Corrected, the tightest margin (H5, pi network, +8 dBm, 2440 MHz)
+drops from 9.5 to about 7.5–8.5 dB.
+
+What was learned:
+
+1. **The filter is required.** Without the pi network the board fails the FCC restricted-band limit at both
+   power settings, mainly on H3, and only just passes ETSI at +8 dBm (H3 −28.6 against −30).
+2. **The pi network removes 23 dB or more of H2, 27 dB of H3 and 19 dB or more of H4, but only about 5 dB of
+   H5** (−45.9 → −50.7 dBm at +8 dBm). The 0402 parts probably have their own resonances near 12 GHz. H5 is the
+   tightest margin with the network fitted. For the rev C filter, look at capacitors with a higher
+   self-resonant frequency or a notch near 12 GHz.
+3. **The pi network costs 0.2 dB at +8 dBm** (+5.4 → +5.2 dBm) but about 1.5 dB at 0 dBm (−1.7 → −3.2 dBm),
+   so it changes the PA's load as well as filtering. At the power that will be used, its loss is negligible.
+4. **The band edge is not worse:** at 2480 MHz H3 drops into the noise and H5 is 1.6 dB lower than at 2440 MHz.
+   The carrier is 0.7 dB lower.
+5. **Output power** agrees with the VNA: FPH −3.2 dBm against VNA −2.7 dBm read (0 dBm setting), +5.2 against
+   +6.0 dBm read (+8 dBm setting).
+6. **Conducted is not radiated.** On rev B the trace antenna may radiate the harmonics more or less efficiently
+   than 2.44 GHz, probably by several dB either way.
+
 ## Open items
 
 - [x] **2026-10-27:** instead of reworking this board, a second CW board was built without the pi network
       ("RF CW no-pi" in [`../../README.md`](../../README.md): C7/C8 off, L1 shorted, 15 pF DC block kept). This board
       re-measured on 2026-10-27: +9 kHz, −2.5 dBm at 0 dBm, consistent with the table above.
-- [ ] **Wednesday 2026-10-28 (uni, 28 GHz spectrum analyser):** output power, frequency offset (including the
-      2414 MHz image) and harmonics of both CW boards, with and without the pi network. No rework at the uni.
+- [x] **2026-10-28 (uni, spectrum analyser):** output power, the 2414 MHz image and harmonics of both CW boards,
+      with and without the pi network. See [Harmonics](#harmonics-spectrum-analyser-2026-10-28).
 - [ ] Measure the offset with trim 44 on a second board, to separate a design offset from crystal spread.
-- [ ] Harmonics and spurious emissions (2nd–5th harmonic at 4.88–12.2 GHz) on the spectrum analyser.
+- [x] Harmonics and spurious emissions (2nd–5th harmonic at 4.88–12.2 GHz) on the spectrum analyser.
+- [ ] Rev B/C: keep the pi network; check its H5 (12.2–12.4 GHz) rejection when it is redesigned.
+- [ ] Rev C: radiated pre-scan of H3 and H5 with the trace antenna.

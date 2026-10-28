@@ -87,6 +87,5 @@ have a PCB trace antenna. Rev C is the final prototype with the rev B fixes.
 | Sleep floor | 0.366 µA | 4.16 µA (System OFF 2.05 µA, about 1.4 µA above the datasheet, under investigation) |
 | Charge per advert, 0 dBm | 12.6 µC | 7.6 µC |
 | Conducted power at the 0 dBm setting | −2.1 dBm | 0.0 dBm (PA network bypassed) |
+| Harmonics (conducted, FCC restricted-band limit −41.2 dBm) | Pass with the pi network at +8 dBm (2440 and 2480 MHz), 9.5 dB margin (H5). Without it, H3 −28.6 dBm at +8 dBm | H3 −24.3 dBm at 0 dBm with no filter (fails by 17 dB); no working filter on this layout yet |
 | Notes | [`hardware/C23/testing`](hardware/C23/testing) | [`hardware/N54/testing`](hardware/N54/testing) |
-
-Harmonics of both variants are measured on a spectrum analyser on 2026-10-28.

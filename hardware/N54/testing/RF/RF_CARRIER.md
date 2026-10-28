@@ -77,11 +77,38 @@ What was learned:
 5. **The DC/DC is on:** `REGULATORS.VREGMAIN.DCDCEN` read 1 over the J-Link while the carrier ran, and the 0 dBm
    current matches the datasheet's DC/DC figure.
 
+## Harmonics (spectrum analyser, 2026-10-28)
+
+Board #2 with the PA network bypassed (no filtering at all), `cwtest` at 2440 MHz and the 0 dBm setting, on the
+uni's R&S Spectrum Rider FPH. Same setup and settings as the C23 boards, described in
+[`hardware/C23/testing/RF/RF_CARRIER.md`](../../../C23/testing/RF/RF_CARRIER.md#harmonics-spectrum-analyser-2026-10-28):
+each harmonic on its own 3 MHz span, RBW 30 kHz, Auto Peak, 30 dB attenuation, levels as read with no cable
+correction (about 0.5 dB at 2.4 GHz to 1–2 dB at 12 GHz).
+
+| | Frequency | Level | Limit | Margin | File |
+|---|---|---|---|---|---|
+| H1 | 2440 MHz | −0.7 dBm | | | [`harm_01_bypassed_0dBm_H1_2440MHz.csv`](harm_01_bypassed_0dBm_H1_2440MHz.csv) |
+| H2 | 4880 MHz | −43.2 dBm | −41.2 (FCC restricted) | +2.0 dB | [`harm_02_bypassed_0dBm_H2_4880MHz.csv`](harm_02_bypassed_0dBm_H2_4880MHz.csv) |
+| **H3** | 7320 MHz | **−24.3 dBm** | −41.2 (FCC) / −30 (ETSI) | **−17.1 / −5.7 dB** ✗ | [`harm_03_bypassed_0dBm_H3_7320MHz.csv`](harm_03_bypassed_0dBm_H3_7320MHz.csv) |
+| H4 | 9760 MHz | −45.9 dBm | −30 (ETSI) | +15.9 dB | [`harm_04_bypassed_0dBm_H4_9760MHz.csv`](harm_04_bypassed_0dBm_H4_9760MHz.csv) |
+| H5 | 12200 MHz | −48.4 dBm | −41.2 (FCC restricted) | +7.2 dB | [`harm_05_bypassed_0dBm_H5_12200MHz.csv`](harm_05_bypassed_0dBm_H5_12200MHz.csv) |
+
+What was learned:
+
+1. **Rev B needs a harmonic filter on the N54.** H3 fails the FCC restricted-band limit by 17 dB and ETSI by
+   6 dB already at 0 dBm. The filter needs at least about 20 dB of H3 rejection at 0 dBm, more at +8 dBm.
+2. **Its H3 is about 16 dB higher than the C23's without a filter** (−24.3 against −40.6 dBm at 0 dBm). The C23's pi
+   network removes 27 dB of H3 and works on its layout. The N54's reference network does not work on this
+   layout yet (see [Output power](#output-power)).
+3. +8 dBm was not measured: failing at 0 dBm already decides it.
+4. The carrier read −0.7 dBm against 0.0 dBm on the cable-corrected VNA, which gives the FPH setup's loss at
+   2.4 GHz.
+
 ## Open items
 
-- [ ] **2026-10-28 (uni, spectrum analyser):** harmonics (2nd–5th) of the bypassed board, with no filtering at all.
-      Targets: −41.2 dBm for the harmonics in FCC restricted bands (2nd, 3rd, 5th), −30 dBm (ETSI). This decides
-      whether rev B needs a harmonic filter.
+- [x] **2026-10-28 (uni, spectrum analyser):** harmonics (2nd–5th) of the bypassed board, with no filtering at all.
+      H3 fails by 17 dB (FCC) at 0 dBm, so rev B needs a harmonic filter. See
+      [Harmonics](#harmonics-spectrum-analyser-2026-10-28).
 - [ ] Check the 11.75 pF trim on board #1.
 - [ ] If rev B uses the N54: copy Nordic's 0201 PA network layout exactly, and verify it into 50 Ω before fitting
       the antenna match.
