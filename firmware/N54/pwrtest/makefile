@@ -3,6 +3,7 @@
 #
 #   make flash MODE=standby                 System ON idle forever: the sleep floor
 #   make flash MODE=shutdown                System OFF: the board baseline
+#   make flash MODE=bareoff                 System OFF with every GPIO reset to default first
 #   make flash MODE=active                  CPU spinning at 128 MHz
 #   make flash MODE=sensor PERIOD_MS=97     HDC2010 polled by the MCU timer
 #   make flash MODE=sensor_irq HDC_AMM=7    HDC2010 auto mode, DRDY wakes the MCU from System ON idle

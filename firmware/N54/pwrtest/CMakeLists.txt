@@ -1,7 +1,7 @@
 # BSN-N54 static current test. See ../README.md.
 cmake_minimum_required(VERSION 3.20.0)
 
-set(MODE standby CACHE STRING "standby | active | shutdown | sensor | sensor_irq")
+set(MODE standby CACHE STRING "standby | active | shutdown | bareoff | sensor | sensor_irq")
 set(PERIOD_MS 1000 CACHE STRING "Sensor period for MODE=sensor")
 set(HDC_AMM 5 CACHE STRING "HDC2010 auto-mode rate for MODE=sensor_irq (HDC2010_AMM_*)")
 set(SHTC3_SLEEP 1 CACHE STRING "0: leave the SHTC3 idle after power-on")

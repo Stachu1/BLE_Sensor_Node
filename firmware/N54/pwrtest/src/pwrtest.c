@@ -8,6 +8,10 @@
  *   make MODE=standby     System ON idle forever (GRTC on LFXO)        -> I_floor
  *   make MODE=active      CPU spinning
  *   make MODE=shutdown    System OFF after BOOT_DELAY_S; only reset/power-on wakes it
+ *   make MODE=bareoff     As shutdown, but every GPIO is first reset to its power-on
+ *                         default (input, buffer disconnected, no pull). Pin settings
+ *                         survive System OFF, so the difference to MODE=shutdown is
+ *                         what the firmware's pin configuration costs.
  *   make MODE=sensor      HDC2010 + VDD reading every PERIOD_MS, idle in between
  *   make MODE=sensor_irq  HDC2010 in auto mode (HDC_AMM); its DRDY wakes the MCU from idle
  *
@@ -29,6 +33,8 @@
 #include <zephyr/kernel.h>
 #include <zephyr/sys/poweroff.h>
 
+#include <hal/nrf_gpio.h>
+
 #include "bsn_board.h"
 #include "bsn_vdd.h"
 #include "hdc2010.h"
@@ -39,6 +45,7 @@
 #define MODE_SHUTDOWN   3
 #define MODE_SENSOR     4
 #define MODE_SENSOR_IRQ 5
+#define MODE_BAREOFF    6
 
 #ifndef PWR_MODE
 #define PWR_MODE        MODE_STANDBY
@@ -175,6 +182,20 @@ int main(void)
     }
 #elif PWR_MODE == MODE_SHUTDOWN
     /* Does not return. A debugger attached keeps the debug domain powered (emulated System OFF). */
+    sys_poweroff();
+#elif PWR_MODE == MODE_BAREOFF
+    for (uint32_t port = 0; port < 3; port++)
+    {
+        for (uint32_t pin = 0; pin < 32; pin++)
+        {
+            uint32_t p = NRF_GPIO_PIN_MAP(port, pin);
+
+            if (nrf_gpio_pin_present_check(p))
+            {
+                nrf_gpio_cfg_default(p);
+            }
+        }
+    }
     sys_poweroff();
 #elif PWR_MODE == MODE_SENSOR
     runSensor();

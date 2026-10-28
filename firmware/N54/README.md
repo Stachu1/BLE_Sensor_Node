@@ -134,6 +134,7 @@ the measurement, as for C23.
 cd firmware/N54/pwrtest
 make flash MODE=standby                 # System ON idle forever: the sleep floor
 make flash MODE=shutdown                # System OFF
+make flash MODE=bareoff                 # System OFF with every GPIO reset to its default first
 make flash MODE=active                  # CPU spinning
 make flash MODE=sensor PERIOD_MS=97     # HDC2010 polled by the MCU timer
 make flash MODE=sensor_irq HDC_AMM=7    # HDC2010 auto mode, DRDY wakes the MCU
@@ -142,6 +143,9 @@ make flash MODE=sensor_irq HDC_AMM=7    # HDC2010 auto mode, DRDY wakes the MCU
 Every build sends the SHTC3 its sleep command (`SHTC3_SLEEP=0` leaves it idle) and waits 5 s before entering
 its state. `pwrtest` is always built without the UART. `sensorEvents` and `sensorErrors` are global variables
 that can be read over SWD, as on C23.
+
+Pin settings survive System OFF, so the difference between `MODE=shutdown` and `MODE=bareoff` is what the
+firmware's pin configuration costs in System OFF.
 
 Use the procedure in [`hardware/C23/testing/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/Power/POWER_MEASUREMENTS.md):
 unplug all J-Link wires after flashing, then short VDD (TP1) to GND (TP4) for about 1 s before measuring. After a
