@@ -74,7 +74,7 @@ Boards:
 
 | Board | MCU | Status |
 |---|---|---|
-| `BSN-N54-A` | nRF54L05 | Ordered and assembled (2 boards). Board #1 advertising BTHome. Board #2 (U.FL): HFXO trimmed to 11.75 pF, PA network bypassed (the rev A layout of it loses 10 dB), 0.0 dBm at the 0 dBm setting. Floor 4.16 µA, 7.6 µC per advert |
+| `BSN-N54-A` | nRF54L05 | Ordered and assembled (2 boards). Board #1 advertising BTHome. Board #2 (U.FL): HFXO trimmed to 11.75 pF, PA network bypassed (the rev A layout of it loses 10 dB), 0.0 dBm at the 0 dBm setting. Floor 4.20 µA, 7.6 µC per advert |
 | `BSN-C23-A` | CC2340R5 | Ordered and assembled. Board #1 flashed and advertising BTHome; antenna matched with the battery connector fitted (L2 4.3 nH, L3 2.1 pF). Floor 0.366 µA, 12.6 µC per advert. CW boards with and without the PA pi network |
 
 ## Status
@@ -84,8 +84,9 @@ have a PCB trace antenna. Rev C is the final prototype with the rev B fixes.
 
 | | `BSN-C23-A` | `BSN-N54-A` |
 |---|---|---|
-| Sleep floor | 0.366 µA | 4.16 µA (System OFF 2.05 µA, about 1.4 µA above the datasheet, under investigation) |
+| Sleep floor | 0.366 µA | 4.20 µA (System OFF 2.05 µA; about 1.4 µA above the datasheet on both boards, cause not found) |
 | Charge per advert, 0 dBm | 12.6 µC | 7.6 µC |
+| Charge per sensor reading, timer / DRDY wake | 9.56 / 3.72 µC | 2.01 / 1.78 µC |
 | Conducted power at the 0 dBm setting | −2.1 dBm | 0.0 dBm (PA network bypassed) |
 | Harmonics (conducted, FCC restricted-band limit −41.2 dBm) | Pass with the pi network at +8 dBm (2440 and 2480 MHz), 9.5 dB margin (H5). Without it, H3 −28.6 dBm at +8 dBm | H3 −24.3 dBm at 0 dBm with no filter (fails by 17 dB); no working filter on this layout yet |
 | Notes | [`hardware/C23/testing`](hardware/C23/testing) | [`hardware/N54/testing`](hardware/N54/testing) |

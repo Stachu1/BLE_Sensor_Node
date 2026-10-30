@@ -193,6 +193,36 @@ check that the payload reload went through. At about **2.4 µC per bare wake-up*
 The model holds, and the check costs about 14 % of the total for nothing. Removing it, and using the DRDY interrupt
 for the sensor, gives 0.37 + 12.57 + 0.37 = **13.3 µA** at the same settings.
 
+Since 2026-10-30 the sensor task wakes once a second only until the reload has gone through, then sleeps for the rest
+of the period (`ble_sensor/app_main.c`). Not verified yet: the only run with it is the unresolved 6.55 µA below.
+
+## RF CW no-pi board (2026-10-30)
+
+The board used for the conducted comparison with BSN-N54 #2: no U2, PA-side pi network removed (see the
+[rework log](../../README.md#rework-log)), HDC2010, I2C pull-ups and C5 fitted, **J1 terminated with a 50 Ω
+broadband load** like N54 #2. Meter: Keysight 34465A (the reference meter for the N54 set of the same day). 3.0 V
+at TP9 (the J-Link reported VTref 2.35 V while flashing, with the meter bypassed; not explained).
+
+| # | Build | Range | V | Mean | σ | n | Result |
+|---|---|---|---|---|---|---|---|
+| N1 | `ble_sensor LOG=0 ADV_MS=5000 SENSOR_S=10` | 10 mA, NPLC 100, autozero off | 3.0 | **6.55 µA** | | ≈ 200 | model 3.85 µA, **+2.7 µA unexplained** |
+| N2 | `ble_sensor LOG=0 ADV_MS=50 SENSOR_S=0` | 10 mA | 3.0 | 224 µA | 42 µA | 200 | Q_adv = **12.30 ± 0.16 µC** |
+| N3 | same | 10 mA | 2.0 | 315 µA | 75 µA | 200 | Q_adv = **17.30 ± 0.29 µC** |
+
+N2/N3 use board #1's floor (0.366 µA); this board's own floor is not measured yet.
+
+- **The advertising charge matches board #1** (12.63 / 16.92 µC): without the pi network and into 50 Ω the C23 needs
+  the same charge per advert. The adverts don't explain N1.
+- **N1:** the model is 0.366 + 12.63 / 5.005 + 9.56 / 10 = 3.85 µA. Checked and ruled out: debug state (J-Link
+  unplugged, TP9 shorted before power-on), supply (3.0 V at TP9), C5 (fitted), missing sensor or pull-ups (fitted).
+  Left:
+  - **This board's floor.** Not measured; it would have to be about 3 µA.
+  - **The reload retries.** If the payload reload never succeeds, the sensor task falls back to waking every second,
+    as before the fix: 9 × 2.4 µC / 10 s = +2.2 µA, which gives about 6.0 µA, close to N1.
+
+  Next: `pwrtest standby` on this board (floor), then `ble_sensor LOG=1` on the UART to see whether
+  `prepareLoad`/`loadByHandle` fail at a 5 s interval.
+
 ## Pitfalls
 
 Found during these measurements. Each one gave a plausible but wrong current.
@@ -210,10 +240,21 @@ Found during these measurements. Each one gave a plausible but wrong current.
 
 ## Still to measure
 
-- [ ] Shutdown floor with a retained reset-reason and "refused" counter, then the standby/shutdown break-even.
-- [ ] Floor against supply voltage (`ble_sensor ADV=0` at 2.4 and 2.1 V).
-- [ ] BLE stack start-up charge, for the shutdown-wake design.
+For the battery-life model (0 dBm, advertising every 5 s or slower, timer or DRDY sensor wake, room temperature):
+
+- [ ] **The 6.55 µA full-firmware result on the no-pi board** (see above): its floor (`pwrtest standby`), then the
+      reload with `LOG=1`.
+- [ ] Full-firmware check at 5 s advertising on board #1 (model 3.85 µA).
+- [ ] Floor against supply voltage (`pwrtest standby` at 2.4 and 2.0 V). Until measured, assume constant power like
+      the N54 (+35 % at 2.0 V).
+- [ ] Sensor readings at 2.0 V (`pwrtest sensor`, `sensor_irq`). Until measured, assume the advertising scaling.
+- [x] The same set on BSN-N54 (2026-10-27/30, see [`hardware/N54/testing/Power`](../../../N54/testing/Power/POWER_MEASUREMENTS.md)).
+
+Later or out of scope for the model:
+
+- [ ] Real CR2032: VDD dip during TX (sets the end-of-life voltage; on rev B).
 - [ ] Scope and shunt: pulse shape and peak current per advert (CR2032 peak derating), and the phases of an event.
-- [ ] Real CR2032: VDD dip during TX.
 - [ ] Re-measure the floors with U2 removed and the board cleaned.
-- [ ] The same set on BSN-N54.
+- [ ] Shutdown floor with a retained reset-reason and "refused" counter, and the BLE stack start-up charge. Not
+      needed for the MCU choice: shutdown saves at most about 0.2 µA, less than a cold boot costs at any interval
+      up to about 60 s.

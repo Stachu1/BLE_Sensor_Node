@@ -19,9 +19,9 @@ results: [`firmware/N54`](../../firmware/N54) and [`firmware/N54/BRINGUP.md`](..
 - **RF:** [`testing/RF/RF_CARRIER.md`](testing/RF/RF_CARRIER.md). HFXO trim 11.75 pF (+127 ppm at the datasheet
   7 pF). The reference PA network as laid out costs 10–11 dB; bypassed, the PA gives 0.0 dBm at the 0 dBm
   setting and +7.5 dBm at +8 dBm.
-- **Current:** [`testing/Power/POWER_MEASUREMENTS.md`](testing/Power/POWER_MEASUREMENTS.md). Floor 4.16 µA
-  (System OFF 2.05 µA, both about 1.4 µA above the datasheet, not yet explained), 7.6 µC per advert at 0 dBm
-  (C23: 0.366 µA and 12.6 µC).
+- **Current:** [`testing/Power/POWER_MEASUREMENTS.md`](testing/Power/POWER_MEASUREMENTS.md). Floor 4.20 µA
+  (System OFF 2.05 µA, both about 1.4 µA above the datasheet on both boards, cause not found), 7.6 µC per advert
+  at 0 dBm, 2.01 / 1.78 µC per sensor reading with timer / DRDY wake (C23: 0.366 µA, 12.6 µC, 9.56 / 3.72 µC).
 
 ### Rework log
 
