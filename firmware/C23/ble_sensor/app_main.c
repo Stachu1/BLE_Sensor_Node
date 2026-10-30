@@ -255,13 +255,16 @@ static void *sensorThread(void *arg0)
             sleep(3600);
         }
 #endif
-        for (t = 0; t < SENSOR_PERIOD_S; t++)
+        /* Wake once a second only until the reload went through, then sleep out the
+         * period in one go (each extra wake-up costs about 2.4 uC) */
+        for (t = 0; t < SENSOR_PERIOD_S && ADV_ENABLE && advLoadedId != next.packetId; t++)
         {
             sleep(1);
-            if (advLoadedId != next.packetId)
-            {
-                BLEAppUtil_invokeFunctionNoData(Adv_reload);
-            }
+            BLEAppUtil_invokeFunctionNoData(Adv_reload);
+        }
+        if (t < SENSOR_PERIOD_S)
+        {
+            sleep(SENSOR_PERIOD_S - t);
         }
     }
 }
