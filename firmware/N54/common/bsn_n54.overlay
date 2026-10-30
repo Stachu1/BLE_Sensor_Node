@@ -27,6 +27,11 @@
 
 #include <zephyr/dt-bindings/adc/nrf-saadc.h>
 
+/* HDC_INT edges through the low-power SENSE mechanism instead of a GPIOTE IN channel */
+&gpio0 {
+	sense-edge-mask = <(1 << 1)>;
+};
+
 / {
 	aliases {
 		/delete-property/ led0;
