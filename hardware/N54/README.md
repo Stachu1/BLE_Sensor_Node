@@ -4,7 +4,7 @@ KiCad project: `BSN-N54.kicad_pro`. See the root README for the board naming sch
 
 ## Rev A (`BSN-N54-A`)
 
-Ordered on the combined panel with BSN-C23-A (`hardware/panel/`). Firmware, bring-up procedure and per-board
+Ordered as a separate design from BSN-C23-A (not panelized). Firmware, bring-up procedure and per-board
 results: [`firmware/N54`](../../firmware/N54) and [`firmware/N54/BRINGUP.md`](../../firmware/N54/BRINGUP.md).
 
 ### Bring-up status

@@ -6,7 +6,7 @@ KiCad project: `BSN-C23.kicad_pro`. See the root README for the board naming sch
 
 This project started as a copy of `BSN-N54-A` (board outline, power, sensors, antenna and
 test points), with the MCU, power tree, 48 MHz crystal, RF network and SWD pins replaced for the
-CC2340R5. Rev A was exported and ordered on the combined panel (`hardware/panel/`).
+CC2340R5. Rev A was exported and ordered as a separate design (not panelized).
 
 **Population:** DNP = U2 (SHTC3), X2 (32 kHz, LFOSC is used instead), C9, C14, C15, C16, C19, C20,
 J1 (U.FL), L4. Everything else is fitted.
