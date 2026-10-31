@@ -47,9 +47,11 @@ mfg/
 **/*build
 
 
-**/*.DS_Store%
 
 docs/private/
+
+# Vendor datasheets: kept locally, listed with links in docs/datasheets/README.md
+docs/datasheets/**/*.pdf
 
 # Python
 **/__pycache__/

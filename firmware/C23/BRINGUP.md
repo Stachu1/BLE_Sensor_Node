@@ -235,7 +235,7 @@ range for averages only):
 | Average at 1 s advertising, 10 s sensor | | on the order of 10–20 µA |
 
 Compare against the N54 board using the same method. For CR2032 lifetime estimates, see
-`docs/datasheets/power/ti_coincell_peak_current_SWRA349.pdf` (peak-current derating) and the
+TI [SWRA349](https://www.ti.com/lit/pdf/swra349) (peak-current derating) and the
 Panasonic CR2032 datasheet. Later tuning knobs: advertising interval (`ble_sensor.syscfg`, `primIntMin/Max`),
 `SENSOR_PERIOD_S` in `app_main.c`, TX power, and the HDC2010 resolution.
 

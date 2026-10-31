@@ -1,5 +1,8 @@
 # BSN-N54 firmware (Nordic nRF54L05)
 
+> **Concluded at rev A.** The N54 was compared with the C23 on rev A and rev B uses the CC2340R5; see
+> [`MCU_DECISION.md`](../../hardware/MCU_DECISION.md). This folder is kept as the record of that comparison.
+
 Firmware for `BSN-N54-A` boards. It mirrors [`firmware/C23`](../C23) app for app and option for option, so the
 two variants can be measured the same way. The bring-up and test procedure is in [BRINGUP.md](BRINGUP.md).
 

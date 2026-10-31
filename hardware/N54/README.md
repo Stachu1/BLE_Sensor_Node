@@ -1,5 +1,8 @@
 # BSN-N54 (Nordic nRF54L variant)
 
+> **Concluded at rev A.** The N54 was compared with the C23 on rev A and rev B uses the CC2340R5; see
+> [`MCU_DECISION.md`](../MCU_DECISION.md). This folder is kept as the record of that comparison.
+
 KiCad project: `BSN-N54.kicad_pro`. See the root README for the board naming scheme.
 
 ## Rev A (`BSN-N54-A`)
