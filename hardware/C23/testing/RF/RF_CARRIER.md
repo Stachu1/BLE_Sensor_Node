@@ -43,7 +43,7 @@ only signal.
 | [`cw_05_2440MHz_0dBm_1MHz-span_cap39.csv`](cw_05_2440MHz_0dBm_1MHz-span_cap39.csv) | 39 | 0 dBm | 1 MHz / 312 Hz | −2.67 dBm | −2.0 dBm | +41.1 kHz (+16.8 ppm) |
 | [`cw_06_2440MHz_0dBm_1MHz-span_cap44.csv`](cw_06_2440MHz_0dBm_1MHz-span_cap44.csv) | **44** | 0 dBm | 1 MHz / 312 Hz | −2.68 dBm | −2.0 dBm | **+5.3 kHz (+2.2 ppm)** |
 
-The VNA marker on the peak maximum of file 06 read +6.25 kHz (+2.6 ppm); the centre of the peak is the
+The VNA marker on the peak maximum of file 06 read +6.25 kHz (+2.6 ppm). The centre of the peak is the
 better estimate.
 
 ## What was learned
@@ -76,7 +76,7 @@ RMS detector the carrier read about 4.5 dB low, which is why each harmonic got i
 
 **Reading the files:** the saved marker comes from peak search. Where no harmonic rises above the noise, it
 lands on a noise spike up to 1.5 MHz away. The levels below are the trace maximum within ±60 kHz of n × the
-measured carrier frequency instead; "< x" means nothing above the noise floor there.
+measured carrier frequency instead. "< x" means nothing above the noise floor there.
 
 **Limits used:** −41.2 dBm for harmonics in FCC restricted bands (H2 4.5–5.15 GHz, H3 7.25–7.75 GHz,
 H5 10.6–12.7 GHz), −30 dBm ETSI spurious for the rest. The FCC limit is for radiated power (EIRP), so the
@@ -97,7 +97,7 @@ board at +8 dBm, 10 MHz–15 GHz, RBW 100 kHz, 20 dB attenuation. The only peaks
 the same levels as the narrow-span files (within 0.6 dB). No other spurs and no 6th harmonic above the
 floor of about −58 dBm. The point covering 2414 MHz reads −60.8 dBm, so **the 2414 MHz peak seen on the VNA was
 the VNA's own image response**, not a signal from the board. The delta markers D2–D5 on the screenshot are
-not on the harmonics; ignore their values.
+not on the harmonics, so ignore their values.
 
 **Cable loss (estimate, not measured):** 1.13/1.37 mm micro-coax plus the U.FL, SMA and N adapters, about
 0.5 dB at 2.4 GHz, 1 dB at 7.3 GHz and 1–2 dB at 12.2 GHz (U.FL is only rated to 6 GHz). The FPH read the N54
@@ -130,5 +130,5 @@ What was learned:
       with and without the pi network. See [Harmonics](#harmonics-spectrum-analyser-2026-10-28).
 - [ ] Measure the offset with trim 44 on a second board, to separate a design offset from crystal spread.
 - [x] Harmonics and spurious emissions (2nd–5th harmonic at 4.88–12.2 GHz) on the spectrum analyser.
-- [ ] Rev B/C: keep the pi network; check its H5 (12.2–12.4 GHz) rejection when it is redesigned.
+- [ ] Rev B/C: keep the pi network and check its H5 (12.2–12.4 GHz) rejection when it is redesigned.
 - [ ] Rev C: radiated pre-scan of H3 and H5 with the trace antenna.

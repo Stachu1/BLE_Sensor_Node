@@ -26,7 +26,7 @@ Everything else is fitted.
 - [ ] U1 (CC2340R5, QFN-24): pin-1 dot, no bridges on the 0.5 mm pitch, exposed pad soldered (check the side profile).
 - [ ] U3 (HDC2010, 1.5 mm DSBGA): orientation (ball A1), sitting flat, and the sensor opening not
       covered in flux. **Don't wash the humidity sensor with IPA, and don't put flux on it**
-      (see TI SNIA025). Reflow shifts RH by a few %RH; it recovers after rehydration (roughly 24 h at room
+      (see TI SNIA025). Reflow shifts RH by a few %RH, and it recovers after rehydration (roughly 24 h at room
       conditions, or longer at high RH).
 - [ ] X1 (48 MHz, 4-pad): orientation per footprint.
 - [ ] L5 (10 µH DC/DC inductor), C10–C13 near U1.
@@ -37,7 +37,7 @@ With a DMM (no battery, no supply):
 
 | Measurement | Expected | Typical fault if wrong |
 |---|---|---|
-| TP9 (VDD) to TP10 (GND) | Climbs slowly into the kΩ to MΩ range while C5 (100 µF) charges; **not** < 100 Ω | Solder bridge, reversed cap, damaged U1 |
+| TP9 (VDD) to TP10 (GND) | Climbs slowly into the kΩ to MΩ range while C5 (100 µF) charges. **Not** < 100 Ω | Solder bridge, reversed cap, damaged U1 |
 | C10 / C11 (VDDR) to GND | No short | Bridge at U1 pins 2/20, L5 |
 | C13 (VDDD) to GND | No short | Bridge at U1 pin 16 |
 | TP1 (SDA) to TP9, TP8 (SCL) to TP9 | about 4.7 kΩ | R1/R2 missing or wrong value |
@@ -134,7 +134,7 @@ I2C scan     : 0x40
 #1 VDDS=3004 mV die=24 C | HDC2010 23.85 C 41.22 %RH | INT edges=3
 ```
 
-Record the **BLE address** for each board; stage 4 uses it.
+Record the **BLE address** for each board. Stage 4 uses it.
 
 Then check that the readings respond to the environment:
 
@@ -152,11 +152,11 @@ If any check FAILs:
 | No output at all | Adapter RX on the wrong test point, wrong COM port or baud rate, TX/RX swapped at the adapter. Use the CCS debugger to see if `main` runs. |
 | `HFXT 48 MHz` | X1 orientation or soldering, X1 is the wrong part, a broken trace to U1 pins 21/22 |
 | `LF clock` | Shouldn't happen with LFOSC. Check that the image was built from this repo (CCFG `srcClkLF`). |
-| `VDDS` out of range | Supply setting; batteries below 1.8 V |
+| `VDDS` out of range | Supply setting, or batteries below 1.8 V |
 | `I2C scan: none` | R1/R2, SDA/SCL bridged, U3 not soldered or rotated, U3 without VDD (ball A1) |
 | `HDC2010 ID` with other addresses found | Wrong part fitted, or ADDR (ball B1) not at GND, which moves the device to 0x41 |
-| `HDC INT level` FAIL but ID PASS | Open trace between U3 ball C2 and U1 pin 10 (DIO21); probe TP7 with a scope while it runs |
-| `HDC2010 plausible` | Sensor damaged or contaminated, or the formula is off; compare with SHTC3 if fitted |
+| `HDC INT level` FAIL but ID PASS | Open trace between U3 ball C2 and U1 pin 10 (DIO21). Probe TP7 with a scope while it runs |
+| `HDC2010 plausible` | Sensor damaged or contaminated, or the formula is off. Compare with SHTC3 if fitted |
 
 ## Stage 4 — BLE firmware (`ble_sensor`)
 

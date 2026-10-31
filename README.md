@@ -18,16 +18,19 @@ antenna), and power budgeting around the coin cell's current limits.
 ## Highlights
 
 - **Two MCUs designed, built and measured side by side** on rev A: Nordic nRF54L05 (`BSN-N54`) and TI CC2340R5
-  (`BSN-C23`), with the same sensors, antenna and board outline. The CC2340R5 was chosen for rev B from the
-  measurements ([`MCU_DECISION.md`](hardware/MCU_DECISION.md)).
+  (`BSN-C23`), with the same sensors, antenna and board outline. The CC2340R5 was chosen for rev B, mainly on sleep
+  current and with RF performance as a second factor ([`MCU_DECISION.md`](hardware/MCU_DECISION.md)).
 - **0.37 µA sleep floor** on BSN-C23-A, below the CC2340R5's own datasheet typical. Every event (advert, sensor
   reading, cold boot) was measured as a charge, which gives a current model for any setting: about 3.3 µA at a
   5 s advertising interval, or roughly 7 years on a 225 mAh CR2032 before derating
   ([power measurements](hardware/C23/testing/Power/POWER_MEASUREMENTS.md)).
 - **Antenna matched on the VNA** with the battery holder fitted, step by step from the unmatched chip antenna
   ([antenna matching](hardware/C23/testing/RF/ANTENNA_MATCHING.md)).
-- **Conducted harmonics measured on a spectrum analyser** against the FCC restricted-band limit. The C23 passes with
-  9.5 dB margin; the N54 fails H3 by 17 dB without a filter ([RF carrier](hardware/C23/testing/RF/RF_CARRIER.md)).
+- **Conducted harmonics measured on a spectrum analyser** against the FCC restricted-band limit. With no filter on
+  either board, both fail on H3, the C23 by 0.6 dB and the N54 by 17 dB. With the simple pi network from TI's
+  reference design the C23 passes with 9.5 dB margin. The N54's PA network, adapted from Nordic's reference design
+  with 0402 parts, cost about 10 dB of output power, so it was bypassed for the measurements
+  ([C23](hardware/C23/testing/RF/RF_CARRIER.md), [N54](hardware/N54/testing/RF/RF_CARRIER.md)).
 - **Firmware for both MCUs** written to the same structure (bring-up self-test, BLE sensor, CW RF test, one power
   state per build) so the two can be measured the same way.
 
@@ -45,15 +48,21 @@ Test points for SWD, UART, I2C and the sensor interrupt.
 ## Status
 
 Rev A of both variants was compared (thesis test T0). **Rev B uses the TI CC2340R5 (`BSN-C23-B`)** with a PCB trace
-antenna; the N54 variant stops at rev A. Rev C is the final prototype with the rev B fixes.
+antenna, and the N54 variant stops at rev A. Rev C is the final prototype with the rev B fixes.
+
+The main reason is the sleep current, which sets the average current at a 5 s or slower advertising interval. RF
+was also taken into account. The C23 already passes the harmonics limit with the simple pi network from TI's
+reference design, so rev B starts from an RF chain that works. The N54 would need a new harmonic filter and another
+RF iteration.
 
 | | `BSN-C23-A` | `BSN-N54-A` |
 |---|---|---|
-| Sleep floor | 0.366 µA | 4.20 µA (System OFF 2.05 µA; about 1.4 µA above the datasheet on both boards, cause not found) |
+| Sleep floor | 0.366 µA | 4.20 µA (System OFF 2.05 µA, both about 1.4 µA above the datasheet, cause not found) |
 | Charge per advert, 0 dBm | 12.6 µC | 7.6 µC |
 | Charge per sensor reading, timer / DRDY wake | 9.56 / 3.72 µC | 2.01 / 1.78 µC |
 | Conducted power at the 0 dBm setting | −2.1 dBm | 0.0 dBm (PA network bypassed) |
-| Harmonics (conducted, FCC restricted-band limit −41.2 dBm) | Pass with the pi network at +8 dBm (2440 and 2480 MHz), 9.5 dB margin (H5). Without it, H3 −28.6 dBm at +8 dBm | H3 −24.3 dBm at 0 dBm with no filter (fails by 17 dB); no working filter on this layout yet |
+| Harmonics with no filter, 0 dBm (conducted, FCC restricted-band limit −41.2 dBm) | H3 −40.6 dBm, fails by 0.6 dB | H3 −24.3 dBm, fails by 17 dB |
+| Harmonic filter | Pi network from TI's reference design. Passes at +8 dBm (2440 and 2480 MHz) with 9.5 dB margin (H5) | PA network adapted from Nordic's reference design with 0402 parts. Lost 10–11 dB of output power and was bypassed. No working filter on this layout |
 | Notes | [`hardware/C23/testing`](hardware/C23/testing) | [`hardware/N54/testing`](hardware/N54/testing) |
 
 Rev A boards:
@@ -61,12 +70,12 @@ Rev A boards:
 | Board | MCU | Status |
 |---|---|---|
 | `BSN-N54-A` | nRF54L05 | Ordered and assembled (2 boards). Board #1 advertising BTHome. Board #2 (U.FL): HFXO trimmed to 11.75 pF, PA network bypassed (the rev A layout of it loses 10 dB), 0.0 dBm at the 0 dBm setting. Floor 4.20 µA, 7.6 µC per advert |
-| `BSN-C23-A` | CC2340R5 | Ordered and assembled. Board #1 flashed and advertising BTHome; antenna matched with the battery connector fitted (L2 4.3 nH, L3 2.1 pF). Floor 0.366 µA, 12.6 µC per advert. CW boards with and without the PA pi network |
+| `BSN-C23-A` | CC2340R5 | Ordered and assembled. Board #1 flashed and advertising BTHome, antenna matched with the battery connector fitted (L2 4.3 nH, L3 2.1 pF). Floor 0.366 µA, 12.6 µC per advert. CW boards with and without the PA pi network |
 
 Open questions:
 
 - A full-firmware run at a 5 s interval on one C23 board read 6.55 µA against a model of 3.85 µA. The board's
-  floor is ruled out; the payload reload is the main suspect.
+  floor is ruled out and the payload reload is the main suspect.
 - The N54 floor sits about 1.4 µA above the datasheet on both boards. Not needed for the MCU choice, but still being
   looked into for the thesis.
 
@@ -93,11 +102,11 @@ docs/
 
 The two MCU candidates are different chips (different pinout, power tree and BOM) rather than build options of one
 board, so each has its own KiCad project under `hardware/<variant>/` and its own `firmware/<variant>/`. The N54
-folders stay as the record of the rev A comparison; only the C23 variant continues.
+folders stay as the record of the rev A comparison. Only the C23 variant continues.
 
 Test results live next to the board they were measured on, in `hardware/<variant>/testing/`, with the bring-up
 procedures in `firmware/<variant>/BRINGUP.md`. The schematic and PCB PDFs always show the latest revision of each
-board; older revisions are in the KiCad files at their `hw/BSN-<variant>-<rev>` tags.
+board. Older revisions are in the KiCad files at their `hw/BSN-<variant>-<rev>` tags.
 
 ## Naming Scheme
 

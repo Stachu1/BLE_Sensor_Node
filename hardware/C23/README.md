@@ -60,8 +60,8 @@ The TI reference values don't fit this layout. At 2.44 GHz the bare antenna is a
 | 2026-10-23 | Same, battery fitted | 3.3 nH | 2.0 pF | −3.1 dB (9.5 + j12.3 Ω) | — |
 | 2026-10-26 | **Matched, battery connector fitted** | **4.3 nH** | **2.1 pF** | **−32.1 dB** | **−10.3 dB** |
 
-The battery connector raises the board and detunes the antenna, lowering its resistance to about a third;
-with the connector fitted, the coin cell in or out makes almost no difference. **Use 4.3 nH + 2.1 pF.**
+The battery connector raises the board and detunes the antenna, lowering its resistance to about a third.
+With the connector fitted, the coin cell in or out makes almost no difference. **Use 4.3 nH + 2.1 pF.**
 Until they are fitted on a working board, RSSI and range numbers from board #1 (reference values) are
 only a pre-tuning baseline.
 

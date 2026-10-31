@@ -25,7 +25,7 @@ Installed on the dev PC on 2026-10-22. Everything lives under `C:\ti`:
 | GNU make | any 4.x | `C:\ti\ccs2101\ccs\utils\bin\gmake.exe` or the STM32CubeIDE `make` already on PATH | Command-line builds |
 
 CCS 21 also includes TI Arm Clang 5.1.1.LTS and SysConfig 1.28.1. The command-line build doesn't use
-them; it uses the SDK-validated versions above.
+them. It uses the SDK-validated versions above.
 
 To install from scratch on another PC:
 
@@ -67,7 +67,7 @@ CC="python -m ziglang cc" sh test/run.sh
 ```
 
 To edit pins, clocks or BLE parameters graphically, run `make syscfg-gui`, or edit the
-`.syscfg` file directly; it is plain JavaScript.
+`.syscfg` file directly. It is plain JavaScript.
 
 ## Hardware you need
 
@@ -77,7 +77,7 @@ To edit pins, clocks or BLE parameters graphically, run `make syscfg-gui`, or ed
   - The XDS110 half of any SimpleLink LaunchPad (e.g. LP-EM-CC2340R5). Remove the jumpers between the
     XDS110 and the target MCU and run jumper wires from the XDS110 side to the board. The LaunchPad's
     back-channel UART can then also receive the log, so no separate USB-UART adapter is needed.
-  - **SEGGER J-Link** (J-Link software V7.92 or later; V9.62 is installed). Use `make jflash`,
+  - **SEGGER J-Link** (J-Link software V7.92 or later, V9.62 is installed). Use `make jflash`,
     `make jerase` and `make jstatus` instead of `flash`/`erase`/`probe`. Wiring is in BRINGUP.md, stage 2.
 - **A 3.3 V USB-UART adapter**, unless you use the XDS110 back-channel UART.
 - **Bench supply** set to 3.0 V with an adjustable current limit, for first power-on.
@@ -90,7 +90,7 @@ To edit pins, clocks or BLE parameters graphically, run `make syscfg-gui`, or ed
 | SWDIO | TP3 (DIO16) | TMS/SWDIO | |
 | SWCLK | TP5 (DIO17) | TCK/SWCLK | |
 | nRESET | TP4 | nRESET (optional, enables hardware reset) | |
-| VDD sense | TP9 | VTREF (pin 1); probe senses only, doesn't supply | |
+| VDD sense | TP9 | VTREF (pin 1), sense only, doesn't supply | |
 | GND | TP10 | GND | GND |
 | UART TX (board to PC) | TP2 (DIO13) | RXD (back-channel) | RX |
 | UART RX (PC to board) | TP6 (DIO20) | not needed | **leave unconnected** |
@@ -132,7 +132,7 @@ Alternatives:
 ```sh
 cd firmware/C23/hwtest
 make clean && make jflash EXTRA_CFLAGS=-DBSN_LOG_RAM=1    # then power-cycle the board
-python ../tools/jlink_log.py build/bsn_c23_hwtest.map     # prints the log; the target keeps running
+python ../tools/jlink_log.py build/bsn_c23_hwtest.map     # prints the log, the target keeps running
 ```
 
 This build keeps the device out of standby, because the J-Link can't attach to a CC2340 in standby
@@ -147,7 +147,7 @@ the actual PA setting, VDDS and the HFXT cap trim in use once on the UART, then 
 ```sh
 cd firmware/C23/cwtest
 make flash                                # 2440 MHz, 0 dBm (the power ble_sensor advertises at)
-make flash FREQ_MHZ=2402 TX_DBM=8         # 2360..2500 MHz; -20..+8 dBm, rounded down to the PA table
+make flash FREQ_MHZ=2402 TX_DBM=8         # 2360..2500 MHz, -20..+8 dBm, rounded down to the PA table
 ```
 
 Changing `FREQ_MHZ`, `TX_DBM` or `TX_HALF_DB` rebuilds automatically. To stop the carrier, flash another image.
@@ -183,7 +183,7 @@ Changing a parameter rebuilds automatically.
 
 - After `jflash`, unplug **all** J-Link wires and do a full power-on reset (TP9 at 0 V). Otherwise the CC2340 stays
   in the ROM at a few mA, or the probe keeps the debug logic powered.
-- Bypass the ammeter while flashing; its µA-range shunt starves the board when the debugger wakes it.
+- Bypass the ammeter while flashing. Its µA-range shunt starves the board when the debugger wakes it.
 - For the event modes, run the events at 5–10 Hz so every meter reading averages several of them. Get the charge
   per event from `(I_avg − I_floor) × period`. The real period can be read from `sensorEvents` over SWD
   (address in `build/bsn_c23_pwrtest.map`).

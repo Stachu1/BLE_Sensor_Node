@@ -63,7 +63,7 @@ few ms that most readings miss and a few catch in full. In the first `sensor` at
 σ = 112 µA on a mean of 7.7 µA, an uncertainty of ±5 µA on the mean. The 200 ms advertising point (about one event
 per reading) came out 12 % low. Running the events at 5–20 Hz puts several events in every reading. The charge per
 event does not change, because the MCU still reaches standby between events with more than 40 ms to spare. The
-polling period is 97 ms rather than 100 ms so it cannot lock to the meter's sample clock; advertising is already
+polling period is 97 ms rather than 100 ms so it cannot lock to the meter's sample clock. Advertising is already
 randomised by `advDelay`.
 
 ## Sleep floor
@@ -114,7 +114,7 @@ result by less than 0.1 µC.
 - **R3:** no trigger write, no 2 ms wait, no VDDS read, and one standby cycle per reading. The HDC2010's own
   oscillator runs 1.4 % slow (202.7 ms instead of 200 ms). Readings were valid (22.7 °C, 43.0 %RH, no I2C errors).
 - **R4:** every reading is a full cold boot (ROM, C startup, FreeRTOS, GPIO/I2C init), then the read and shutdown.
-  RAM is lost in shutdown, so the rate could not be read back; it is the same HDC2010 clock as R3.
+  RAM is lost in shutdown, so the rate could not be read back. It is the same HDC2010 clock as R3.
 
 **Trade-off:**
 
@@ -201,7 +201,7 @@ of the period (`ble_sensor/app_main.c`). Not verified yet: the only run with it 
 The board used for the conducted comparison with BSN-N54 #2: no U2, PA-side pi network removed (see the
 [rework log](../../README.md#rework-log)), HDC2010, I2C pull-ups and C5 fitted, **J1 terminated with a 50 Ω
 broadband load** like N54 #2. Meter: Keysight 34465A (the reference meter for the N54 set of the same day). 3.0 V
-at TP9 (the J-Link reported VTref 2.35 V while flashing, with the meter bypassed; not explained).
+at TP9 (the J-Link reported VTref 2.35 V while flashing, with the meter bypassed, not explained).
 
 | # | Build | Range | V | Mean | σ | n | Result |
 |---|---|---|---|---|---|---|---|
@@ -209,14 +209,14 @@ at TP9 (the J-Link reported VTref 2.35 V while flashing, with the meter bypassed
 | N2 | `ble_sensor LOG=0 ADV_MS=50 SENSOR_S=0` | 10 mA | 3.0 | 224 µA | 42 µA | 200 | Q_adv = **12.30 ± 0.16 µC** |
 | N3 | same | 10 mA | 2.0 | 315 µA | 75 µA | 200 | Q_adv = **17.30 ± 0.29 µC** |
 
-N2/N3 use board #1's floor (0.366 µA); this board's own floor is not measured yet.
+N2/N3 use board #1's floor (0.366 µA). This board's own floor is not measured yet.
 
 - **The advertising charge matches board #1** (12.63 / 16.92 µC): without the pi network and into 50 Ω the C23 needs
   the same charge per advert. The adverts don't explain N1.
 - **N1:** the model is 0.366 + 12.63 / 5.005 + 9.56 / 10 = 3.85 µA. Checked and ruled out: debug state (J-Link
   unplugged, TP9 shorted before power-on), supply (3.0 V at TP9), C5 (fitted), missing sensor or pull-ups (fitted).
   Left:
-  - **This board's floor.** Not measured; it would have to be about 3 µA.
+  - **This board's floor.** Not measured. It would have to be about 3 µA.
   - **The reload retries.** If the payload reload never succeeds, the sensor task falls back to waking every second,
     as before the fix: 9 × 2.4 µC / 10 s = +2.2 µA, which gives about 6.0 µA, close to N1.
 
@@ -309,7 +309,7 @@ Found during these measurements. Each one gave a plausible but wrong current.
 For the battery-life model (0 dBm, advertising every 5 s or slower, timer or DRDY sensor wake, room temperature):
 
 - [ ] **The 6.55 µA full-firmware result on the no-pi board** (see above). Floor ruled out at home (≈ 0.5–0.6 µA on
-      the UT139S); measure it properly on the Keysight. Then the reload with `LOG=1`, and whether each reload
+      the UT139S). Measure it properly on the Keysight. Then the reload with `LOG=1`, and whether each reload
       sends an extra advert.
 - [ ] Full-firmware check at 5 s advertising on board #1 (model 3.85 µA).
 - [ ] Floor against supply voltage (`pwrtest standby` at 2.4 and 2.0 V). Until measured, assume constant power like
@@ -319,7 +319,7 @@ For the battery-life model (0 dBm, advertising every 5 s or slower, timer or DRD
 
 Later or out of scope for the model:
 
-- [ ] Real CR2032: VDD dip during TX (sets the end-of-life voltage; on rev B).
+- [ ] Real CR2032: VDD dip during TX (sets the end-of-life voltage, on rev B).
 - [ ] Scope and shunt: pulse shape and peak current per advert (CR2032 peak derating), and the phases of an event.
 - [ ] Re-measure the floors with U2 removed and the board cleaned.
 - [ ] Shutdown floor with a retained reset-reason and "refused" counter, and the BLE stack start-up charge. Not

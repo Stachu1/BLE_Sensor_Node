@@ -1,6 +1,6 @@
 # Datasheets and application notes
 
-The documents used for the design, by vendor and document number. They are not stored in the repo; get them from the
+The documents used for the design, by vendor and document number. They are not stored in the repo. Get them from the
 vendor. Links are given where the vendor has a stable URL.
 
 ## MCU

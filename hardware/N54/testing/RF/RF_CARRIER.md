@@ -21,7 +21,7 @@ rework log in [`hardware/N54/README.md`](../../README.md)).
 ## VNA setup
 
 As for C23: trace `A,2` (receiver A with source port 2, RF power off), +0.67 dB thru correction, carrier frequency
-taken as the centre of the peak's −6 dB width. The levels below are as read; the offsets come from the same method.
+taken as the centre of the peak's −6 dB width. The levels below are as read. The offsets come from the same method.
 
 ## Frequency offset and crystal trim
 
@@ -70,8 +70,8 @@ What was learned:
    current, about 18 instead of 13 mA at +8 dBm, which is what a PA into the wrong load does.
 3. **The grounding follows Nordic's notes.** C14's ground goes only to pin 32 (VSS_PA), which only joins the centre
    pad, and C15 grounds straight to the bottom plane with no inner-layer fill. Nordic's network uses 0201 parts
-   packed tightly; ours are 0402 in a straight chain about 8.5 mm long from pin 31 to C16. The parasitics of that
-   layout, or a wrong part, are the likely cause. Not resolved; the network's parts are off this board now.
+   packed tightly. Ours was adapted to 0402 parts in a straight chain about 8.5 mm long from pin 31 to C16. The parasitics of that
+   layout, or a wrong part, are the likely cause. Not resolved. The network's parts are off this board now.
 4. **Supply current limit.** At +8 dBm with the network fitted the board averaged about 18 mA, and the 20 mA limit
    from BRINGUP browned it out: the carrier flickered on and off. 40 mA fixed it.
 5. **The DC/DC is on:** `REGULATORS.VREGMAIN.DCDCEN` read 1 over the J-Link while the carrier ran, and the 0 dBm
@@ -79,7 +79,8 @@ What was learned:
 
 ## Harmonics (spectrum analyser, 2026-10-28)
 
-Board #2 with the PA network bypassed (no filtering at all), `cwtest` at 2440 MHz and the 0 dBm setting, on the
+Board #2 with the PA network bypassed (no filtering at all). The network lost 10–11 dB of output power (see
+[Output power](#output-power)), so it could not be used for a meaningful harmonics measurement. Measured with `cwtest` at 2440 MHz and the 0 dBm setting, on the
 uni's R&S Spectrum Rider FPH. Same setup and settings as the C23 boards, described in
 [`hardware/C23/testing/RF/RF_CARRIER.md`](../../../C23/testing/RF/RF_CARRIER.md#harmonics-spectrum-analyser-2026-10-28):
 each harmonic on its own 3 MHz span, RBW 30 kHz, Auto Peak, 30 dB attenuation, levels as read with no cable
@@ -97,7 +98,8 @@ What was learned:
 
 1. **Rev B needs a harmonic filter on the N54.** H3 fails the FCC restricted-band limit by 17 dB and ETSI by
    6 dB already at 0 dBm. The filter needs at least about 20 dB of H3 rejection at 0 dBm, more at +8 dBm.
-2. **Its H3 is about 16 dB higher than the C23's without a filter** (−24.3 against −40.6 dBm at 0 dBm). The C23's pi
+2. **The fair comparison between the variants is with no filter on either board.** At 0 dBm both fail the FCC
+   restricted-band limit on H3, but the C23 by 0.6 dB (−40.6 dBm) and the N54 by 17 dB (−24.3 dBm). The C23's pi
    network removes 27 dB of H3 and works on its layout. The N54's reference network does not work on this
    layout yet (see [Output power](#output-power)).
 3. +8 dBm was not measured: failing at 0 dBm already decides it.

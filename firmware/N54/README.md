@@ -1,6 +1,6 @@
 # BSN-N54 firmware (Nordic nRF54L05)
 
-> **Concluded at rev A.** The N54 was compared with the C23 on rev A and rev B uses the CC2340R5; see
+> **Concluded at rev A.** The N54 was compared with the C23 on rev A, and rev B uses the CC2340R5. See
 > [`MCU_DECISION.md`](../../hardware/MCU_DECISION.md). This folder is kept as the record of that comparison.
 
 Firmware for `BSN-N54-A` boards. It mirrors [`firmware/C23`](../C23) app for app and option for option, so the
@@ -62,14 +62,14 @@ make LOG=0 SENSOR_S=0 ADV=0             # start the BLE stack but never advertis
 Options for every app:
 
 ```sh
-make flash RTT=1             # console over SEGGER RTT through the J-Link, no USB-UART needed; read with: sh ../tools/rtt_log.sh
-make flash LFCLK=xtal        # LF clock from X2; default LFCLK=rc (internal RC, X2 not fitted, same as C23's LFOSC)
+make flash RTT=1             # console over SEGGER RTT through the J-Link, no USB-UART needed, read with: sh ../tools/rtt_log.sh
+make flash LFCLK=xtal        # LF clock from X2, default LFCLK=rc (internal RC, X2 not fitted, same as C23's LFOSC)
 make flash HFXO_CL_FF=12000  # X1 load capacitance in fF (4000..17000, 250 fF steps), overrides bsn_n54.overlay
 make flash DCDC=0            # main regulator as LDO instead of DC/DC (for checking L1)
 ```
 
 Switching apps or options rebuilds from scratch (about 2 minutes). If CMake has to re-run configure in an
-existing build directory, NCS aborts with "malformed string literal ... MBEDTLS_CONFIG_FILE"; `west.mak` then
+existing build directory, NCS aborts with "malformed string literal ... MBEDTLS_CONFIG_FILE". `west.mak` then
 retries with a clean build automatically, so a `FATAL ERROR` line followed by a successful build is expected.
 
 **HFXO trim:** `bsn_n54.overlay` sets X1 to **11.75 pF**, measured on board #2 with `cwtest`. The datasheet value

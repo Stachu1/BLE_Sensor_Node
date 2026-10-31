@@ -26,14 +26,14 @@ the C23. For the application (advertising every 5 s or slower) the floor dominat
 
 ## Setup
 
-- **Board:** BSN-N54-A #2. U2 (SHTC3) and X2 (32.768 kHz) are not fitted; the LF clock is the internal RC, as on
+- **Board:** BSN-N54-A #2. U2 (SHTC3) and X2 (32.768 kHz) are not fitted. The LF clock is the internal RC, as on
   C23. The PA network is bypassed (see [`../RF/RF_CARRIER.md`](../RF/RF_CARRIER.md)), and **J1 is terminated with a
   50 Ω broadband load**, so the PA sees the load the datasheet assumes. Board #1 still has the mismatched network,
   which raised the TX current, so it was not used for advertising.
 - **Supply:** bench PSU on TP1/TP4.
 - **Meter:** in series. 2026-10-27: Keysight 34461A. **2026-10-30: Keysight 34465A** (periodically calibrated, the
   most trusted of the meters used). µA range for the floors, 1 mA for the sensor modes, 10 mA for advertising.
-  Normal mode is NPLC 10 with autozero (about 150 readings per minute); the full-firmware check used NPLC 100 with
+  Normal mode is NPLC 10 with autozero (about 150 readings per minute). The full-firmware check used NPLC 100 with
   autozero off, so each reading integrates about 2 s with almost no gap.
 - **Procedure:** as for C23. After every flash, unplug all J-Link wires, short TP1 to TP4 for about 1 s, power
   on, wait at least 10 s.

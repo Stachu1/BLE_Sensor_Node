@@ -1,6 +1,6 @@
 # BSN-N54 (Nordic nRF54L variant)
 
-> **Concluded at rev A.** The N54 was compared with the C23 on rev A and rev B uses the CC2340R5; see
+> **Concluded at rev A.** The N54 was compared with the C23 on rev A, and rev B uses the CC2340R5. See
 > [`MCU_DECISION.md`](../MCU_DECISION.md). This folder is kept as the record of that comparison.
 
 KiCad project: `BSN-N54.kicad_pro`. See the root README for the board naming scheme.
@@ -20,7 +20,7 @@ results: [`firmware/N54`](../../firmware/N54) and [`firmware/N54/BRINGUP.md`](..
 ### Test results
 
 - **RF:** [`testing/RF/RF_CARRIER.md`](testing/RF/RF_CARRIER.md). HFXO trim 11.75 pF (+127 ppm at the datasheet
-  7 pF). The reference PA network as laid out costs 10–11 dB; bypassed, the PA gives 0.0 dBm at the 0 dBm
+  7 pF). The reference PA network as laid out costs 10–11 dB. Bypassed, the PA gives 0.0 dBm at the 0 dBm
   setting and +7.5 dBm at +8 dBm.
 - **Current:** [`testing/Power/POWER_MEASUREMENTS.md`](testing/Power/POWER_MEASUREMENTS.md). Floor 4.20 µA
   (System OFF 2.05 µA, both about 1.4 µA above the datasheet on both boards, cause not found), 7.6 µC per advert

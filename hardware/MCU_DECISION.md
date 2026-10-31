@@ -22,8 +22,12 @@ Measurements: [`C23/testing/Power`](C23/testing/Power/POWER_MEASUREMENTS.md),
 2. **The C23 still wins against the N54's best case.** That case is Rev 2 silicon with X2 fitted and a datasheet
    v1.0 floor of about 1.7 µA, which was never measured. The N54 then ties at 5 s (3.57 µA) and loses at every slower
    interval (2.64 µA at 10 s, 1.86 µA at 60 s).
-3. **Harmonics.** The C23 passes the FCC restricted-band limit with its pi network, with 9.5 dB margin (H5). The N54
-   fails H3 by 17 dB with no filter, and its reference PA network doesn't work on the rev A layout.
+3. **RF, as a second factor.** With no filter on either board (0 dBm, conducted), both fail the FCC restricted-band
+   limit on H3, but the C23 by 0.6 dB and the N54 by 17 dB. The C23 passes with 9.5 dB margin (H5) using the simple
+   pi network from TI's reference design, so rev B starts from an RF chain that already works. The N54's PA network
+   was adapted from Nordic's reference design with 0402 parts instead of 0201. On this layout it cost 10–11 dB of
+   output power, so the N54 harmonics were measured with it bypassed. Getting the N54 to pass would need a new
+   filter and another RF iteration. This alone would not have decided it. The power results did.
 4. **Cost and RF simplicity:** a cheaper part and a simpler PA network.
 
 ## Strengths and weaknesses
@@ -63,7 +67,7 @@ measurement or firmware error**, for these reasons:
 - A reload retry falling back to 1 s wake-ups would add about 2.2 µA, which accounts for most of the gap.
 - The N54 never measured below its model in any configuration.
 
-To be confirmed on rev B; it doesn't block the order.
+To be confirmed on rev B. It doesn't block the order.
 
 ## Carried into rev B
 

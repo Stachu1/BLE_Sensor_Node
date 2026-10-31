@@ -82,12 +82,12 @@ Without a USB-UART adapter, send the log over the J-Link instead:
 
 ```sh
 make flash RTT=1
-sh ../tools/rtt_log.sh      # prints the log; start it before powering the board to see the boot lines
+sh ../tools/rtt_log.sh      # prints the log, start it before powering the board to see the boot lines
 ```
 
 `hwtest` runs straight after flashing. Other images (`ble_sensor`, `cwtest`, `pwrtest`) stay stuck after the
 post-flash reset until a power-on reset: power off, short TP1 to TP4 for about 1 s, power on. The first VDD
-reading after power-on reads low (2.2–2.4 V at 3.0 V) on both boards; later readings are correct.
+reading after power-on reads low (2.2–2.4 V at 3.0 V) on both boards. Later readings are correct.
 
 Expected (address and readings differ):
 
@@ -113,7 +113,7 @@ I2C scan     : 0x40 0x70
 |---|---|
 | No output | Adapter RX not on TP9, wrong COM port, image not running (try `make flash` again) |
 | `HFXO` | X1 soldering or orientation, wrong load capacitance in `common/bsn_n54.overlay` |
-| `LFXO` source `LFRC` or error (`LFCLK=xtal` builds) | X2 soldering; the clock driver falls back to RC if the crystal doesn't start |
+| `LFXO` source `LFRC` or error (`LFCLK=xtal` builds) | X2 soldering. The clock driver falls back to RC if the crystal doesn't start |
 | `I2C scan: none` | R2/R3, SDA/SCL bridged, U3/U2 not soldered |
 | `HDC INT level` | Open trace between U3 ball C2 and P0.01 (TP8) |
 
