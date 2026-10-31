@@ -54,3 +54,6 @@ docs/private/
 # Python
 **/__pycache__/
 *.pyc
+
+# Interactive HTML BOM (generate locally with the InteractiveHtmlBom plugin)
+**/ibom.html
