@@ -136,3 +136,25 @@ The model holds for the N54. With J1 terminated (7.58 µC) the same model gives 
 - [ ] Optional: full-firmware check with J1 terminated (model 5.92 µA).
 - [ ] Optional: the wake-ups every few seconds in standby (F3), X2 fitted (`LFCLK=xtal`, an advantage the C23 doesn't
       need), System OFF with DRDY wake-up (cold boot + BLE start + advert, a new `pwrtest` mode).
+
+### Floor offset investigation (not needed for the MCU choice)
+
+The ≈ 1.4 µA above the datasheet (v1.0: System OFF 0.7 µA typ., no max) is seen on both boards. Run in this order:
+
+- [ ] **0. Chip ID.** Read the build code on the middle marking row (A00 = Rev 1, B00 = Rev 2) and, with the board
+      running, `mem32 0x00FFC340 2` in J-Link Commander. nRF54L05 Rev 1 erratum 31 ("current consumption is higher
+      than expected in sleep", typ. 1.2 µA instead of 0.6 µA) is worked around in `SystemInit()`
+      (`nrfx/mdk/system_nrf54l.c`), but only if these read `0x2F` / `0x01`. Any other value: force the workaround in
+      `pwrtest` and remeasure.
+- [ ] **1. System OFF against supply voltage** (`MODE=bareoff` at 3.3, 3.0, 2.4, 2.0 and 1.8 V). A current
+      proportional to V points to a resistive leak (PCB, flux, capacitor), a roughly flat one to the chip.
+- [ ] **3. Lift C10 (100 µF) and C1 (10 µF)**, the only capacitors across VDD large enough to leak µA within spec,
+      and remeasure.
+- [ ] **4. Remove U1** on board #1 and measure the board alone at 3 V. Expected without a leak: ≈ 0.05 µA (HDC2010
+      asleep).
+- [ ] **2. Bake** (no coin cell, 2–4 h at 100–125 °C, check the HDC2010 and battery holder ratings first). Measure
+      after cooling and again a day later: a drop that creeps back points to moisture or contamination.
+
+Home check (2026-10-30, handheld multimeter, both boards unpowered): VDD to GND ≈ 6–9 MΩ DC and ≈ 80 µF. With the
+chip unpowered and the meter's low test voltage this is only indicative. As a linear resistance it would draw
+0.3–0.5 µA at 3 V.

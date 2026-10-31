@@ -223,6 +223,31 @@ N2/N3 use board #1's floor (0.366 µA); this board's own floor is not measured y
   Next: `pwrtest standby` on this board (floor), then `ble_sensor LOG=1` on the UART to see whether
   `prepareLoad`/`loadByHandle` fail at a 5 s interval.
 
+### Home check of the floors (2026-10-31, indicative only)
+
+Taken at home with a UNI-T UT139S on the µA range, which shows no mean. The values are where the display settled,
+±0.2–0.3 µA at best. Supply: 3.3 V LDO. Every board got the J-Link unplugged and TP9 shorted before power-on.
+
+| Board | Fitted | Build | Floor (display) |
+|---|---|---|---|
+| #1 | U2, U3, C5 | `pwrtest standby` | ≈ 0.75 µA (≈ 2 µA for the first few seconds) |
+| no sensors | no U2, no U3, no C5 | `pwrtest standby SHTC3_SLEEP=0` | ≈ 1.1 µA |
+| no-pi (likely the N1 board) | U3, C5, no U2 | `pwrtest standby SHTC3_SLEEP=0` | ≈ 0.5–0.6 µA |
+
+- **No board has a floor anywhere near the ~3 µA that N1 would need.** The floor is ruled out as the cause of the
+  6.55 µA. The absolute floors still need the Keysight.
+- On the board without sensors, the default `pwrtest standby` read about 250 µA, jumping around. Its boot-time I2C
+  write to the SHTC3 never completes without the sensors (and pull-ups), which keeps the device out of standby
+  (it was awake enough to flash at the first attempt). `SHTC3_SLEEP=0` skips the I2C traffic.
+- The board without sensors reads highest, but it also has no C5, so the meter sees the bare recharge pulses.
+  This is not taken as a real difference.
+- `ble_sensor LOG=0 ADV_MS=5000 SENSOR_S=10` on board #1 with `tools/bsn_scan.py`: the BTHome packet ID advanced
+  about every 10 s, so the reload went through on that board. Windows only reported about one advert a minute,
+  too few to look for extra adverts between the 5 s ones. Not yet repeated on the no-pi board.
+- **Second suspect, not checked yet:** `GapAdv_prepareLoadByHandle`/`loadByHandle` may disable and re-enable
+  advertising on every reload, and re-enabling may send an extra advert at once. That would add about
+  12.6 µC / 10 s = 1.3 µA at a 5 s interval.
+
 ## Pitfalls
 
 Found during these measurements. Each one gave a plausible but wrong current.
@@ -242,8 +267,9 @@ Found during these measurements. Each one gave a plausible but wrong current.
 
 For the battery-life model (0 dBm, advertising every 5 s or slower, timer or DRDY sensor wake, room temperature):
 
-- [ ] **The 6.55 µA full-firmware result on the no-pi board** (see above): its floor (`pwrtest standby`), then the
-      reload with `LOG=1`.
+- [ ] **The 6.55 µA full-firmware result on the no-pi board** (see above). Floor ruled out at home (≈ 0.5–0.6 µA on
+      the UT139S); measure it properly on the Keysight. Then the reload with `LOG=1`, and whether each reload
+      sends an extra advert.
 - [ ] Full-firmware check at 5 s advertising on board #1 (model 3.85 µA).
 - [ ] Floor against supply voltage (`pwrtest standby` at 2.4 and 2.0 V). Until measured, assume constant power like
       the N54 (+35 % at 2.0 V).
