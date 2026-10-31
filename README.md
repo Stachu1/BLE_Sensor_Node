@@ -79,8 +79,9 @@ Boards:
 
 ## Status
 
-Rev A of both variants is assembled and being compared (thesis test T0) to choose the MCU for rev B, which will
-have a PCB trace antenna. Rev C is the final prototype with the rev B fixes.
+Rev A of both variants was compared (thesis test T0). **Rev B uses the TI CC2340R5 (`BSN-C23-B`)** with a PCB trace
+antenna; the N54 variant stops at rev A. Reasons: [`hardware/MCU_DECISION.md`](hardware/MCU_DECISION.md). Rev C is
+the final prototype with the rev B fixes.
 
 | | `BSN-C23-A` | `BSN-N54-A` |
 |---|---|---|
