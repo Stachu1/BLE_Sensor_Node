@@ -12,7 +12,8 @@ within a small form factor. Main areas of work: low-power firmware and advertisi
 antenna/RF performance (chip vs. trace antenna), and power budgeting around the coin cell's
 current limits.
 
-Two BLE MCUs are being evaluated in parallel: **Nordic nRF54L** and **TI CC2340R5**.
+Two BLE MCUs were compared on rev A: **Nordic nRF54L** and **TI CC2340R5**. The CC2340R5 was chosen for rev B
+(see [Status](#status)).
 
 ## Repository Structure
 
@@ -24,14 +25,15 @@ firmware/
   N54/          Firmware for BSN-N54 boards
   C23/          Firmware for BSN-C23 boards
 docs/           Notes, datasheets, write-ups
-results/        Power profiling logs, range-test data
 ```
 
 The two MCU candidates are different chips (different pinout, power tree, likely BOM) rather
 than build options of one board, so each gets its own KiCad project under `hardware/<variant>/`
-and its own `firmware/<variant>/`, where `<variant>` is the variant code below. Both live side by side on `main` and iterate through normal
-commits. Once a chip is selected, the other candidate's folder can be
-archived or removed.
+and its own `firmware/<variant>/`, where `<variant>` is the variant code below. The N54 folders stay as the
+record of the rev A comparison; only the C23 variant continues.
+
+Test results live next to the board they were measured on, in `hardware/<variant>/testing/`, with the
+bring-up procedures in `firmware/<variant>/BRINGUP.md`.
 
 ## Naming Scheme
 
@@ -65,7 +67,7 @@ Where the name appears:
 |---|---|
 | Hardware / firmware folder | `hardware/N54/`, `firmware/N54/` |
 | KiCad project | `hardware/N54/BSN-N54.kicad_pro` |
-| BOM in the repo | `hardware/N54/BSN-N54_BOM.csv` |
+| BOM in the repo | `hardware/N54/BSN-N54.csv` |
 | Exported fab package | `BSN-N54-A_gerbers.zip`, `BSN-N54-A_BOM.csv`, `BSN-N54-A_pos.csv` |
 | Git tag on the ordered commit | `hw/BSN-N54-A` |
 | Firmware | board target `BSN_N54`, hardware revision `A` (also reported in the BLE Device Information Service) |

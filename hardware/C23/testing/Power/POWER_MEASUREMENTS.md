@@ -248,6 +248,47 @@ Taken at home with a UNI-T UT139S on the µA range, which shows no mean. The val
   advertising on every reload, and re-enabling may send an extra advert at once. That would add about
   12.6 µC / 10 s = 1.3 µA at a 5 s interval.
 
+## Average current against advertising interval (model)
+
+The charges above put into the model, at 0 dBm and 3.0 V, board #1. Three ways of running the node:
+
+```
+Standby (1, 2):  I_avg = 0.366 µA + 12.63 µC / (T + 5 ms) + Q_sensor / T_sensor
+Shutdown (3):    I_avg = 0.215 µA + (15.2 µC + Q_BLE + 12.63 µC) / T
+```
+
+1. **Standby, DRDY wake:** HDC2010 auto mode, DRDY wakes the MCU from standby (Q_sensor = 3.72 µC).
+2. **Standby, timer wake:** as the current `ble_sensor` (Q_sensor = 9.56 µC).
+3. **Shutdown, DRDY wake:** every DRDY is a cold boot, a reading, a BLE stack start and one advert, then shutdown
+   again. Reading period = advertising period.
+
+| Advertising interval T | 1 s | 5 s | 10 s | 60 s | 120 s |
+|---|---|---|---|---|---|
+| 1. Standby, DRDY, reading every advert | 16.7 | 3.63 | 2.00 | 0.64 | **0.50** |
+| 1. Standby, DRDY, reading every 10 s | 13.3 | **3.26** | 2.00 | 0.95 | 0.84 |
+| 2. Standby, timer, reading every advert | 22.5 | 4.80 | 2.58 | 0.74 | 0.55 |
+| 2. Standby, timer, reading every 10 s | 13.9 | 3.85 | 2.58 | 1.53 | 1.43 |
+| 3. Shutdown, DRDY (Q_BLE 10–40 µC) | 48 (38–68) | 9.8 (7.8–13.8) | 5.0 (4.0–7.0) | 1.01 (0.85–1.35) | 0.61 (0.53–0.78) |
+
+All values in µA.
+
+- **Standby with the DRDY interrupt is the best option at every interval.** Shutdown only comes close at 120 s,
+  and even there it is not better.
+- **The adverts dominate up to about 25 s** (DRDY, reading every advert). Past that, the floor and the sensor readings set the current, so a
+  slower reading period matters more than a slower advertising interval.
+- **Inputs that are not measured:**
+  - Shutdown floor: the datasheet value (165 nA CC2340R5 + 50 nA HDC2010 = 0.215 µA), since the measured one is
+    unresolved.
+  - BLE stack start after a cold boot (Q_BLE): estimated at 20 µC (10–40), about 5–15 ms of stack init at about
+    2.5 mA.
+- **Shutdown sends one advert per wake.** A scanner can miss one, so a real node would send 2–3, adding 12.6 µC
+  each.
+- **Validity:** the 1 s full-firmware check (16.1 µA) matches the model once the 1 s reload wake-ups are added.
+  The 6.55 µA at 5 s on the no-pi board (model 3.85 µA) is still unexplained, so treat the standby rows as the best
+  case until it is.
+- An interactive version with the N54 for comparison and the 2.4 / 2.0 V cases was made on 2026-10-30. Redo this
+  table with the rev C numbers for the final results.
+
 ## Pitfalls
 
 Found during these measurements. Each one gave a plausible but wrong current.
