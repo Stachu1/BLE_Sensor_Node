@@ -63,8 +63,8 @@
           "min_clearance": 0.3,
           "min_island_area": 10.0,
           "min_thickness": 0.2,
-          "pad_connection": 1,
-          "remove_islands": 0,
+          "pad_connection": 2,
+          "remove_islands": 1,
           "thermal_relief_gap": 0.3,
           "thermal_relief_spoke_width": 0.2
         }
@@ -251,7 +251,7 @@
           "drill": 0.0
         },
         {
-          "diameter": 0.45,
+          "diameter": 0.5,
           "drill": 0.3
         },
         {
@@ -268,7 +268,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": "A"
+      "sch_revision": "B"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -497,6 +497,7 @@
       "pin_to_pin": "warning",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
+      "same_local_global_power": "warning",
       "similar_label_and_power": "warning",
       "similar_labels": "warning",
       "similar_power": "warning",
@@ -523,7 +524,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.18,
+        "clearance": 0.2,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -543,8 +544,9 @@
       {
         "name": "DCDC",
         "pcb_color": "rgb(255, 114, 0)",
-        "priority": 3,
+        "priority": 2,
         "schematic_color": "rgb(255, 114, 0)",
+        "track_width": 0.25,
         "tuning_profile": ""
       },
       {
@@ -558,7 +560,7 @@
       {
         "name": "I2C",
         "pcb_color": "rgb(0, 255, 255)",
-        "priority": 4,
+        "priority": 3,
         "schematic_color": "rgb(0, 255, 255)",
         "tuning_profile": ""
       },
@@ -572,9 +574,9 @@
       {
         "name": "RF",
         "pcb_color": "rgb(255, 0, 255)",
-        "priority": 1,
+        "priority": 4,
         "schematic_color": "rgb(255, 0, 255)",
-        "track_width": 0.3586,
+        "track_width": 0.377,
         "tuning_profile": ""
       },
       {
@@ -585,10 +587,18 @@
         "tuning_profile": ""
       },
       {
+        "name": "UART",
+        "pcb_color": "rgb(60, 116, 66)",
+        "priority": 7,
+        "schematic_color": "rgb(60, 116, 66)",
+        "tuning_profile": ""
+      },
+      {
         "name": "VDD",
         "pcb_color": "rgb(255, 12, 0)",
-        "priority": 2,
+        "priority": 1,
         "schematic_color": "rgb(255, 12, 0)",
+        "track_width": 0.25,
         "tuning_profile": ""
       }
     ],
@@ -600,30 +610,6 @@
       "/ANT": [
         "RF"
       ],
-      "/X32N": [
-        "OSC"
-      ],
-      "/X32P": [
-        "OSC"
-      ],
-      "/X48N": [
-        "OSC"
-      ],
-      "/X48P": [
-        "OSC"
-      ],
-      "/XC1": [
-        "OSC"
-      ],
-      "/XC2": [
-        "OSC"
-      ],
-      "/XL1": [
-        "OSC"
-      ],
-      "/XL2": [
-        "OSC"
-      ],
       "GND": [
         "DCDC",
         "RF"
@@ -631,62 +617,20 @@
       "Net-(C10-Pad1)": [
         "DCDC"
       ],
-      "Net-(C11-Pad1)": [
-        "DCDC"
-      ],
-      "Net-(C14-Pad1)": [
-        "RF"
-      ],
-      "Net-(C15-Pad1)": [
-        "RF"
-      ],
-      "Net-(C16-Pad1)": [
-        "RF"
-      ],
-      "Net-(C18-Pad1)": [
-        "RF"
-      ],
-      "Net-(C20-Pad1)": [
-        "RF"
-      ],
-      "Net-(C6-Pad1)": [
-        "RF"
-      ],
-      "Net-(C6-Pad2)": [
-        "RF"
-      ],
       "Net-(C7-Pad1)": [
         "RF"
       ],
-      "Net-(C9-Pad1)": [
+      "Net-(C7-Pad2)": [
         "RF"
       ],
-      "Net-(J1-In)": [
+      "Net-(J2-Pad1)": [
         "RF"
       ],
       "Net-(U1-ANT)": [
         "RF"
       ],
-      "Net-(U1-DCC)": [
-        "DCDC"
-      ],
       "Net-(U1-DCDC)": [
         "DCDC"
-      ],
-      "Net-(U1-DECA)": [
-        "DCDC"
-      ],
-      "Net-(U1-DECD)": [
-        "DCDC"
-      ],
-      "unconnected-(AE1-Feed-Pad3)": [
-        "RF"
-      ],
-      "unconnected-(AE1-NC-Pad2)": [
-        "RF"
-      ],
-      "unconnected-(AE1-NC-Pad4)": [
-        "RF"
       ]
     },
     "netclass_patterns": [
@@ -713,6 +657,10 @@
       {
         "netclass": "OSC",
         "pattern": "/X*"
+      },
+      {
+        "netclass": "UART",
+        "pattern": "*XD"
       }
     ]
   },
@@ -881,7 +829,7 @@
         "uuid": "3be841bb-f0fa-4f59-8a52-40b0b50ca4ae"
       }
     ],
-    "used_designators": "L1-7,AE1,BT1,#PWR1-28,Y1-2,TP1-10,U1-4,C1-25,#FLG1-3,R1-4,J1,X1-2",
+    "used_designators": "#FLG1-4,#PWR1-31,AE1,BT1,C1-25,D1,J1-4,L1-7,R1-6,TP1-12,U1-4,X1-2,Y1-2",
     "variants": []
   },
   "sheets": [

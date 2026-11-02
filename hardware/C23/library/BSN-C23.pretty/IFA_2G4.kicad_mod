@@ -1,0 +1,202 @@
+(footprint "IFA_2G4"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Printed inverted-F antenna, 2.4 GHz, openEMS optimizer run r011: x0 4, Ws 2, S 3.5, Wf 1, H 3, Wa 1, L 23.5 mm. Simulated on a 40 x 41 mm board with a 40 x 33 mm ground, so re-check on the real outline. Keep-out: 8 mm above the ground edge on every copper layer, 34 mm wide, antenna short leg 4 mm from the left board edge. Pad 1 feed, pad 2 ground.")
+	(tags "PCB antenna IFA inverted-F 2.4GHz BLE")
+	(property "Reference" "REF**"
+		(at 7.5 -5.2 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "c7ff5dcb-55c7-469c-acfe-0e369540de19")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "IFA_2G4"
+		(at 7.5 2.2 0)
+		(layer "F.Fab")
+		(uuid "7e1b129e-b122-4ece-80a7-8feba910a58c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9c1a11db-9eb0-466e-9d40-1809b10b767d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Printed IFA, 2.4 GHz"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f8904311-0219-44a9-922f-261b4300e7f4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr exclude_from_pos_files exclude_from_bom)
+	(net_tie_pad_groups "1,2")
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy -4.5 0) (xy -4.5 -4) (xy 15 -4) (xy 15 -3) (xy 0.5 -3) (xy 0.5 0) (xy -0.5 0) (xy -0.5 -3) (xy -2.5 -3)
+			(xy -2.5 0)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.Cu")
+		(uuid "e665f9f0-e851-4a52-887b-8b07e77a146e")
+	)
+	(fp_poly
+		(pts
+			(xy -8.5 0) (xy -8.5 -8) (xy 25.5 -8) (xy 25.5 0) (xy 1.5 0) (xy 1.5 1) (xy -1.5 1) (xy -1.5 0)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "Dwgs.User")
+		(uuid "abf70faf-30ff-483a-8afb-8b7e63e7ecd8")
+	)
+	(fp_rect
+		(start -8.5 -8)
+		(end 25.5 1.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "73d93d44-f0b1-4b0e-8f69-0e1293b4d213")
+	)
+	(fp_text user "antenna keep-out, all copper layers"
+		(at 8.5 -7 0)
+		(layer "Dwgs.User")
+		(uuid "c00496fd-bfec-4c25-ac82-33c2855b738c")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 7.5 -5.2 0)
+		(layer "F.Fab")
+		(uuid "12e5a054-1474-414a-8ec6-121079868d17")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" connect rect
+		(at 0 0.375)
+		(size 1 1.25)
+		(layers "F.Cu")
+		(uuid "9687cf5f-1b3d-46cb-99f6-3dec8013f4b1")
+	)
+	(pad "2" connect rect
+		(at -3.5 0.375)
+		(size 2 1.25)
+		(layers "F.Cu")
+		(zone_connect 2)
+		(uuid "a9feeed6-60cd-430c-aaba-ec038f0e6677")
+	)
+	(zone
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu"
+			"In7.Cu" "In8.Cu" "In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu"
+			"In15.Cu" "In16.Cu" "In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu"
+			"In22.Cu" "In23.Cu" "In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu"
+			"In29.Cu" "In30.Cu"
+		)
+		(uuid "90efa676-0b5b-4b76-aefd-551679ae86ff")
+		(name "IFA keep-out")
+		(hatch full 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(keepout
+			(tracks not_allowed)
+			(vias not_allowed)
+			(pads allowed)
+			(copperpour not_allowed)
+			(footprints not_allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy -8.5 0) (xy -8.5 -8) (xy 25.5 -8) (xy 25.5 0)
+			)
+		)
+	)
+	(zone
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu"
+			"In7.Cu" "In8.Cu" "In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu"
+			"In15.Cu" "In16.Cu" "In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu"
+			"In22.Cu" "In23.Cu" "In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu"
+			"In29.Cu" "In30.Cu"
+		)
+		(uuid "3de060f0-4a4b-47db-9daa-eb59a2e301e1")
+		(name "IFA feed notch")
+		(hatch full 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(keepout
+			(tracks allowed)
+			(vias not_allowed)
+			(pads allowed)
+			(copperpour not_allowed)
+			(footprints allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy -1.5 0) (xy 1.5 0) (xy 1.5 1) (xy -1.5 1)
+			)
+		)
+	)
+	(embedded_fonts no)
+)
