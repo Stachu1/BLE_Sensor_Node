@@ -22,7 +22,7 @@ J1 (U.FL), L4. Everything else is fitted.
 | L3 | 7.3 nH | 490-6844-1-ND |
 | AE1 | Chip antenna | AANI-CH-0138-Q-T |
 
-**Tuned antenna match** (VNA, battery connector fitted, see below): L2 = **4.3 nH**, **2.1 pF** on the
+**Tuned antenna match** (VNA, board lifted off the bench, see below): L2 = **4.3 nH**, **2.1 pF** on the
 L3 pads instead of the 7.3 nH. Fitted on board #1 (2026-10-26).
 
 ### Bring-up status
@@ -50,18 +50,19 @@ to sleep. Always clear the debug state with a full power-on reset before measuri
 
 Full notes and data: [`testing/RF/ANTENNA_MATCHING.md`](testing/RF/ANTENNA_MATCHING.md).
 
-The TI reference values don't fit this layout. At 2.44 GHz the bare antenna is about 6.4 − j13 Ω, and
-6.7 nH for L2 is about three times too much. On the RF-only test board (Keysight P9370B through J1):
+The TI reference values don't fit this layout. At 2.44 GHz the bare antenna is about 6.4 − j13 Ω (flat on
+the table), and 6.7 nH for L2 is about three times too much. On the RF-only test board (Keysight P9370B through J1):
 
 | Date | Configuration | L2 (series) | L3 pads (shunt) | S11 at 2.44 GHz | Worst in 2.40–2.48 GHz |
 |---|---|---|---|---|---|
 | — | TI reference | 6.7 nH | 7.3 nH | not measured | — |
-| 2026-10-23 | Matched, no battery | 3.3 nH | 2.0 pF | −18.8 dB | −11.0 dB |
-| 2026-10-23 | Same, battery fitted | 3.3 nH | 2.0 pF | −3.1 dB (9.5 + j12.3 Ω) | — |
-| 2026-10-26 | **Matched, battery connector fitted** | **4.3 nH** | **2.1 pF** | **−32.1 dB** | **−10.3 dB** |
+| 2026-10-23 | Matched, flat on a wooden table | 3.3 nH | 2.0 pF | −18.8 dB | −11.0 dB |
+| 2026-10-23 | Same, lifted | 3.3 nH | 2.0 pF | −3.1 dB (9.5 + j12.3 Ω) | — |
+| 2026-10-26 | **Matched, lifted** | **4.3 nH** | **2.1 pF** | **−32.1 dB** | **−10.3 dB** |
 
-The battery connector raises the board and detunes the antenna, lowering its resistance to about a third.
-With the connector fitted, the coin cell in or out makes almost no difference. **Use 4.3 nH + 2.1 pF.**
+The first match was tuned flat on a wooden table, which detuned the antenna. Lifted about 5 mm (by the battery
+holder), the impedance was about the same as with the board hanging in the air, and the coin cell in or out made
+almost no difference. **Use 4.3 nH + 2.1 pF**, and tune with the board lifted or in its final position.
 Until they are fitted on a working board, RSSI and range numbers from board #1 (reference values) are
 only a pre-tuning baseline.
 
@@ -72,7 +73,7 @@ Hand-modified boards are marked `A*` (see the root README).
 | Board | Date | Change | Reason |
 |---|---|---|---|
 | RF test | 2026-10-23 | No MCU, C8 or L1. J1 (U.FL) fitted, one 15 pF series bridged, L2 = 3.3 nH, 2.0 pF on the L3 pads | Antenna matching with a VNA |
-| RF test | 2026-10-26 | Battery connector fitted, L2 = 4.3 nH, 2.1 pF on the L3 pads | Re-match with the battery connector |
+| RF test | 2026-10-26 | Battery holder fitted, L2 = 4.3 nH, 2.1 pF on the L3 pads | Re-match with the board lifted off the table |
 | #1 | 2026-10-26 | L2 = 4.3 nH, 2.1 pF on the L3 pads (antenna side). PA-side pi network unchanged (TI reference) | Fit the tuned match |
 | RF CW no-pi | 2026-10-27 | MCU, X1 and J1 only. C7 and C8 not fitted, L1 shorted with solder, 15 pF series cap to J1 kept as the DC block | Check whether the pi network is needed for harmonics, and its effect on output power |
 

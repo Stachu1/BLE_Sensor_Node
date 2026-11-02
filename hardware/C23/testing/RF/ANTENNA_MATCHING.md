@@ -3,13 +3,15 @@
 Matching the AE1 chip antenna (Abracon AANI-CH-0138-Q-T) to 50 Ω on a Rev A board, measured with a
 Keysight P9370B VNA through J1 (U.FL).
 
-**Result (battery connector fitted, 2026-10-26):** with **L2 = 4.3 nH (series)** and **2.1 pF on the
+**Result (board lifted off the bench, 2026-10-26):** with **L2 = 4.3 nH (series)** and **2.1 pF on the
 L3 pads (shunt)**, S11 is −32.1 dB at 2.44 GHz and better than −10.3 dB across 2.40–2.48 GHz
 (file 12). These are the values to use.
 
-Without the battery connector (2026-10-23), L2 = 3.3 nH and 2.0 pF gave −18.8 dB at 2.44 GHz and
-better than −11 dB in band (file 07). Fitting the connector raises the board and detunes the antenna to
-about 9 + j9 Ω (−3 dB) with those values, so they don't apply to the assembled node.
+The first match (2026-10-23, files 03–07) was tuned with the board lying flat on a wooden table, which detuned
+the antenna. L2 = 3.3 nH and 2.0 pF gave −18.8 dB at 2.44 GHz there (file 07). With the board lifted about 5 mm
+(by the battery holder), the same network read about 9 + j9 Ω (−3 dB, file 08), so those values don't apply.
+Lifted, the impedance was about the same as with the board hanging in the air on the coax. **Tune with the board
+lifted or in its final position, never flat on a bench.**
 
 ![S11 of the matching steps](s11_matching_steps.png)
 
@@ -49,9 +51,10 @@ J1 (U.FL) ── 15 pF series (DC block, C9/C6) ── node ── L2 series ─
     enough to tune with, but resistances of a few ohms near the chart edge aren't accurate.
 - Moving or holding the cable barely changed the readings, so cable-shield currents are not a
   significant error on this setup.
+- 2026-10-23 sweeps (files 03–07): board flat on a wooden table.
 - 2026-10-26 sweeps (files 08–12): same VNA and J1 connection, 1.5–3.5 GHz, 201 points (10 MHz steps),
-  with the battery connector fitted. The connector raises the board slightly. With the connector in
-  place, having the coin cell in or out made almost no difference.
+  with the battery holder fitted, which lifts the board about 5 mm off the table (`bat-con` in the file
+  names). Having the coin cell in or out made almost no difference.
 
 ### First attempt: uncorrected cable (data not kept)
 
@@ -84,19 +87,19 @@ in brackets:
 | [`s11_05_L2-2n9.csv`](s11_05_L2-2n9.csv) | 15 pF, L2 2.9 nH | 16.0 + j11.1 (−5.4 dB) | 19.5 + j17.3 (−6.2 dB) | 24.7 + j23.9 (−7.1 dB) | −5.4 dB | — |
 | [`s11_06_L2-2n9_L3-1p8.csv`](s11_06_L2-2n9_L3-1p8.csv) | 15 pF, L2 2.9 nH, L3 1.8 pF | 13.9 + j10.2 (−4.7 dB) | 19.3 + j13.7 (−6.4 dB) | 26.9 + j14.9 (−9.1 dB) | −4.7 dB | −22.3 dB @ 2.56 GHz |
 | [`s11_07_L2-3n3_L3-2p0.csv`](s11_07_L2-3n3_L3-2p0.csv) | **15 pF, L2 3.3 nH, L3 2.0 pF** | 30.1 + j11.2 (−11.0 dB) | **41.3 + j5.8 (−18.8 dB)** | 45.2 − j7.5 (−20.6 dB) | **−11.0 dB** | **−23.8 dB @ 2.46 GHz** |
-| (no file, single reading) | same as 07, **battery fitted** | — | **9.5 + j12.3 (−3.1 dB)** | — | — | — |
-| [`s11_08_bat-con_L2-3n3_L3-2p0.csv`](s11_08_bat-con_L2-3n3_L3-2p0.csv) | same as 07, battery connector fitted | 5.8 + j5.3 (−2.0 dB) | 9.0 + j9.4 (−3.0 dB) | 14.0 + j13.9 (−4.6 dB) | −2.0 dB | −29.6 dB @ 2.60 GHz |
-| [`s11_09_bat-con_L2-3n9_L3-3p6.csv`](s11_09_bat-con_L2-3n9_L3-3p6.csv) | battery connector, L2 3.9 nH, L3 3.6 pF | 11.1 + j7.6 (−3.8 dB) | 13.4 + j2.6 (−4.8 dB) | 9.6 + j0.2 (−3.4 dB) | −3.4 dB | −4.8 dB @ 2.43 GHz |
-| [`s11_10_bat-con_L2-3n4_L3-2p1.csv`](s11_10_bat-con_L2-3n4_L3-2p1.csv) | battery connector, L2 3.4 nH, L3 2.1 pF | 6.8 + j9.4 (−2.3 dB) | 10.7 + j14.4 (−3.5 dB) | 18.4 + j19.7 (−5.6 dB) | −2.3 dB | −35.0 dB @ 2.57 GHz |
-| [`s11_11_bat-con_L2-3n9_L3-2p1.csv`](s11_11_bat-con_L2-3n9_L3-2p1.csv) | battery connector, L2 3.9 nH, L3 2.1 pF | 18.3 + j17.4 (−5.8 dB) | 35.0 + j18.5 (−11.2 dB) | 51.1 + j0.8 (−37.2 dB) | −5.8 dB | −37.2 dB @ 2.48 GHz |
-| [`s11_12_bat-con_L2-4n3_L3-2p1.csv`](s11_12_bat-con_L2-4n3_L3-2p1.csv) | **battery connector, L2 4.3 nH, L3 2.1 pF** | 32.5 + j18.8 (−10.3 dB) | **51.5 + j2.0 (−32.1 dB)** | 44.7 − j22.3 (−12.6 dB) | **−10.3 dB** | **−32.1 dB @ 2.44 GHz** |
+| (no file, single reading) | same as 07, **lifted** (holder and cell fitted) | — | **9.5 + j12.3 (−3.1 dB)** | — | — | — |
+| [`s11_08_bat-con_L2-3n3_L3-2p0.csv`](s11_08_bat-con_L2-3n3_L3-2p0.csv) | same as 07, lifted | 5.8 + j5.3 (−2.0 dB) | 9.0 + j9.4 (−3.0 dB) | 14.0 + j13.9 (−4.6 dB) | −2.0 dB | −29.6 dB @ 2.60 GHz |
+| [`s11_09_bat-con_L2-3n9_L3-3p6.csv`](s11_09_bat-con_L2-3n9_L3-3p6.csv) | lifted, L2 3.9 nH, L3 3.6 pF | 11.1 + j7.6 (−3.8 dB) | 13.4 + j2.6 (−4.8 dB) | 9.6 + j0.2 (−3.4 dB) | −3.4 dB | −4.8 dB @ 2.43 GHz |
+| [`s11_10_bat-con_L2-3n4_L3-2p1.csv`](s11_10_bat-con_L2-3n4_L3-2p1.csv) | lifted, L2 3.4 nH, L3 2.1 pF | 6.8 + j9.4 (−2.3 dB) | 10.7 + j14.4 (−3.5 dB) | 18.4 + j19.7 (−5.6 dB) | −2.3 dB | −35.0 dB @ 2.57 GHz |
+| [`s11_11_bat-con_L2-3n9_L3-2p1.csv`](s11_11_bat-con_L2-3n9_L3-2p1.csv) | lifted, L2 3.9 nH, L3 2.1 pF | 18.3 + j17.4 (−5.8 dB) | 35.0 + j18.5 (−11.2 dB) | 51.1 + j0.8 (−37.2 dB) | −5.8 dB | −37.2 dB @ 2.48 GHz |
+| [`s11_12_bat-con_L2-4n3_L3-2p1.csv`](s11_12_bat-con_L2-4n3_L3-2p1.csv) | **lifted, L2 4.3 nH, L3 2.1 pF** | 32.5 + j18.8 (−10.3 dB) | **51.5 + j2.0 (−32.1 dB)** | 44.7 − j22.3 (−12.6 dB) | **−10.3 dB** | **−32.1 dB @ 2.44 GHz** |
 
-Impedances in ohms. "In band" is 2.40–2.48 GHz.
+Impedances in ohms. "In band" is 2.40–2.48 GHz. Files 03–07 flat on the table, 08–12 lifted.
 
 ## What was learned
 
-1. **Unmatched antenna (03):** on this board AE1 has its series resonance at 2.69 GHz. At 2.44 GHz it
-   is about 6.4 − j13 Ω: low resistance and slightly capacitive. The TI reference value of 6.7 nH for
+1. **Unmatched antenna (03, flat on the table):** on this board AE1 has its series resonance at 2.69 GHz.
+   At 2.44 GHz it is about 6.4 − j13 Ω: low resistance and slightly capacitive. Lifted it will differ (see 5). The TI reference value of 6.7 nH for
    L2 is about three times too much inductance for this layout.
 2. **Solder bridge vs. real part (03 → 04):** going from a solder blob to a 2.2 nH inductor at L2 also
    changed the *resistance* curve (6.4 → 16.5 Ω at 2.44 GHz, and the antenna's resonances moved about
@@ -108,11 +111,17 @@ Impedances in ohms. "In band" is 2.40–2.48 GHz.
 4. **Shifting the matched frequency (06 → 07):** with 2.9 nH + 1.8 pF the network was already matched
    (−22 dB), but at 2.56 GHz. Scaling both parts by (2.56 / 2.44)² ≈ 1.1 (→ 3.3 nH + 2.0 pF) moved the
    match to 2.46 GHz as predicted.
-5. **Battery (07 vs. battery reading):** with the network values removed, the antenna alone goes from about
-   13.8 − j31 Ω without the battery to about 4.8 − j41 Ω with it. Its resistance roughly drops to a
-   third. That costs efficiency that matching can't recover. File 08 (battery connector, 3.3 nH +
-   2.0 pF) reproduces the 23 Oct battery reading, and on 26 Oct the cell in or out made almost no
-   difference. So the detuning comes from the connector and the raised board, not the cell itself.
+5. **The table detuned the antenna (07 → 08):** the first match was tuned with the board flat on a wooden
+   table. Lifted about 5 mm by the battery holder, the same network went from −18.8 dB to −3.0 dB at
+   2.44 GHz, and the bandwidth changed with it. Hanging the board in the air on the coax gave about the
+   same impedance as lifted, and the coin cell in or out made almost no difference. The final node won't
+   sit flat on a table, so the lifted match is the one that matters.
+   - Backed out with ideal parts, the antenna alone is about 13.8 − j31 Ω on the table and 4.8 − j41 Ω
+     lifted. These numbers depend on the model (see 7), and S11 can't tell whether the difference in
+     resistance is loss in the wood or a change in radiation. Not investigated further.
+   - The cell probably has no effect because the board's inner copper layers sit between it and the
+     antenna. Not tested.
+   - Lesson from a first antenna match: check the setup against the final use before tuning.
 6. **The series inductor sets the match, the shunt cap only finishes it (10 → 12):** a shunt part adds
    susceptance only, so L2 alone has to bring the real part of the admittance to 1/50 Ω = 20 mS at
    2.44 GHz. With 3.4 nH (10) it was about 41 mS, so the 2.1 pF cap (+32 mS) hardly moved the 2.44 GHz
@@ -130,15 +139,14 @@ Impedances in ohms. "In band" is 2.40–2.48 GHz.
 9. **Bandwidth is set by the antenna:** at about 5–13 Ω the antenna Q is high, and a 2-element match
    reaches only about −10 dB at the band edges. Adding a third part on the existing pads (input series
    position, or the L4 pads) gained at most about 1 dB in simulation. More bandwidth needs a higher antenna
-   resistance, i.e. the battery/connector further from AE1.
+   resistance. A bigger ground plane might give that, which rev B (trace antenna, larger board) will show.
 
 ## Open items
 
-- [x] **Re-match with the battery connector fitted** (2026-10-26): L2 = 4.3 nH, 2.1 pF on the L3 pads,
+- [x] **Re-match with the board lifted** (2026-10-26): L2 = 4.3 nH, 2.1 pF on the L3 pads,
       −32.1 dB at 2.44 GHz and better than −10.3 dB in band (file 12).
 - [ ] Check the final match in the enclosure, if there is one.
 - [ ] Confirm on a working board with the radio: compare RSSI with `tools/bsn_scan.py` at a fixed
       distance and orientation for the TI reference values, the new values, and one step either side.
-- [ ] Rev B: move the battery further from AE1, or at least outside the antenna keep-out area in the
-      AANI-CH-0138 datasheet.
-- [x] Update the RF network table in [`../../README.md`](../../README.md) with the battery-connector values.
+- [ ] Rev B: tune with the board lifted or in its final position, not flat on a bench.
+- [x] Update the RF network table in [`../../README.md`](../../README.md) with the lifted values.
