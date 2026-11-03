@@ -1,0 +1,155 @@
+{
+ "hash": "97ca986a4f",
+ "name": "size b2t10, 10 mm taller",
+ "purpose": "Bigger board: how much does a larger ground plane improve the matched bandwidth and efficiency of the same IFA (H4.4 L9.7)?",
+ "tag": "size1",
+ "model": "v5",
+ "board": "build/b2t10/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2t10",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 4.4,
+   "Wa": 1.0,
+   "L": 9.7
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.0
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.0
+   ],
+   [
+    -10.4,
+    14.0,
+    9.7,
+    15.0
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    85.0,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    86.0,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    85.0,
+    159.7,
+    86.0
+   ]
+  ],
+  "x": [
+   139.6,
+   159.7
+  ],
+  "y": [
+   85.0,
+   91.22
+  ],
+  "edge_clearance": 1.3073640726781512
+ },
+ "f_s11_min_GHz": 2.544,
+ "s11_min_dB": -19.05,
+ "ble_worst_no_parts_dB": -9.46,
+ "bw10_MHz": [
+  2411,
+  2691
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   34.74,
+   -25.59
+  ],
+  "2.44": [
+   35.77,
+   -17.31
+  ],
+  "2.48": [
+   37.2,
+   -9.3
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 7.50 nH",
+  "net": [
+   [
+    "pL",
+    7.5
+   ]
+  ],
+  "ble_worst_dB": -17.58
+ },
+ "match_2part": {
+  "parts": "series 2.57 nH, shunt 0.78 pF",
+  "net": [
+   [
+    "sL",
+    2.5740000000000007
+   ],
+   [
+    "pC",
+    0.7820000000000001
+   ]
+  ],
+  "ble_worst_dB": -18.09
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.9620444930517561,
+   "rad_eff": 0.8834201038124483,
+   "tot_eff": 0.7833789533697055,
+   "Dmax_dBi": 2.509482689703699,
+   "valid": true,
+   "flux_eff": 0.927124162973109,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.9700255384625673,
+   "rad_eff": 0.890748887477105,
+   "tot_eff": 0.8323082177966026,
+   "Dmax_dBi": 2.5314083167482004,
+   "valid": true,
+   "flux_eff": 0.9343576837883116,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.9775444230796624,
+   "rad_eff": 0.8976532810648874,
+   "tot_eff": 0.8684202026375075,
+   "Dmax_dBi": 2.5530858970634744,
+   "valid": true,
+   "flux_eff": 0.9411083571336171,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 2123238,
+ "run_s": 2758
+}

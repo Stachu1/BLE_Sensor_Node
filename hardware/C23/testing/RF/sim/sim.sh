@@ -71,7 +71,7 @@ status)
 	;;
 pull)
 	mkdir -p results
-	ssh_ "cd $RDIR && tar czf - runs/index.jsonl runs/*/result.json runs/*/S11.csv runs/*/S4P.s4p runs/*/pattern.npz opt cases 2>/dev/null" | tar xzf - -C results
+	ssh_ "cd $RDIR && tar czf - runs/index.jsonl runs/*/result.json runs/*/S11.csv runs/*/S*P.s*p runs/*/pattern.npz opt cases 2>/dev/null" | tar xzf - -C results
 	python report.py
 	python archive.py
 	;;

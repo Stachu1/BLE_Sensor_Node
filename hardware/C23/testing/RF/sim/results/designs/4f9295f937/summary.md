@@ -36,9 +36,9 @@ Z at J2: 2.40 GHz 23.5-11.1j ohm, 2.44 GHz 23.7-1.8j ohm, 2.48 GHz 24.2+7.2j ohm
 
 | f GHz | radiation eff. | total eff. (no parts) | Dmax dBi |
 |---|---|---|---|
-| 2.40 | 93 % | 79 % | 1.9 |
-| 2.44 | 95 % | 83 % | 2.0 |
-| 2.48 | 96 % | 84 % | 2.0 |
+| 2.40 | 86 % | 73 % | 1.9 |
+| 2.44 | 87 % | 76 % | 2.0 |
+| 2.48 | 88 % | 77 % | 2.0 |
 
 Own far-field transform, about ±15 % (validation in farfield.py). Total efficiency is without matching parts.
 

@@ -1,0 +1,104 @@
+[
+ {
+  "name": "b2h H5.0 L8.9",
+  "purpose": "Push the arm higher (height is the main lever for the matched band). Self-resonance aimed at about 2.58 GHz so one shunt inductor on L3 matches the band.",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 8.9
+   }
+  }
+ },
+ {
+  "name": "b2h H5.0 L9.5",
+  "purpose": "Push the arm higher (height is the main lever for the matched band). Self-resonance aimed at about 2.58 GHz so one shunt inductor on L3 matches the band.",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.5
+   }
+  }
+ },
+ {
+  "name": "b2h H5.0 S2.5 L9.2",
+  "purpose": "Push the arm higher (height is the main lever for the matched band). Self-resonance aimed at about 2.58 GHz so one shunt inductor on L3 matches the band.",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 2.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.2
+   }
+  }
+ },
+ {
+  "name": "b2h H5.5 S2.5 L8.9",
+  "purpose": "Push the arm higher (height is the main lever for the matched band). Self-resonance aimed at about 2.58 GHz so one shunt inductor on L3 matches the band.",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 2.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.5,
+    "Wa": 1.0,
+    "L": 8.9
+   }
+  }
+ },
+ {
+  "name": "b2h H5.5 S3 Ws1 L8.9",
+  "purpose": "Push the arm higher (height is the main lever for the matched band). Self-resonance aimed at about 2.58 GHz so one shunt inductor on L3 matches the band.",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.0,
+    "Ws": 1.0,
+    "Wf": 1.0,
+    "H": 5.5,
+    "Wa": 1.0,
+    "L": 8.9
+   }
+  }
+ },
+ {
+  "name": "b2h H5.5 S2.5 L8.5",
+  "purpose": "Push the arm higher (height is the main lever for the matched band). Self-resonance aimed at about 2.58 GHz so one shunt inductor on L3 matches the band.",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 2.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.5,
+    "Wa": 1.0,
+    "L": 8.5
+   }
+  }
+ }
+]

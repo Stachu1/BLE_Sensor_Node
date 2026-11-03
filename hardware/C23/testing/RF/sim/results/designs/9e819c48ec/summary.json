@@ -143,27 +143,33 @@
  "efficiency": [
   {
    "f": 2400000000.0,
-   "rad_eff": 0.2884127565818567,
-   "tot_eff": 0.21735281735482223,
+   "rad_eff_raw": 0.2884127565818567,
+   "rad_eff": 0.2648418334085002,
+   "tot_eff": 0.19958936396218754,
    "Dmax_dBi": 5.660190442047734,
    "valid": false,
-   "flux_eff": null
+   "flux_eff": null,
+   "cal_factor": 1.089
   },
   {
    "f": 2440000000.0,
-   "rad_eff": 0.29276742994649163,
-   "tot_eff": 0.21016772758354937,
+   "rad_eff_raw": 0.29276742994649163,
+   "rad_eff": 0.2688406151942072,
+   "tot_eff": 0.19299148538434285,
    "Dmax_dBi": 5.793850857107339,
    "valid": false,
-   "flux_eff": null
+   "flux_eff": null,
+   "cal_factor": 1.089
   },
   {
    "f": 2480000000.0,
-   "rad_eff": 0.29556881415952263,
-   "tot_eff": 0.19834042791210052,
+   "rad_eff_raw": 0.29556881415952263,
+   "rad_eff": 0.27141305248808323,
+   "tot_eff": 0.1821307877980721,
    "Dmax_dBi": 5.921533576940297,
    "valid": false,
-   "flux_eff": null
+   "flux_eff": null,
+   "cal_factor": 1.089
   }
  ],
  "efficiency_valid": false,

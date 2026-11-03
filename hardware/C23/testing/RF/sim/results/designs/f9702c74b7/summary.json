@@ -1,0 +1,152 @@
+{
+ "hash": "f9702c74b7",
+ "name": "cal b2 H4.4 L9.7 lossless FR4",
+ "purpose": "Efficiency calibration: with lossless FR4 the true radiation efficiency is 100 %, so this shows the bias of the far-field method on this exact board (own transform and Poynting flux).",
+ "tag": "cal1",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 0.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 4.4,
+   "Wa": 1.0,
+   "L": 9.7
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.0
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.0
+   ],
+   [
+    -10.4,
+    14.0,
+    9.7,
+    15.0
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    85.0,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    86.0,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    85.0,
+    159.7,
+    86.0
+   ]
+  ],
+  "x": [
+   139.6,
+   159.7
+  ],
+  "y": [
+   85.0,
+   91.22
+  ],
+  "edge_clearance": 1.3073640726781512
+ },
+ "f_s11_min_GHz": 2.532,
+ "s11_min_dB": -9.74,
+ "ble_worst_no_parts_dB": -6.04,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   20.76,
+   -22.85
+  ],
+  "2.44": [
+   22.1,
+   -13.16
+  ],
+  "2.48": [
+   23.75,
+   -3.62
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 7.75 nH",
+  "net": [
+   [
+    "pL",
+    7.75
+   ]
+  ],
+  "ble_worst_dB": -9.11
+ },
+ "match_2part": {
+  "parts": "series 5.70 pF, shunt 3.15 nH",
+  "net": [
+   [
+    "sC",
+    5.700000000000002
+   ],
+   [
+    "pL",
+    3.1525000000000003
+   ]
+  ],
+  "ble_worst_dB": -13.19
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 1.089679321827803,
+   "rad_eff": 1.0006238033313157,
+   "tot_eff": 0.751481638665114,
+   "Dmax_dBi": 1.9376371380196888,
+   "valid": true,
+   "flux_eff": 1.0444603947977833,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 1.0872391000419404,
+   "rad_eff": 0.9983830119760702,
+   "tot_eff": 0.8214717365328528,
+   "Dmax_dBi": 1.9530895370559391,
+   "valid": true,
+   "flux_eff": 1.0418844897614667,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 1.08873530336719,
+   "rad_eff": 0.9997569360580257,
+   "tot_eff": 0.8710485173237942,
+   "Dmax_dBi": 1.9673790775623365,
+   "valid": true,
+   "flux_eff": 1.042858760015006,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 1970670,
+ "run_s": 1981
+}

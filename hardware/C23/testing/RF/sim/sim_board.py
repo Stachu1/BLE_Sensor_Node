@@ -12,7 +12,7 @@ Usage (server, openEMS venv):  python sim_board.py <run_dir> [threads]
     er_scale   multiplies all dielectric er (sensitivity)
     nf2ff      true: radiation efficiency at NF2FF_F (J2 excitation)
     mesh       overrides of MESH below
-Writes <run_dir>/result.json, S11.csv (J2), and for "multi" S4P.s4p. openEMS field data is deleted after use.
+Writes <run_dir>/result.json, S11.csv (J2), and for "multi" S<n>P.s<n>p (all pairs of a frequency on one line). openEMS field data is deleted after use.
 """
 import json
 import os
@@ -333,7 +333,7 @@ def main():
 			json.dump({'error': errs}, open(os.path.join(run_dir, 'result.json'), 'w'))
 			sys.exit('invalid antenna: ' + '; '.join(errs))
 	t0 = time.time()
-	ngroups = 4 if case['ports'] == 'multi' else 1
+	ngroups = len(port_defs(board, case['ports'], board['stackup']['copper']['F.Cu']['z']))
 	VIs, eff, info = [], None, None
 	for e in range(ngroups):
 		sim_path = os.path.join(run_dir, 'sim_e%d' % e)
@@ -368,14 +368,11 @@ def main():
 		s11 = S[:, 0, 0]
 		Z = Z0 * (1 + s11) / (1 - s11)
 		out['ports'] = names
-		with open(os.path.join(run_dir, 'S4P.s4p'), 'w') as fh:
-			fh.write('! C23 rev B board, ports %s\n# Hz S RI R 50\n' % ' '.join(names))
+		# Touchstone, n ports, every frequency on one line (row-major S matrix), port order in the header
+		with open(os.path.join(run_dir, 'S%dP.s%dp' % (n, n)), 'w') as fh:
+			fh.write('! C23 board, ports %s\n# Hz S RI R 50\n' % ' '.join(names))
 			for k, f in enumerate(F):
-				row = []
-				for r in range(n):
-					for c in range(n):
-						row += ['%.6e' % S[k, r, c].real, '%.6e' % S[k, r, c].imag]
-				fh.write('%.6e ' % f + ' '.join(row[:8]) + '\n' + '\n'.join(' '.join(row[8 * q:8 * q + 8]) for q in range(1, 4)) + '\n')
+				fh.write('%.6e ' % f + ' '.join('%.6e %.6e' % (S[k, r, c].real, S[k, r, c].imag) for r in range(n) for c in range(n)) + '\n')
 	out['metrics'] = metrics(s11, Z)
 	np.savetxt(os.path.join(run_dir, 'S11.csv'),
 		np.column_stack([F, s11.real, s11.imag, 20 * np.log10(np.abs(s11)), Z.real, Z.imag]),

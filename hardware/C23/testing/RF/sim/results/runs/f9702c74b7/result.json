@@ -1,0 +1,96 @@
+{
+ "case": {
+  "model": "v5",
+  "board": "build/b2/board.json",
+  "ports": "j2",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "tand_scale": 0.0,
+  "antenna": {
+   "family": "ifa",
+   "base": "b2",
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 4.4,
+   "Wa": 1.0,
+   "L": 9.7
+  },
+  "name": "cal b2 H4.4 L9.7 lossless FR4",
+  "tag": "cal1",
+  "purpose": "Efficiency calibration: with lossless FR4 the true radiation efficiency is 100 %, so this shows the bias of the far-field method on this exact board (own transform and Poynting flux)."
+ },
+ "mesh": {
+  "cells": [
+   163,
+   155,
+   78
+  ],
+  "ncells": 1970670,
+  "min_cell": [
+   0.07499999999999929,
+   0.1200000000000001,
+   0.091697
+  ],
+  "t_run": 1965.2881247997284,
+  "subport_u_ratio_2440": [
+   1.0066390491199064,
+   -0.7354493855494018
+  ]
+ },
+ "t_total": 1980.7806525230408,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 1.6830677504791517e-27,
+   "rad_eff": 1.089679321827803,
+   "tot_eff": 0.8183635045063091,
+   "Dmax_dBi": 1.9376371380196888,
+   "flux_eff": 1.0444603947977833,
+   "Prad_openems_eff": 0.3408660144125163
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 1.862055812021616e-27,
+   "rad_eff": 1.0872391000419404,
+   "tot_eff": 0.8945827210842766,
+   "Dmax_dBi": 1.9530895370559391,
+   "flux_eff": 1.0418844897614667,
+   "Prad_openems_eff": 0.3396256060042048
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 1.9699788027161116e-27,
+   "rad_eff": 1.08873530336719,
+   "tot_eff": 0.9485718353656118,
+   "Dmax_dBi": 1.9673790775623365,
+   "flux_eff": 1.042858760015006,
+   "Prad_openems_eff": 0.3397399034913474
+  }
+ ],
+ "ports": [
+  "J2"
+ ],
+ "metrics": {
+  "f_min": 2532000000.0,
+  "s_min": -9.738695609461136,
+  "ble_worst": -6.038235963942261,
+  "ble_best": -8.990204760876976,
+  "goal_worst": -5.354439909821636,
+  "Z_2440": [
+   22.097822042047657,
+   -13.162869517161836
+  ],
+  "S11_2440_dB": -7.515416690888198,
+  "bw10": null,
+  "bw6": [
+   2399000000.0,
+   2694000000.0
+  ],
+  "f_Rmax": 3000000000.0,
+  "Rmax": 324.3292069162312,
+  "min_interior": true
+ }
+}

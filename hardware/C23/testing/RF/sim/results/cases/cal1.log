@@ -1,0 +1,2 @@
+cal b2 H4.4 L9.7 lossless FR4 f9702c74b7  min  -9.74 dB @ 2.532 GHz  BLE worst  -6.04  Z 22.1-13.2j  eff [1.09, 1.087, 1.089]
+cal b2 H4.4 L9.7 lossless no battery f587e0cd9f  min  -9.89 dB @ 2.526 GHz  BLE worst  -6.27  Z 22.5-12.1j  eff [1.004, 1.002, 1.004]

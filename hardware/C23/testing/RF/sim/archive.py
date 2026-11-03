@@ -34,6 +34,9 @@ from draw_antennas import draw_panel  # noqa: E402
 RES = os.path.join(HERE, 'results')
 OUT = os.path.join(RES, 'designs')
 BLE = (2.400e9, 2.4835e9)
+# Efficiency calibration (2026-11-03, lossless FR4 runs of b2 H4.4 L9.7, true value 100 %): the own transform
+# reads 100.2 % without the battery and 108.9 % with the CR2032 model. Calibrated = raw / factor.
+EFF_CAL = {True: 1.089, False: 1.002}
 
 # why the runs without a "purpose" field were made (by tag)
 TAG_PURPOSE = {
@@ -63,9 +66,10 @@ def eff_rows(r):
 	model = r['case'].get('model', 'v4')
 	valid = model >= 'v5'
 	rows = []
+	k = EFF_CAL[bool(r['case'].get('battery', True))]
 	for e in r.get('eff') or []:
-		rows.append({'f': e['f'], 'rad_eff': e['rad_eff'], 'tot_eff': e['tot_eff'], 'Dmax_dBi': e['Dmax_dBi'],
-			'valid': valid, 'flux_eff': e.get('flux_eff')})
+		rows.append({'f': e['f'], 'rad_eff_raw': e['rad_eff'], 'rad_eff': e['rad_eff'] / k, 'tot_eff': e['tot_eff'] / k,
+			'Dmax_dBi': e['Dmax_dBi'], 'valid': valid, 'flux_eff': e.get('flux_eff'), 'cal_factor': k})
 	return rows, valid
 
 

@@ -1,0 +1,4 @@
+size b2t5, 5 mm taller       be4e12aea4  min -14.55 dB @ 2.527 GHz  BLE worst  -8.62  Z 30.6-13.5j  eff [0.95, 0.96, 0.97]
+size b2t10, 10 mm taller     97ca986a4f  min -19.05 dB @ 2.544 GHz  BLE worst  -9.46  Z 35.8-17.3j  eff [0.962, 0.97, 0.978]
+size b2w4, 4 mm wider        0505a294bb  min -13.81 dB @ 2.482 GHz  BLE worst -10.39  Z 31.4-4.1j  eff [0.955, 0.967, 0.979]
+size b2w8, 8 mm wider        a3d7b52f39  min -20.73 dB @ 2.460 GHz  BLE worst -15.30  Z 40.7-1.3j  eff [0.987, 0.997, 1.007]

@@ -1,0 +1,20 @@
+[
+ {
+  "name": "b2 H5.0 L9.2 3-port (J2, L2, L3)",
+  "purpose": "Real parts table for the current best design: 3-port S-parameters so match.py can pick E-series L2/L3 parts with losses and the trace between J2 and the pads.",
+  "case": {
+   "board": "build/b2/board.json",
+   "ports": "multi",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.2
+   }
+  }
+ }
+]
