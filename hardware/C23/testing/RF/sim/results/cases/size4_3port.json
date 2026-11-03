@@ -1,0 +1,20 @@
+[
+ {
+  "name": "size4 b2w8 H5.0 L9.6 3-port",
+  "purpose": "Bigger-board option (8 mm wider) at its best arm length: 3-port (J2, L2, L3) for the real parts table, no mask (mask moves about -19 MHz)",
+  "case": {
+   "board": "build/b2w8/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2w8",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.6
+   },
+   "ports": "multi"
+  }
+ }
+]

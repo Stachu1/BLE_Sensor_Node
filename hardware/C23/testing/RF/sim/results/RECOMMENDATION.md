@@ -46,6 +46,21 @@ So the one-inductor match seen with an ideal part at J2 (-15.3 dB with 3.5 nH, t
 pad positions. With the parts where they are on the board, **two parts are needed: L2 about 1.2 nH and L3 about 6.8 nH.**
 L2 cannot stay 0R.
 
+### Best estimate (mask and finer mesh together)
+
+Run [5393b94279](designs/5393b94279/summary.md) has the explicit mask and the finer mesh. It resonates at 2.598 GHz,
+10 MHz (0.4 %) above the mask run on the normal mesh. Applying that shift to the 3-port data:
+
+| L2 | L3 | best estimate | -1 % around it | +1 % around it |
+|---|---|---|---|---|
+| 1.2 nH | 6.8 nH | -14.0 dB | -15.7 dB | -10.8 dB |
+| **1.5 nH** | **6.8 nH** | **-15.5 dB** | -13.8 dB / -12.0 dB at -0.6 % | -11.9 dB |
+| 1.6 nH | 7.5 nH | -15.5 dB | -12.0 dB at -0.6 % | -11.9 dB |
+
+(-1 % column for 1.2 / 6.8 is the normal-mesh mask run itself. For 1.5 / 6.8 the two numbers are -0.4 % and -1 %
+from the best estimate.) So the best single guess for the first boards is **L2 1.5 nH, L3 6.8 nH**, and the tuning
+kit below covers the +-1 % range.
+
 ### Ideal part at J2 (1-port runs, for the tolerance trend)
 
 | case | resonance | worst BLE channel, no parts | 1 ideal part at J2 | 2 ideal parts |
@@ -62,7 +77,7 @@ the battery about 5 MHz, the mask -19 MHz is already in the as-built row).
 
 ### For the bench
 
-- Start with L2 = 1.2 nH and L3 = 6.8 nH. The sim says about -15.7 dB in the whole band.
+- Start with L2 = 1.5 nH and L3 = 6.8 nH. The best estimate says about -15.5 dB in the whole band (1.2 nH / 6.8 nH if the mesh correction is left out).
 - Measure S11 at J2 with a VNA and re-pick both parts. Without a VNA the parts above are the best guess.
 - Tuning kit (0402 RF inductors, for example Murata LQW15 or LQG15): L2 0R, 0.8, 1.0, 1.2, 1.5, 1.8, 2.2 nH and
   L3 3.9, 4.3, 4.7, 5.6, 6.8, 7.5, 8.2, 9.1 nH, plus a few 22 pF for L2.
@@ -100,8 +115,15 @@ Re-tuned arm lengths (size3 batch, ideal parts at J2):
 
 On the 8 mm wider board, L 9.6 puts the resonance in the band and gives -16 dB with no parts at all, which also
 removes most of the tolerance worry. Wider helps more than taller. Adding height on top of width gains only about
-1 to 2 dB more. These are ideal parts at J2, and the 3-port run showed that the real pad positions change the
-part values, so a bigger board would need its own 3-port run before ordering.
+1 to 2 dB more. 3-port run of the 8 mm wider board, L 9.6, no mask ([9b0c89d717](runs/9b0c89d717)), real parts on the real pads:
+
+| L2 | L3 | worst BLE channel |
+|---|---|---|
+| 0R | open | -16.6 dB |
+| 3 pF | 7.5 nH | -19.5 dB |
+
+With no parts it stays between -13.8 and -19.1 dB for a +-1 % resonance shift, so this board would work without
+any tuning (the mask moves it about -0.75 %, toward the better end). The cost is 8 mm more board width.
 
 ## What was tried and did not help
 
