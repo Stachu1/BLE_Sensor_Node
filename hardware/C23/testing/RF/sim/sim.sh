@@ -7,6 +7,7 @@
 #   ./sim.sh opt cases/opt.json  push, then start an optimizer run in the background (optimize.py)
 #   ./sim.sh queue cases/x.json [parallel] [threads]   push, then add a case list to the server queue (queue.sh)
 #   ./sim.sh qstatus             queue log, waiting jobs and running sims
+#   ./sim.sh qrestart            copy queue.sh and restart the queue (push never copies queue.sh)
 #   ./sim.sh status              running sims and the tail of the logs
 #   ./sim.sh pull                copy results (no field data) to results/, rebuild results/REPORT.md and the
 #                                design records results/designs/<run>/ + results/DESIGNS.md (archive.py)
@@ -24,7 +25,7 @@ scp_() { scp -q -F "$SSHCFG" "$@"; }
 
 push() {
 	ssh_ "mkdir -p $RDIR/build $RDIR/runs $RDIR/cases $RDIR/opt $RDIR/queue/done"
-	scp_ antenna.py sim_board.py sim_ports.py runner.py optimize.py tune2d.py check_efficiency.py farfield.py simple_ifa.py poynting_check.py match_ideal.py queue.sh "$HOST:$RDIR/"
+	scp_ antenna.py sim_board.py sim_ports.py runner.py optimize.py tune2d.py check_efficiency.py farfield.py simple_ifa.py poynting_check.py match_ideal.py "$HOST:$RDIR/"
 	scp_ build/board.json "$HOST:$RDIR/build/"
 	for d in build/*/; do
 		[ -f "$d/board.json" ] || continue
@@ -60,8 +61,15 @@ queue)
 	n=$(basename "$2" .json)
 	seq=$(date +%Y%m%d%H%M%S)
 	scp_ "$2" "$HOST:$RDIR/queue/${seq}_$n.p${3:-6}t${4:-3}.json"
-	ssh_ "cd $RDIR && mkdir -p queue/done && (pgrep -f '^bash queue.sh' > /dev/null || (nohup bash queue.sh >> queue/queue.log 2>&1 < /dev/null &))"
+	ssh_ "cd $RDIR && mkdir -p queue/done && test -f queue.sh || exit 0; (pgrep -f '^bash queue.sh' > /dev/null || (nohup bash queue.sh >> queue/queue.log 2>&1 < /dev/null &))"
 	echo "queued $n"
+	;;
+qrestart)
+	# never overwrite queue.sh while it runs (bash reads scripts while executing), stop it first
+	ssh_ "cd $RDIR && for p in \$(pgrep -f '^bash queue.sh'); do kill \$p; done"
+	scp_ queue.sh "$HOST:$RDIR/"
+	ssh_ "cd $RDIR && (nohup bash queue.sh >> queue/queue.log 2>&1 < /dev/null &)"
+	echo "queue restarted (running jobs continue, their job files stay in queue/running)"
 	;;
 qstatus)
 	ssh_ "cd $RDIR && tail -n 6 queue/queue.log; ls queue/*.json 2>/dev/null; ps -eo etime,args | grep '[s]im_board.py' | sed 's|/home/oj/openems_compute/c23b/||g'"

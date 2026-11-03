@@ -1,0 +1,20 @@
+[
+ {
+  "name": "final1 H5.0 L9.0 no battery",
+  "purpose": "Final candidate without the CR2032: the first bench measurement is likely done without the battery",
+  "case": {
+   "board": "build/b2/board.json",
+   "battery": false,
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   }
+  }
+ }
+]

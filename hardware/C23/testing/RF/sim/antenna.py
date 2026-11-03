@@ -27,10 +27,12 @@ NOTCH_Y0 = 10.0
 #   b2  ground edge at KiCad y 90.4, notch bottom 90.22 (2026-11-03: L4 removed, via fence 1.4 mm lower)
 #   b2t5, b2t10  b2 made 5 / 10 mm taller below the RF area (stretch_board.py --dy), same antenna area
 #   b2w4, b2w8   b2 made 4 / 8 mm wider to the right (stretch_board.py --dx), right corner centre moves
+#   b2w8t10      b2w8 also made 10 mm taller
 BASES = {'b1': {'GND_Y': 11.0, 'NOTCH_Y0': 10.0}, 'b2': {'GND_Y': 9.6, 'NOTCH_Y0': 8.78},
 	'b2t5': {'GND_Y': 9.6, 'NOTCH_Y0': 8.78}, 'b2t10': {'GND_Y': 9.6, 'NOTCH_Y0': 8.78},
 	'b2w4': {'GND_Y': 9.6, 'NOTCH_Y0': 8.78, 'CORNERS': [(-7.0, 7.0), (11.0, 7.0)]},
-	'b2w8': {'GND_Y': 9.6, 'NOTCH_Y0': 8.78, 'CORNERS': [(-7.0, 7.0), (15.0, 7.0)]}}
+	'b2w8': {'GND_Y': 9.6, 'NOTCH_Y0': 8.78, 'CORNERS': [(-7.0, 7.0), (15.0, 7.0)]},
+	'b2w8t10': {'GND_Y': 9.6, 'NOTCH_Y0': 8.78, 'CORNERS': [(-7.0, 7.0), (15.0, 7.0)]}}
 
 
 def base(p):

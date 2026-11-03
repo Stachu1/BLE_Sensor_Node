@@ -1,0 +1,151 @@
+{
+ "hash": "09fc7f9410",
+ "name": "final1 H5.0 L9.0 er+5%",
+ "purpose": "Final candidate H5.0 L9.0 (one shunt inductor on L3, mask-corrected length): FR4 permittivity 5 % high (board tolerance)",
+ "tag": "final1",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.05,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 5.0,
+   "Wa": 1.0,
+   "L": 9.0
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.6
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.6
+   ],
+   [
+    -10.4,
+    14.6,
+    9.0,
+    15.6
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    84.4,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    85.4,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    84.4,
+    159.0,
+    85.4
+   ]
+  ],
+  "x": [
+   139.6,
+   159.0
+  ],
+  "y": [
+   84.4,
+   91.22
+  ],
+  "edge_clearance": 0.7524475092068506
+ },
+ "f_s11_min_GHz": 2.582,
+ "s11_min_dB": -14.79,
+ "ble_worst_no_parts_dB": -5.98,
+ "bw10_MHz": [
+  2485,
+  2689
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   23.82,
+   -30.39
+  ],
+  "2.44": [
+   25.61,
+   -21.79
+  ],
+  "2.48": [
+   27.88,
+   -13.34
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 4.50 nH",
+  "net": [
+   [
+    "pL",
+    4.5
+   ]
+  ],
+  "ble_worst_dB": -14.26
+ },
+ "match_2part": {
+  "parts": "shunt 4.50 nH",
+  "net": [
+   [
+    "pL",
+    4.5
+   ]
+  ],
+  "ble_worst_dB": -14.26
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.9473120439940995,
+   "rad_eff": 0.8698916841084477,
+   "tot_eff": 0.6503191044537258,
+   "Dmax_dBi": 1.9557954052036395,
+   "valid": true,
+   "flux_eff": 0.9077849180654326,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.9566149604972531,
+   "rad_eff": 0.8784343071600121,
+   "tot_eff": 0.7266887726208863,
+   "Dmax_dBi": 1.9724549780131118,
+   "valid": true,
+   "flux_eff": 0.9166397737874008,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.9655965031053777,
+   "rad_eff": 0.8866818210334048,
+   "tot_eff": 0.7919144423534383,
+   "Dmax_dBi": 1.9879246169527651,
+   "valid": true,
+   "flux_eff": 0.924962067055724,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 1971216,
+ "run_s": 2127
+}
