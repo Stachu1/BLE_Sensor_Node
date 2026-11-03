@@ -1,0 +1,155 @@
+{
+ "hash": "f5d7b1da46",
+ "name": "size3 b2t10 H5.0 L8.6",
+ "purpose": "Bigger board at its best: arm length re-tuned for the larger ground (resonance moves down on a bigger board)",
+ "tag": "size3",
+ "model": "v5",
+ "board": "build/b2t10/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2t10",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 5.0,
+   "Wa": 1.0,
+   "L": 8.6
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.6
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.6
+   ],
+   [
+    -10.4,
+    14.6,
+    8.6,
+    15.6
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    84.4,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    85.4,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    84.4,
+    158.6,
+    85.4
+   ]
+  ],
+  "x": [
+   139.6,
+   158.6
+  ],
+  "y": [
+   84.4,
+   91.22
+  ],
+  "edge_clearance": 0.7524475092068506
+ },
+ "f_s11_min_GHz": 2.7,
+ "s11_min_dB": -54.26,
+ "ble_worst_no_parts_dB": -5.44,
+ "bw10_MHz": [
+  2532,
+  2878
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   34.0,
+   -49.69
+  ],
+  "2.44": [
+   34.84,
+   -42.18
+  ],
+  "2.48": [
+   36.01,
+   -35.15
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 4.75 nH",
+  "net": [
+   [
+    "pL",
+    4.75
+   ]
+  ],
+  "ble_worst_dB": -8.84
+ },
+ "match_2part": {
+  "parts": "series 1.30 nH, shunt 5.23 nH",
+  "net": [
+   [
+    "sL",
+    1.3020000000000003
+   ],
+   [
+    "pL",
+    5.2325
+   ]
+  ],
+  "ble_worst_dB": -19.25
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.9667451191401379,
+   "rad_eff": 0.887736564866977,
+   "tot_eff": 0.633803371514024,
+   "Dmax_dBi": 2.525663242644564,
+   "valid": true,
+   "flux_eff": 0.931448777327438,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.9756694633111498,
+   "rad_eff": 0.8959315549230026,
+   "tot_eff": 0.6954197034421541,
+   "Dmax_dBi": 2.549612376662782,
+   "valid": true,
+   "flux_eff": 0.9398609040989556,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.9832625250926227,
+   "rad_eff": 0.9029040634459345,
+   "tot_eff": 0.7532515981877907,
+   "Dmax_dBi": 2.5709544365495747,
+   "valid": true,
+   "flux_eff": 0.9469035849933505,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 2135952,
+ "run_s": 2558
+}

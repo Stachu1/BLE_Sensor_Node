@@ -23,25 +23,49 @@ Arm 5 mm above the ground edge, 0.75 mm from the nearest board edge. Antenna cop
 ## Matching
 
 The antenna is tuned so its own resonance sits above the band (2.59 GHz with the mask modelled).
-Then one shunt inductor on L3 matches the whole band and L2 stays 0R.
 
-| case | resonance | worst BLE channel, no parts | 1 part (L3) | 2 parts (L2 + L3) |
+### Parts on the real pads (3-port run, the numbers to use)
+
+Run [ee6d48c654](runs/ee6d48c654) simulates J2, the L2 pad gap and the L3 pads as three ports with the explicit mask,
+so the trace between J2 and the parts is included. `match.py` then fits E-series 0402 parts with loss
+(inductor Q 35, capacitor ESR and ESL).
+
+| L2 (series) | L3 (shunt) | worst BLE channel | resonance -1 % | resonance +1 % |
+|---|---|---|---|---|
+| 0R | open | -5.9 dB | | |
+| 0R | 4.3 nH | -10.9 dB | | |
+| 1.0 nH | 5.6 nH | -15.6 dB | -12.2 dB | -11.8 dB |
+| 1.2 nH | 6.8 nH | -15.7 dB | -12.3 dB | -12.0 dB |
+| 1.3 nH | 7.5 nH | -15.6 dB | -12.4 dB | -12.0 dB |
+
+The +-1 % columns scale the frequency axis of the 3-port data (about +-26 MHz, the er +-5 % range). That is an
+estimate, not a separate run. Re-picking the parts at either shift gets back to about -15.4 dB
+(+1 %: L2 2.2 nH, L3 9.1 nH. -1 %: L2 22 pF, L3 4.3 nH).
+
+So the one-inductor match seen with an ideal part at J2 (-15.3 dB with 3.5 nH, table below) does not survive the real
+pad positions. With the parts where they are on the board, **two parts are needed: L2 about 1.2 nH and L3 about 6.8 nH.**
+L2 cannot stay 0R.
+
+### Ideal part at J2 (1-port runs, for the tolerance trend)
+
+| case | resonance | worst BLE channel, no parts | 1 ideal part at J2 | 2 ideal parts |
 |---|---|---|---|---|
 | as built, 20 um mask modelled ([cae851224d](designs/cae851224d/summary.md)) | 2.588 GHz | -5.8 dB | -15.3 dB, 3.5 nH | -15.3 dB |
 | no mask ([7d3b8b589d](designs/7d3b8b589d/summary.md)) | 2.607 GHz | -5.3 dB | -12.3 dB, 3.5 nH | -14.9 dB |
-| no mask, finer mesh | 2.619 GHz | -5.0 dB | -10.0 dB, 3.75 nH | -15.2 dB, L2 0.58 nH |
-| no mask, FR4 er -5 % | 2.634 GHz | -4.7 dB | -8.9 dB, 4.0 nH | -15.3 dB, L2 0.78 nH |
+| no mask, finer mesh | 2.619 GHz | -5.0 dB | -10.0 dB, 3.75 nH | -15.2 dB |
+| no mask, FR4 er -5 % | 2.634 GHz | -4.7 dB | -8.9 dB, 4.0 nH | -15.3 dB |
 | no mask, FR4 er +5 % | 2.582 GHz | -6.0 dB | -14.3 dB, 4.5 nH | -14.3 dB |
 | no mask, no battery | 2.602 GHz | -5.5 dB | -12.9 dB, 3.5 nH | -15.5 dB |
 
-What this means for the bench:
+The resonance tolerance from the inputs I know is about +-30 MHz (er +-5 % gives +-26 MHz, the mesh about +12 MHz,
+the battery about 5 MHz, the mask -19 MHz is already in the as-built row).
 
-- Start with L2 = 0R and L3 = 3.5 nH (3.3 nH or 3.6 nH in the E-series). The sim says about -15 dB in the whole band.
-- If the board resonates higher than the sim (thin mask, lower er), a small series inductor on L2 (0.5 to 1 nH) plus about 3.9 nH on L3 gets back to about -15 dB. So keep both L2 and L3 pads and order a few values around these.
-- Suggested parts for the tuning kit (0402 RF inductors): L3 3.0, 3.3, 3.6, 3.9, 4.3, 4.7 nH and L2 0.5, 0.8, 1.0, 1.2 nH plus 0R.
-- The resonance tolerance from the inputs I know is about +-30 MHz (er +-5 % gives +-26 MHz, the mesh about +12 MHz, the battery about 5 MHz, the mask -19 MHz is already in the as-built row).
+### For the bench
 
-The E-series table from the 3-port run (real part values with their tolerance) is added below once that run finishes.
+- Start with L2 = 1.2 nH and L3 = 6.8 nH. The sim says about -15.7 dB in the whole band.
+- Measure S11 at J2 with a VNA and re-pick both parts. Without a VNA the parts above are the best guess.
+- Tuning kit (0402 RF inductors, for example Murata LQW15 or LQG15): L2 0R, 0.8, 1.0, 1.2, 1.5, 1.8, 2.2 nH and
+  L3 3.9, 4.3, 4.7, 5.6, 6.8, 7.5, 8.2, 9.1 nH, plus a few 22 pF for L2.
 
 ## Efficiency and pattern
 
@@ -61,10 +85,23 @@ Yes, a bigger ground is the strongest lever left. Same antenna (H5.0), arm lengt
 | 8 mm wider | -15.3 dB (L9.0 run) | -20.5 dB (L9.2 run, 9.5 nH) | -20.5 dB |
 
 Making the board 8 mm wider (in the antenna direction) gives a match better than -10 dB with no parts at all.
-For a beacon, -10 dB already loses only 0.5 dB, and -15 dB loses 0.14 dB. So the 34 x 34 mm board with one inductor is
+For a beacon, -10 dB already loses only 0.5 dB, and -15 dB loses 0.14 dB. So the 34 x 34 mm board with two parts on L2 and L3 is
 already close to what matching can give, and a bigger board mostly buys margin against tolerance.
 
-Re-tuned arm lengths on the bigger boards (size3 batch) are running and will be added here.
+Re-tuned arm lengths (size3 batch, ideal parts at J2):
+
+| board | L | resonance | no parts | 1 part | 2 parts |
+|---|---|---|---|---|---|
+| 8 mm wider | 9.6 | 2.466 GHz | -16.1 dB | -19.8 dB | -20.1 dB |
+| 8 mm wider | 9.2 | 2.516 GHz | -11.7 dB | -20.5 dB | -20.5 dB |
+| 8 mm wider | 8.6 | 2.598 GHz | -8.1 dB | -14.4 dB | -20.7 dB |
+| 8 mm wider, 10 mm taller | 9.2 | 2.552 GHz | -10.6 dB | -18.3 dB | -22.0 dB |
+| 10 mm taller | 8.6 | 2.700 GHz | -5.4 dB | -8.8 dB | -19.2 dB |
+
+On the 8 mm wider board, L 9.6 puts the resonance in the band and gives -16 dB with no parts at all, which also
+removes most of the tolerance worry. Wider helps more than taller. Adding height on top of width gains only about
+1 to 2 dB more. These are ideal parts at J2, and the 3-port run showed that the real pad positions change the
+part values, so a bigger board would need its own 3-port run before ordering.
 
 ## What was tried and did not help
 

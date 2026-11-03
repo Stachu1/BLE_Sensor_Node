@@ -1,0 +1,5 @@
+size3 b2w8 H5.0 L8.6         5835c83701  min -24.83 dB @ 2.598 GHz  BLE worst  -8.06  Z 41.3-29.2j  eff [0.99, 1.0, 1.009]
+size3 b2w8 H5.0 L9.6         841a3842cf  min -36.00 dB @ 2.466 GHz  BLE worst -16.06  Z 46.0-4.4j  eff [0.999, 1.008, 1.016]
+size3 b2t10 H5.0 L8.6        f5d7b1da46  min -54.26 dB @ 2.700 GHz  BLE worst  -5.44  Z 34.8-42.2j  eff [0.967, 0.976, 0.983]
+size3 b2w8t10 H5.0 L8.6      9cf2fece7a  min -21.68 dB @ 2.644 GHz  BLE worst  -7.50  Z 44.0-35.5j  eff [0.988, 0.996, 1.003]
+size3 b2w8t10 H5.0 L9.2      b608cb057f  min -24.38 dB @ 2.553 GHz  BLE worst -10.60  Z 47.1-21.9j  eff [0.993, 1.0, 1.007]

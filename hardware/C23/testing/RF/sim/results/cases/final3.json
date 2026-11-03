@@ -1,0 +1,25 @@
+[
+ {
+  "name": "final1 H5.0 L9.0 mask + fine mesh (best estimate)",
+  "purpose": "Best estimate of the as-built final candidate: explicit 20 um solder mask and the finer mesh together, on all threads",
+  "case": {
+   "board": "build/b2/board.json",
+   "mask": "explicit",
+   "mesh": {
+    "ant": 0.15,
+    "rf": 0.08,
+    "rf_y": 0.1
+   },
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   }
+  }
+ }
+]
