@@ -1,0 +1,155 @@
+{
+ "hash": "20f93f358f",
+ "name": "b2h H5.0 S2.5 L9.2",
+ "purpose": "Push the arm higher (height is the main lever for the matched band). Self-resonance aimed at about 2.58 GHz so one shunt inductor on L3 matches the band.",
+ "tag": "b2_high1",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 2.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 5.0,
+   "Wa": 1.0,
+   "L": 9.2
+  },
+  "rects_sim": [
+   [
+    -9.4,
+    9.35,
+    -7.4,
+    15.6
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.6
+   ],
+   [
+    -9.4,
+    14.6,
+    9.2,
+    15.6
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    140.6,
+    84.4,
+    142.6,
+    90.65
+   ],
+   [
+    143.6,
+    85.4,
+    144.6,
+    91.22
+   ],
+   [
+    140.6,
+    84.4,
+    159.2,
+    85.4
+   ]
+  ],
+  "x": [
+   140.6,
+   159.2
+  ],
+  "y": [
+   84.4,
+   91.22
+  ],
+  "edge_clearance": 1.0711901209772434
+ },
+ "f_s11_min_GHz": 2.561,
+ "s11_min_dB": -19.78,
+ "ble_worst_no_parts_dB": -6.17,
+ "bw10_MHz": [
+  2465,
+  2669
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   36.84,
+   -46.6
+  ],
+  "2.44": [
+   36.78,
+   -33.28
+  ],
+  "2.48": [
+   37.44,
+   -21.06
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 5.00 nH",
+  "net": [
+   [
+    "pL",
+    5.0
+   ]
+  ],
+  "ble_worst_dB": -10.06
+ },
+ "match_2part": {
+  "parts": "series 0.86 nH, shunt 6.33 nH",
+  "net": [
+   [
+    "sL",
+    0.8560000000000001
+   ],
+   [
+    "pL",
+    6.325
+   ]
+  ],
+  "ble_worst_dB": -15.25
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.9409382933943291,
+   "rad_eff": 0.8640388369093931,
+   "tot_eff": 0.6554932928540451,
+   "Dmax_dBi": 1.9475636895943653,
+   "valid": true,
+   "flux_eff": 0.9016461997717543,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.9512315759556805,
+   "rad_eff": 0.8734908870116442,
+   "tot_eff": 0.7438345936755333,
+   "Dmax_dBi": 1.9627464521506308,
+   "valid": true,
+   "flux_eff": 0.9115155553363237,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.9616606384337538,
+   "rad_eff": 0.8830676202330154,
+   "tot_eff": 0.8174583585529204,
+   "Dmax_dBi": 1.97751094259392,
+   "valid": true,
+   "flux_eff": 0.9211692190805502,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 1995552,
+ "run_s": 2722
+}

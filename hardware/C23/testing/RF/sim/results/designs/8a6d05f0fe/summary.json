@@ -1,0 +1,152 @@
+{
+ "hash": "8a6d05f0fe",
+ "name": "b2x short leg 1 mm (H4.4)",
+ "purpose": "Short-leg width: thinner short leg raises R at the feed?",
+ "tag": "b2_explore1",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 1.0,
+   "Wf": 1.0,
+   "H": 4.4,
+   "Wa": 1.0,
+   "L": 9.7
+  },
+  "rects_sim": [
+   [
+    -9.9,
+    9.35,
+    -8.9,
+    15.0
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.0
+   ],
+   [
+    -9.9,
+    14.0,
+    9.7,
+    15.0
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    140.1,
+    85.0,
+    141.1,
+    90.65
+   ],
+   [
+    143.6,
+    86.0,
+    144.6,
+    91.22
+   ],
+   [
+    140.1,
+    85.0,
+    159.7,
+    86.0
+   ]
+  ],
+  "x": [
+   140.1,
+   159.7
+  ],
+  "y": [
+   85.0,
+   91.22
+  ],
+  "edge_clearance": 1.490591341556169
+ },
+ "f_s11_min_GHz": 2.535,
+ "s11_min_dB": -9.4,
+ "ble_worst_no_parts_dB": -6.46,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   19.89,
+   -15.94
+  ],
+  "2.44": [
+   21.38,
+   -7.86
+  ],
+  "2.48": [
+   23.24,
+   0.27
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 9.50 nH",
+  "net": [
+   [
+    "pL",
+    9.5
+   ]
+  ],
+  "ble_worst_dB": -8.34
+ },
+ "match_2part": {
+  "parts": "series 3.92 pF, shunt 3.12 nH",
+  "net": [
+   [
+    "sC",
+    3.9200000000000013
+   ],
+   [
+    "pL",
+    3.12
+   ]
+  ],
+  "ble_worst_dB": -14.12
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.93065583822684,
+   "rad_eff": 0.8545967293175757,
+   "tot_eff": 0.6615220310956138,
+   "Dmax_dBi": 1.9280256013447759,
+   "valid": true,
+   "flux_eff": 0.8918719874444708,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.941288619860079,
+   "rad_eff": 0.8643605324702286,
+   "tot_eff": 0.7166534945483621,
+   "Dmax_dBi": 1.9420371766469002,
+   "valid": true,
+   "flux_eff": 0.9017417574204087,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.952127060681728,
+   "rad_eff": 0.8743131870355629,
+   "tot_eff": 0.7575555963399702,
+   "Dmax_dBi": 1.9567112978484946,
+   "valid": true,
+   "flux_eff": 0.9117001068955752,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 1970670,
+ "run_s": 3278
+}

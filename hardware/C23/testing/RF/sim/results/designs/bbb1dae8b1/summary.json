@@ -1,0 +1,152 @@
+{
+ "hash": "bbb1dae8b1",
+ "name": "b2x wide arm 2.5 (top 85, H2.9) L9.7",
+ "purpose": "Wide planar arm like the commercial beacon (2-2.5 mm): more bandwidth, lower Q?",
+ "tag": "b2_explore1",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 2.9,
+   "Wa": 2.5,
+   "L": 9.7
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.0
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    12.5
+   ],
+   [
+    -10.4,
+    12.5,
+    9.7,
+    15.0
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    85.0,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    87.5,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    85.0,
+    159.7,
+    87.5
+   ]
+  ],
+  "x": [
+   139.6,
+   159.7
+  ],
+  "y": [
+   85.0,
+   91.22
+  ],
+  "edge_clearance": 1.3073640726781512
+ },
+ "f_s11_min_GHz": 2.422,
+ "s11_min_dB": -8.06,
+ "ble_worst_no_parts_dB": -7.51,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   21.89,
+   -6.28
+  ],
+  "2.44": [
+   21.61,
+   2.61
+  ],
+  "2.48": [
+   21.7,
+   11.1
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 0.10 pF",
+  "net": [
+   [
+    "pC",
+    0.1
+   ]
+  ],
+  "ble_worst_dB": -7.76
+ },
+ "match_2part": {
+  "parts": "series 2.35 pF, shunt 3.19 nH",
+  "net": [
+   [
+    "sC",
+    2.346000000000001
+   ],
+   [
+    "pL",
+    3.185
+   ]
+  ],
+  "ble_worst_dB": -13.6
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.933590627449061,
+   "rad_eff": 0.8572916689155748,
+   "tot_eff": 0.7207094660310872,
+   "Dmax_dBi": 1.9343238095360227,
+   "valid": true,
+   "flux_eff": 0.8941962944995351,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.9489597901451696,
+   "rad_eff": 0.8714047659735259,
+   "tot_eff": 0.7334503413637545,
+   "Dmax_dBi": 1.9493236749268585,
+   "valid": true,
+   "flux_eff": 0.9085751414879102,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.9621477507220059,
+   "rad_eff": 0.8835149226097391,
+   "tot_eff": 0.7283523462148871,
+   "Dmax_dBi": 1.9651656778917845,
+   "valid": true,
+   "flux_eff": 0.9210511674837969,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 1970670,
+ "run_s": 3405
+}

@@ -1,0 +1,8 @@
+b2x wide arm 2.5 (top 85, H2.9) L9.7 bbb1dae8b1  min  -8.06 dB @ 2.422 GHz  BLE worst  -7.51  Z 21.6+2.6j  eff [0.934, 0.949, 0.962]
+b2x wide arm 2 (H3.4) L9.0   953eedb7e3  min  -9.94 dB @ 2.539 GHz  BLE worst  -6.66  Z 24.8-17.6j  eff [0.928, 0.941, 0.954]
+b2x wide arm 2 (H3.4) L10.4  85f884932b  min  -8.27 dB @ 2.384 GHz  BLE worst  -6.79  Z 22.7+13.7j  eff [0.941, 0.955, 0.967]
+b2x short leg 1 mm (H4.4)    8a6d05f0fe  min  -9.40 dB @ 2.535 GHz  BLE worst  -6.46  Z 21.4-7.9j  eff [0.931, 0.941, 0.952]
+b2x short leg 3 mm (H4.4)    9e3967cbcd  min -13.46 dB @ 2.520 GHz  BLE worst  -7.57  Z 30.4-17.9j  eff [0.927, 0.938, 0.95]
+b2x feed leg 2 mm (H4.4)     491884cd7e  min  -0.03 dB @ 2.656 GHz  BLE worst  -0.01  Z 0.1+20.1j  eff [0.385, 0.471, 0.532]
+b2x wide arm 1.5 higher (H4.5, top 84.4) L9.3 ac813f4590  min -13.28 dB @ 2.541 GHz  BLE worst  -7.32  Z 27.8-16.2j  eff [0.952, 0.962, 0.973]
+b2x bent end L9.0 H2 2.8 L2 1 896c3ba7bd  min  -9.34 dB @ 2.425 GHz  BLE worst  -8.42  Z 25.7+9.9j  eff [0.922, 0.936, 0.949]

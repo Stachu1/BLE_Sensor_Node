@@ -226,6 +226,10 @@ def main():
 			r = json.load(open(p))
 		except Exception:
 			continue
+		a = r.get('case', {}).get('antenna')
+		if isinstance(a, dict) and ant.check(a):
+			print('skip %s (geometry now invalid: %s)' % (h, ant.check(a)))
+			continue
 		if 'metrics' in r and r['case'].get('board') != 'r011' and 'smoke' not in r['case'].get('tag', '') + r['case'].get('name', ''):
 			runs[h] = r
 	recs = []

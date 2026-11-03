@@ -37,6 +37,8 @@ def base(p):
 	return BASES[p.get('base', 'b1')]
 EDGE_MARGIN = 0.4          # copper to board edge
 MIN_GAP = 0.3              # copper to copper inside the antenna
+FEED_MAX_W = 1.5           # the trace channel at the notch bottom is about 1.9 mm wide (sim x -6.96..-5.05), a wider
+                           # feed leg touches the ground there (2026-11-03: Wf 2 gave S11 0 dB)
 CORNERS = [(-7.0, 7.0), (7.0, 7.0)]   # R10 corner centres near the antenna (x = 133+10, 167-10 in KiCad)
 CORNER_R = 10.0
 
@@ -84,6 +86,8 @@ def check(p):
 		errs.append('short leg too close to the feed leg')
 	if xs1 > NOTCH_X0 + 1e-9:
 		errs.append('short leg reaches into the feed notch')
+	if q['Wf'] > FEED_MAX_W + 1e-9:
+		errs.append('feed leg wider than the trace channel at the notch bottom')
 	if q['L'] < xf1 + 1.0:
 		errs.append('arm ends before the feed leg')
 	for (x0, y0, x1, y1) in r:

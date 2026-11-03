@@ -1,0 +1,95 @@
+[
+ {
+  "name": "final1 H5.0 L9.0",
+  "purpose": "Final candidate H5.0 L9.0 (one shunt inductor on L3, mask-corrected length): nominal, no mask",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   }
+  }
+ },
+ {
+  "name": "final1 H5.0 L9.0 mask",
+  "purpose": "Final candidate H5.0 L9.0 (one shunt inductor on L3, mask-corrected length): explicit 20 um solder mask, the as-built case",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   },
+   "mask": "explicit"
+  }
+ },
+ {
+  "name": "final1 H5.0 L9.0 er-5%",
+  "purpose": "Final candidate H5.0 L9.0 (one shunt inductor on L3, mask-corrected length): FR4 permittivity 5 % low (board tolerance)",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   },
+   "er_scale": 0.95
+  }
+ },
+ {
+  "name": "final1 H5.0 L9.0 er+5%",
+  "purpose": "Final candidate H5.0 L9.0 (one shunt inductor on L3, mask-corrected length): FR4 permittivity 5 % high (board tolerance)",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   },
+   "er_scale": 1.05
+  }
+ },
+ {
+  "name": "final1 H5.0 L9.0 fine mesh",
+  "purpose": "Final candidate H5.0 L9.0 (one shunt inductor on L3, mask-corrected length): mesh convergence: antenna cells 0.15 mm, RF 0.08 mm",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   },
+   "mesh": {
+    "ant": 0.15,
+    "rf": 0.08,
+    "rf_y": 0.1
+   }
+  }
+ }
+]

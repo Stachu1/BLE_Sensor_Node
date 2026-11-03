@@ -1,0 +1,6 @@
+b2h H5.0 L8.9                38c3fd00a9  min -16.32 dB @ 2.620 GHz  BLE worst  -5.04  Z 25.8-30.8j  eff [0.947, 0.958, 0.967]
+b2h H5.0 L9.5                517f44192f  min -14.43 dB @ 2.550 GHz  BLE worst  -6.92  Z 27.6-17.8j  eff [0.95, 0.959, 0.968]
+b2h H5.0 S2.5 L9.2           20f93f358f  min -19.78 dB @ 2.561 GHz  BLE worst  -6.17  Z 36.8-33.3j  eff [0.941, 0.951, 0.962]
+b2h H5.5 S2.5 L8.9           4957079d0c  min -29.71 dB @ 2.598 GHz  BLE worst  -5.16  Z 37.3-42.4j  eff [0.953, 0.964, 0.974]
+b2h H5.5 S3 Ws1 L8.9         054ed6a4ea  min -16.54 dB @ 2.615 GHz  BLE worst  -5.31  Z 24.4-25.8j  eff [0.961, 0.971, 0.979]
+b2h H5.5 S2.5 L8.5           44b591eeb5  min -42.53 dB @ 2.645 GHz  BLE worst  -4.14  Z 36.9-53.5j  eff [0.947, 0.96, 0.97]

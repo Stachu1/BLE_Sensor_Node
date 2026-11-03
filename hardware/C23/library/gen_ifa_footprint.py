@@ -1,7 +1,10 @@
 """Generate the printed IFA footprint (BSN-C23.pretty/IFA_2G4.kicad_mod) from the openEMS optimizer geometry.
 
 Usage: python gen_ifa_footprint.py [best.json]
+       python gen_ifa_footprint.py --sim '{"S": 3.5, "Ws": 2, "Wf": 1, "H": 5.0, "Wa": 1, "L": 9.0}' --name IFA_2G4_B2
 best.json is the optimizer's result file (ifa_optimizer/results/best.json). Without it the r011 geometry is used.
+--sim takes antenna.py "ifa" parameters of the rev B board sims (hardware/C23/testing/RF/sim, ground edge base
+b2) and writes BSN-C23.pretty/<name>.kicad_mod. It never overwrites IFA_2G4.kicad_mod.
 
 Geometry (mm), as in ifa_param.py:
     x0  short leg left edge, from the board edge     Ws  short leg width
@@ -42,11 +45,34 @@ def pts(points):
 	return ' '.join(f'(xy {f(x)} {f(y)})' for x, y in points)
 
 
+# rev B b2 layout (KiCad mm): left board edge, top board edge, footprint origin (AE1 position, feed leg centre),
+# real ground edge (via fence and pours). The sim measures H from the real ground edge, the footprint from the origin.
+B2 = {'board_left': 133.0, 'board_top': 83.0, 'origin_x': 144.1, 'origin_y': 90.225, 'gnd_y': 90.4}
+
+
+def from_sim(q):
+	"""antenna.py ifa parameters (sim, b2) -> generator parameters and the keep-out clearance."""
+	b = B2
+	p = {'x0': round(b['origin_x'] - q['S'] - q['Ws'] / 2 - b['board_left'], 4), 'Ws': q['Ws'], 'S': q['S'], 'Wf': q['Wf'],
+		'H': round(q['H'] - (b['gnd_y'] - b['origin_y']), 4), 'Wa': q['Wa'], 'L': round(q['L'] + 150.0 - b['board_left'], 4)}
+	return p, round(b['origin_y'] - b['board_top'], 4)
+
+
 def main():
+	global CLEARANCE, OUT
 	p, src = dict(R011), SOURCE
-	if len(sys.argv) > 1:
-		best = json.load(open(sys.argv[1]))
-		p, src = best['params'], best.get('id', os.path.basename(sys.argv[1]))
+	args = sys.argv[1:]
+	if '--sim' in args:
+		q = json.loads(args[args.index('--sim') + 1])
+		name = args[args.index('--name') + 1] if '--name' in args else 'IFA_2G4_B2'
+		if name == 'IFA_2G4':
+			sys.exit('refusing to overwrite IFA_2G4, pick another --name')
+		p, CLEARANCE = from_sim(q)
+		src = 'rev B sim (b2 layout) ' + json.dumps(q)
+		OUT = os.path.join(HERE, 'BSN-C23.pretty', name + '.kicad_mod')
+	elif args:
+		best = json.load(open(args[0]))
+		p, src = best['params'], best.get('id', os.path.basename(args[0]))
 	xf = p['x0'] + p['Ws'] / 2 + p['S']          # feed leg centre, from the board edge
 	sx0, sx1 = p['x0'] - xf, p['x0'] + p['Ws'] - xf
 	fx0, fx1 = -p['Wf'] / 2, p['Wf'] / 2
@@ -59,14 +85,17 @@ def main():
 	           (fx0, 0), (fx0, ya0), (sx1, ya0), (sx1, 0)]
 	keepout = [(left, 0), (left, -CLEARANCE), (right, -CLEARANCE), (right, 0),
 	           (n1, 0), (n1, NOTCH_H), (n0, NOTCH_H), (n0, 0)]
-	descr = (f'Printed inverted-F antenna, 2.4 GHz, openEMS optimizer run {src}: '
+	board_note = ('Simulated on the C23 rev B board (34 x 34 mm, R10 corners, CR2032). ' if src.startswith('rev B')
+		else 'Simulated on a 40 x 41 mm board with a 40 x 33 mm ground, so re-check on the real outline. ')
+	descr = (f'Printed inverted-F antenna, 2.4 GHz, openEMS {src}: '.replace('"', "'")
 	         + ', '.join(f'{k} {f(v)}' for k, v in p.items())
-	         + f' mm. Simulated on a 40 x 41 mm board with a 40 x 33 mm ground, so re-check on the real outline. '
+	         + ' mm. ' + board_note +
 	         f'Keep-out: {f(CLEARANCE)} mm above the ground edge on every copper layer, {f(BOARD_W)} mm wide, '
 	         f'antenna short leg {f(p["x0"])} mm from the left board edge. Antenna under solder mask. Pad 1 feed, pad 2 ground.')
 
 	crt = [(left, -CLEARANCE), (right, NOTCH_H + 0.25)]
-	out = f'''(footprint "IFA_2G4"
+	fpname = os.path.splitext(os.path.basename(OUT))[0]
+	out = f'''(footprint "{fpname}"
 	(version 20260206)
 	(generator "pcbnew")
 	(generator_version "10.0")
@@ -79,7 +108,7 @@ def main():
 		(hide yes)
 		(effects (font (size 1 1) (thickness 0.15)))
 	)
-	(property "Value" "IFA_2G4"
+	(property "Value" "{fpname}"
 		(at {f(xe / 2)} {f(NOTCH_H + 1.2)} 0)
 		(layer "F.Fab")
 		(effects (font (size 1 1) (thickness 0.15)))
