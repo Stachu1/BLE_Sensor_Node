@@ -1,0 +1,5 @@
+{"name": "fifa", "family": "fifa",
+ "start": {"S": 3.5, "Ws": 1.0, "Wf": 1.0, "H": 4.0, "Wa": 0.8, "L": 9.5, "H2": 2.0, "L2": 2.0},
+ "steps": {"S": 0.6, "L": 1.0, "L2": 1.0},
+ "ranges": {"S": [2.0, 6.0]},
+ "centre": 2.45e9, "half_band": 70e6, "budget_h": 7, "parallel": 2, "threads": 4, "stop_db": -18, "slope0": -90e6}

@@ -1,0 +1,146 @@
+{
+ "hash": "606fe1de07",
+ "name": "b2 ifa H3.7 L9.9",
+ "purpose": "First look at the b2 layout (L4 removed, ground edge 1.4 mm lower): does the lower ground edge help?",
+ "tag": "b2_quick",
+ "model": "v4",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 3.7,
+   "Wa": 1.0,
+   "L": 9.9
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    14.3
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    13.3
+   ],
+   [
+    -10.4,
+    13.3,
+    9.9,
+    14.3
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    85.7,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    86.7,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    85.7,
+    159.9,
+    86.7
+   ]
+  ],
+  "x": [
+   139.6,
+   159.9
+  ],
+  "y": [
+   85.7,
+   91.22
+  ],
+  "edge_clearance": 1.9472480461448096
+ },
+ "f_s11_min_GHz": 2.498,
+ "s11_min_dB": -8.56,
+ "ble_worst_no_parts_dB": -6.79,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   21.51,
+   -18.1
+  ],
+  "2.44": [
+   21.94,
+   -8.54
+  ],
+  "2.48": [
+   22.66,
+   0.72
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 14.25 nH",
+  "net": [
+   [
+    "pL",
+    14.25
+   ]
+  ],
+  "ble_worst_dB": -8.23
+ },
+ "match_2part": {
+  "parts": "series 4.00 pF, shunt 3.22 nH",
+  "net": [
+   [
+    "sC",
+    4.000000000000001
+   ],
+   [
+    "pL",
+    3.2175000000000002
+   ]
+  ],
+  "ble_worst_dB": -13.24
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff": 0.2786625753782392,
+   "tot_eff": 0.22030822549978746,
+   "Dmax_dBi": 5.796031224815408,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff": 0.28238260521496106,
+   "tot_eff": 0.23608539148416172,
+   "Dmax_dBi": 5.945701780564512,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff": 0.2864781014074258,
+   "tot_eff": 0.24588768272350686,
+   "Dmax_dBi": 6.090476862522063,
+   "valid": false,
+   "flux_eff": null
+  }
+ ],
+ "efficiency_valid": false,
+ "cells": 1983384,
+ "run_s": 2881
+}

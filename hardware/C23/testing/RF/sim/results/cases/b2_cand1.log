@@ -1,0 +1,6 @@
+b2c H4.4 L9.7                e2bdfff60d  min -11.20 dB @ 2.526 GHz  BLE worst  -7.09  Z 25.3-12.9j  eff [0.928, 0.938, 0.949]
+b2c H4.4 L9.7 S4.5           f1f0622a31  min  -9.84 dB @ 2.545 GHz  BLE worst  -6.41  Z 21.6-8.9j  eff [0.936, 0.946, 0.956]
+b2c H4.4 L9.7 S2.5           e0db7223f0  min -14.22 dB @ 2.502 GHz  BLE worst  -8.19  Z 33.7-18.1j  eff [0.923, 0.936, 0.949]
+b2c top 85 Wa1.5 H3.9 L9.7   83118d0a14  min -10.06 dB @ 2.492 GHz  BLE worst  -7.96  Z 25.0-6.9j  eff [0.93, 0.943, 0.957]
+b2c top 85 Wa2 H3.4 L9.7     4f9295f937  min  -9.00 dB @ 2.459 GHz  BLE worst  -8.24  Z 23.7-1.8j  eff [0.935, 0.949, 0.962]
+b2c H5.0 L9.2 (arm 0.6 higher) 8035fe6eaa  min -15.29 dB @ 2.585 GHz  BLE worst  -5.88  Z 26.7-24.5j  eff [0.949, 0.958, 0.967]

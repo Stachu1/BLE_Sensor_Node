@@ -1,0 +1,6 @@
+b2 placed                    a3abde20e9  min  -7.91 dB @ 2.601 GHz  BLE worst  -4.29  Z 20.7-30.8j  eff [0.266, 0.27, 0.273]
+b2 ifa H3 L11.3 (same shape as b1 ifa_h30) cec47809c7  min  -5.73 dB @ 2.311 GHz  BLE worst  -3.70  Z 15.7+26.1j  eff [0.272, 0.276, 0.277]
+b2 ifa H3.7 L9.9             606fe1de07  min  -8.56 dB @ 2.498 GHz  BLE worst  -6.79  Z 21.9-8.5j  eff [0.279, 0.282, 0.286]
+b2 ifa H4.4 L9.2             e8fb2c0a76  min -12.16 dB @ 2.585 GHz  BLE worst  -5.53  Z 24.6-24.4j  eff [0.289, 0.291, 0.294]
+b2 ifa H4.4 L10.2            ee452147dc  min -10.36 dB @ 2.471 GHz  BLE worst  -8.71  Z 26.0-0.9j  eff [0.29, 0.294, 0.298]
+b1 ifa H3 L10.6 (old board, estimated 2.45 GHz length) 515fccca87  min  -6.44 dB @ 2.443 GHz  BLE worst  -6.21  Z 18.2+7.6j  eff [0.272, 0.277, 0.283]

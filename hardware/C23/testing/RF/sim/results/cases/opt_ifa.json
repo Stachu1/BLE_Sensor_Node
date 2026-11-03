@@ -1,0 +1,5 @@
+{"name": "ifa", "family": "ifa",
+ "start": {"S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 3.0, "Wa": 1.0, "L": 11.8},
+ "steps": {"S": 0.6, "L": 1.0, "H": 0.6},
+ "ranges": {"H": [1.5, 4.6], "S": [2.5, 6.0]},
+ "centre": 2.45e9, "half_band": 70e6, "budget_h": 7, "parallel": 3, "threads": 4, "stop_db": -18, "slope0": -70e6}

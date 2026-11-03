@@ -1,0 +1,4 @@
+[{"tag": "4L_novias", "stack": "4L", "vias": false, "GX": 34, "GY": 26, "H": 4.4, "S": 3.5, "Ws": 2.0, "Wf": 1.0, "Wa": 1.0, "L": 16.0},
+ {"tag": "2L_FB", "stack": "4L", "gnd_layers": [0], "GX": 34, "GY": 26, "H": 4.4, "S": 3.5, "Ws": 2.0, "Wf": 1.0, "Wa": 1.0, "L": 16.0},
+ {"tag": "1L_top_only", "stack": "4L", "gnd_layers": [], "vias": false, "GX": 34, "GY": 26, "H": 4.4, "S": 3.5, "Ws": 2.0, "Wf": 1.0, "Wa": 1.0, "L": 16.0},
+ {"tag": "4L_nf16", "stack": "4L", "nf_margin": 16, "GX": 34, "GY": 26, "H": 4.4, "S": 3.5, "Ws": 2.0, "Wf": 1.0, "Wa": 1.0, "L": 16.0}]

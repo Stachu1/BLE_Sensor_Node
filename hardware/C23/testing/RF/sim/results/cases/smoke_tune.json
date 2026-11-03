@@ -1,0 +1,1 @@
+{"name": "smoke_tune", "family": "ifa", "start": {"S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 3.0, "Wa": 1.0, "L": 11.3}, "vars": ["L", "S"], "deltas": [0.6, 0.5], "ranges": {"S": [2.5, 6.0]}, "target": 2450000000.0, "max_iter": 1, "threads": 2, "case": {"max_ts": 300}, "stop_db": 0.0}

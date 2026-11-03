@@ -1,0 +1,4 @@
+[   0.0 min] config {"name": "bent_h40", "family": "fifa", "start": {"S": 3.5, "Ws": 1.0, "Wf": 1.0, "H": 4.0, "Wa": 0.8, "L": 10.4, "H2": 2.4, "L2": 0.8}, "vars": ["H2", "S"], "deltas": [-0.5, 0.5], "ranges": {"S": [2.0, 6.0], "H2": [1.0, 2.7]}, "target": 2450000000.0, "max_iter": 6, "threads": 2}
+[ 100.5 min] 9e819c48ec fifa S=3.5 Ws=1 Wf=1 H=4 Wa=0.8 L=10.4 H2=2.4 L2=0.8         Z(2.450)   30.3 +46.1j  S11   -5.3 dB | min   -6.4 @ 2.351 | BLE worst   -4.8 | bw10 None | eff 0.29
+[ 100.5 min] 2b78c2b564 fifa S=3.5 Ws=1 Wf=1 H=4 Wa=0.8 L=10.4 H2=1.9 L2=0.8         Z(2.450)   39.0 +73.9j  S11   -3.8 dB | min   -5.8 @ 2.283 | BLE worst   -3.4 | bw10 None | eff 0.29
+[ 100.5 min] 583a5e423e fifa S=4 Ws=1 Wf=1 H=4 Wa=0.8 L=10.4 H2=2.4 L2=0.8           Z(2.450)   30.1 +45.5j  S11   -5.4 dB | min   -6.2 @ 2.361 | BLE worst   -4.9 | bw10 None | eff 0.29

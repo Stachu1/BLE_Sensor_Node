@@ -1,0 +1,172 @@
+{
+ "hash": "06caf9af7b",
+ "name": "bent_h40 fifa S=2 Ws=1 Wf=1 H=4 Wa=0.8 L=10.4 H2=2.45 L2=0.8",
+ "purpose": "Tuner start points: bent-end IFA with the arm 4 mm above the ground edge (b1).",
+ "tag": "tune_bent_h40",
+ "model": "v4",
+ "board": "build/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "fifa",
+  "base": "b1",
+  "params": {
+   "S": 2.0,
+   "Ws": 1.0,
+   "Wf": 1.0,
+   "H": 4.0,
+   "Wa": 0.8,
+   "L": 10.4,
+   "H2": 2.45,
+   "L2": 0.8
+  },
+  "rects_sim": [
+   [
+    -8.4,
+    10.75,
+    -7.4,
+    15.8
+   ],
+   [
+    -6.4,
+    10.0,
+    -5.4,
+    15.0
+   ],
+   [
+    -8.4,
+    15.0,
+    10.4,
+    15.8
+   ],
+   [
+    9.6,
+    13.45,
+    10.4,
+    15.8
+   ],
+   [
+    9.6,
+    13.45,
+    10.4,
+    14.25
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    141.6,
+    84.2,
+    142.6,
+    89.25
+   ],
+   [
+    143.6,
+    85.0,
+    144.6,
+    90.0
+   ],
+   [
+    141.6,
+    84.2,
+    160.4,
+    85.0
+   ],
+   [
+    159.6,
+    84.2,
+    160.4,
+    86.55
+   ],
+   [
+    159.6,
+    85.75,
+    160.4,
+    86.55
+   ]
+  ],
+  "x": [
+   141.6,
+   160.4
+  ],
+  "y": [
+   84.2,
+   90.0
+  ],
+  "edge_clearance": 0.5655861273791014
+ },
+ "f_s11_min_GHz": 2.316,
+ "s11_min_dB": -7.97,
+ "ble_worst_no_parts_dB": -4.25,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   25.02,
+   30.27
+  ],
+  "2.44": [
+   28.15,
+   44.35
+  ],
+  "2.48": [
+   32.92,
+   59.97
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 0.80 pF",
+  "net": [
+   [
+    "pC",
+    0.8
+   ]
+  ],
+  "ble_worst_dB": -6.21
+ },
+ "match_2part": {
+  "parts": "series 3.30 pF, shunt 0.93 pF",
+  "net": [
+   [
+    "sC",
+    3.3000000000000007
+   ],
+   [
+    "pC",
+    0.9310000000000002
+   ]
+  ],
+  "ble_worst_dB": -11.59
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff": 0.2887416373321383,
+   "tot_eff": 0.2207765283197226,
+   "Dmax_dBi": 5.670481336577648,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff": 0.29256509223188154,
+   "tot_eff": 0.20400707520267158,
+   "Dmax_dBi": 5.805653800725715,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff": 0.2932731938608631,
+   "tot_eff": 0.18438160412031193,
+   "Dmax_dBi": 5.934308536505921,
+   "valid": false,
+   "flux_eff": null
+  }
+ ],
+ "efficiency_valid": false,
+ "cells": 2020590,
+ "run_s": 1950
+}

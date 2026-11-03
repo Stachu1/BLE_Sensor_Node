@@ -1,0 +1,140 @@
+[
+ {
+  "name": "b2x wide arm 2.5 (top 85, H2.9) L9.7",
+  "purpose": "Wide planar arm like the commercial beacon (2-2.5 mm): more bandwidth, lower Q?",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 2.9,
+    "Wa": 2.5,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2x wide arm 2 (H3.4) L9.0",
+  "purpose": "Length bracket for the 2 mm arm (resonance shifts with arm width)",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 3.4,
+    "Wa": 2.0,
+    "L": 9.0
+   }
+  }
+ },
+ {
+  "name": "b2x wide arm 2 (H3.4) L10.4",
+  "purpose": "Length bracket for the 2 mm arm",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 3.4,
+    "Wa": 2.0,
+    "L": 10.4
+   }
+  }
+ },
+ {
+  "name": "b2x short leg 1 mm (H4.4)",
+  "purpose": "Short-leg width: thinner short leg raises R at the feed?",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 1.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2x short leg 3 mm (H4.4)",
+  "purpose": "Short-leg width: wider short leg",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 3.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2x feed leg 2 mm (H4.4)",
+  "purpose": "Feed-leg width: wider feed lowers the feed inductance",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 2.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2x wide arm 1.5 higher (H4.5, top 84.4) L9.3",
+  "purpose": "Combine height and width: 1.5 mm arm with its top 0.6 mm higher",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.5,
+    "Wa": 1.5,
+    "L": 9.3
+   }
+  }
+ },
+ {
+  "name": "b2x bent end L9.0 H2 2.8 L2 1",
+  "purpose": "Bent end at about the same electrical length as the straight L9.7: does bending the end down change bandwidth?",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "fifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.0,
+    "H2": 2.8,
+    "L2": 1.0
+   }
+  }
+ }
+]

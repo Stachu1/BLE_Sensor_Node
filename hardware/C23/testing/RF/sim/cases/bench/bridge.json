@@ -1,0 +1,57 @@
+[
+ {
+  "tag": "4L_lossless",
+  "stack": "4L",
+  "GX": 34,
+  "GY": 26,
+  "H": 4.4,
+  "S": 3.5,
+  "Ws": 2.0,
+  "Wf": 1.0,
+  "Wa": 1.0,
+  "L": 16.0,
+  "mesh_ant": 0.25
+ },
+ {
+  "tag": "4L_lossless_S4",
+  "stack": "4L",
+  "GX": 34,
+  "GY": 26,
+  "H": 4.4,
+  "S": 4.0,
+  "Ws": 2.0,
+  "Wf": 1.0,
+  "Wa": 1.0,
+  "L": 16.0,
+  "mesh_ant": 0.25
+ },
+ {
+  "tag": "4L_lossless_bat",
+  "stack": "4L",
+  "battery": true,
+  "GX": 34,
+  "GY": 26,
+  "H": 4.4,
+  "S": 3.5,
+  "Ws": 2.0,
+  "Wf": 1.0,
+  "Wa": 1.0,
+  "L": 16.0,
+  "mesh_ant": 0.25
+ },
+ {
+  "tag": "4L_lossy_bat",
+  "stack": "4L",
+  "battery": true,
+  "tand": 0.02,
+  "GX": 34,
+  "GY": 26,
+  "H": 4.4,
+  "S": 3.5,
+  "Ws": 2.0,
+  "Wf": 1.0,
+  "Wa": 1.0,
+  "L": 16.0,
+  "mesh_ant": 0.25
+ }
+]

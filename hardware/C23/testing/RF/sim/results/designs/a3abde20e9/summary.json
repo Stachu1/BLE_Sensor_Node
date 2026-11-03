@@ -1,0 +1,97 @@
+{
+ "hash": "a3abde20e9",
+ "name": "b2 placed",
+ "purpose": "First look at the b2 layout (L4 removed, ground edge 1.4 mm lower): does the lower ground edge help?",
+ "tag": "b2_quick",
+ "model": "v4",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "placed (AE1 copper from the board file)",
+  "x": [
+   139.6,
+   159.1
+  ],
+  "y": [
+   86.225,
+   91.225
+  ],
+  "edge_clearance": 2.419753589020823
+ },
+ "f_s11_min_GHz": 2.601,
+ "s11_min_dB": -7.91,
+ "ble_worst_no_parts_dB": -4.29,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   21.28,
+   -41.27
+  ],
+  "2.44": [
+   20.73,
+   -30.84
+  ],
+  "2.48": [
+   20.52,
+   -21.36
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 3.50 nH",
+  "net": [
+   [
+    "pL",
+    3.5
+   ]
+  ],
+  "ble_worst_dB": -9.39
+ },
+ "match_2part": {
+  "parts": "series 0.38 nH, shunt 3.12 nH",
+  "net": [
+   [
+    "sL",
+    0.37600000000000006
+   ],
+   [
+    "pL",
+    3.12
+   ]
+  ],
+  "ble_worst_dB": -12.53
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff": 0.26567859428718826,
+   "tot_eff": 0.16668618595921295,
+   "Dmax_dBi": 5.821654747010738,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff": 0.269533421106432,
+   "tot_eff": 0.1877050206557801,
+   "Dmax_dBi": 5.979307383834422,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff": 0.27339447138660206,
+   "tot_eff": 0.2066642264762297,
+   "Dmax_dBi": 6.129900874568551,
+   "valid": false,
+   "flux_eff": null
+  }
+ ],
+ "efficiency_valid": false,
+ "cells": 1983384,
+ "run_s": 2812
+}

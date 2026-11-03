@@ -1,0 +1,142 @@
+{
+ "hash": "6a02950cb5",
+ "name": "ifa_h30 ifa S=3.5 Ws=2 Wf=1 H=3 Wa=1 L=11.3",
+ "purpose": "Tuner start points: straight IFA with the arm 3 mm above the ground edge (b1), tuning L and S towards 50 ohm at J2.",
+ "tag": "tune_ifa_h30",
+ "model": "v4",
+ "board": "build/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b1",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 3.0,
+   "Wa": 1.0,
+   "L": 11.3
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    10.75,
+    -8.4,
+    15.0
+   ],
+   [
+    -6.4,
+    10.0,
+    -5.4,
+    14.0
+   ],
+   [
+    -10.4,
+    14.0,
+    11.3,
+    15.0
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    85.0,
+    141.6,
+    89.25
+   ],
+   [
+    143.6,
+    86.0,
+    144.6,
+    90.0
+   ],
+   [
+    139.6,
+    85.0,
+    161.3,
+    86.0
+   ]
+  ],
+  "x": [
+   139.6,
+   161.3
+  ],
+  "y": [
+   85.0,
+   90.0
+  ],
+  "edge_clearance": 0.9176982451319855
+ },
+ "f_s11_min_GHz": 2.358,
+ "s11_min_dB": -5.98,
+ "ble_worst_no_parts_dB": -4.65,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   17.83,
+   15.86
+  ],
+  "2.44": [
+   19.28,
+   26.11
+  ],
+  "2.48": [
+   21.38,
+   37.11
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 1.30 pF",
+  "net": [
+   [
+    "pC",
+    1.3
+   ]
+  ],
+  "ble_worst_dB": -11.13
+ },
+ "match_2part": {
+  "parts": "shunt 1.30 pF",
+  "net": [
+   [
+    "pC",
+    1.3
+   ]
+  ],
+  "ble_worst_dB": -11.13
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff": 0.27636597055950435,
+   "tot_eff": 0.20308508372028955,
+   "Dmax_dBi": 5.743772163593381,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff": 0.28193960583340394,
+   "tot_eff": 0.19833091630211827,
+   "Dmax_dBi": 5.88631508121903,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff": 0.2859416356926344,
+   "tot_eff": 0.18890552023242507,
+   "Dmax_dBi": 6.023802215551838,
+   "valid": false,
+   "flux_eff": null
+  }
+ ],
+ "efficiency_valid": false,
+ "cells": 1970670,
+ "run_s": 5818
+}

@@ -1,0 +1,3 @@
+[{"name": "diag b2 H4.4 L10.2 no battery", "case": {"board": "build/b2/board.json", "battery": false, "antenna": {"family": "ifa", "base": "b2", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 4.4, "Wa": 1.0, "L": 10.2}}},
+ {"name": "diag b2 H4.4 L10.2 end 1e-5", "case": {"board": "build/b2/board.json", "mesh": {"end": 1e-5}, "antenna": {"family": "ifa", "base": "b2", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 4.4, "Wa": 1.0, "L": 10.2}}},
+ {"name": "diag b2 H4.4 L10.2 lossless no battery", "case": {"board": "build/b2/board.json", "battery": false, "tand_scale": 0.0, "antenna": {"family": "ifa", "base": "b2", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 4.4, "Wa": 1.0, "L": 10.2}}}]

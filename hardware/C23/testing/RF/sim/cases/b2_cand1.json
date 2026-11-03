@@ -1,0 +1,98 @@
+[
+ {
+  "name": "b2c H4.4 L9.7",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2c H4.4 L9.7 S4.5",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 4.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2c H4.4 L9.7 S2.5",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 2.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2c top 85 Wa1.5 H3.9 L9.7",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 3.9,
+    "Wa": 1.5,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2c top 85 Wa2 H3.4 L9.7",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 3.4,
+    "Wa": 2.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "b2c H5.0 L9.2 (arm 0.6 higher)",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.2
+   }
+  }
+ }
+]

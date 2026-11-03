@@ -1,0 +1,149 @@
+{
+ "hash": "8d353c0ac3",
+ "name": "diag b2 H4.4 L10.2 no battery",
+ "purpose": "Diagnostics of the sim model: battery removed, stricter end criterion, lossless FR4.",
+ "tag": "diag1",
+ "model": "v4",
+ "board": "build/b2/board.json",
+ "battery": false,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 4.4,
+   "Wa": 1.0,
+   "L": 10.2
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.0
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.0
+   ],
+   [
+    -10.4,
+    14.0,
+    10.2,
+    15.0
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    85.0,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    86.0,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    85.0,
+    160.2,
+    86.0
+   ]
+  ],
+  "x": [
+   139.6,
+   160.2
+  ],
+  "y": [
+   85.0,
+   91.22
+  ],
+  "edge_clearance": 1.3073640726781512
+ },
+ "f_s11_min_GHz": 2.466,
+ "s11_min_dB": -10.51,
+ "ble_worst_no_parts_dB": -9.0,
+ "bw10_MHz": [
+  2430,
+  2503
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   24.99,
+   -9.73
+  ],
+  "2.44": [
+   26.48,
+   0.14
+  ],
+  "2.48": [
+   28.44,
+   10.13
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 29.00 nH",
+  "net": [
+   [
+    "pL",
+    29.0
+   ]
+  ],
+  "ble_worst_dB": -9.58
+ },
+ "match_2part": {
+  "parts": "series 1.62 nH, shunt 1.15 pF",
+  "net": [
+   [
+    "sL",
+    1.616
+   ],
+   [
+    "pC",
+    1.1500000000000004
+   ]
+  ],
+  "ble_worst_dB": -14.13
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff": 0.25164553526672157,
+   "tot_eff": 0.21994905645828794,
+   "Dmax_dBi": 5.865142518321966,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff": 0.2550009112472034,
+   "tot_eff": 0.2308841246736013,
+   "Dmax_dBi": 6.016486342374298,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff": 0.2587076126447282,
+   "tot_eff": 0.23525486209396335,
+   "Dmax_dBi": 6.162699126904753,
+   "valid": false,
+   "flux_eff": null
+  }
+ ],
+ "efficiency_valid": false,
+ "cells": 1796256,
+ "run_s": 1478
+}

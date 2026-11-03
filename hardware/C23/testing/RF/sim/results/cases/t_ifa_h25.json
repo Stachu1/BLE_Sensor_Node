@@ -1,0 +1,2 @@
+{"name": "ifa_h25", "family": "ifa", "start": {"S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 2.5, "Wa": 1.0, "L": 11.8},
+ "vars": ["L", "S"], "deltas": [0.6, 0.5], "ranges": {"S": [2.5, 6.0]}, "target": 2.45e9, "max_iter": 6, "threads": 5}

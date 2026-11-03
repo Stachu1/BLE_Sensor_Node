@@ -1,0 +1,146 @@
+{
+ "hash": "4f9295f937",
+ "name": "b2c top 85 Wa2 H3.4 L9.7",
+ "purpose": "Candidates on b2 around the best quick result (arm top at KiCad y 85): length, short-leg spacing, arm width, arm height.",
+ "tag": "b2_cand1",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 3.4,
+   "Wa": 2.0,
+   "L": 9.7
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.0
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    13.0
+   ],
+   [
+    -10.4,
+    13.0,
+    9.7,
+    15.0
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    85.0,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    87.0,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    85.0,
+    159.7,
+    87.0
+   ]
+  ],
+  "x": [
+   139.6,
+   159.7
+  ],
+  "y": [
+   85.0,
+   91.22
+  ],
+  "edge_clearance": 1.3073640726781512
+ },
+ "f_s11_min_GHz": 2.459,
+ "s11_min_dB": -9.0,
+ "ble_worst_no_parts_dB": -8.24,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   23.46,
+   -11.11
+  ],
+  "2.44": [
+   23.66,
+   -1.8
+  ],
+  "2.48": [
+   24.23,
+   7.21
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 39.75 nH",
+  "net": [
+   [
+    "pL",
+    39.75
+   ]
+  ],
+  "ble_worst_dB": -8.54
+ },
+ "match_2part": {
+  "parts": "series 2.80 pF, shunt 3.35 nH",
+  "net": [
+   [
+    "sC",
+    2.8000000000000007
+   ],
+   [
+    "pL",
+    3.3475
+   ]
+  ],
+  "ble_worst_dB": -13.96
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff": 0.9349558907896542,
+   "tot_eff": 0.7947046815817473,
+   "Dmax_dBi": 1.9350375453689252,
+   "valid": true,
+   "flux_eff": 0.8957215912648065
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff": 0.9488478718075356,
+   "tot_eff": 0.8270254985626669,
+   "Dmax_dBi": 1.9503218746612128,
+   "valid": true,
+   "flux_eff": 0.9086786923589456
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff": 0.961847987075781,
+   "tot_eff": 0.837974402262935,
+   "Dmax_dBi": 1.9657627532378452,
+   "valid": true,
+   "flux_eff": 0.9208537896237641
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 1970670,
+ "run_s": 3407
+}

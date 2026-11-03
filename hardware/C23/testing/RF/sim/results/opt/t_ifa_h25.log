@@ -1,0 +1,6 @@
+[   0.0 min] config {"name": "ifa_h25", "family": "ifa", "start": {"S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 2.5, "Wa": 1.0, "L": 11.8}, "vars": ["L", "S"], "deltas": [0.6, 0.5], "ranges": {"S": [2.5, 6.0]}, "target": 2450000000.0, "max_iter": 6, "threads": 5}
+[   0.0 min] 6b403d3162 ifa S=3.5 Ws=2 Wf=1 H=2.5 Wa=1 L=11.8                        Z(2.450)   16.0 +44.0j  S11   -3.1 dB | min   -4.8 @ 2.263 | BLE worst   -2.8 | bw10 None | eff 0.27
+[   0.0 min] 75c92999e0 ifa S=3.5 Ws=2 Wf=1 H=2.5 Wa=1 L=12.4                        Z(2.450)   16.9 +59.6j  S11   -2.4 dB | min   -4.7 @ 2.203 | BLE worst   -2.2 | bw10 None | eff 0.26
+[   0.0 min] 34f2bd6780 ifa S=4 Ws=2 Wf=1 H=2.5 Wa=1 L=11.8                          Z(2.450)   16.0 +43.5j  S11   -3.1 dB | min   -4.3 @ 2.275 | BLE worst   -2.9 | bw10 None | eff 0.27
+[  25.5 min] 9a97810cdc ifa S=6 Ws=2 Wf=1 H=2.5 Wa=1 L=11.85                         Z(2.450)   16.0 +43.8j  S11   -3.1 dB | min   -3.4 @ 2.325 | BLE worst   -2.9 | bw10 None | eff 0.27
+[  25.5 min] 34f2bd6780 ifa S=4 Ws=2 Wf=1 H=2.5 Wa=1 L=11.8                          Z(2.450)   16.0 +43.5j  S11   -3.1 dB | min   -4.3 @ 2.275 | BLE worst   -2.9 | bw10 None | eff 0.27

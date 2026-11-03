@@ -1,0 +1,39 @@
+[
+ {
+  "name": "cal b2 H4.4 L9.7 lossless FR4",
+  "purpose": "Efficiency calibration: with lossless FR4 the true radiation efficiency is 100 %, so this shows the bias of the far-field method on this exact board (own transform and Poynting flux).",
+  "case": {
+   "board": "build/b2/board.json",
+   "tand_scale": 0.0,
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ },
+ {
+  "name": "cal b2 H4.4 L9.7 lossless no battery",
+  "purpose": "Efficiency calibration without the battery (separates the battery from the method bias).",
+  "case": {
+   "board": "build/b2/board.json",
+   "tand_scale": 0.0,
+   "battery": false,
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7
+   }
+  }
+ }
+]

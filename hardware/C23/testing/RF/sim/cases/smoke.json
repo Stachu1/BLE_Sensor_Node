@@ -1,0 +1,2 @@
+[{"name": "smoke_placed", "case": {"antenna": "placed", "max_ts": 400}},
+ {"name": "smoke_multi", "case": {"antenna": {"family": "ifa", "L": 11.8}, "ports": "multi", "max_ts": 400}}]

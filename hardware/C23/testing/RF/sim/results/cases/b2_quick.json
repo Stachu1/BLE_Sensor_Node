@@ -1,0 +1,6 @@
+[{"name": "b2 placed", "case": {"board": "build/b2/board.json", "antenna": "placed"}},
+ {"name": "b2 ifa H3 L11.3 (same shape as b1 ifa_h30)", "case": {"board": "build/b2/board.json", "antenna": {"family": "ifa", "base": "b2", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 3.0, "Wa": 1.0, "L": 11.3}}},
+ {"name": "b2 ifa H3.7 L9.9", "case": {"board": "build/b2/board.json", "antenna": {"family": "ifa", "base": "b2", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 3.7, "Wa": 1.0, "L": 9.9}}},
+ {"name": "b2 ifa H4.4 L9.2", "case": {"board": "build/b2/board.json", "antenna": {"family": "ifa", "base": "b2", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 4.4, "Wa": 1.0, "L": 9.2}}},
+ {"name": "b2 ifa H4.4 L10.2", "case": {"board": "build/b2/board.json", "antenna": {"family": "ifa", "base": "b2", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 4.4, "Wa": 1.0, "L": 10.2}}},
+ {"name": "b1 ifa H3 L10.6 (old board, estimated 2.45 GHz length)", "case": {"antenna": {"family": "ifa", "S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 3.0, "Wa": 1.0, "L": 10.6}}}]

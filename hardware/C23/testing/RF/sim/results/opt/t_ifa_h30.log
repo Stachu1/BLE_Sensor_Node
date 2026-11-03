@@ -1,0 +1,5 @@
+[   0.0 min] config {"name": "ifa_h30", "family": "ifa", "start": {"S": 3.5, "Ws": 2.0, "Wf": 1.0, "H": 3.0, "Wa": 1.0, "L": 11.3}, "vars": ["L", "S"], "deltas": [0.6, 0.5], "ranges": {"S": [2.5, 6.0]}, "target": 2450000000.0, "max_iter": 6, "threads": 5}
+[   0.0 min] 6a02950cb5 ifa S=3.5 Ws=2 Wf=1 H=3 Wa=1 L=11.3                          Z(2.450)   19.7 +28.8j  S11   -5.1 dB | min   -6.0 @ 2.358 | BLE worst   -4.6 | bw10 None | eff 0.28
+[   0.0 min] 3dc287e066 ifa S=3.5 Ws=2 Wf=1 H=3 Wa=1 L=11.9                          Z(2.450)   21.3 +45.8j  S11   -3.9 dB | min   -5.6 @ 2.294 | BLE worst   -3.5 | bw10 None | eff 0.28
+[   0.0 min] f40cd4c81d ifa S=4 Ws=2 Wf=1 H=3 Wa=1 L=11.3                            Z(2.450)   19.2 +28.7j  S11   -5.0 dB | min   -5.5 @ 2.372 | BLE worst   -4.6 | bw10 None | eff 0.28
+[  33.0 min] ec6a57f835 ifa S=2.5 Ws=2 Wf=1 H=3 Wa=1 L=11.2                          Z(2.450)   21.2 +27.4j  S11   -5.6 dB | min   -7.9 @ 2.346 | BLE worst   -4.8 | bw10 None | eff 0.28

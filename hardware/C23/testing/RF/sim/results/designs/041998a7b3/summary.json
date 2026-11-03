@@ -1,0 +1,97 @@
+{
+ "hash": "041998a7b3",
+ "name": "placed_r011_bat",
+ "purpose": "",
+ "tag": "p2",
+ "model": "v2",
+ "board": "build/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "placed (AE1 copper from the board file)",
+  "x": [
+   139.6,
+   159.1
+  ],
+  "y": [
+   85.0,
+   90.0
+  ],
+  "edge_clearance": 1.3073640726781512
+ },
+ "f_s11_min_GHz": 2.65,
+ "s11_min_dB": -8.02,
+ "ble_worst_no_parts_dB": -3.63,
+ "bw10_MHz": null,
+ "Z_J2_ohm": {
+  "2.40": [
+   17.13,
+   -39.29
+  ],
+  "2.44": [
+   17.32,
+   -30.39
+  ],
+  "2.48": [
+   17.79,
+   -22.08
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 3.00 nH",
+  "net": [
+   [
+    "pL",
+    3.0
+   ]
+  ],
+  "ble_worst_dB": -8.76
+ },
+ "match_2part": {
+  "parts": "series 0.39 nH, shunt 2.70 nH",
+  "net": [
+   [
+    "sL",
+    0.39200000000000007
+   ],
+   [
+    "pL",
+    2.6950000000000003
+   ]
+  ],
+  "ble_worst_dB": -12.22
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff": 0.26655797792743846,
+   "tot_eff": 0.15091899269070025,
+   "Dmax_dBi": 5.825095321622394,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff": 0.27151604653109496,
+   "tot_eff": 0.17240564993510563,
+   "Dmax_dBi": 5.977725466225722,
+   "valid": false,
+   "flux_eff": null
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff": 0.27592300873973924,
+   "tot_eff": 0.1931564815942391,
+   "Dmax_dBi": 6.123672828703823,
+   "valid": false,
+   "flux_eff": null
+  }
+ ],
+ "efficiency_valid": false,
+ "cells": 2092896,
+ "run_s": 2
+}

@@ -1,0 +1,70 @@
+[
+ {
+  "name": "size b2t5, 5 mm taller",
+  "purpose": "Bigger board: how much does a larger ground plane improve the matched bandwidth and efficiency of the same IFA (H4.4 L9.7)?",
+  "case": {
+   "board": "build/b2t5/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7,
+    "base": "b2t5"
+   }
+  }
+ },
+ {
+  "name": "size b2t10, 10 mm taller",
+  "purpose": "Bigger board: how much does a larger ground plane improve the matched bandwidth and efficiency of the same IFA (H4.4 L9.7)?",
+  "case": {
+   "board": "build/b2t10/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7,
+    "base": "b2t10"
+   }
+  }
+ },
+ {
+  "name": "size b2w4, 4 mm wider",
+  "purpose": "Bigger board: how much does a larger ground plane improve the matched bandwidth and efficiency of the same IFA (H4.4 L9.7)?",
+  "case": {
+   "board": "build/b2w4/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7,
+    "base": "b2w4"
+   }
+  }
+ },
+ {
+  "name": "size b2w8, 8 mm wider",
+  "purpose": "Bigger board: how much does a larger ground plane improve the matched bandwidth and efficiency of the same IFA (H4.4 L9.7)?",
+  "case": {
+   "board": "build/b2w8/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 4.4,
+    "Wa": 1.0,
+    "L": 9.7,
+    "base": "b2w8"
+   }
+  }
+ }
+]

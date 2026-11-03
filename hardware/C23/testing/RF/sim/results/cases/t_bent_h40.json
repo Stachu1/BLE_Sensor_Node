@@ -1,0 +1,2 @@
+{"name": "bent_h40", "family": "fifa", "start": {"S": 3.5, "Ws": 1.0, "Wf": 1.0, "H": 4.0, "Wa": 0.8, "L": 10.4, "H2": 2.4, "L2": 0.8},
+ "vars": ["H2", "S"], "deltas": [-0.5, 0.5], "ranges": {"S": [2.0, 6.0], "H2": [1.0, 2.7]}, "target": 2.45e9, "max_iter": 6, "threads": 5}
