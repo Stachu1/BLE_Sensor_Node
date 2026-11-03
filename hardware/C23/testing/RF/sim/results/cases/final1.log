@@ -1,0 +1,5 @@
+final1 H5.0 L9.0             7d3b8b589d  min -15.98 dB @ 2.607 GHz  BLE worst  -5.32  Z 26.1-28.7j  eff [0.948, 0.958, 0.967]
+final1 H5.0 L9.0 mask        cae851224d  min -15.55 dB @ 2.588 GHz  BLE worst  -5.80  Z 26.5-24.8j  eff [1.018, 1.029, 1.039]
+final1 H5.0 L9.0 er-5%       de33481af6  min -17.43 dB @ 2.634 GHz  BLE worst  -4.70  Z 27.1-36.2j  eff [0.949, 0.959, 0.969]
+final1 H5.0 L9.0 er+5%       09fc7f9410  min -14.79 dB @ 2.582 GHz  BLE worst  -5.98  Z 25.6-21.8j  eff [0.947, 0.957, 0.966]
+final1 H5.0 L9.0 fine mesh   bb974a9f8c  min -16.05 dB @ 2.619 GHz  BLE worst  -4.97  Z 26.8-33.2j  eff [0.915, 0.927, 0.937]

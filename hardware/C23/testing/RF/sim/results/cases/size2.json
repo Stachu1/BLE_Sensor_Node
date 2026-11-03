@@ -1,0 +1,70 @@
+[
+ {
+  "name": "size2 b2w4 H5.0 L9.2",
+  "purpose": "Bigger board combined with the best 34 mm design (arm H5.0 L9.2): does the board-size gain add to the arm-height gain?",
+  "case": {
+   "board": "build/b2w4/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.2,
+    "base": "b2w4"
+   }
+  }
+ },
+ {
+  "name": "size2 b2w8 H5.0 L9.2",
+  "purpose": "Bigger board combined with the best 34 mm design (arm H5.0 L9.2): does the board-size gain add to the arm-height gain?",
+  "case": {
+   "board": "build/b2w8/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.2,
+    "base": "b2w8"
+   }
+  }
+ },
+ {
+  "name": "size2 b2t5 H5.0 L9.2",
+  "purpose": "Bigger board combined with the best 34 mm design (arm H5.0 L9.2): does the board-size gain add to the arm-height gain?",
+  "case": {
+   "board": "build/b2t5/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.2,
+    "base": "b2t5"
+   }
+  }
+ },
+ {
+  "name": "size2 b2t10 H5.0 L9.2",
+  "purpose": "Bigger board combined with the best 34 mm design (arm H5.0 L9.2): does the board-size gain add to the arm-height gain?",
+  "case": {
+   "board": "build/b2t10/board.json",
+   "antenna": {
+    "family": "ifa",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.2,
+    "base": "b2t10"
+   }
+  }
+ }
+]

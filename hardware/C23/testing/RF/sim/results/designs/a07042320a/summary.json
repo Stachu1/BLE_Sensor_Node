@@ -1,0 +1,155 @@
+{
+ "hash": "a07042320a",
+ "name": "final1 H5.0 L9.0 no battery",
+ "purpose": "Final candidate without the CR2032: the first bench measurement is likely done without the battery",
+ "tag": "final2",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": false,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {},
+ "ports": "j2",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 5.0,
+   "Wa": 1.0,
+   "L": 9.0
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.6
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.6
+   ],
+   [
+    -10.4,
+    14.6,
+    9.0,
+    15.6
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    84.4,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    85.4,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    84.4,
+    159.0,
+    85.4
+   ]
+  ],
+  "x": [
+   139.6,
+   159.0
+  ],
+  "y": [
+   84.4,
+   91.22
+  ],
+  "edge_clearance": 0.7524475092068506
+ },
+ "f_s11_min_GHz": 2.602,
+ "s11_min_dB": -16.29,
+ "ble_worst_no_parts_dB": -5.48,
+ "bw10_MHz": [
+  2498,
+  2719
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   25.04,
+   -36.81
+  ],
+  "2.44": [
+   26.59,
+   -27.84
+  ],
+  "2.48": [
+   28.58,
+   -19.17
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 3.50 nH",
+  "net": [
+   [
+    "pL",
+    3.5
+   ]
+  ],
+  "ble_worst_dB": -12.92
+ },
+ "match_2part": {
+  "parts": "series 0.22 nH, shunt 3.64 nH",
+  "net": [
+   [
+    "sL",
+    0.21800000000000003
+   ],
+   [
+    "pL",
+    3.6375
+   ]
+  ],
+  "ble_worst_dB": -15.49
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.8762421731572868,
+   "rad_eff": 0.8744931867837193,
+   "tot_eff": 0.6269654668049834,
+   "Dmax_dBi": 1.9254319695610218,
+   "valid": true,
+   "flux_eff": 0.8745688847701707,
+   "cal_factor": 1.002
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.8852031237233385,
+   "rad_eff": 0.8834362512208968,
+   "tot_eff": 0.7074155323478784,
+   "Dmax_dBi": 1.9356413927041691,
+   "valid": true,
+   "flux_eff": 0.883601928808147,
+   "cal_factor": 1.002
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.8937769156696067,
+   "rad_eff": 0.8919929298099867,
+   "tot_eff": 0.7793203377361094,
+   "Dmax_dBi": 1.9460085098452242,
+   "valid": true,
+   "flux_eff": 0.8919160543691604,
+   "cal_factor": 1.002
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 1807920,
+ "run_s": 1862
+}
