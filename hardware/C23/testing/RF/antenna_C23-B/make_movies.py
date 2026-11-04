@@ -1,10 +1,10 @@
-"""Field movies of the detailed run: VTK conversion, ParaView rendering, MP4 and GIF encoding.
+"""Field movies of the detailed run: VTK conversion, ParaView rendering, MP4 encoding.
 
     python make_movies.py <sim_e0 dir> <work dir>
 
 1. fields_to_vtk.py  <sim_e0> -> <work>/vtk          (ParaView files, also for your own ParaView work)
 2. render_pv.py      <work>/vtk -> <work>/frames     (pvpython, PNG frames)
-3. this script       frames -> figures/movies/<name>.mp4 and .gif (ffmpeg from imageio-ffmpeg, Pillow)
+3. this script       frames -> figures/movies/<name>.mp4 and a still (ffmpeg from imageio-ffmpeg, Pillow)
 
 The phase movies are one period of the 2.44 GHz steady state and loop seamlessly. The td_ movies are the
 Gaussian pulse (1.45 to 3.45 GHz) from the start of the run.
@@ -40,14 +40,9 @@ def encode(frame_dir, name, fps, loops):
 	subprocess.run([ffmpeg(), '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', lst,
 		'-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p', '-r', str(fps), '-c:v', 'libx264', '-crf', '18',
 		os.path.join(OUT, name + '.mp4')], check=True)
-	# GIF at half size, adaptive palette per movie
-	ims = [Image.open(f).convert('RGB') for f in files]
-	ims = [im.resize((im.width // 2, im.height // 2), Image.LANCZOS) for im in ims]
-	pal = ims[len(ims) // 2].quantize(colors=255, method=Image.MEDIANCUT)
-	q = [im.quantize(palette=pal, dither=Image.NONE) for im in ims]
-	q[0].save(os.path.join(OUT, name + '.gif'), save_all=True, append_images=q[1:], duration=int(1000 / fps), loop=0)
-	# still of the middle frame
-	ims[len(ims) // 2].save(os.path.join(OUT, name + '_still.png'))
+	# still of the middle frame at half size
+	im = Image.open(files[len(files) // 2]).convert('RGB')
+	im.resize((im.width // 2, im.height // 2), Image.LANCZOS).save(os.path.join(OUT, name + '_still.png'))
 	print('wrote', name, len(files), 'frames', flush=True)
 
 

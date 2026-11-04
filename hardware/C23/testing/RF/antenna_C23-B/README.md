@@ -163,11 +163,11 @@ ground edge:
 ![E cross-section](figures/fields/E_cut_yz_arm.png)
 
 More pictures in [`figures/fields/`](figures/fields/): the field just above F.Cu and in the prepreg, the gap between
-the ground edge and the arm, the feed leg, the magnetic field, and three GIFs of Ez over one period.
+the ground edge and the arm, the feed leg and the magnetic field. Ez over one period is in the movies below.
 
 ### Movies
 
-In [`figures/movies/`](figures/movies/), each as MP4, GIF (half size) and a still:
+In [`figures/movies/`](figures/movies/), each as MP4 and a still:
 
 | movie | shows |
 |---|---|
@@ -216,9 +216,9 @@ Case lists: `../sim/cases/b3_*.json`. Results and design records: `../sim/result
 | file | does |
 |---|---|
 | `make_figures.py` | S11, Smith chart, impedance, VSWR, tolerance, pattern, efficiency budget, drawings -> `figures/`, `data/` |
-| `field_pictures.py` | field stills and GIFs from the field dumps (matplotlib) -> `figures/fields/` |
+| `field_pictures.py` | field stills from the field dumps (matplotlib) -> `figures/fields/` |
 | `fields_to_vtk.py` | field dumps -> ParaView files (2.44 GHz phase series, volume, time-domain pulse, geometry) |
 | `td_convert_pv.py` | helper run with ParaView's pvpython, converts the openEMS time-domain files to mm |
 | `render_pv.py` | renders the movie frames with pvpython |
-| `make_movies.py` | runs the two above and encodes MP4 and GIF (ffmpeg from imageio-ffmpeg) |
+| `make_movies.py` | runs the two above and encodes MP4 and the stills (ffmpeg from imageio-ffmpeg) |
 | `data/` | S11 curves, efficiency, tolerance, pattern, S3P and `summary.json` |

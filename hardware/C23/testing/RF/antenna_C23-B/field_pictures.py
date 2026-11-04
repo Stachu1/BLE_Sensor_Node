@@ -1,8 +1,8 @@
-"""Still pictures and GIFs of the fields from the detailed run (matplotlib, no ParaView needed).
+"""Still pictures of the fields from the detailed run (matplotlib, no ParaView needed).
 
 Reads the 2.44 GHz phasor dumps (fd_*.h5) and the time-domain samples (td_*.vtr) of the run's sim_e0 folder and
 writes figures/fields/. Field values are relative (the source is the openEMS excitation, not a set power). Magnitude pictures are in dB
-with 0 dB at the 99.5th percentile of the picture, the GIFs show one field component normalised to its maximum.
+with 0 dB at the 99.5th percentile of the picture.
 
 Usage:  python field_pictures.py <sim_e0 dir>
 """
@@ -15,7 +15,6 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, PillowWriter
 from matplotlib.patches import Polygon, Rectangle
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -135,35 +134,6 @@ def quiver_cut(src, name, title, overlay, xlim, ylim, out, labels, comp, phase=0
 	plt.close(fig)
 
 
-def gif_phase(src, name, comp, title, overlay, xlim, ylim, out, labels, nframe=24, sym_clip=0.15):
-	"""Steady-state animation of one field component at 2.44 GHz (one period)."""
-	x, y, z, F = read_fd(src, name)
-	u, v, F2, _ = plane2d(x, y, z, F)
-	C = F2['xyz'.index(comp)]
-	C = C / np.abs(C).max()
-	su = (u >= xlim[0]) & (u <= xlim[1])
-	sv = (v >= ylim[0]) & (v <= ylim[1])
-	vmax = np.abs(C[np.ix_(su, sv)]).max() * sym_clip
-	fig, ax = plt.subplots(figsize=(7, 4.6))
-	m = ax.pcolormesh(u, v, np.real(C).T, shading='auto', cmap='RdBu_r', vmin=-vmax, vmax=vmax)
-	overlay(ax)
-	ax.set_xlim(*xlim)
-	ax.set_ylim(*ylim)
-	ax.set_aspect('equal')
-	ax.set_xlabel(labels[0])
-	ax.set_ylabel(labels[1])
-	fig.colorbar(m, ax=ax, shrink=0.8, label='E%s (relative, colour clipped at %d %% of the max)' % (comp, sym_clip * 100))
-	t = ax.set_title(title)
-
-	def frame(k):
-		ph = 2 * np.pi * k / nframe
-		m.set_array(np.real(C * np.exp(1j * ph)).T.ravel())
-		t.set_text('%s, phase %3d deg' % (title, round(np.degrees(ph))))
-		return m, t
-	FuncAnimation(fig, frame, frames=nframe, blit=False).save(os.path.join(OUT, out), writer=PillowWriter(fps=12))
-	plt.close(fig)
-
-
 def main():
 	src = os.path.abspath(sys.argv[1])
 	os.makedirs(OUT, exist_ok=True)
@@ -191,12 +161,6 @@ def main():
 		lambda ax: overlay_cut_xz(ax, 12.1), (-14, 13), (-3, 6), 'E_cut_xz_gap.png', xz_lab, 'E')
 	still_magnitude(src, 'fd_E_yz_mid', '|E| in the plane x = 0, around the board', lambda ax: overlay_cut_yz(ax, 0.0),
 		(-47, 47), (-34, 31), 'E_cut_yz_domain.png', yz_lab)
-	gif_phase(src, 'fd_E_top', 'z', 'Ez above F.Cu, 2.44 GHz', overlay_top, (-13, 12), (4, 17.5), 'Ez_top_antenna.gif', top_lab,
-		sym_clip=0.5)
-	gif_phase(src, 'fd_E_yz_mid', 'z', 'Ez in the plane x = 0, 2.44 GHz', lambda ax: overlay_cut_yz(ax, 0.0),
-		(-47, 47), (-34, 31), 'Ez_cut_yz_domain.gif', yz_lab, sym_clip=0.05)
-	gif_phase(src, 'fd_E_xz_arm', 'z', 'Ez in the plane through the arm (y = 15.1), 2.44 GHz', lambda ax: overlay_cut_xz(ax, 15.1),
-		(-47, 47), (-34, 31), 'Ez_cut_xz_domain.gif', xz_lab, sym_clip=0.05)
 	print('wrote', OUT)
 
 
