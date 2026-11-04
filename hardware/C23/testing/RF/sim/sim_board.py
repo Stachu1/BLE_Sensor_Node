@@ -12,6 +12,9 @@ Usage (server, openEMS venv):  python sim_board.py <run_dir> [threads]
     er_scale   multiplies all dielectric er (sensitivity)
     nf2ff      true: radiation efficiency at NF2FF_F (J2 excitation)
     mesh       overrides of MESH below
+    parts      j2 mode only: {"L2": {"L": 1.6e-9, "Q": 35}, "L3": {...}} real parts as series R-L lumped elements on
+               their pads (R = w L / Q at 2.44 GHz, the match.py model). L2 then has no 0R bridge.
+    field_dumps  true: field dumps for ParaView in <run_dir>/sim_e0 (kept, keep_fields is implied), see add_dumps()
 Writes <run_dir>/result.json, S11.csv (J2), and for "multi" S<n>P.s<n>p (all pairs of a frequency on one line). openEMS field data is deleted after use.
 """
 import json
@@ -138,8 +141,9 @@ def build(case, board, excite_group, sim_path, threads, want_nf2ff):
 
 	ant_fy_min = min(fy)
 
-	# 0R at L2 for the J2 port mode
-	if case['ports'] == 'j2':
+	# 0R at L2 for the J2 port mode (unless a real L2 part is fitted)
+	parts = case.get('parts', {})
+	if case['ports'] == 'j2' and 'L2' not in parts:
 		a2, c2 = pad(board, 'L2', '1')['bbox'], pad(board, 'L2', '2')['bbox']
 		cu.AddBox([max(a2[0], c2[0]), min(a2[1], c2[1]), zF], [min(a2[2], c2[2]), max(a2[3], c2[3]), zF], priority=10)
 
@@ -220,6 +224,20 @@ def build(case, board, excite_group, sim_path, threads, want_nf2ff):
 				excite=1.0 if gi == excite_group else 0, priority=20))
 		ports.append(lst)
 
+	# real matching parts on the L2 / L3 pads (same geometry as the "multi" ports there)
+	if parts:
+		assert case['ports'] == 'j2', 'parts need ports j2'
+		geo = {n: subs[0] for n, subs in port_defs(board, 'multi', zF)}
+		dirs = {'x': 0, 'y': 1, 'z': 2}
+		for ref, pv in parts.items():
+			s, e, d, _ = geo[ref]
+			R = 2 * np.pi * 2.44e9 * pv['L'] / pv['Q']
+			le = CSX.AddLumpedElement('part_' + ref, ny=dirs[d], caps=True, R=R, L=pv['L'], LEtype=1)
+			le.AddBox(s, e, priority=20)
+			print('part %s: series L %.3g H, R %.3f ohm, %s -> %s' % (ref, pv['L'], R, s, e), flush=True)
+	if case.get('field_dumps', False):
+		add_dumps(CSX, board, zF, st, xl, yl, zl, a)
+
 	nf2ff = None
 	if want_nf2ff:
 		m = 8.0
@@ -277,6 +295,49 @@ def build(case, board, excite_group, sim_path, threads, want_nf2ff):
 			print('far field failed:', repr(ex), flush=True)
 			eff = None
 	return VI, eff, info, [g[0] for g in groups]
+
+
+FIELD_F = [2.44e9]
+
+
+def add_dumps(CSX, board, zF, st, xl, yl, zl, a):
+	"""Field dumps for pictures and animations (ParaView). Planes snap to the nearest mesh line.
+	TD = time domain (vtk, one file per sample, Nyquist/4 = about 11 samples per 2.44 GHz period) for the pulse
+	movie. FD = 2.44 GHz phasors (hdf5), converted to a phase animation on the laptop (fields_to_vtk.py)."""
+	o = np.array(board['outline'][0])
+	bx0, by0 = o.min(axis=0)
+	bx1, by1 = o.max(axis=0)
+	X0, X1, Y0, Y1, Z0, Z1 = xl[PML], xl[-PML - 1], yl[PML], yl[-PML - 1], zl[PML], zl[-PML - 1]
+	zIn1 = st['copper']['In1.Cu']['z']
+	ztop = zF + 0.05                                   # air just above the antenna copper (and the 20 um mask)
+	zsub = (zF + zIn1) / 2                             # inside the top prepreg
+	gy = ant.base(a)['GND_Y'] if isinstance(a, dict) else 9.6
+	r = ant.rects(a)[0] if isinstance(a, dict) else None
+	arm_y = (r[2][1] + r[2][3]) / 2 if r else 15.1
+	ygap = (gy + (arm_y - 0.5)) / 2                    # between the ground edge and the arm
+	m = 10.0
+	planes = {
+		'top': ([bx0 - m, by0 - m, ztop], [bx1 + m, by1 + m, ztop]),
+		'sub': ([bx0 - 2, by0 - 2, zsub], [bx1 + 2, by1 + 2, zsub]),
+		'xz_gap': ([X0, ygap, Z0], [X1, ygap, Z1]),
+		'xz_arm': ([X0, arm_y, Z0], [X1, arm_y, Z1]),
+		'yz_mid': ([0.0, Y0, Z0], [0.0, Y1, Z1]),
+		'yz_feed': ([ant.FEED_X, Y0, Z0], [ant.FEED_X, Y1, Z1]),
+	}
+	# time domain: E on the planes, H above the copper
+	for n in ('top', 'xz_gap', 'yz_mid', 'xz_arm'):
+		CSX.AddDump('td_E_' + n, dump_type=0, dump_mode=2, file_type=0).AddBox(*planes[n])
+	CSX.AddDump('td_H_top', dump_type=1, dump_mode=1, file_type=0).AddBox(*planes['top'])
+	# 2.44 GHz phasors
+	for n, (s, e) in planes.items():
+		CSX.AddDump('fd_E_' + n, dump_type=10, dump_mode=2, file_type=1, frequency=FIELD_F).AddBox(s, e)
+		CSX.AddDump('fd_H_' + n, dump_type=11, dump_mode=1, file_type=1, frequency=FIELD_F).AddBox(s, e)
+	CSX.AddDump('fd_J_cu', dump_type=13, dump_mode=1, file_type=1, frequency=FIELD_F).AddBox(
+		[bx0 - 1, by0 - 1, zF], [bx1 + 1, by1 + 1, zF])
+	vol = ([bx0 - 8, by0 - 8, -12.0], [bx1 + 8, by1 + 8, zF + 12.0])
+	CSX.AddDump('fd_E_vol', dump_type=10, dump_mode=2, file_type=1, frequency=FIELD_F).AddBox(*vol)
+	CSX.AddDump('fd_H_vol', dump_type=11, dump_mode=1, file_type=1, frequency=FIELD_F).AddBox(*vol)
+	print('field dumps:', {k: [list(map(float, v[0])), list(map(float, v[1]))] for k, v in planes.items()}, flush=True)
 
 
 def metrics(s11, Z):
@@ -342,7 +403,7 @@ def main():
 		if e == 0:
 			eff = ef
 		os.chdir(run_dir)                 # openEMS chdirs into sim_path, which is deleted below
-		if not case.get('keep_fields', False):
+		if not (case.get('keep_fields', False) or case.get('field_dumps', False)):
 			import shutil
 			shutil.rmtree(sim_path, ignore_errors=True)
 
