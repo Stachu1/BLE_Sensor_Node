@@ -1,0 +1,159 @@
+{
+ "hash": "5b8536e8e4",
+ "name": "final1 H5.0 L9.0 mask + fine mesh 3-port",
+ "purpose": "Definitive parts table for the order: 3-port (J2, L2, L3) with the explicit mask and the finer mesh, instead of scaling the normal-mesh 3-port data by 0.4 %",
+ "tag": "final4_3port",
+ "model": "v5",
+ "board": "build/b2/board.json",
+ "battery": true,
+ "mask": "explicit",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {
+  "ant": 0.15,
+  "rf": 0.08,
+  "rf_y": 0.1
+ },
+ "ports": "multi",
+ "geometry": {
+  "family": "ifa",
+  "base": "b2",
+  "params": {
+   "S": 3.5,
+   "Ws": 2.0,
+   "Wf": 1.0,
+   "H": 5.0,
+   "Wa": 1.0,
+   "L": 9.0
+  },
+  "rects_sim": [
+   [
+    -10.4,
+    9.35,
+    -8.4,
+    15.6
+   ],
+   [
+    -6.4,
+    8.78,
+    -5.4,
+    14.6
+   ],
+   [
+    -10.4,
+    14.6,
+    9.0,
+    15.6
+   ]
+  ],
+  "rects_kicad_x0y0x1y1": [
+   [
+    139.6,
+    84.4,
+    141.6,
+    90.65
+   ],
+   [
+    143.6,
+    85.4,
+    144.6,
+    91.22
+   ],
+   [
+    139.6,
+    84.4,
+    159.0,
+    85.4
+   ]
+  ],
+  "x": [
+   139.6,
+   159.0
+  ],
+  "y": [
+   84.4,
+   91.22
+  ],
+  "edge_clearance": 0.7524475092068506
+ },
+ "f_s11_min_GHz": 1.965,
+ "s11_min_dB": -31.01,
+ "ble_worst_no_parts_dB": -12.5,
+ "bw10_MHz": [
+  1900,
+  3000
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   32.29,
+   -4.14
+  ],
+  "2.44": [
+   31.41,
+   -2.7
+  ],
+  "2.48": [
+   30.88,
+   -1.16
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 39.75 nH",
+  "net": [
+   [
+    "pL",
+    39.75
+   ]
+  ],
+  "ble_worst_dB": -12.53
+ },
+ "match_2part": {
+  "parts": "series 3.03 pF, shunt 4.25 nH",
+  "net": [
+   [
+    "sC",
+    3.030000000000001
+   ],
+   [
+    "pL",
+    4.25
+   ]
+  ],
+  "ble_worst_dB": -29.38
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.14055360030036027,
+   "rad_eff": 0.1290666669424796,
+   "tot_eff": 0.1227121522829969,
+   "Dmax_dBi": 1.9505941708465535,
+   "valid": true,
+   "flux_eff": 0.13172546946463115,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.1505607962892105,
+   "rad_eff": 0.13825601128485815,
+   "tot_eff": 0.13082860383520803,
+   "Dmax_dBi": 1.9659588392606075,
+   "valid": true,
+   "flux_eff": 0.14105201204184667,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.15759433317216584,
+   "rad_eff": 0.1447147228394544,
+   "tot_eff": 0.13652858559623782,
+   "Dmax_dBi": 1.979948989947323,
+   "valid": true,
+   "flux_eff": 0.14758260319927977,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 6939672,
+ "run_s": 12334
+}

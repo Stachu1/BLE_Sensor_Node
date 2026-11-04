@@ -1,0 +1,26 @@
+[
+ {
+  "name": "final1 H5.0 L9.0 mask + fine mesh 3-port",
+  "purpose": "Definitive parts table for the order: 3-port (J2, L2, L3) with the explicit mask and the finer mesh, instead of scaling the normal-mesh 3-port data by 0.4 %",
+  "case": {
+   "board": "build/b2/board.json",
+   "antenna": {
+    "family": "ifa",
+    "base": "b2",
+    "S": 3.5,
+    "Ws": 2.0,
+    "Wf": 1.0,
+    "H": 5.0,
+    "Wa": 1.0,
+    "L": 9.0
+   },
+   "mask": "explicit",
+   "mesh": {
+    "ant": 0.15,
+    "rf": 0.08,
+    "rf_y": 0.1
+   },
+   "ports": "multi"
+  }
+ }
+]

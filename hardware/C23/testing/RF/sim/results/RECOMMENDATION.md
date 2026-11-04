@@ -1,6 +1,6 @@
 # C23 rev B antenna recommendation
 
-Status 2026-11-03 evening. Based on the openEMS runs in this folder (records in [DESIGNS.md](DESIGNS.md)).
+Status 2026-11-04 morning. Based on the openEMS runs in this folder (records in [DESIGNS.md](DESIGNS.md)).
 Numbers are simulation results with ideal matching parts unless a line says otherwise.
 
 ## Antenna to order
@@ -61,6 +61,22 @@ Run [5393b94279](designs/5393b94279/summary.md) has the explicit mask and the fi
 from the best estimate.) So the best single guess for the first boards is **L2 1.5 nH, L3 6.8 nH**, and the tuning
 kit below covers the +-1 % range.
 
+### Definitive parts table (3-port with mask and finer mesh)
+
+Run [5b8536e8e4](runs/5b8536e8e4) repeats the 3-port run with the explicit mask and the finer mesh. It confirms the
+scaled estimate above.
+
+| L2 | L3 | worst BLE channel | -1 % | +1 % |
+|---|---|---|---|---|
+| 0R | open | -5.5 dB | | |
+| 0R | 4.7 nH | -9.4 dB | | |
+| **1.6 nH** | **6.8 nH** | **-15.5 dB** | -12.0 dB | -11.7 dB |
+| 1.5 nH | 6.8 nH | -15.0 dB | -12.5 dB | -11.4 dB |
+| 1.8 nH | 8.2 nH | -15.5 dB | | |
+| 1.2 nH | 6.8 nH | -13.2 dB | -14.2 dB | -10.3 dB |
+
+**Parts for the order: L2 1.6 nH (1.5 nH is within 0.5 dB), L3 6.8 nH.**
+
 ### Ideal part at J2 (1-port runs, for the tolerance trend)
 
 | case | resonance | worst BLE channel, no parts | 1 ideal part at J2 | 2 ideal parts |
@@ -77,7 +93,7 @@ the battery about 5 MHz, the mask -19 MHz is already in the as-built row).
 
 ### For the bench
 
-- Start with L2 = 1.5 nH and L3 = 6.8 nH. The best estimate says about -15.5 dB in the whole band (1.2 nH / 6.8 nH if the mesh correction is left out).
+- Start with L2 = 1.6 nH and L3 = 6.8 nH. The definitive 3-port run says -15.5 dB in the whole band.
 - Measure S11 at J2 with a VNA and re-pick both parts. Without a VNA the parts above are the best guess.
 - Tuning kit (0402 RF inductors, for example Murata LQW15 or LQG15): L2 0R, 0.8, 1.0, 1.2, 1.5, 1.8, 2.2 nH and
   L3 3.9, 4.3, 4.7, 5.6, 6.8, 7.5, 8.2, 9.1 nH, plus a few 22 pF for L2.
