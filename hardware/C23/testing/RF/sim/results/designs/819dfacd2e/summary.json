@@ -1,0 +1,110 @@
+{
+ "hash": "819dfacd2e",
+ "name": "b3 AE1 3-port, mask + fine mesh",
+ "purpose": "Report run: 3-port J2 / L2 / L3 on the board as ordered, for the part cascade, part loss and tolerance",
+ "tag": "b3_4_3port",
+ "model": "v5",
+ "board": "build/b3/board.json",
+ "battery": true,
+ "mask": "explicit",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {
+  "ant": 0.15,
+  "rf": 0.08,
+  "rf_y": 0.1
+ },
+ "ports": "multi",
+ "geometry": {
+  "family": "placed (AE1 copper from the board file)",
+  "x": [
+   139.6,
+   159.0
+  ],
+  "y": [
+   84.4,
+   91.4
+  ],
+  "edge_clearance": 0.7524475092068506
+ },
+ "f_s11_min_GHz": 1.979,
+ "s11_min_dB": -30.74,
+ "ble_worst_no_parts_dB": -12.59,
+ "bw10_MHz": [
+  1900,
+  3000
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   32.56,
+   -4.14
+  ],
+  "2.44": [
+   31.62,
+   -2.7
+  ],
+  "2.48": [
+   31.04,
+   -1.17
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 39.75 nH",
+  "net": [
+   [
+    "pL",
+    39.75
+   ]
+  ],
+  "ble_worst_dB": -12.61
+ },
+ "match_2part": {
+  "parts": "series 3.03 pF, shunt 4.34 nH",
+  "net": [
+   [
+    "sC",
+    3.030000000000001
+   ],
+   [
+    "pL",
+    4.335000000000001
+   ]
+  ],
+  "ble_worst_dB": -29.41
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.14204579415389798,
+   "rad_eff": 0.13043690923222956,
+   "tot_eff": 0.12423333705231836,
+   "Dmax_dBi": 1.949512128119001,
+   "valid": true,
+   "flux_eff": 0.13313818219514262,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.15212694618932043,
+   "rad_eff": 0.13969416546310418,
+   "tot_eff": 0.1323901624851086,
+   "Dmax_dBi": 1.965108086254626,
+   "valid": true,
+   "flux_eff": 0.14253248030751225,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.15909183026714674,
+   "rad_eff": 0.14608983495605762,
+   "tot_eff": 0.13799625038843796,
+   "Dmax_dBi": 1.979321111613316,
+   "valid": true,
+   "flux_eff": 0.14899440170579506,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 6939672,
+ "run_s": 12782
+}

@@ -231,7 +231,7 @@ def fig_s11():
 	ax.fill_between(f3 / 1e9, np.minimum(*lo), np.maximum(*lo), color=C_TOL, alpha=0.45, lw=0, label='resonance shifted +-1 %')
 	ax.plot(f3 / 1e9, dB(gm), color=C_MATCH, lw=1.8, label='L2 1.6 nH, L3 6.8 nH (3-port + part models)')
 	if fw is not None:
-		ax.plot(fw[0] / 1e9, dB(fw[1]), color=C_FW, ls='--', lw=1.3, label='L2, L3 as lumped parts in the FDTD run')
+		ax.plot(fw[0] / 1e9, dB(fw[1]), color=C_FW, ls='--', lw=1.3, label='L2, L3 as lumped parts in the FDTD run (no mask, normal mesh)')
 	ax.axhline(-10, color='k', lw=0.6, ls=':')
 	ax.set_xlim(2.0, 2.9)
 	ax.set_ylim(-35, 0)
@@ -248,7 +248,7 @@ def fig_s11():
 	vs = lambda g: (1 + np.abs(g)) / (1 - np.abs(g))
 	ax.plot(f3 / 1e9, vs(gm), color=C_MATCH, lw=1.8, label='L2 1.6 nH, L3 6.8 nH')
 	if fw is not None:
-		ax.plot(fw[0] / 1e9, vs(fw[1]), color=C_FW, ls='--', label='lumped parts in the FDTD run')
+		ax.plot(fw[0] / 1e9, vs(fw[1]), color=C_FW, ls='--', label='lumped parts in the FDTD run (no mask)')
 	ax.plot(f3 / 1e9, vs(g_open), color=C_NONE, label='no parts')
 	ax.set_xlim(2.2, 2.7)
 	ax.set_ylim(1, 5)
@@ -324,7 +324,7 @@ def fig_smith():
 	ax = axs[1]
 	smith_trace(ax, f3, gm, C_MATCH, 'cascade, 3-port + part models')
 	if fw is not None:
-		smith_trace(ax, fw[0], fw[1], C_FW, 'lumped parts in the FDTD run', ls='--')
+		smith_trace(ax, fw[0], fw[1], C_FW, 'lumped parts in the FDTD run (no mask)', ls='--')
 	for s, c in ((-0.01, '#6a9ad8'), (0.01, '#0a3a8a')):
 		g, _, _ = cascade(f3, shift(f3, S3, s), zL2, zL3)
 		smith_trace(ax, f3, g, c, 'resonance %+d %%' % (s * 100), lw=0.8, markers=False)

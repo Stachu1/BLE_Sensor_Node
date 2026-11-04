@@ -1,0 +1,108 @@
+{
+ "hash": "8b668025c7",
+ "name": "b3 AE1 L2 1.6n L3 6.8n, 150 mm air, field dumps",
+ "purpose": "Visualisation run: matched antenna with 150 mm of air around the board (about 1.2 wavelengths) so the field movies show the radiated wave. Normal mesh, no mask, not used for the numbers",
+ "tag": "b3_3_wave",
+ "model": "v5",
+ "board": "build/b3/board.json",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {
+  "air": 150.0
+ },
+ "ports": "j2",
+ "geometry": {
+  "family": "placed (AE1 copper from the board file)",
+  "x": [
+   139.6,
+   159.0
+  ],
+  "y": [
+   84.4,
+   91.4
+  ],
+  "edge_clearance": 0.7524475092068506
+ },
+ "f_s11_min_GHz": 2.455,
+ "s11_min_dB": -49.74,
+ "ble_worst_no_parts_dB": -13.15,
+ "bw10_MHz": [
+  2376,
+  2545
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   65.72,
+   -20.54
+  ],
+  "2.44": [
+   53.1,
+   -5.28
+  ],
+  "2.48": [
+   45.16,
+   7.87
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 19.25 nH",
+  "net": [
+   [
+    "pL",
+    19.25
+   ]
+  ],
+  "ble_worst_dB": -14.75
+ },
+ "match_2part": {
+  "parts": "series 0.59 nH, shunt 0.05 pF",
+  "net": [
+   [
+    "sL",
+    0.5940000000000002
+   ],
+   [
+    "pC",
+    0.04700000000000001
+   ]
+  ],
+  "ble_worst_dB": -15.01
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.8766348110439012,
+   "rad_eff": 0.8049906437501388,
+   "tot_eff": 0.7659919563086214,
+   "Dmax_dBi": 1.985203912010458,
+   "valid": true,
+   "flux_eff": 0.8554756862702837,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.8936407761692469,
+   "rad_eff": 0.8206067733418245,
+   "tot_eff": 0.8177199250600139,
+   "Dmax_dBi": 1.999975844297941,
+   "valid": true,
+   "flux_eff": 0.8715547231534037,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 0.9090612780937535,
+   "rad_eff": 0.834767013860196,
+   "tot_eff": 0.826950935862979,
+   "Dmax_dBi": 2.014120284459642,
+   "valid": true,
+   "flux_eff": 0.8861280421215679,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 6617376,
+ "run_s": 1530
+}

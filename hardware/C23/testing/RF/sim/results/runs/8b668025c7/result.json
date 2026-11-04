@@ -1,0 +1,103 @@
+{
+ "case": {
+  "model": "v5",
+  "board": "build/b3/board.json",
+  "ports": "j2",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "antenna": "placed",
+  "mesh": {
+   "air": 150.0
+  },
+  "parts": {
+   "L2": {
+    "L": 1.6e-09,
+    "Q": 25
+   },
+   "L3": {
+    "L": 6.8e-09,
+    "Q": 45
+   }
+  },
+  "field_dumps": true,
+  "name": "b3 AE1 L2 1.6n L3 6.8n, 150 mm air, field dumps",
+  "tag": "b3_3_wave",
+  "purpose": "Visualisation run: matched antenna with 150 mm of air around the board (about 1.2 wavelengths) so the field movies show the radiated wave. Normal mesh, no mask, not used for the numbers"
+ },
+ "mesh": {
+  "cells": [
+   222,
+   216,
+   138
+  ],
+  "ncells": 6617376,
+  "min_cell": [
+   0.07499999999999929,
+   0.1200000000000001,
+   0.091697
+  ],
+  "t_run": 1514.9522395133972,
+  "subport_u_ratio_2440": [
+   0.9964023921991345,
+   -0.44941481154265894
+  ]
+ },
+ "t_total": 1530.0192921161652,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 1.7274401296203245e-27,
+   "rad_eff": 0.8766348110439012,
+   "tot_eff": 0.8341652404200887,
+   "Dmax_dBi": 1.985203912010458,
+   "flux_eff": 0.8554756862702837,
+   "Prad_openems_eff": 0.22992715490985904
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 1.865447649835044e-27,
+   "rad_eff": 0.8936407761692469,
+   "tot_eff": 0.8904969983903551,
+   "Dmax_dBi": 1.999975844297941,
+   "flux_eff": 0.8715547231534037,
+   "Prad_openems_eff": 0.23433749739229762
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 1.881659970545639e-27,
+   "rad_eff": 0.9090612780937535,
+   "tot_eff": 0.9005495691547841,
+   "Dmax_dBi": 2.014120284459642,
+   "flux_eff": 0.8861280421215679,
+   "Prad_openems_eff": 0.23860961274921083
+  }
+ ],
+ "ports": [
+  "J2"
+ ],
+ "metrics": {
+  "f_min": 2455000000.0,
+  "s_min": -49.740293198657916,
+  "ble_worst": -13.147408422272047,
+  "ble_best": -49.740293198657916,
+  "goal_worst": -10.492407634955153,
+  "Z_2440": [
+   53.1047315844383,
+   -5.277919966389417
+  ],
+  "S11_2440_dB": -24.537111371883423,
+  "bw10": [
+   2376000000.0,
+   2545000000.0
+  ],
+  "bw6": [
+   2324000000.0,
+   2625000000.0
+  ],
+  "f_Rmax": 2227000000.0,
+  "Rmax": 306.6560668686238,
+  "min_interior": true
+ }
+}
