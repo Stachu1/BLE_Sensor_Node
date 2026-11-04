@@ -41,7 +41,7 @@ for name, lst in sorted(series.items()):
 		va.SetName(qty)
 		pd.AddArray(va)
 		ma = numpy_to_vtk(np.sqrt((v.astype(np.float64) ** 2).sum(axis=1)).astype(np.float32), deep=1)
-		ma.SetName('|%s|' % qty)
+		ma.SetName('%s_mag' % qty)
 		pd.AddArray(ma)
 		w = vtkXMLRectilinearGridWriter()
 		w.SetFileName(os.path.join(d, 't%04d.vtr' % k))

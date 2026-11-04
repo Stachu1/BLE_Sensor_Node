@@ -2,25 +2,32 @@
 
 Input: the run's sim_e0 folder (copied from the server, see README), with
     fd_<E|H>_<plane>.h5, fd_J_cu.h5, fd_<E|H>_vol.h5   2.44 GHz phasors (hdf5)
-    td_<E|H>_<plane>_<step>.vtr                         time-domain samples written by openEMS
+    td_<E|H>_<plane>_<step>.vtr                         time-domain samples written by openEMS (in metres)
 Output in <out>:
-    fd/<name>.pvd + fd/<name>/p<k>.vtr  phase animation of the 2.44 GHz steady state: field(t) = Re(F e^(j wt)),
+    fd/<name>_vol.vtr                   volume around the board: real and imaginary part and peak amplitude
+    fd/<name>.pvd + fd/<name>/p<k>.vtr  planes: phase animation of the 2.44 GHz steady state: field(t) = Re(F e^(j wt)),
                                         one period in NPHASE frames. Arrays: vector field, its magnitude and
                                         the peak amplitude |F| (same in every frame, good for a still picture).
-    td/<name>.pvd                       the openEMS time samples as one series with the time in ns
-Coordinates are written in mm in the simulation frame (x_sim = x_kicad - 150, y_sim = 100 - y_kicad, z up from
-B.Cu, F.Cu at z 1.486 mm).
+    td/<name>.pvd + td/<name>/t<k>.vtr  the openEMS time samples in mm, one series with the time in ns (pvpython)
+    geometry/*.vtk                      antenna AE1, copper layers, board outline, battery outline (mm)
+Coordinates are in mm in the simulation frame (x_sim = x_kicad - 150, y_sim = 100 - y_kicad, z up from B.Cu,
+F.Cu at z 1.486 mm).
 
 Usage:  python fields_to_vtk.py <sim_e0 dir> <out dir> [nphase]
 """
 import glob
+import json
 import os
 import re
+import subprocess
 import sys
 
 import h5py
 import numpy as np
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+BOARD = os.path.normpath(os.path.join(HERE, '..', 'sim', 'build', 'b3', 'board.json'))
+PVPYTHON = r'C:\Program Files\ParaView 6.2.0\bin\pvpython.exe'
 NPHASE = 36
 DT = 1.77722e-13       # overwritten from run.log when it is found next to sim_e0
 
@@ -79,6 +86,12 @@ def convert_fd(src, out, nphase):
 		x, y, z, F = read_fd(p)
 		V = F.transpose(3, 2, 1, 0).reshape(-1, 3)                       # x fastest
 		amp = np.sqrt(np.sum(np.abs(V) ** 2, axis=1))
+		if name.endswith('_vol'):
+			# volume: one file, real and imaginary part (ParaView Calculator: re*cos(t) - im*sin(t) for any phase t)
+			write_vtr(os.path.join(out, 'fd', name + '.vtr'), x, y, z,
+				{qty + '_re': V.real, qty + '_im': V.imag, '%s_peak' % qty: amp})
+			print('%-14s %s points, re/im/peak' % (name, 'x'.join(map(str, (len(x), len(y), len(z))))), flush=True)
+			continue
 		d = os.path.join(out, 'fd', name)
 		os.makedirs(d, exist_ok=True)
 		items = []
@@ -86,25 +99,57 @@ def convert_fd(src, out, nphase):
 			ph = 2 * np.pi * k / nphase
 			R = np.real(V * np.exp(1j * ph))
 			write_vtr(os.path.join(d, 'p%02d.vtr' % k), x, y, z,
-				{qty: R, '|%s|' % qty: np.sqrt(np.sum(R ** 2, axis=1)), '%s peak' % qty: amp})
+				{qty: R, '%s_mag' % qty: np.sqrt(np.sum(R ** 2, axis=1)), '%s_peak' % qty: amp})
 			items.append((k / nphase, '%s/p%02d.vtr' % (name, k)))
 		write_pvd(os.path.join(out, 'fd', name + '.pvd'), items)
 		print('%-14s %s points, %d phases' % (name, 'x'.join(map(str, (len(x), len(y), len(z)))), nphase), flush=True)
 
 
 def convert_td(src, out, dt):
-	os.makedirs(os.path.join(out, 'td'), exist_ok=True)
-	series = {}
-	for p in glob.glob(os.path.join(src, 'td_*.vtr')):
-		m = re.match(r'(td_.+)_(\d+)\.vtr$', os.path.basename(p))
-		if m:
-			series.setdefault(m.group(1), []).append((int(m.group(2)), p))
-	for name, lst in sorted(series.items()):
-		lst.sort()
-		rel = os.path.relpath(src, os.path.join(out, 'td')).replace('\\', '/')
-		write_pvd(os.path.join(out, 'td', name + '.pvd'),
-			[(n * dt * 1e9, '%s/%s' % (rel, os.path.basename(p))) for n, p in lst])
-		print('%-14s %d samples, %.2f ns' % (name, len(lst), lst[-1][0] * dt * 1e9), flush=True)
+	"""openEMS writes the time-domain files in metres, rewrite them in mm with pvpython (td_convert_pv.py)."""
+	pv = os.environ.get('PVPYTHON', PVPYTHON)
+	if not os.path.exists(pv):
+		print('pvpython not found (%s), time-domain series skipped. Set PVPYTHON.' % pv)
+		return
+	subprocess.run([pv, os.path.join(HERE, 'td_convert_pv.py'), src, os.path.join(out, 'td'), repr(dt)], check=True)
+
+
+def write_poly_vtk(path, polys, z, faces=False):
+	"""Legacy VTK polydata at height z (mm): closed outlines (lines) or filled polygons."""
+	pts, cells = [], []
+	for p in polys:
+		p = np.asarray(p, float)
+		i0 = len(pts)
+		pts += [(x, y, z) for x, y in p]
+		cells.append(list(range(i0, i0 + len(p))) + ([] if faces else [i0]))
+	with open(path, 'w') as fh:
+		fh.write('# vtk DataFile Version 3.0\n%s\nASCII\nDATASET POLYDATA\nPOINTS %d float\n' % (os.path.basename(path), len(pts)))
+		for q in pts:
+			fh.write('%.4f %.4f %.4f\n' % q)
+		fh.write('%s %d %d\n' % ('POLYGONS' if faces else 'LINES', len(cells), sum(len(c) + 1 for c in cells)))
+		for c in cells:
+			fh.write('%d %s\n' % (len(c), ' '.join(map(str, c))))
+
+
+def write_geometry(out, board_path):
+	"""Copper and board outlines for ParaView overlays, same mm frame as the fields."""
+	b = json.load(open(board_path))
+	d = os.path.join(out, 'geometry')
+	os.makedirs(d, exist_ok=True)
+	st = b['stackup']['copper']
+	zF = st['F.Cu']['z']
+	write_poly_vtk(os.path.join(d, 'antenna_AE1.vtk'), b['ae1']['copper'], zF, faces=True)
+	# outlines 0.1 mm above F.Cu so they show on top of the field plane 0.05 mm above the copper
+	write_poly_vtk(os.path.join(d, 'antenna_AE1_outline.vtk'), b['ae1']['copper'], zF + 0.1)
+	write_poly_vtk(os.path.join(d, 'board_outline_top.vtk'), b['outline'], zF + 0.1)
+	write_poly_vtk(os.path.join(d, 'board_outline_bottom.vtk'), b['outline'], 0.0)
+	for layer in b['copper']:
+		dz = 0.1 if layer == 'F.Cu' else 0.0
+		write_poly_vtk(os.path.join(d, 'copper_%s.vtk' % layer.replace('.', '')), b['copper'][layer], st[layer]['z'] + dz)
+	bx, by = b['pads']['BT1']['pos']
+	t = np.linspace(0, 2 * np.pi, 73)
+	write_poly_vtk(os.path.join(d, 'battery_CR2032_outline.vtk'), [np.c_[bx + 10 * np.cos(t), by + 10 * np.sin(t)]], -0.5)
+	print('geometry ->', d, flush=True)
 
 
 def main():
@@ -116,6 +161,7 @@ def main():
 		m = re.search(r'FDTD timestep is: ([0-9.eE+-]+) s', open(log).read())
 		if m:
 			dt = float(m.group(1))
+	write_geometry(out, BOARD)
 	convert_fd(src, out, nphase)
 	convert_td(src, out, dt)
 

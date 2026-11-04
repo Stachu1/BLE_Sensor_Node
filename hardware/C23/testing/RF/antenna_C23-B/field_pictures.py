@@ -24,7 +24,8 @@ sys.path.insert(0, SIM)
 import antenna as ant  # noqa: E402
 
 ANT = {'family': 'ifa', 'base': 'b2', 'S': 3.5, 'Ws': 2.0, 'Wf': 1.0, 'H': 5.0, 'Wa': 1.0, 'L': 9.0}
-BOARD = json.load(open(os.path.join(SIM, 'build', 'b2', 'board.json')))
+BOARD = json.load(open(os.path.join(SIM, 'build', 'b3', 'board.json')))
+ANT = dict(ANT, base='b2')       # same copper as AE1 (legs end 0.18 mm higher), only used for the section lines
 OUT = os.path.join(HERE, 'figures', 'fields')
 ZF, ZIN1 = 1.4858, 1.2754
 plt.rcParams.update({'font.size': 8, 'savefig.dpi': 170, 'savefig.bbox': 'tight'})
@@ -42,8 +43,8 @@ def overlay_top(ax, lw=0.6, col='w'):
 		ax.add_patch(Polygon(np.array(o), fill=False, ec=col, lw=lw, ls='--'))
 	for pts in BOARD['copper']['F.Cu']:
 		ax.add_patch(Polygon(np.array(pts), fill=False, ec=col, lw=lw * 0.6, alpha=0.7))
-	for (x0, y0, x1, y1) in ant.rects(ANT)[0]:
-		ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, fill=False, ec=col, lw=lw))
+	for pts in BOARD['ae1']['copper']:
+		ax.add_patch(Polygon(np.array(pts), fill=False, ec=col, lw=lw))
 
 
 def overlay_cut_yz(ax, x0, col='w'):
@@ -188,7 +189,7 @@ def main():
 		lambda ax: overlay_cut_yz(ax, ant.FEED_X), (4, 20), (-3, 6), 'E_cut_yz_feed.png', yz_lab, 'E')
 	quiver_cut(src, 'fd_E_xz_gap', 'E in the plane y = %.1f (gap between ground edge and arm), 2.44 GHz' % ((gy + 14.6) / 2),
 		lambda ax: overlay_cut_xz(ax, 12.1), (-14, 13), (-3, 6), 'E_cut_xz_gap.png', xz_lab, 'E')
-	still_magnitude(src, 'fd_E_yz_mid', '|E| in the plane x = 0, whole simulated space', lambda ax: overlay_cut_yz(ax, 0.0),
+	still_magnitude(src, 'fd_E_yz_mid', '|E| in the plane x = 0, around the board', lambda ax: overlay_cut_yz(ax, 0.0),
 		(-47, 47), (-34, 31), 'E_cut_yz_domain.png', yz_lab)
 	gif_phase(src, 'fd_E_top', 'z', 'Ez above F.Cu, 2.44 GHz', overlay_top, (-13, 12), (4, 17.5), 'Ez_top_antenna.gif', top_lab,
 		sym_clip=0.5)

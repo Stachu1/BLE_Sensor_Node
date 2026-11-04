@@ -3,11 +3,13 @@
 Reads the openEMS results in ../sim/results/runs/ (pulled with ../sim/sim.sh pull) and writes figures/ and data/.
 Nothing here runs a simulation.
 
-Runs used (all on the b2 board export, CR2032 fitted, 20 um solder mask, fine mesh):
-    RUN_1P     1-port at J2, L2 0R, L3 open: antenna impedance, pattern and radiation efficiency
-    RUN_3P     3-port J2 / L2 gap / L3 pads: matching with real part positions (cascade below)
-    RUN_PARTS  1-port at J2 with L2 and L3 as lumped series R-L parts in the FDTD model (full-wave check of the
-               cascade, matched pattern and efficiency incl. part loss), also the run with the field dumps
+Runs used (all on the b3 board export, CR2032 fitted):
+    RUN_1P     1-port at J2, L2 0R, L3 open, 20 um mask, fine mesh: antenna impedance, pattern, radiation efficiency
+    RUN_3P     3-port J2 / L2 gap / L3 pads, 20 um mask, fine mesh: matching with real part positions (cascade below)
+    RUN_PARTS  1-port at J2 with L2 and L3 as lumped series R-L parts in the FDTD model, normal mesh, no mask,
+               150 mm air (full-wave check of the cascade, matched pattern), also the run with the field dumps.
+               The planned fine-mesh + mask run with the parts (29f9f0e89f) was unstable (energy grew after the
+               pulse) and was stopped. Without the mask the response sits about 15-20 MHz higher.
 
 Usage:  python make_figures.py
 """
@@ -32,11 +34,11 @@ DATA = os.path.join(HERE, 'data')
 os.makedirs(FIG, exist_ok=True)
 os.makedirs(DATA, exist_ok=True)
 
-RUN_1P = '5393b94279'
-RUN_3P = '5b8536e8e4'
-RUN_PARTS = os.environ.get('RUN_PARTS', '')          # set after the run finished, see README
-ANT = {'family': 'ifa', 'base': 'b2', 'S': 3.5, 'Ws': 2.0, 'Wf': 1.0, 'H': 5.0, 'Wa': 1.0, 'L': 9.0}
-BOARD = os.path.join(SIM, 'build', 'b2', 'board.json')
+# b3 = the board as ordered (rounded tracks, AE1 footprint copper used directly, "antenna": "placed")
+RUN_1P = 'd349ba0674'
+RUN_3P = '819dfacd2e'
+RUN_PARTS = '8b668025c7'
+BOARD = os.path.join(SIM, 'build', 'b3', 'board.json')
 BLE = (2.400e9, 2.4835e9)
 FMARK = [2.40e9, 2.44e9, 2.48e9]
 # chosen parts and assumed Q at 2.44 GHz (distributor data gives Q only at lower test frequencies)
@@ -147,9 +149,9 @@ def draw_board(ax, board, zoom):
 	for v in board['vias']:
 		x, y = kc(v['x'], v['y'])
 		ax.add_patch(plt.Circle((x, y), v['drill'] / 2, fc='k', lw=0))
-	for (x0, y0, x1, y1) in ant.rects(ANT)[0]:
-		(a, b), (c, d) = kc(x0, y0), kc(x1, y1)
-		ax.add_patch(Rectangle((a, d), c - a, b - d, fc='#2f5fd0', ec='#123', lw=0.5))
+	for pts in board['ae1']['copper']:
+		x, y = kc(*np.array(pts).T)
+		ax.add_patch(Polygon(np.c_[x, y], fc='#2f5fd0', ec='#123', lw=0.5))
 	for ref, col in (('J2', '#c02cc0'), ('L2', '#2ca02c'), ('L3', '#2ca02c')):
 		for p in board['pads'][ref]['pads']:
 			x0, y0, x1, y1 = p['bbox']
@@ -518,7 +520,7 @@ def export_curves():
 def summary(tol, eff_rows):
 	b = ble(f3)
 	out = {'runs': {'one_port': RUN_1P, 'three_port': RUN_3P, 'parts_fdtd': RUN_PARTS or None},
-		'antenna': ANT, 'parts': {k: {kk: v for kk, v in p.items()} for k, p in PARTS.items()},
+		'antenna': 'AE1 copper from build/b3/board.json (IFA S 3.5, Ws 2, Wf 1, H 5.0, Wa 1, arm to KiCad x 159.0)', 'parts': {k: {kk: v for kk, v in p.items()} for k, p in PARTS.items()},
 		'no_parts': {'f_res_GHz': float(f1[np.argmin(dB(g1))] / 1e9), 'S11_min_dB': float(dB(g1).min()),
 			'worst_BLE_dB': float(dB(g1[ble(f1)]).max())},
 		'matched_cascade': {'worst_BLE_dB': float(dB(gm[b]).max()), 'best_BLE_dB': float(dB(gm[b]).min()),
