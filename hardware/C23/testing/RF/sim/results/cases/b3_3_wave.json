@@ -1,0 +1,26 @@
+[
+ {
+  "name": "b3 AE1 L2 1.6n L3 6.8n, 150 mm air, field dumps",
+  "purpose": "Visualisation run: matched antenna with 150 mm of air around the board (about 1.2 wavelengths) so the field movies show the radiated wave. Normal mesh, no mask, not used for the numbers",
+  "case": {
+   "board": "build/b3/board.json",
+   "antenna": "placed",
+   "ports": "j2",
+   "mask": "none",
+   "mesh": {
+    "air": 150.0
+   },
+   "parts": {
+    "L2": {
+     "L": 1.6e-09,
+     "Q": 25
+    },
+    "L3": {
+     "L": 6.8e-09,
+     "Q": 45
+    }
+   },
+   "field_dumps": true
+  }
+ }
+]

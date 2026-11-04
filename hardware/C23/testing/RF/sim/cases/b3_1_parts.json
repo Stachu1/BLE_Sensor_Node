@@ -1,0 +1,28 @@
+[
+ {
+  "name": "b3 AE1 L2 1.6n L3 6.8n, mask + fine mesh, field dumps",
+  "purpose": "Report run of the board as ordered (rounded tracks, AE1 footprint copper): L2 1.6 nH (Q 25) and L3 6.8 nH (Q 45) as lumped parts in the FDTD model, explicit mask, fine mesh, field dumps kept for ParaView, matched pattern and efficiency incl. part loss",
+  "case": {
+   "board": "build/b3/board.json",
+   "antenna": "placed",
+   "mask": "explicit",
+   "mesh": {
+    "ant": 0.15,
+    "rf": 0.08,
+    "rf_y": 0.1
+   },
+   "ports": "j2",
+   "parts": {
+    "L2": {
+     "L": 1.6e-09,
+     "Q": 25
+    },
+    "L3": {
+     "L": 6.8e-09,
+     "Q": 45
+    }
+   },
+   "field_dumps": true
+  }
+ }
+]

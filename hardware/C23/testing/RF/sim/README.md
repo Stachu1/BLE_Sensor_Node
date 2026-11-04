@@ -29,9 +29,15 @@ coordinates, a drawing, the impedance at J2, the best matching parts, efficiency
   around the board at 2.40, 2.44 and 2.48 GHz. The openEMS NF2FF transform gives wrong results for this
   layered board (30 % instead of 100 % on a lossless test case, box-size dependent), see `farfield.py`.
   Radiation efficiency = radiated / accepted power, total efficiency = radiated / incident power (50 ohm).
+- **Real matching parts:** case key `parts` puts L2 and L3 into the FDTD model as series R-L lumped elements on
+  their pads (R = wL/Q at 2.44 GHz), with the port at J2. The b3 report runs compare it with the 3-port cascade.
+- **Field dumps:** case key `field_dumps` keeps E and H on planes (above F.Cu, in the top prepreg, cuts through
+  the arm, the feed and the gap) and in a volume around the board, at 2.44 GHz and in the time domain, for
+  pictures and movies. See `../antenna_C23-B/`.
 - **Board revisions:** `build/board.json` is the first rev B layout (b1). `build/b2/` is the layout with the
   antenna-side L4 removed (after re-annotation the ref L4 is the 10 uH DC-DC inductor) and the ground edge 1.4 mm lower. `stretch_board.py` makes taller or wider copies (`build/b2t*`,
-  `build/b2w*`) to see what a bigger board would gain. `antenna.BASES` holds the ground edge of each.
+  `build/b2w*`) to see what a bigger board would gain. `build/b3/` is the board as ordered (rounded tracks, final
+  AE1 footprint, via fence at KiCad y 90.7), simulated with `"antenna": "placed"` (AE1 copper from the board). `antenna.BASES` holds the ground edge of each.
 
 ## Files
 

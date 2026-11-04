@@ -1,0 +1,17 @@
+[
+ {
+  "name": "b3 AE1 1-port, mask + fine mesh",
+  "purpose": "Report run: antenna impedance at J2 without parts (L2 0R, L3 open), pattern and radiation efficiency on the board as ordered",
+  "case": {
+   "board": "build/b3/board.json",
+   "antenna": "placed",
+   "mask": "explicit",
+   "mesh": {
+    "ant": 0.15,
+    "rf": 0.08,
+    "rf_y": 0.1
+   },
+   "ports": "j2"
+  }
+ }
+]

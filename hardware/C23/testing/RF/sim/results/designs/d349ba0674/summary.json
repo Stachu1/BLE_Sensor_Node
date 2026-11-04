@@ -1,0 +1,110 @@
+{
+ "hash": "d349ba0674",
+ "name": "b3 AE1 1-port, mask + fine mesh",
+ "purpose": "Report run: antenna impedance at J2 without parts (L2 0R, L3 open), pattern and radiation efficiency on the board as ordered",
+ "tag": "b3_2_1port",
+ "model": "v5",
+ "board": "build/b3/board.json",
+ "battery": true,
+ "mask": "explicit",
+ "er_scale": 1.0,
+ "tand_scale": 1.0,
+ "mesh": {
+  "ant": 0.15,
+  "rf": 0.08,
+  "rf_y": 0.1
+ },
+ "ports": "j2",
+ "geometry": {
+  "family": "placed (AE1 copper from the board file)",
+  "x": [
+   139.6,
+   159.0
+  ],
+  "y": [
+   84.4,
+   91.4
+  ],
+  "edge_clearance": 0.7524475092068506
+ },
+ "f_s11_min_GHz": 2.594,
+ "s11_min_dB": -15.85,
+ "ble_worst_no_parts_dB": -5.53,
+ "bw10_MHz": [
+  2495,
+  2707
+ ],
+ "Z_J2_ohm": {
+  "2.40": [
+   26.91,
+   -39.49
+  ],
+  "2.44": [
+   28.05,
+   -29.68
+  ],
+  "2.48": [
+   29.65,
+   -20.28
+  ]
+ },
+ "match_1part": {
+  "parts": "shunt 3.75 nH",
+  "net": [
+   [
+    "pL",
+    3.75
+   ]
+  ],
+  "ble_worst_dB": -11.74
+ },
+ "match_2part": {
+  "parts": "series 0.37 nH, shunt 4.04 nH",
+  "net": [
+   [
+    "sL",
+    0.36800000000000005
+   ],
+   [
+    "pL",
+    4.0375000000000005
+   ]
+  ],
+  "ble_worst_dB": -15.3
+ },
+ "efficiency": [
+  {
+   "f": 2400000000.0,
+   "rad_eff_raw": 0.9851129516034639,
+   "rad_eff": 0.9046032613438604,
+   "tot_eff": 0.6513623341972795,
+   "Dmax_dBi": 1.953629452703587,
+   "valid": true,
+   "flux_eff": 0.923212642972582,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2440000000.0,
+   "rad_eff_raw": 0.9969300422519614,
+   "rad_eff": 0.9154545842534081,
+   "tot_eff": 0.7365635515873025,
+   "Dmax_dBi": 1.9686667869315988,
+   "valid": true,
+   "flux_eff": 0.9342154741334917,
+   "cal_factor": 1.089
+  },
+  {
+   "f": 2480000000.0,
+   "rad_eff_raw": 1.0070890897031903,
+   "rad_eff": 0.9247833697917267,
+   "tot_eff": 0.8117964970366877,
+   "Dmax_dBi": 1.9824044317979235,
+   "valid": true,
+   "flux_eff": 0.9435193488445119,
+   "cal_factor": 1.089
+  }
+ ],
+ "efficiency_valid": true,
+ "cells": 6905654,
+ "run_s": 4384
+}
