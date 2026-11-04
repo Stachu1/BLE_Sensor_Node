@@ -3,10 +3,10 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "Printed inverted-F antenna, 2.4 GHz, openEMS rev B sim (b2 layout) {'S': 3.5, 'Ws': 2.0, 'Wf': 1.0, 'H': 5.0, 'Wa': 1.0, 'L': 9.0}: x0 6.6, Ws 2, S 3.5, Wf 1, H 4.825, Wa 1, L 26 mm. Simulated on the C23 rev B board (34 x 34 mm, R10 corners, CR2032). Keep-out: 7.225 mm above the ground edge on every copper layer, 34 mm wide, antenna short leg 6.6 mm from the left board edge. Antenna under solder mask. Pad 1 feed, pad 2 ground.")
+	(descr "Printed inverted-F antenna, 2.4 GHz, openEMS rev B sim (b2 layout) {'S': 3.5, 'Ws': 2.0, 'Wf': 1.0, 'H': 5.0, 'Wa': 1.0, 'L': 9.0}: x0 6.6, Ws 2, S 3.5, Wf 1, H 5, Wa 1, L 26 mm. Simulated on the C23 rev B board (34 x 34 mm, R10 corners, CR2032). Keep-out: 7.4 mm above the ground edge on every copper layer, 34 mm wide, antenna short leg 6.6 mm from the left board edge. Antenna under solder mask. Pad 1 feed, pad 2 ground.")
 	(tags "PCB antenna IFA inverted-F 2.4GHz BLE")
 	(property "Reference" "REF**"
-		(at 7.45 -7.025 0)
+		(at 7.45 -7.2 0)
 		(layer "F.SilkS")
 		(hide yes)
 		(effects (font (size 1 1) (thickness 0.15)))
@@ -32,31 +32,31 @@
 	(net_tie_pad_groups "1,2")
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_poly
-		(pts (xy -4.5 0) (xy -4.5 -5.825) (xy 14.9 -5.825) (xy 14.9 -4.825) (xy 0.5 -4.825) (xy 0.5 0) (xy -0.5 0) (xy -0.5 -4.825) (xy -2.5 -4.825) (xy -2.5 0))
+		(pts (xy -4.5 0) (xy -4.5 -6) (xy 14.9 -6) (xy 14.9 -5) (xy 0.5 -5) (xy 0.5 0) (xy -0.5 0) (xy -0.5 -5) (xy -2.5 -5) (xy -2.5 0))
 		(stroke (width 0) (type solid))
 		(fill yes)
 		(layer "F.Cu")
 	)
 	(fp_poly
-		(pts (xy -11.1 0) (xy -11.1 -7.225) (xy 22.9 -7.225) (xy 22.9 0) (xy 1.5 0) (xy 1.5 1) (xy -1.5 1) (xy -1.5 0))
+		(pts (xy -11.1 0) (xy -11.1 -7.4) (xy 22.9 -7.4) (xy 22.9 0) (xy 1.5 0) (xy 1.5 1) (xy -1.5 1) (xy -1.5 0))
 		(stroke (width 0.1) (type solid))
 		(fill no)
 		(layer "Dwgs.User")
 	)
 	(fp_rect
-		(start -11.1 -7.225)
+		(start -11.1 -7.4)
 		(end 22.9 1.25)
 		(stroke (width 0.05) (type solid))
 		(fill no)
 		(layer "F.CrtYd")
 	)
 	(fp_text user "${REFERENCE}"
-		(at 7.45 -7.025 0)
+		(at 7.45 -7.2 0)
 		(layer "F.Fab")
 		(effects (font (size 1 1) (thickness 0.15)))
 	)
 	(fp_text user "antenna keep-out, all copper layers"
-		(at 5.9 -6.225 0)
+		(at 5.9 -6.4 0)
 		(layer "Dwgs.User")
 		(effects (font (size 0.6 0.6) (thickness 0.1)))
 	)
@@ -87,7 +87,7 @@
 		(placement (enabled no) (sheetname ""))
 		(fill (thermal_gap 0.5) (thermal_bridge_width 0.5) (island_removal_mode 0))
 		(polygon
-			(pts (xy -11.1 0) (xy -11.1 -7.225) (xy 22.9 -7.225) (xy 22.9 0))
+			(pts (xy -11.1 0) (xy -11.1 -7.4) (xy 22.9 -7.4) (xy 22.9 0))
 		)
 	)
 	(zone

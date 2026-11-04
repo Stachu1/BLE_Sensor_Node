@@ -46,7 +46,9 @@ def pts(points):
 
 # rev B b2 layout (KiCad mm): left board edge, top board edge, footprint origin (AE1 position, feed leg centre),
 # real ground edge (via fence and pours). The sim measures H from the real ground edge, the footprint from the origin.
-B2 = {'board_left': 133.0, 'board_top': 83.0, 'origin_x': 144.1, 'origin_y': 90.225, 'gnd_y': 90.4}
+# The sims used AE1 at y 90.225. The board now has AE1 on the ground edge (90.4), so the origin is 90.4 and the
+# copper still lands where it was simulated (arm top 84.4). The notch is then 91.4 deep instead of 91.22.
+B2 = {'board_left': 133.0, 'board_top': 83.0, 'origin_x': 144.1, 'origin_y': 90.4, 'gnd_y': 90.4}
 
 
 def from_sim(q):

@@ -13,7 +13,10 @@ Footprint `IFA_2G4` in `hardware/C23/library/BSN-C23.pretty` (replaced 2026-11-0
 
     python gen_ifa_footprint.py
 
-Its origin sits on AE1 (KiCad 144.1, 90.225). On the board, update AE1 from the library to get the new copper.
+Its origin is AE1 at KiCad (144.1, 90.4), on the ground edge, where AE1 sits on the board now. The sims had AE1 at
+90.225, and the footprint is built so the copper still lands where it was simulated (arm top 84.4). Only the feed
+notch is 0.18 mm deeper (91.4 instead of 91.22), which adds a little series inductance, about what the L2 part
+tolerance covers. On the board, update AE1 from the library to get the new copper.
 
 | part | KiCad x | KiCad y | width |
 |---|---|---|---|
