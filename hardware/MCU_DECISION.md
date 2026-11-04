@@ -72,7 +72,7 @@ To be confirmed on rev B. It doesn't block the order.
 ## Carried into rev B
 
 - [ ] Full-firmware check at 5 s (model 3.85 µA) to close the assumption above.
-- [ ] Keep the pi network and check the H5 margin with the trace antenna. Radiated pre-scan on rev C.
+- [ ] Keep the pi network and check the H5 margin with the trace antenna. Radiated pre-scan on the final board.
 - [ ] CR2032 VDD dip during TX.
 - [ ] N54 floor offset investigation, for the thesis only:
       [`N54/testing/Power`](N54/testing/Power/POWER_MEASUREMENTS.md#floor-offset-investigation-not-needed-for-the-mcu-choice).

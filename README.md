@@ -58,8 +58,8 @@ points for SWD, UART, I2C and the sensor interrupt.
 ## Status
 
 Rev A of both variants was compared (thesis test T0). **Rev B uses the TI CC2340R5 (`BSN-C23-B`)** with a PCB trace
-antenna, and the N54 variant stops at rev A. Rev B was ordered on 2026-11-04 (tag `hw/BSN-C23-B`). Rev C is the
-final prototype with the rev B fixes.
+antenna, and the N54 variant stops at rev A. Rev B was ordered on 2026-11-04 (tag `hw/BSN-C23-B`). A rev C will
+only be made if the rev B tests show it is needed and there is time.
 
 The main reason is the sleep current, which sets the average current at a 5 s or slower advertising interval. RF
 was also taken into account. The C23 already passes the harmonics limit with the simple pi network from TI's
@@ -94,7 +94,7 @@ Open questions:
 
 - **Rev B bring-up** (`BSN-C23-B`): VNA match of the trace antenna against the simulation, the full-firmware check
   at a 5 s interval, the CR2032 VDD dip during TX and the H5 margin with the trace antenna.
-- **Rev C**: the final prototype, order planned for the end of November 2026.
+- **Rev C** (optional): only if rev B needs fixes and time allows.
 - Battery tests on fresh boards with a real CR2032, line-of-sight range tests and radiated measurements.
 
 ## Repository Structure
