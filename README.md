@@ -11,9 +11,9 @@ the data as [BTHome](https://bthome.io/) advertisements, without needing a persi
 
 ## Goal
 
-Keep the average current low enough for multi-year operation on a single CR2032 cell, in a board no bigger than the
-cell holder. Main areas of work: low-power firmware and advertising strategy, antenna/RF performance (chip vs. trace
-antenna), and power budgeting around the coin cell's current limits.
+Keep the average current low enough for multi-year operation on a single CR2032 cell, in a compact size. Main areas
+of work: low-power firmware and advertising strategy, antenna/RF performance (chip vs. trace antenna), and power
+budgeting around the coin cell's current limits.
 
 ## Highlights
 
@@ -24,31 +24,42 @@ antenna), and power budgeting around the coin cell's current limits.
   reading, cold boot) was measured as a charge, which gives a current model for any setting: about 3.3 µA at a
   5 s advertising interval, or roughly 7 years on a 225 mAh CR2032 before derating
   ([power measurements](hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md)).
-- **Antenna matched on the VNA** with the battery holder fitted, step by step from the unmatched chip antenna
-  ([antenna matching](hardware/C23/testing/rev_A/RF/ANTENNA_MATCHING.md)).
+- **Rev A chip antenna matched on the VNA**, step by step from the unmatched antenna, with the board lifted off the
+  bench (the wooden table under it had detuned the antenna) ([antenna matching](hardware/C23/testing/rev_A/RF/ANTENNA_MATCHING.md)).
 - **Conducted harmonics measured on a spectrum analyser** against the FCC restricted-band limit. With no filter on
   either board, both fail on H3, the C23 by 0.6 dB and the N54 by 17 dB. With the simple pi network from TI's
   reference design the C23 passes with 9.5 dB margin. The N54's PA network, adapted from Nordic's reference design
   with 0402 parts, cost about 10 dB of output power, so it was bypassed for the measurements
   ([C23](hardware/C23/testing/rev_A/RF/RF_CARRIER.md), [N54](hardware/N54/testing/RF/RF_CARRIER.md)).
+- **Rev B trace antenna designed in openEMS on the real board.** A scripted pipeline exports the KiCad board
+  (all four copper layers, vias, stack-up, the CR2032) to the FDTD solver on a compute server. The chosen
+  inverted-F antenna simulates at −14.9 dB S11 or better across the BLE band with two matching parts, and 85 to 89 %
+  total efficiency. Simulated only, the rev B boards have not been measured yet
+  ([antenna write-up](hardware/C23/testing/RF/antenna_C23-B/README.md), [simulation pipeline](hardware/C23/testing/RF/sim/README.md)).
 - **Firmware for both MCUs** written to the same structure (bring-up self-test, BLE sensor, CW RF test, one power
   state per build) so the two can be measured the same way.
 
 ## Design
 
-| `BSN-C23-A` (TI CC2340R5) | `BSN-N54-A` (Nordic nRF54L05) |
+| `BSN-C23-B` (TI CC2340R5) | `BSN-N54-A` (Nordic nRF54L05) |
 |---|---|
-| ![BSN-C23-A render](hardware/C23/BSN-C23.png) | ![BSN-N54-A render](hardware/N54/BSN-N54.png) |
+| ![BSN-C23-B render](hardware/C23/BSN-C23.png) | ![BSN-N54-A render](hardware/N54/BSN-N54.png) |
 | [Schematic](hardware/C23/schematic.pdf) · [PCB](hardware/C23/PCB.pdf) · [README](hardware/C23/README.md) | [Schematic](hardware/N54/schematic.pdf) · [PCB](hardware/N54/PCB.pdf) · [README](hardware/N54/README.md) |
 
-4-layer, 34 × 34 mm board with 15.5 mm corner radii (close to round). Chip antenna with a pi matching network and an optional U.FL connector for conducted
-RF tests, HDC2010 temperature/humidity sensor (SHTC3 footprint as an alternative), CR2032 holder on the back.
-Test points for SWD, UART, I2C and the sensor interrupt.
+4-layer, 34 × 34 mm board with an HDC2010 temperature/humidity sensor, the CR2032 holder on the back and test
+points for SWD, UART, I2C and the sensor interrupt.
+
+- **Rev A (both variants):** 15.5 mm corner radii (close to round), chip antenna with a pi matching network, an
+  optional U.FL connector for conducted RF tests and an SHTC3 footprint as an alternative sensor.
+- **Rev B (C23 only):** 10 mm corner radii, an inverted-F antenna printed on the top layer, an MM8130 switch
+  connector for VNA measurements of the antenna match, a Tag-Connect footprint for SWD, UART TX and a BOOT pin for
+  the ROM bootloader, and a 0 Ω link in the supply for the ammeter. The pi network is unchanged from rev A.
 
 ## Status
 
 Rev A of both variants was compared (thesis test T0). **Rev B uses the TI CC2340R5 (`BSN-C23-B`)** with a PCB trace
-antenna, and the N54 variant stops at rev A. Rev C is the final prototype with the rev B fixes.
+antenna, and the N54 variant stops at rev A. Rev B was ordered on 2026-11-04 (tag `hw/BSN-C23-B`). Rev C is the
+final prototype with the rev B fixes.
 
 The main reason is the sleep current, which sets the average current at a 5 s or slower advertising interval. RF
 was also taken into account. The C23 already passes the harmonics limit with the simple pi network from TI's
@@ -81,8 +92,9 @@ Open questions:
 
 ### Next
 
-- **Rev B** (`BSN-C23-B`): PCB trace antenna instead of the chip antenna, plus the rev A fixes.
-- **Rev C**: the final prototype.
+- **Rev B bring-up** (`BSN-C23-B`): VNA match of the trace antenna against the simulation, the full-firmware check
+  at a 5 s interval, the CR2032 VDD dip during TX and the H5 margin with the trace antenna.
+- **Rev C**: the final prototype, order planned for the end of November 2026.
 - Battery tests on fresh boards with a real CR2032, line-of-sight range tests and radiated measurements.
 
 ## Repository Structure
@@ -105,7 +117,8 @@ board, so each has its own KiCad project under `hardware/<variant>/` and its own
 folders stay as the record of the rev A comparison. Only the C23 variant continues.
 
 Test results live next to the board they were measured on, in `hardware/<variant>/testing/`, with the bring-up
-procedures in `firmware/<variant>/BRINGUP.md`. The schematic and PCB PDFs always show the latest revision of each
+procedures in `firmware/<variant>/BRINGUP.md`. The C23 rev A measurements are in `hardware/C23/testing/rev_A/`, the
+rev B antenna simulations in `hardware/C23/testing/RF/`. The schematic and PCB PDFs always show the latest revision of each
 board. Older revisions are in the KiCad files at their `hw/BSN-<variant>-<rev>` tags.
 
 ## Naming Scheme

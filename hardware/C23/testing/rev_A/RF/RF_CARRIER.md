@@ -130,5 +130,6 @@ What was learned:
       with and without the pi network. See [Harmonics](#harmonics-spectrum-analyser-2026-10-28).
 - [ ] Measure the offset with trim 44 on a second board, to separate a design offset from crystal spread.
 - [x] Harmonics and spurious emissions (2nd–5th harmonic at 4.88–12.2 GHz) on the spectrum analyser.
-- [ ] Rev B/C: keep the pi network and check its H5 (12.2–12.4 GHz) rejection when it is redesigned.
+- [ ] Rev B/C: keep the pi network and check its H5 (12.2–12.4 GHz) rejection when it is redesigned. Rev B keeps
+      it unchanged (C8, L1, C9 on rev B), the H5 check is still open.
 - [ ] Rev C: radiated pre-scan of H3 and H5 with the trace antenna.

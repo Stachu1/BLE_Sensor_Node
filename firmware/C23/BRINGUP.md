@@ -280,15 +280,20 @@ Copy one row per board.
 
 ## Notes for rev B
 
-Things found while writing the firmware that are cheap to fix in the next layout:
+Things found while writing the firmware that are cheap to fix in the next layout. All four are done on rev B
+(see [`hardware/C23/README.md`](../../hardware/C23/README.md#rev-b-bsn-c23-b)).
 
 - **ROM UART bootloader pins.** The CC23xx ROM bootloader uses UART RX=DIO20 with TX=DIO6 (config 0)
   or RX=DIO12 with TX=DIO13 (config 1) (SWRA834, table 3-2). Rev A has TX=DIO13 and RX=DIO20, which match
   neither, and DIO6 is unconnected. Moving the board TX from DIO13 to DIO6, or adding a test point on DIO6,
   allows flashing over plain UART without an XDS110.
+  **Done on rev B:** TX on DIO6 (TP2), and a BOOT pin on DIO3 (TP1) with a 100 kΩ pull-up as the trigger.
 - **DIO21 doubles as the default bootloader trigger pin.** Harmless while the CCFG keeps pin triggering
   off, but worth knowing if the bootloader is ever enabled.
+  **Done on rev B:** HDC2010 INT moved to DIO13, DIO21 is unused.
 - **No LED.** A single LED on a spare DIO (DIO8 or DIO11), even DNP by default, would make bring-up and
   field debugging easier.
+  **Done on rev B:** D1 with R2 1 kΩ on DIO4, DNP by default.
 - **Test points are bare pads.** A Tag-Connect TC2030 footprint (SWD + VTREF + nRESET + UART TX) would
   make every flash a single plug instead of five pogo pins.
+  **Done on rev B:** TC2030-NL footprint J3 with SWD, VTREF and nRESET. UART TX stays on TP2.
