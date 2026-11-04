@@ -11,7 +11,7 @@ Three builds, matching the C23 boards:
 
 | Build | Fit | Leave off | Used for |
 |---|---|---|---|
-| **Full** | Everything in `hardware/N54/BSN-N54.csv` | J1, R4 (unless you also want U.FL access) | `hwtest`, `ble_sensor`, `pwrtest` |
+| **Full** | Everything in the schematic | J1, R4 (unless you also want U.FL access) | `hwtest`, `ble_sensor`, `pwrtest` |
 | **MCU + U.FL (conducted)** | U1, X1, X2, power parts (L1, C1–C13, FB1), L2, C14, L3, C15, L4, C16, **R4 0 Ω**, **J1** | L5, L6, L7, AE1 | `cwtest`: output power, frequency offset, harmonics |
 | **Antenna + match** | J1, R4 0 Ω, L6, L7, AE1 (battery connector BT1 fitted, as on C23) | U1 side: L2–L4, C14–C16, L5 | VNA S11 of the antenna branch |
 

@@ -62,3 +62,6 @@ docs/datasheets/**/*.pdf
 
 # KiCad BOM working files (order sheets, ibom), not committed
 hardware/*/bom/
+
+# KiCad BOM exports (CSV), kept locally for ordering, the schematic is the source
+hardware/*/BSN-*.csv
