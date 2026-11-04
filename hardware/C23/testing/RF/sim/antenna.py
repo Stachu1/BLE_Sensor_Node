@@ -24,7 +24,8 @@ NOTCH_X0, NOTCH_X1 = -7.4, -4.4
 NOTCH_Y0 = 10.0
 # Board revisions of the ground edge. 'base' in the antenna params picks one (default b1, which keeps old hashes).
 #   b1  ground edge at KiCad y 89, notch bottom 90 (2026-11-02 layout, L4 fitted)
-#   b2  ground edge at KiCad y 90.4, notch bottom 90.22 (2026-11-03: L4 removed, via fence 1.4 mm lower)
+#   b2  ground edge at KiCad y 90.4, notch bottom 90.22 (2026-11-03: antenna-side L4 removed, via fence 1.4 mm lower,
+#       the ref L4 is now the 10 uH DC-DC inductor)
 #   b2t5, b2t10  b2 made 5 / 10 mm taller below the RF area (stretch_board.py --dy), same antenna area
 #   b2w4, b2w8   b2 made 4 / 8 mm wider to the right (stretch_board.py --dx), right corner centre moves
 #   b2w8t10      b2w8 also made 10 mm taller

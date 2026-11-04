@@ -1,10 +1,10 @@
-"""Generate the printed IFA footprint (BSN-C23.pretty/IFA_2G4.kicad_mod) from the openEMS optimizer geometry.
+"""Generate the printed IFA footprint BSN-C23.pretty/IFA_2G4.kicad_mod from the rev B board sims.
 
-Usage: python gen_ifa_footprint.py [best.json]
-       python gen_ifa_footprint.py --sim '{"S": 3.5, "Ws": 2, "Wf": 1, "H": 5.0, "Wa": 1, "L": 9.0}' --name IFA_2G4_B2
-best.json is the optimizer's result file (ifa_optimizer/results/best.json). Without it the r011 geometry is used.
+Usage: python gen_ifa_footprint.py
+       python gen_ifa_footprint.py --sim '{"S": 3.5, "Ws": 2, "Wf": 1, "H": 5.0, "Wa": 1, "L": 9.0}'
+Without --sim the final rev B geometry (FINAL below, hardware/C23/testing/RF/sim/results/RECOMMENDATION.md) is used.
 --sim takes antenna.py "ifa" parameters of the rev B board sims (hardware/C23/testing/RF/sim, ground edge base
-b2) and writes BSN-C23.pretty/<name>.kicad_mod. It never overwrites IFA_2G4.kicad_mod.
+b2), for trying other geometries. The output is always IFA_2G4.kicad_mod.
 
 Geometry (mm), as in ifa_param.py:
     x0  short leg left edge, from the board edge     Ws  short leg width
@@ -16,8 +16,8 @@ Footprint origin: feed leg centre on the ground edge. The antenna points to -y, 
 Pad 1 is the feed (in the 1 mm ground notch, like the simulation port), pad 2 is the short to ground.
 Both are joined by the antenna copper, so the footprint is a net tie (pads 1 and 2).
 The antenna copper and the pads stay under solder mask (no F.Mask opening). The board finish is OSP, which
-does not protect bare copper after reflow, so an exposed antenna would oxidise. The simulation has no mask
-layer, so the mask pulls the real resonance slightly lower. Tune it with the matching network on the bench.
+does not protect bare copper after reflow, so an exposed antenna would oxidise. The final sims include a 20 um
+mask layer. Tune the antenna with L2 and L3 on the bench.
 The keep-out covers the clearance on every copper layer: CLEARANCE above the ground edge, across the
 board width BOARD_W, with the antenna x0 from the left board edge, as in the simulation.
 """
@@ -25,10 +25,9 @@ import json
 import os
 import sys
 
-R011 = {'x0': 4.0, 'Ws': 2.0, 'S': 3.5, 'Wf': 1.0, 'H': 3.0, 'Wa': 1.0, 'L': 23.5}
-SOURCE = 'r011'
+FINAL = {'S': 3.5, 'Ws': 2.0, 'Wf': 1.0, 'H': 5.0, 'Wa': 1.0, 'L': 9.0}   # rev B final, sims 2026-11-04
 BOARD_W = 34.0      # board width the keep-out spans
-CLEARANCE = 8.0     # ground edge to board edge (simulation: 41 - 33)
+CLEARANCE = 7.225   # footprint origin to the top board edge (set from B2 in main)
 NOTCH_H = 1.0       # feed notch depth into the ground (simulation port gap)
 NOTCH_SIDE = 1.0    # notch clearance on each side of the feed leg
 OVERLAP = 0.25      # pads reach this far into the antenna legs so the copper joins
@@ -59,20 +58,11 @@ def from_sim(q):
 
 
 def main():
-	global CLEARANCE, OUT
-	p, src = dict(R011), SOURCE
+	global CLEARANCE
 	args = sys.argv[1:]
-	if '--sim' in args:
-		q = json.loads(args[args.index('--sim') + 1])
-		name = args[args.index('--name') + 1] if '--name' in args else 'IFA_2G4_B2'
-		if name == 'IFA_2G4':
-			sys.exit('refusing to overwrite IFA_2G4, pick another --name')
-		p, CLEARANCE = from_sim(q)
-		src = 'rev B sim (b2 layout) ' + json.dumps(q)
-		OUT = os.path.join(HERE, 'BSN-C23.pretty', name + '.kicad_mod')
-	elif args:
-		best = json.load(open(args[0]))
-		p, src = best['params'], best.get('id', os.path.basename(args[0]))
+	q = json.loads(args[args.index('--sim') + 1]) if '--sim' in args else dict(FINAL)
+	p, CLEARANCE = from_sim(q)
+	src = 'rev B sim (b2 layout) ' + json.dumps(q)
 	xf = p['x0'] + p['Ws'] / 2 + p['S']          # feed leg centre, from the board edge
 	sx0, sx1 = p['x0'] - xf, p['x0'] + p['Ws'] - xf
 	fx0, fx1 = -p['Wf'] / 2, p['Wf'] / 2
@@ -85,8 +75,7 @@ def main():
 	           (fx0, 0), (fx0, ya0), (sx1, ya0), (sx1, 0)]
 	keepout = [(left, 0), (left, -CLEARANCE), (right, -CLEARANCE), (right, 0),
 	           (n1, 0), (n1, NOTCH_H), (n0, NOTCH_H), (n0, 0)]
-	board_note = ('Simulated on the C23 rev B board (34 x 34 mm, R10 corners, CR2032). ' if src.startswith('rev B')
-		else 'Simulated on a 40 x 41 mm board with a 40 x 33 mm ground, so re-check on the real outline. ')
+	board_note = 'Simulated on the C23 rev B board (34 x 34 mm, R10 corners, CR2032). '
 	descr = (f'Printed inverted-F antenna, 2.4 GHz, openEMS {src}: '.replace('"', "'")
 	         + ', '.join(f'{k} {f(v)}' for k, v in p.items())
 	         + ' mm. ' + board_note +

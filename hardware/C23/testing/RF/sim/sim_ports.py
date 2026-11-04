@@ -35,7 +35,7 @@ def port_defs(board, mode, zF):
 		groups.append(('L2', [([max(a[0], c[0]), lo[3], zF], [min(a[2], c[2]), hi[1], zF], 'y', 50)]))
 		for ref, sig in (('L3', '2'), ('L4', '1')):
 			if ref not in board['pads']:
-				continue                     # L4 was removed in the b2 layout
+				continue                     # only the b1 board.json has L4 (now the ref of the DC-DC inductor)
 			s = pad(board, ref, sig)['bbox']
 			g = pad(board, ref, '1' if sig == '2' else '2')['bbox']
 			y0, y1 = max(s[1], g[1]), min(s[3], g[3])

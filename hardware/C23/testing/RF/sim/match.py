@@ -2,7 +2,8 @@
 
 Usage: python match.py <S<n>P.s<n>p> [--max-parts N] [--top K]
 
-Port names come from the file header (b1: J2 L2 L3 L4, b2: J2 L2 L3 since L4 was removed).
+Port names come from the file header (b1: J2 L2 L3 L4, b2: J2 L2 L3 since the antenna-side L4 was removed. The ref L4 is now the 10 uH DC-DC
+inductor).
 
 The L2 port sits across the L2 pad gap (series part), L3 and L4 from the signal pad to the GND pad (shunt
 parts). Fitting a part = terminating that port with the part's impedance, so the 1-port S11 at J2 is

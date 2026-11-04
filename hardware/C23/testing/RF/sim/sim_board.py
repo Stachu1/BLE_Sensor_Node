@@ -5,7 +5,7 @@ Usage (server, openEMS venv):  python sim_board.py <run_dir> [threads]
     board      path to board.json (relative to this script's folder), or "r011" for the regression model
     antenna    {"family": "ifa"|"fifa", params...} (antenna.py) or "placed" (AE1 copper from board.json)
     ports      "j2"     one port at J2 pad 1 (antenna side of the MM8130 switch), L2 fitted as 0R, L3/L4 open
-               "multi"  4 ports: J2, L2 (series, across the pad gap), L3 (shunt), L4 (shunt) -> S-matrix
+               "multi"  J2, L2 (series, across the pad gap), L3 (shunt) and on b1 also L4 (shunt) -> S-matrix
                "notch"  r011 only: port across the feed notch
     battery    true: CR2032 and holder clips as metal under B.Cu
     mask       "none" | "explicit" (20 um, er 3.8 on both sides, resolved in z)

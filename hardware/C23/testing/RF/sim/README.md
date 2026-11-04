@@ -29,8 +29,8 @@ coordinates, a drawing, the impedance at J2, the best matching parts, efficiency
   around the board at 2.40, 2.44 and 2.48 GHz. The openEMS NF2FF transform gives wrong results for this
   layered board (30 % instead of 100 % on a lossless test case, box-size dependent), see `farfield.py`.
   Radiation efficiency = radiated / accepted power, total efficiency = radiated / incident power (50 ohm).
-- **Board revisions:** `build/board.json` is the first rev B layout (b1). `build/b2/` is the layout with L4
-  removed and the ground edge 1.4 mm lower. `stretch_board.py` makes taller or wider copies (`build/b2t*`,
+- **Board revisions:** `build/board.json` is the first rev B layout (b1). `build/b2/` is the layout with the
+  antenna-side L4 removed (after re-annotation the ref L4 is the 10 uH DC-DC inductor) and the ground edge 1.4 mm lower. `stretch_board.py` makes taller or wider copies (`build/b2t*`,
   `build/b2w*`) to see what a bigger board would gain. `antenna.BASES` holds the ground edge of each.
 
 ## Files

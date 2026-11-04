@@ -28,7 +28,9 @@ BOARD = os.path.join(REPO, 'hardware', 'C23', 'BSN-C23.kicad_pcb')
 ORIGIN = (150.0, 100.0)                 # board centre in KiCad coordinates
 LAYERS = ['F.Cu', 'In1.Cu', 'In2.Cu', 'B.Cu']
 ANTENNA_REF = 'AE1'
-PAD_REFS = ['AE1', 'J2', 'L2', 'L3', 'L4', 'C7', 'C8', 'C9', 'L1', 'U1', 'BT1']
+# L4 is not exported: the antenna-side shunt L4 was removed (b2 layout) and after re-annotation the reference L4
+# is the 10 uH DC-DC inductor, which is not part of the RF window.
+PAD_REFS = ['AE1', 'J2', 'L2', 'L3', 'C7', 'C8', 'C9', 'L1', 'U1', 'BT1']
 MAX_ERR = pcbnew.FromMM(0.01)
 
 

@@ -5,12 +5,15 @@ Numbers are simulation results with ideal matching parts unless a line says othe
 
 ## Antenna to order
 
-IFA on the b2 layout (L4 removed, via fence and ground fill 1.4 mm lower, ground edge at KiCad y 90.4).
-Footprint `IFA_2G4_B2` in `hardware/C23/library/BSN-C23.pretty`, made with
+IFA on the b2 layout (antenna-side shunt L4 removed, via fence and ground fill 1.4 mm lower, ground edge at KiCad y 90.4).
+After the removal the schematic was re-annotated, so the reference L4 is now the 10 uH DC-DC inductor. In this
+folder "L4" in b1 results means the old antenna-side shunt. The rev B matching parts are only L2 and L3.
 
-    python gen_ifa_footprint.py --sim '{"S":3.5,"Ws":2,"Wf":1,"H":5.0,"Wa":1,"L":9.0}' --name IFA_2G4_B2
+Footprint `IFA_2G4` in `hardware/C23/library/BSN-C23.pretty` (replaced 2026-11-04 with this geometry), made with
 
-Place it with its origin on AE1 (KiCad 144.1, 90.225). `IFA_2G4` is untouched.
+    python gen_ifa_footprint.py
+
+Its origin sits on AE1 (KiCad 144.1, 90.225). On the board, update AE1 from the library to get the new copper.
 
 | part | KiCad x | KiCad y | width |
 |---|---|---|---|
@@ -93,7 +96,12 @@ the battery about 5 MHz, the mask -19 MHz is already in the as-built row).
 
 ### For the bench
 
-- Start with L2 = 1.6 nH and L3 = 6.8 nH. The definitive 3-port run says -15.5 dB in the whole band.
+- Fit L2 = 1.6 nH and L3 = 6.8 nH. The definitive 3-port run says -15.5 dB in the whole band.
+- Chosen parts: L2 Murata LQG15WZ1N6B02D (Digi-Key 490-LQG15WZ1N6B02DCT-ND, 1.6 nH +-0.1 nH, multilayer),
+  L3 Murata LQW15AN6N8G80D (Digi-Key 490-14714-1-ND, 6.8 nH +-2 %, wirewound). Checked on the 3-port data
+  (run 5b8536e8e4): with L2 Q 15 to 35 and L3 Q 30 to 60 at 2.44 GHz the worst channel stays -15.4 to -15.7 dB,
+  and over both part tolerances it stays -14.7 to -15.5 dB. The Q values at 2.44 GHz are assumptions, the
+  distributor data gives Q only at lower test frequencies.
 - Measure S11 at J2 with a VNA and re-pick both parts. Without a VNA the parts above are the best guess.
 - Tuning kit (0402 RF inductors, for example Murata LQW15 or LQG15): L2 0R, 0.8, 1.0, 1.2, 1.5, 1.8, 2.2 nH and
   L3 3.9, 4.3, 4.7, 5.6, 6.8, 7.5, 8.2, 9.1 nH, plus a few 22 pF for L2.

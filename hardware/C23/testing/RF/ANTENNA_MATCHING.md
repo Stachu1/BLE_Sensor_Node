@@ -34,7 +34,8 @@ J1 (U.FL) ── 15 pF series (DC block, C9/C6) ── node ── L2 series ─
   15 pF cap is close to its self-resonance, and swapping it for a short made no measurable difference
   (3.1 + j18.2 vs 3.1 + j18.1 Ω).
 - The shunt position used is the L3 pads (between the DC block and L2). The L4 pads (shunt at the
-  antenna side) stayed empty. Shunt-first at the antenna can't reach 50 Ω here because the antenna's
+  antenna side, rev A numbering. On rev B that shunt is gone and the ref L4 is the 10 uH DC-DC inductor)
+  stayed empty. Shunt-first at the antenna can't reach 50 Ω here because the antenna's
   parallel resistance is below 50 Ω.
 - Starting point was the TI reference values (C6 15 pF, L2 6.7 nH, L3 7.3 nH shunt), which were not
   tuned for this layout.
