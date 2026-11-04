@@ -7,8 +7,8 @@
  *  1. Reset reason, factory BLE address, part ID
  *  2. Clocks: HFXT (48 MHz) good, LF clock good (LFOSC, X2 not fitted)
  *  3. Supply: VDDS from the battery monitor, die temperature
- *  4. I2C: bus scan, HDC2010 IDs, SHTC3 probe (U2 DNP on rev A)
- *  5. HDC2010 measurement, plausibility check, and the DRDY/INT line (DIO21)
+ *  4. I2C: bus scan, HDC2010 IDs, SHTC3 probe (not on rev B)
+ *  5. HDC2010 measurement, plausibility check, and the DRDY/INT line (DIO13)
  *     checked both as a level and as an edge interrupt
  */
 #include <stdbool.h>
@@ -171,7 +171,7 @@ static void scanBus(I2C_Handle i2c)
             found++;
         }
     }
-    LOG(found ? "\r\n" : " none (check pull-ups R1/R2, U3 solder joints)\r\n");
+    LOG(found ? "\r\n" : " none (check pull-ups R5/R6, U2 solder joints)\r\n");
 }
 
 static bool testHdc2010(I2C_Handle i2c)
@@ -186,7 +186,7 @@ static bool testHdc2010(I2C_Handle i2c)
     idOk = Hdc2010_readIds(i2c, HDC2010_I2C_ADDR, &manuf, &dev) &&
            manuf == HDC2010_MANUFACTURER_ID && dev == HDC2010_DEVICE_ID;
     snprintf(d, sizeof(d), "manuf 0x%04X dev 0x%04X", manuf, dev);
-    check(idOk, "HDC2010 ID (U3 @0x40)", d);
+    check(idOk, "HDC2010 ID (U2 @0x40)", d);
     if (!idOk)
     {
         return false;
@@ -205,7 +205,7 @@ static bool testHdc2010(I2C_Handle i2c)
         usleep(1000);
         intLevelSeen = GPIO_read(CONFIG_GPIO_HDC_INT) != 0;
     }
-    check(intLevelSeen, "HDC INT level (DIO21)", intLevelSeen ? "" : "never went high within 50 ms");
+    check(intLevelSeen, "HDC INT level (DIO13)", intLevelSeen ? "" : "never went high within 50 ms");
     check(hdcIntCount != edgesBefore, "HDC INT edge IRQ", "");
 
     Hdc2010_readStatus(i2c, HDC2010_I2C_ADDR, &ready);
@@ -230,7 +230,7 @@ static bool testShtc3(I2C_Handle i2c)
 
     if (!Shtc3_probe(i2c, &id))
     {
-        LOG("[INFO] SHTC3 (U2 @0x70)       not present (DNP on rev A)\r\n");
+        LOG("[INFO] SHTC3 (U2 @0x70)       not present (not on rev B)\r\n");
         return false;
     }
     LOG("[INFO] SHTC3 (U2 @0x70)       found, ID 0x%04X\r\n", id);

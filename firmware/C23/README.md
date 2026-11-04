@@ -85,17 +85,22 @@ To edit pins, clocks or BLE parameters graphically, run `make syscfg-gui`, or ed
 
 ### Connections
 
+Rev B test points. The rev A wiring is in this file at the tag `fw/BSN-C23-A`.
+
 | Signal | Board | XDS110 (10-pin Cortex debug / LaunchPad header) | USB-UART |
 |---|---|---|---|
-| SWDIO | TP3 (DIO16) | TMS/SWDIO | |
-| SWCLK | TP5 (DIO17) | TCK/SWCLK | |
-| nRESET | TP4 | nRESET (optional, enables hardware reset) | |
-| VDD sense | TP9 | VTREF (pin 1), sense only, doesn't supply | |
-| GND | TP10 | GND | GND |
-| UART TX (board to PC) | TP2 (DIO13) | RXD (back-channel) | RX |
-| UART RX (PC to board) | TP6 (DIO20) | not needed | **leave unconnected** |
+| SWDIO | TP5 (DIO16), J3 pin 2 | TMS/SWDIO | |
+| SWCLK | TP7 (DIO17), J3 pin 4 | TCK/SWCLK | |
+| nRESET | TP6, J3 pin 3 | nRESET (optional, enables hardware reset) | |
+| VDD sense | TP11, J3 pin 1 | VTREF (pin 1), sense only, doesn't supply | |
+| GND | TP10, J3 pin 5 | GND | GND |
+| UART TX (board to PC) | TP2 (DIO6) | RXD (back-channel) | RX |
+| UART RX (PC to board) | TP8 (DIO20) | not needed | **leave unconnected** (except for the ROM bootloader) |
+| BOOT | TP1 (DIO3) | | short to GND at reset for the ROM bootloader |
 
-Leave TP6 unconnected. The firmware never reads the UART, and an adapter's TX line would back-power
+J3 is a Tag-Connect TC2030-NL footprint with the SWD pins, so a TC2030 cable replaces the five pogo pins.
+
+Leave TP8 unconnected in normal use. The firmware never reads the UART, and an adapter's TX line would back-power
 the board through the I/O protection diodes while the board is off.
 
 **Power:** the target config [`targetConfigs/CC2340R5_XDS110.ccxml`](targetConfigs/CC2340R5_XDS110.ccxml)
@@ -122,8 +127,10 @@ works even when the application has locked SWD out.
 Alternatives:
 
 - **UniFlash** (https://www.ti.com/tool/UNIFLASH) is a GUI that loads the same `.out` or `.hex` with the same probe.
-- **ROM serial bootloader**: not usable on rev A. The UART pins don't match any of the ROM bootloader's
-  pin sets (see BRINGUP.md, "Notes for rev B"), and the CCFG generated here disables it after the first flash.
+- **ROM serial bootloader** (rev B): the CCFG built here keeps it enabled, with BOOT (DIO3, TP1) as the trigger.
+  Hold TP1 at GND during reset, and the ROM uses TP8 (RX, DIO20) and TP2 (TX, DIO6). Not tried yet,
+  the rev B boards are not assembled. On rev A it was not usable, because the UART pins matched none of the
+  ROM bootloader's pin sets.
 
 ### Without a UART adapter
 
@@ -181,7 +188,7 @@ make jflash MODE=shutdown_wake HDC_AMM=7 # HDC2010 auto mode, DRDY wakes the MCU
 Every build puts the SHTC3 to sleep at boot (`SHTC3_SLEEP=0` leaves it idle) and waits 5 s before entering its state.
 Changing a parameter rebuilds automatically.
 
-- After `jflash`, unplug **all** J-Link wires and do a full power-on reset (TP9 at 0 V). Otherwise the CC2340 stays
+- After `jflash`, unplug **all** J-Link wires and do a full power-on reset (VDD, TP11, at 0 V). Otherwise the CC2340 stays
   in the ROM at a few mA, or the probe keeps the debug logic powered.
 - Bypass the ammeter while flashing. Its µA-range shunt starves the board when the debugger wakes it.
 - For the event modes, run the events at 5–10 Hz so every meter reading averages several of them. Get the charge
@@ -200,16 +207,16 @@ Changing a parameter rebuilds automatically.
 
 ## Configuration decisions
 
-These come from the rev A schematic (`hardware/C23/BSN-C23.kicad_sch`). If the hardware changes, update
-`common/bsn_board.h` and both `.syscfg` files together.
+These come from the rev B schematic (`hardware/C23/BSN-C23.kicad_sch`). If the hardware changes, update
+`common/bsn_board.h` and all four `.syscfg` files together.
 
 | Decision | Why |
 |---|---|
-| `CCFG.srcClkLF = "LF RCOSC"` | X2 (32.768 kHz) is DNP. With the default "LF XOSC" the device would wait for a crystal that isn't there. The BLE module then adds 1500 ppm of sleep-clock margin, which costs a little extra RX-window time in connections but nothing for a pure broadcaster. |
-| ROM bootloader pin trigger off | The CC23xx default trigger pin is DIO21, which is the HDC2010 INT line on this board. |
-| Pull-down on DIO21 | The HDC2010 INT output is high-Z until configured. A floating input wastes current. |
+| `CCFG.srcClkLF = "LF RCOSC"` | There is no 32.768 kHz crystal (X2 was DNP on rev A and is gone on rev B). With the default "LF XOSC" the device would wait for a crystal that isn't there. The BLE module then adds 1500 ppm of sleep-clock margin, which costs a little extra RX-window time in connections but nothing for a pure broadcaster. |
+| ROM bootloader on, pin trigger DIO3 active low | Rev B has a BOOT pin on DIO3 with a 100 kΩ pull-up (R4, TP1). UART TX on DIO6 and RX on DIO20 are the ROM's serial IO set 0. The ROM checks the pin only at reset, so it costs nothing in sleep. On rev A the trigger stayed off, because the default trigger pin DIO21 was the HDC2010 INT line. |
+| Pull-down on DIO13 | The HDC2010 INT output is high-Z until configured. A floating input wastes current. |
 | HFXT cap-array trim overridden to Q1 = Q2 = 44 | With the factory trim (35) the carrier was +30 ppm high. 44 brings it to +2 ppm (BRINGUP.md stage 6, `hardware/C23/testing/rev_A/RF/RF_CARRIER.md`). Set in `ble_sensor.syscfg` and `cwtest.syscfg`. |
 | Public BLE address | Uses the factory address from FCFG, so the address printed by hwtest is the one you'll see in a scanner. |
 | BTHome v2 payload | Open format that Home Assistant, Theengs and BTHome-aware scanner apps decode with no custom code. Layout is in `ble_sensor/bthome.c`. |
 | Broadcaster only, no GATT | Lowest power and smallest stack. A connectable variant with the Device Information Service (hardware revision) can be added later. |
-| SHTC3 (U2) still probed | U2 is DNP on rev A, but the self-test reports it if fitted, for sensor comparison. |
+| SHTC3 still probed | Not on rev B (U2 DNP on rev A). The self-test reports it if fitted on a rev A board, for sensor comparison. On rev B the probe gets a NACK. |

@@ -24,7 +24,7 @@ bool Hdc2010_readIds(I2C_Handle i2c, uint8_t addr, uint16_t *manufId, uint16_t *
 
 /*
  * Soft reset, then configure: 14-bit T and RH, on-demand mode, DRDY/INT pin
- * enabled active-high, DRDY interrupt enabled. The INT line (DIO21) goes high
+ * enabled active-high, DRDY interrupt enabled. The INT line (DIO13) goes high
  * when a conversion finishes and clears when the status register is read.
  */
 bool Hdc2010_init(I2C_Handle i2c, uint8_t addr);

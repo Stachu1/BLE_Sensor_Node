@@ -1,8 +1,9 @@
 /*
  * shtc3.h - minimal Sensirion SHTC3 driver
  *
- * U2 is DNP on BSN-C23-A. The bring-up firmware still probes it so that a
- * board with U2 hand-fitted can be compared against the HDC2010.
+ * The SHTC3 was U2 on BSN-C23-A (DNP) and is not on BSN-C23-B. The firmware still
+ * probes it so that a rev A board with U2 hand-fitted can be compared against the
+ * HDC2010. On rev B the probe gets a NACK.
  *
  * Datasheet: docs/datasheets/sensors/sensirion_SHTC3_datasheet.pdf
  */

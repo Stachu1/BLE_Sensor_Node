@@ -1,7 +1,7 @@
 // @cliArgs --device "CC2340R5RGE" --package "RGE" --rtos "freertos"
 
 /*
- *  ble_sensor.syscfg - BSN-C23-A BLE temperature/humidity broadcaster
+ *  ble_sensor.syscfg - BSN-C23-B BLE temperature/humidity broadcaster
  *
  *  Derived from the TI LPF3 SDK basic_ble example (BSD-3-Clause).
  *  Pin map: see ../common/bsn_board.h
@@ -25,7 +25,7 @@ ble.advSet1.advParam1.primIntMax = 1000;
 
 /* ======== Board ======== */
 // Without a --board, the generated Board_init() still bit-bangs a LaunchPad SPI-flash
-// shutdown sequence on DIO11/13/21/24, which are UART TX, HDC INT and I2C SCL here.
+// shutdown sequence on DIO11/13/21/24, which include HDC INT (DIO13) and I2C SCL here.
 const Board = scripting.addModule("/ti/drivers/Board");
 Board.generateInitializationFunctions = false;
 
@@ -54,20 +54,28 @@ for (const setting in ccfgSettings)
 {
     CCFG[setting] = ccfgSettings[setting];
 }
-// X2 (32.768 kHz crystal) is not fitted on rev A, so use the internal RC oscillator.
+// There is no 32.768 kHz crystal on the board, so use the internal RC oscillator.
 // The BLE module follows this and widens its sleep-clock accuracy accordingly.
 CCFG.srcClkLF = "LF RCOSC";
 // HFXT load-capacitance trim (internal cap array, 6 bits, 0..63). Higher values
 // add load capacitance and lower the frequency. Measured at 2440 MHz: factory
 // default 35 = +30.3 ppm, 39 = +16.8 ppm, 44 = +2.2 ppm
-// (hardware/C23/testing/rev_A/RF/RF_CARRIER.md). Keep Q1 and Q2 within one step of each
-// other, and keep the same values in ble_sensor.syscfg and cwtest.syscfg.
+// on rev A (hardware/C23/testing/rev_A/RF/RF_CARRIER.md), to be checked on rev B.
+// Keep Q1 and Q2 within one step of each other, and keep the same values in
+// ble_sensor.syscfg and cwtest.syscfg.
 CCFG.overrideHfxtCapArray = true;
 CCFG.hfxtCapArrayQ1 = 44;
 CCFG.hfxtCapArrayQ2 = 44;
-// The ROM serial bootloader is disabled once this image is flashed (SDK default);
-// recover over SWD with "make erase". Never enable its pin trigger: the default
-// trigger pin DIO21 is the HDC2010 INT line.
+// ROM serial bootloader on, entered by holding BOOT (DIO3, TP1, R4 pull-up) low
+// at reset. Serial IO set 0 is RX = DIO20, TX = DIO6, the board UART. The ROM only
+// checks the pin at reset, so this costs nothing in sleep. Recover over SWD with
+// "make erase" if needed.
+CCFG.bldrSetting = "Default FCFG bootloader, with CCFG settings";
+CCFG.bldrEnabled = true;
+CCFG.serialIoCfgIndex = 0;
+CCFG.pinTriggerEnabled = true;
+CCFG.pinTriggerDio = 3;
+CCFG.pinTriggerLevel = "LOW";
 
 /* ======== FreeRTOS ======== */
 const FreeRTOS = scripting.addModule("/freertos/FreeRTOS");
@@ -92,7 +100,7 @@ const UART2 = scripting.addModule("/ti/drivers/UART2", {}, false);
 const uart = UART2.addInstance();
 uart.$name = "CONFIG_UART_LOG";
 uart.baudRates = [115200];
-uart.uart.txPin.$assign = "DIO13";
+uart.uart.txPin.$assign = "DIO6_A1_AR+";
 uart.uart.rxPin.$assign = "DIO20_A11";
 uart.txPinInstance.initialOutputState = "High";
 ble.disableDisplayModule = true;
@@ -112,7 +120,7 @@ const hdcInt = GPIO.addInstance();
 hdcInt.$name = "CONFIG_GPIO_HDC_INT";
 hdcInt.mode = "Input";
 hdcInt.pull = "Pull Down";
-hdcInt.gpioPin.$assign = "DIO21_A10";
+hdcInt.gpioPin.$assign = "DIO13";
 
 /* ======== Battery monitor ======== */
 scripting.addModule("/ti/drivers/BatteryMonitor");

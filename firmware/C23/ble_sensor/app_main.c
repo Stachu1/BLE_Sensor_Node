@@ -206,7 +206,7 @@ static void *sensorThread(void *arg0)
     hdcOk = (i2c != NULL) && Hdc2010_init(i2c, HDC2010_I2C_ADDR);
     LOG("[SNS] HDC2010 %s\r\n", hdcOk ? "ok" : "NOT FOUND - advertising battery only");
     /* After power-on the SHTC3 idles at about 45 uA until told to sleep. U2 is
-     * DNP on rev A, but some boards have it fitted; a NACK means it is absent. */
+     * not on rev B (DNP on rev A, fitted on some boards); a NACK means it is absent. */
     if (i2c != NULL && Shtc3_sleep(i2c))
     {
         LOG("[SNS] SHTC3 fitted, put to sleep\r\n");
