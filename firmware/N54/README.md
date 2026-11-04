@@ -150,6 +150,6 @@ that can be read over SWD, as on C23.
 Pin settings survive System OFF, so the difference between `MODE=shutdown` and `MODE=bareoff` is what the
 firmware's pin configuration costs in System OFF.
 
-Use the procedure in [`hardware/C23/testing/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/Power/POWER_MEASUREMENTS.md):
+Use the procedure in [`hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md):
 unplug all J-Link wires after flashing, then short VDD (TP1) to GND (TP4) for about 1 s before measuring. After a
 debug session the nRF54L stays in debug-powered mode (and only emulates System OFF) until a power-on reset.

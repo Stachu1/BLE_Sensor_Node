@@ -131,7 +131,7 @@ python ../../C23/tools/bsn_scan.py --mac <address from stage 3>
 
 ## Stage 5 — Current (for the MCU comparison)
 
-Same meter, ranges and procedure as [`POWER_MEASUREMENTS.md`](../../hardware/C23/testing/Power/POWER_MEASUREMENTS.md).
+Same meter, ranges and procedure as [`POWER_MEASUREMENTS.md`](../../hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md).
 After flashing, unplug the J-Link and short TP1 to TP4 for about 1 s.
 
 | Measurement | Build | N54 board #2 | C23 result for comparison |
@@ -155,7 +155,7 @@ make flash TX_DBM=8
 ```
 
 Power-cycle after flashing, disconnect the probe and UART, then measure output power, frequency offset and
-harmonics at J1 exactly as for C23 ([`RF_CARRIER.md`](../../hardware/C23/testing/RF/RF_CARRIER.md)).
+harmonics at J1 exactly as for C23 ([`RF_CARRIER.md`](../../hardware/C23/testing/rev_A/RF/RF_CARRIER.md)).
 
 ---
 

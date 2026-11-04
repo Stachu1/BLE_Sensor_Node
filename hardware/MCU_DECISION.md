@@ -4,8 +4,8 @@ Decided 2026-10-30 from the rev A comparison (thesis test T0) of `BSN-C23-A` and
 advertising every 5 s or slower, 0 dBm, CR2032, room temperature. **Rev B uses the CC2340R5. The N54 variant stops at
 rev A.**
 
-Measurements: [`C23/testing/Power`](C23/testing/Power/POWER_MEASUREMENTS.md),
-[`N54/testing/Power`](N54/testing/Power/POWER_MEASUREMENTS.md), [`C23/testing/RF`](C23/testing/RF/RF_CARRIER.md),
+Measurements: [`C23/testing/rev_A/Power`](C23/testing/rev_A/Power/POWER_MEASUREMENTS.md),
+[`N54/testing/Power`](N54/testing/Power/POWER_MEASUREMENTS.md), [`C23/testing/rev_A/RF`](C23/testing/rev_A/RF/RF_CARRIER.md),
 [`N54/testing/RF`](N54/testing/RF/RF_CARRIER.md).
 
 ## Main reasons

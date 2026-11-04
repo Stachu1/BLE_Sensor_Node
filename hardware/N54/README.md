@@ -71,7 +71,7 @@ verify the PA network into 50 Ω on its own before the antenna is matched.
 Before the boards existed, the MCU source impedance and the antenna impedance were estimated from the nRF54L and
 antenna datasheets and stepped through all 8 elements on a Smith chart. This treated L5 as a series part, which it
 isn't on the board, and the estimated antenna impedance was later measured on C23 to be quite different
-(about 6.4 − j13 Ω, see `hardware/C23/testing/RF/ANTENNA_MATCHING.md`). Kept for reference:
+(about 6.4 − j13 Ω, see `hardware/C23/testing/rev_A/RF/ANTENNA_MATCHING.md`). Kept for reference:
 
 https://onlinesmithchart.com/?circuit=blackBox_34.1_-40.9_0__seriesInd_2.7_nH_0_0__shortedCap_1.5_pF_0_0_0__seriesInd_3.5_nH_0_0__shortedCap_2_pF_0_0_0__seriesInd_3.5_nH_0_0__shortedCap_0.3_pF_0_0_0__shortedInd_7.3_nH_0_0__seriesInd_6.7_nH_0_0&fSpan=0
 

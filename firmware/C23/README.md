@@ -58,7 +58,7 @@ make LOG=0 SENSOR_S=0 ADV=0             # start the BLE stack but never advertis
 ```
 
 Defaults: `LOG=1`, `SENSOR_S=10`, `ADV_MS=0` (keep `ble_sensor.syscfg`, 1 s), `TX_DBM=0`, `ADV=1`.
-Results: [`hardware/C23/testing/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/Power/POWER_MEASUREMENTS.md).
+Results: [`hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md).
 
 Host unit tests need any host C compiler (`gcc`, `clang`, or `zig cc` via `pip install ziglang`):
 
@@ -153,7 +153,7 @@ make flash FREQ_MHZ=2402 TX_DBM=8         # 2360..2500 MHz, -20..+8 dBm, rounded
 Changing `FREQ_MHZ`, `TX_DBM` or `TX_HALF_DB` rebuilds automatically. To stop the carrier, flash another image.
 With a J-Link instead of the XDS110, use `make jflash` and power-cycle the board afterwards.
 
-Frequency offset and output power measured on rev A: [`hardware/C23/testing/RF/RF_CARRIER.md`](../../hardware/C23/testing/RF/RF_CARRIER.md).
+Frequency offset and output power measured on rev A: [`hardware/C23/testing/rev_A/RF/RF_CARRIER.md`](../../hardware/C23/testing/rev_A/RF/RF_CARRIER.md).
 
 - Run it from the bench supply. A continuous carrier draws several mA (more at +8 dBm), which a CR2032 can't
   supply for long, and the sagging voltage changes the output.
@@ -165,7 +165,7 @@ Frequency offset and output power measured on rev A: [`hardware/C23/testing/RF/R
 ## Current test
 
 `pwrtest` puts the board into one fixed state, chosen at build time, for an ammeter in series with the supply.
-Results and procedure: [`hardware/C23/testing/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/Power/POWER_MEASUREMENTS.md).
+Results and procedure: [`hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md).
 
 ```sh
 cd firmware/C23/pwrtest
@@ -208,7 +208,7 @@ These come from the rev A schematic (`hardware/C23/BSN-C23.kicad_sch`). If the h
 | `CCFG.srcClkLF = "LF RCOSC"` | X2 (32.768 kHz) is DNP. With the default "LF XOSC" the device would wait for a crystal that isn't there. The BLE module then adds 1500 ppm of sleep-clock margin, which costs a little extra RX-window time in connections but nothing for a pure broadcaster. |
 | ROM bootloader pin trigger off | The CC23xx default trigger pin is DIO21, which is the HDC2010 INT line on this board. |
 | Pull-down on DIO21 | The HDC2010 INT output is high-Z until configured. A floating input wastes current. |
-| HFXT cap-array trim overridden to Q1 = Q2 = 44 | With the factory trim (35) the carrier was +30 ppm high. 44 brings it to +2 ppm (BRINGUP.md stage 6, `hardware/C23/testing/RF/RF_CARRIER.md`). Set in `ble_sensor.syscfg` and `cwtest.syscfg`. |
+| HFXT cap-array trim overridden to Q1 = Q2 = 44 | With the factory trim (35) the carrier was +30 ppm high. 44 brings it to +2 ppm (BRINGUP.md stage 6, `hardware/C23/testing/rev_A/RF/RF_CARRIER.md`). Set in `ble_sensor.syscfg` and `cwtest.syscfg`. |
 | Public BLE address | Uses the factory address from FCFG, so the address printed by hwtest is the one you'll see in a scanner. |
 | BTHome v2 payload | Open format that Home Assistant, Theengs and BTHome-aware scanner apps decode with no custom code. Layout is in `ble_sensor/bthome.c`. |
 | Broadcaster only, no GATT | Lowest power and smallest stack. A connectable variant with the Device Information Service (hardware revision) can be added later. |

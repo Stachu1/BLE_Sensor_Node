@@ -23,14 +23,14 @@ antenna), and power budgeting around the coin cell's current limits.
 - **0.37 µA sleep floor** on BSN-C23-A, below the CC2340R5's own datasheet typical. Every event (advert, sensor
   reading, cold boot) was measured as a charge, which gives a current model for any setting: about 3.3 µA at a
   5 s advertising interval, or roughly 7 years on a 225 mAh CR2032 before derating
-  ([power measurements](hardware/C23/testing/Power/POWER_MEASUREMENTS.md)).
+  ([power measurements](hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md)).
 - **Antenna matched on the VNA** with the battery holder fitted, step by step from the unmatched chip antenna
-  ([antenna matching](hardware/C23/testing/RF/ANTENNA_MATCHING.md)).
+  ([antenna matching](hardware/C23/testing/rev_A/RF/ANTENNA_MATCHING.md)).
 - **Conducted harmonics measured on a spectrum analyser** against the FCC restricted-band limit. With no filter on
   either board, both fail on H3, the C23 by 0.6 dB and the N54 by 17 dB. With the simple pi network from TI's
   reference design the C23 passes with 9.5 dB margin. The N54's PA network, adapted from Nordic's reference design
   with 0402 parts, cost about 10 dB of output power, so it was bypassed for the measurements
-  ([C23](hardware/C23/testing/RF/RF_CARRIER.md), [N54](hardware/N54/testing/RF/RF_CARRIER.md)).
+  ([C23](hardware/C23/testing/rev_A/RF/RF_CARRIER.md), [N54](hardware/N54/testing/RF/RF_CARRIER.md)).
 - **Firmware for both MCUs** written to the same structure (bring-up self-test, BLE sensor, CW RF test, one power
   state per build) so the two can be measured the same way.
 

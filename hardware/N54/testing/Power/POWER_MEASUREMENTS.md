@@ -1,7 +1,7 @@
 # BSN-N54-A current measurements (2026-10-27, 2026-10-30)
 
 Measurements on board #2 for the MCU comparison with BSN-C23, using the method, meter and formula of
-[`hardware/C23/testing/Power/POWER_MEASUREMENTS.md`](../../../C23/testing/Power/POWER_MEASUREMENTS.md):
+[`hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md`](../../../C23/testing/rev_A/Power/POWER_MEASUREMENTS.md):
 
 ```
 I_avg = I_floor + Q_adv / T_adv + Q_sensor / T_sensor

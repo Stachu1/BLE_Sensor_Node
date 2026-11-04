@@ -199,7 +199,7 @@ of the period (`ble_sensor/app_main.c`). Not verified yet: the only run with it 
 ## RF CW no-pi board (2026-10-30)
 
 The board used for the conducted comparison with BSN-N54 #2: no U2, PA-side pi network removed (see the
-[rework log](../../README.md#rework-log)), HDC2010, I2C pull-ups and C5 fitted, **J1 terminated with a 50 Ω
+[rework log](../../../README.md#rework-log)), HDC2010, I2C pull-ups and C5 fitted, **J1 terminated with a 50 Ω
 broadband load** like N54 #2. Meter: Keysight 34465A (the reference meter for the N54 set of the same day). 3.0 V
 at TP9 (the J-Link reported VTref 2.35 V while flashing, with the meter bypassed, not explained).
 
@@ -315,7 +315,7 @@ For the battery-life model (0 dBm, advertising every 5 s or slower, timer or DRD
 - [ ] Floor against supply voltage (`pwrtest standby` at 2.4 and 2.0 V). Until measured, assume constant power like
       the N54 (+35 % at 2.0 V).
 - [ ] Sensor readings at 2.0 V (`pwrtest sensor`, `sensor_irq`). Until measured, assume the advertising scaling.
-- [x] The same set on BSN-N54 (2026-10-27/30, see [`hardware/N54/testing/Power`](../../../N54/testing/Power/POWER_MEASUREMENTS.md)).
+- [x] The same set on BSN-N54 (2026-10-27/30, see [`hardware/N54/testing/Power`](../../../../N54/testing/Power/POWER_MEASUREMENTS.md)).
 
 Later or out of scope for the model:
 

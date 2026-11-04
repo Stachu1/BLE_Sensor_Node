@@ -33,12 +33,12 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 |---|---|---|
 | #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. A\*: antenna side matched (L2 4.3 nH, 2.1 pF on the L3 pads). **U2 (SHTC3) is fitted.** Floor 0.366 µA, 16.1 µA with 1 s advertising, see [Current measurements](#current-measurements). |
 | RF test | (no MCU) | Antenna-only board used for VNA matching, see below. |
-| RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/RF/RF_CARRIER.md`](testing/RF/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
+| RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/rev_A/RF/RF_CARRIER.md`](testing/rev_A/RF/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
 | RF CW no-pi | | As RF CW, but with the PA-side pi network removed (see the rework log). `hwtest` PASS. For the conducted power and harmonics comparison with RF CW. |
 
 ### Current measurements
 
-Full notes and data: [`testing/Power/POWER_MEASUREMENTS.md`](testing/Power/POWER_MEASUREMENTS.md).
+Full notes and data: [`testing/rev_A/Power/POWER_MEASUREMENTS.md`](testing/rev_A/Power/POWER_MEASUREMENTS.md).
 
 Board #1 at 3.0 V: sleep floor **0.366 µA** (with or without the BLE stack). One advertising event at 0 dBm costs
 **12.6 µC** (+34 % at 2.0 V, −8 % at −8 dBm, +116 % at +8 dBm). A sensor reading costs **9.56 µC** with timer polling
@@ -48,7 +48,7 @@ to sleep. Always clear the debug state with a full power-on reset before measuri
 
 ### Antenna matching
 
-Full notes and data: [`testing/RF/ANTENNA_MATCHING.md`](testing/RF/ANTENNA_MATCHING.md).
+Full notes and data: [`testing/rev_A/RF/ANTENNA_MATCHING.md`](testing/rev_A/RF/ANTENNA_MATCHING.md).
 
 The TI reference values don't fit this layout. At 2.44 GHz the bare antenna is about 6.4 − j13 Ω (flat on
 the table), and 6.7 nH for L2 is about three times too much. On the RF-only test board (Keysight P9370B through J1):

@@ -124,7 +124,7 @@ What was learned:
 ## Open items
 
 - [x] **2026-10-27:** instead of reworking this board, a second CW board was built without the pi network
-      ("RF CW no-pi" in [`../../README.md`](../../README.md): C7/C8 off, L1 shorted, 15 pF DC block kept). This board
+      ("RF CW no-pi" in [`../../../README.md`](../../../README.md): C7/C8 off, L1 shorted, 15 pF DC block kept). This board
       re-measured on 2026-10-27: +9 kHz, −2.5 dBm at 0 dBm, consistent with the table above.
 - [x] **2026-10-28 (uni, spectrum analyser):** output power, the 2414 MHz image and harmonics of both CW boards,
       with and without the pi network. See [Harmonics](#harmonics-spectrum-analyser-2026-10-28).

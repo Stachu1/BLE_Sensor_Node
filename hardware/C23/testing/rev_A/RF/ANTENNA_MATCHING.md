@@ -150,4 +150,4 @@ Impedances in ohms. "In band" is 2.40–2.48 GHz. Files 03–07 flat on the tabl
 - [ ] Confirm on a working board with the radio: compare RSSI with `tools/bsn_scan.py` at a fixed
       distance and orientation for the TI reference values, the new values, and one step either side.
 - [ ] Rev B: tune with the board lifted or in its final position, not flat on a bench.
-- [x] Update the RF network table in [`../../README.md`](../../README.md) with the lifted values.
+- [x] Update the RF network table in [`../../../README.md`](../../../README.md) with the lifted values.

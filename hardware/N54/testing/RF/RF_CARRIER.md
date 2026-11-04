@@ -2,7 +2,7 @@
 
 Checking the HFXO frequency offset and the TX output power on board #2 with the `cwtest` firmware
 (`firmware/N54/cwtest`, carrier at 2440 MHz), measured with the Keysight P9370B VNA used as a receiver, the same
-setup as [`hardware/C23/testing/RF/RF_CARRIER.md`](../../../C23/testing/RF/RF_CARRIER.md).
+setup as [`hardware/C23/testing/rev_A/RF/RF_CARRIER.md`](../../../C23/testing/rev_A/RF/RF_CARRIER.md).
 
 **Results:**
 
@@ -82,7 +82,7 @@ What was learned:
 Board #2 with the PA network bypassed (no filtering at all). The network lost 10–11 dB of output power (see
 [Output power](#output-power)), so it could not be used for a meaningful harmonics measurement. Measured with `cwtest` at 2440 MHz and the 0 dBm setting, on the
 uni's R&S Spectrum Rider FPH. Same setup and settings as the C23 boards, described in
-[`hardware/C23/testing/RF/RF_CARRIER.md`](../../../C23/testing/RF/RF_CARRIER.md#harmonics-spectrum-analyser-2026-10-28):
+[`hardware/C23/testing/rev_A/RF/RF_CARRIER.md`](../../../C23/testing/rev_A/RF/RF_CARRIER.md#harmonics-spectrum-analyser-2026-10-28):
 each harmonic on its own 3 MHz span, RBW 30 kHz, Auto Peak, 30 dB attenuation, levels as read with no cable
 correction (about 0.5 dB at 2.4 GHz to 1–2 dB at 12 GHz).
 
