@@ -5,5 +5,6 @@ I2C	True	2.0	3
 OSC	True	2.0	3
 RF	True	2.0	3
 SWD	True	2.0	3
+UART	True	2.0	3
 VDD	True	2.0	3
 False	True	False
