@@ -59,3 +59,6 @@ docs/datasheets/**/*.pdf
 
 # Interactive HTML BOM (generate locally with the InteractiveHtmlBom plugin)
 **/ibom.html
+
+# KiCad BOM working files (order sheets, ibom), not committed
+hardware/*/bom/

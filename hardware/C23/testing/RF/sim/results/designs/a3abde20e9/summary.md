@@ -1,6 +1,6 @@
 # b2 placed
 
-**Why this run:** First look at the b2 layout (L4 removed, ground edge 1.4 mm lower): does the lower ground edge help?
+**Why this run:** First look at the b2 layout (antenna-side shunt pads removed, ground edge 1.4 mm lower): does the lower ground edge help?
 
 Run `a3abde20e9`, tag `b2_quick`, model v4, board `build/b2/board.json`, battery yes, mask none.
 

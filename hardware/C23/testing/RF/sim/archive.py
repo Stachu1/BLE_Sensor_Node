@@ -44,7 +44,7 @@ TAG_PURPOSE = {
 	'tune_ifa_h30': 'Tuner start points: straight IFA with the arm 3 mm above the ground edge (b1), tuning L and S towards 50 ohm at J2.',
 	'tune_ifa_h25': 'Tuner start points: straight IFA with the arm 2.5 mm above the ground edge (b1).',
 	'tune_bent_h40': 'Tuner start points: bent-end IFA with the arm 4 mm above the ground edge (b1).',
-	'b2_quick': 'First look at the b2 layout (L4 removed, ground edge 1.4 mm lower): does the lower ground edge help?',
+	'b2_quick': 'First look at the b2 layout (antenna-side shunt pads removed, ground edge 1.4 mm lower): does the lower ground edge help?',
 	'diag1': 'Diagnostics of the sim model: battery removed, stricter end criterion, lossless FR4.',
 	'b2_cand1': 'Candidates on b2 around the best quick result (arm top at KiCad y 85): length, short-leg spacing, arm width, arm height.',
 	'smoke': 'Smoke test of the pipeline.',

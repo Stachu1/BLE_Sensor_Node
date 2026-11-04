@@ -1,6 +1,6 @@
 # b1 ifa H3 L10.6 (old board, estimated 2.45 GHz length)
 
-**Why this run:** First look at the b2 layout (L4 removed, ground edge 1.4 mm lower): does the lower ground edge help?
+**Why this run:** First look at the b2 layout (antenna-side shunt pads removed, ground edge 1.4 mm lower): does the lower ground edge help?
 
 Run `515fccca87`, tag `b2_quick`, model v4, board `build/board.json`, battery yes, mask none.
 

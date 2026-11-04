@@ -4,8 +4,8 @@ Usage (server, openEMS venv):  python sim_board.py <run_dir> [threads]
 <run_dir>/case.json:
     board      path to board.json (relative to this script's folder), or "r011" for the regression model
     antenna    {"family": "ifa"|"fifa", params...} (antenna.py) or "placed" (AE1 copper from board.json)
-    ports      "j2"     one port at J2 pad 1 (antenna side of the MM8130 switch), L2 fitted as 0R, L3/L4 open
-               "multi"  J2, L2 (series, across the pad gap), L3 (shunt) and on b1 also L4 (shunt) -> S-matrix
+    ports      "j2"     one port at J2 pad 1 (antenna side of the MM8130 switch), L2 fitted as 0R, L3 open
+               "multi"  J2, L2 (series, across the pad gap), L3 (shunt), on b1 also the old antenna-side shunt (then L4) -> S-matrix
                "notch"  r011 only: port across the feed notch
     battery    true: CR2032 and holder clips as metal under B.Cu
     mask       "none" | "explicit" (20 um, er 3.8 on both sides, resolved in z)
@@ -36,7 +36,7 @@ NF2FF_F = [2.40e9, 2.44e9, 2.48e9]
 BLE = (2.400e9, 2.4835e9)
 MESH = {'ant': 0.25, 'rf': 0.13, 'rf_y': 0.15, 'board': 0.8, 'max': 4.0, 'air': 30.0, 'grow': 1.3, 'prepreg': 0.106,
 	'core': 0.18, 'merge': 0.09, 'end': 1e-4}
-RF_WIN_X = (-7.6, -4.2)       # J2 / L2-L4 / feed area, fine mesh
+RF_WIN_X = (-7.6, -4.2)       # J2 / L2 / L3 / feed area, fine mesh
 RF_WIN_Y = (2.4, 11.2)
 ANT_WIN_X = (-11.5, 10.5)
 ANT_WIN_Y = (9.5, 17.0)

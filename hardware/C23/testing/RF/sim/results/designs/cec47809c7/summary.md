@@ -1,6 +1,6 @@
 # b2 ifa H3 L11.3 (same shape as b1 ifa_h30)
 
-**Why this run:** First look at the b2 layout (L4 removed, ground edge 1.4 mm lower): does the lower ground edge help?
+**Why this run:** First look at the b2 layout (antenna-side shunt pads removed, ground edge 1.4 mm lower): does the lower ground edge help?
 
 Run `cec47809c7`, tag `b2_quick`, model v4, board `build/b2/board.json`, battery yes, mask none.
 

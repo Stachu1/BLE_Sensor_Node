@@ -1,7 +1,7 @@
 {
  "hash": "cec47809c7",
  "name": "b2 ifa H3 L11.3 (same shape as b1 ifa_h30)",
- "purpose": "First look at the b2 layout (L4 removed, ground edge 1.4 mm lower): does the lower ground edge help?",
+ "purpose": "First look at the b2 layout (antenna-side shunt pads removed, ground edge 1.4 mm lower): does the lower ground edge help?",
  "tag": "b2_quick",
  "model": "v4",
  "board": "build/b2/board.json",
