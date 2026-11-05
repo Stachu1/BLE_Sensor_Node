@@ -41,10 +41,20 @@ RUN_PARTS = '8b668025c7'
 BOARD = os.path.join(SIM, 'build', 'b3', 'board.json')
 BLE = (2.400e9, 2.4835e9)
 FMARK = [2.40e9, 2.44e9, 2.48e9]
-# chosen parts and assumed Q at 2.44 GHz (distributor data gives Q only at lower test frequencies)
-PARTS = {'L2': {'L': 1.6e-9, 'Q': 25, 'pn': 'Murata LQG15WZ1N6B02D', 'tol': 0.1e-9},
-	'L3': {'L': 6.8e-9, 'Q': 45, 'pn': 'Murata LQW15AN6N8G80D', 'tol': 0.02 * 6.8e-9}}
-EFF_CAL = 1.089          # own far-field transform with the CR2032 model reads 108.9 % on a lossless case (../sim/archive.py)
+# chosen parts and their Q near 2.44 GHz from Murata's website / datasheet data (pim.murata.com, 2026-11-05),
+# typical values for the part type, not measured on our parts:
+#   L2 Q 106 at 2.41 GHz (Murata Q-frequency data)
+#   L3 Q 74 at 2.42 GHz (Murata S-parameter file for the part: Z = 1.38 + 101.7j ohm, 6.69 nH there)
+# (before 2026-11-05 assumed Q 25 and 45, the distributor data gives Q only at 250 MHz)
+PARTS = {'L2': {'L': 1.6e-9, 'Q': 106, 'pn': 'Murata LQG15WZ1N6B02D', 'tol': 0.1e-9},
+	'L3': {'L': 6.8e-9, 'Q': 74, 'pn': 'Murata LQW15AN6N8G80D', 'tol': 0.02 * 6.8e-9}}
+# Uncertainty budget for the expected measurement range on the Smith chart (assumed, wider than the tolerance
+# section on purpose). shift: whole response moved in frequency, for FR4 er, prepreg/core thickness, copper
+# width after etching, solder mask and the model itself (er +-5 % alone gives about +-1 %). L2: part tolerance
+# 0.1 nH (6 %) plus pads, solder and placement, 19 % is about 0.3 nH. L3: part tolerance 2 % plus the same.
+# Q_factor: part Q down to 70 %. All relative, so the chart title uses % only.
+UNC = {'shift': 0.02, 'L2': 0.19, 'L3': 0.05, 'Q_factor': (0.7, 1.0)}
+EFF_CAL = 1.089         # own far-field transform with the CR2032 model reads 108.9 % on a lossless case (../sim/archive.py)
 Z0 = 50.0
 
 plt.rcParams.update({'font.size': 9, 'axes.grid': True, 'grid.alpha': 0.3, 'savefig.dpi': 200,
@@ -309,6 +319,21 @@ def smith_trace(ax, f, g, color, label, lw=1.2, ls='-', markers=True):
 			ax.plot(g[k].real, g[k].imag, mk, color=color, ms=4, mfc='white')
 
 
+def hull(p):
+	"""Convex hull of 2D points (monotone chain), closed polygon."""
+	p = p[np.lexsort((p[:, 1], p[:, 0]))]
+	def half(q):
+		h = []
+		for x in q:
+			while len(h) >= 2 and ((h[-1][0] - h[-2][0]) * (x[1] - h[-2][1])
+					- (h[-1][1] - h[-2][1]) * (x[0] - h[-2][0])) <= 0:
+				h.pop()
+			h.append(x)
+		return h[:-1]
+	h = half(p) + half(p[::-1])
+	return np.array(h + [h[0]])
+
+
 def fig_smith():
 	fig, axs = plt.subplots(1, 2, figsize=(10, 5))
 	for ax in axs:
@@ -320,21 +345,39 @@ def fig_smith():
 	smith_trace(ax, f3, g_l3, '#e08a1e', 'L3 6.8 nH only')
 	smith_trace(ax, f3, gm, C_MATCH, 'L2 1.6 nH + L3 6.8 nH')
 	ax.legend(fontsize=7, loc='lower left', bbox_to_anchor=(-0.05, -0.08))
-	ax.set_title('S11 at J2, 2.2-2.7 GHz (thick: BLE band)\nmarkers o 2.40, s 2.44, ^ 2.48 GHz', fontsize=8)
+	ax.set_title('2.2-2.7 GHz (thick: BLE band)', fontsize=8)
 	ax = axs[1]
-	smith_trace(ax, f3, gm, C_MATCH, 'cascade, 3-port + part models')
-	if fw is not None:
-		smith_trace(ax, fw[0], fw[1], C_FW, 'lumped parts in the FDTD run (no mask)', ls='--')
-	for s, c in ((-0.01, '#6a9ad8'), (0.01, '#0a3a8a')):
-		g, _, _ = cascade(f3, shift(f3, S3, s), zL2, zL3)
-		smith_trace(ax, f3, g, c, 'resonance %+d %%' % (s * 100), lw=0.8, markers=False)
 	t = np.linspace(0, 2 * np.pi, 200)
 	r = 10 ** (-10 / 20)
 	ax.plot(r * np.cos(t), r * np.sin(t), 'k:', lw=0.7, label='|S11| = -10 dB')
-	ax.set_xlim(-0.45, 0.45)
-	ax.set_ylim(-0.45, 0.45)
+	# expected measurement range: every combination of the UNC budget, region = union of the per-frequency hulls
+	sel = (f3 >= BLE[0] - 1e-3) & (f3 <= BLE[1] + 1e-3)
+	idx = np.flatnonzero(sel)[::5]
+	pts = []
+	for s in np.linspace(-UNC['shift'], UNC['shift'], 9):
+		S = shift(f3, S3, s) if s else S3
+		for d2 in (-1, 0, 1):
+			for d3 in (-1, 0, 1):
+				for qf in UNC['Q_factor']:
+					L2 = PARTS['L2']['L'] * (1 + d2 * UNC['L2'])
+					L3 = PARTS['L3']['L'] * (1 + d3 * UNC['L3'])
+					g, _, _ = cascade(f3, S, z_part(L2, PARTS['L2']['Q'] * qf, f3), z_part(L3, PARTS['L3']['Q'] * qf, f3))
+					pts.append(g[idx])
+	pts = np.array(pts)                       # (cases, freqs)
+	unc_worst = dB(pts).max()
+	for k in range(pts.shape[1]):
+		h = hull(np.column_stack([pts[:, k].real, pts[:, k].imag]))
+		ax.fill(h[:, 0], h[:, 1], color='#c9d9f2', lw=0)
+	ax.fill([], [], color='#c9d9f2', label='expected range, BLE band')
+	smith_trace(ax, f3, gm, C_MATCH, 'nominal: L2 1.6 nH, L3 6.8 nH')
+	m = max(np.abs(pts.real).max(), np.abs(pts.imag).max(), r) * 1.12
+	ax.set_xlim(-m, m)
+	ax.set_ylim(-m, m)
 	ax.legend(fontsize=7, loc='lower left')
-	ax.set_title('Matched, zoom to the centre', fontsize=8)
+	ax.set_title('Matched, zoom. Range: L2 ±%g %%, L3 ±%g %%, part Q −%g %%,\nresponse shifted ±%g %% in frequency'
+		% (UNC['L2'] * 100, UNC['L3'] * 100, (1 - min(UNC['Q_factor'])) * 100, UNC['shift'] * 100), fontsize=8)
+	print('expected range: worst BLE S11 over all cases %.1f dB' % unc_worst)
+	fig.suptitle('S11 @ J2, markers at 2.40, 2.44, 2.48 GHz (circle, square, triangle)', fontsize=10)
 	fig.savefig(os.path.join(FIG, 'smith.png'))
 	plt.close(fig)
 

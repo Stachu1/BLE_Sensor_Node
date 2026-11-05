@@ -15,14 +15,14 @@ as a shunt at J2. The design search and the reasons for this choice are in
 | impedance at J2, 2.44 GHz, no parts | 28.1 - 29.7j Ω | 1-port run |
 | matching | L2 1.6 nH series (Murata LQG15WZ1N6B02D), L3 6.8 nH shunt (Murata LQW15AN6N8G80D) | |
 | matched S11, worst BLE channel | -14.9 dB | 3-port + part models |
-| matched S11 minimum | -47.3 dB at 2.443 GHz | 3-port + part models |
-| -10 dB bandwidth | 2367-2530 MHz (163 MHz) | 3-port + part models |
-| worst BLE S11 with part tolerance and ±1 % frequency shift | -10.8 to -12.8 dB | 3-port + part models |
-| total efficiency (50 Ω source at J2 to radiated power) | 85 / 89 / 88 % (-0.72 / -0.52 / -0.57 dB) at 2.40 / 2.44 / 2.48 GHz | efficiency budget |
+| matched S11 minimum | -52.7 dB at 2.442 GHz | 3-port + part models |
+| -10 dB bandwidth | 2368-2528 MHz (160 MHz) | 3-port + part models |
+| worst BLE S11 with part tolerance and ±1 % frequency shift | -10.7 to -12.7 dB | 3-port + part models |
+| total efficiency (50 Ω source at J2 to radiated power) | 86 / 91 / 89 % (-0.64 / -0.43 / -0.48 dB) at 2.40 / 2.44 / 2.48 GHz | efficiency budget |
 | radiation efficiency of the board (no parts) | 90.5 / 91.5 / 92.5 % | 1-port run, calibrated |
-| loss in L2 + L3 | 3.1 / 3.0 / 3.0 % | part models (Q 25 and 45) |
+| loss in L2 + L3 | 1.3 / 1.1 / 1.0 % | part models (Q 106 and 74, Murata datasheet values) |
 | directivity | 1.95-1.98 dBi | 1-port run |
-| peak realised gain | 1.2 / 1.5 / 1.4 dBi | efficiency budget |
+| peak realised gain | 1.3 / 1.5 / 1.5 dBi | efficiency budget |
 
 The efficiency numbers carry about ±5 % uncertainty from the far-field calibration (see Assumptions).
 
@@ -59,8 +59,10 @@ connector on the antenna side). The pi network between J2 and the chip is not pa
 - **CR2032** modelled as a metal disc, r 10 mm, 3.2 mm thick, 0.5 mm under B.Cu.
 - **Port** at J2 pad 1, 50 Ω, from the J2 ground pads. L2 = 0R and L3 open in the 1-port run.
 - **Matching (cascade)**: the 3-port run (ports at J2, across the L2 gap and across the L3 pads) is terminated with
-  the part models Z = jωL + R, R = 2π · 2.44 GHz · L / Q, Q 25 for L2 and 45 for L3 (the values used when the
-  parts were chosen).
+  the part models Z = jωL + R, R = 2π · 2.44 GHz · L / Q, Q 106 for L2 (Murata Q-frequency data at 2.41 GHz) and 74 for L3
+  (from the Murata S-parameter file at 2.42 GHz, Z = 1.38 + 101.7j Ω). These are Murata's typical values from
+  their website, not measured on our parts. Until 2026-11-05 the figures used
+  assumed Q 25 and 45, because the distributor data gives Q only at 250 MHz.
   This keeps the real pad positions and the coupling between them.
 - **Full-wave check**: one run with L2 and L3 as lumped series R-L elements inside the FDTD model.
   It uses the normal mesh, no solder mask, and 150 mm of air. The planned check with the parts on the fine mesh
@@ -87,6 +89,20 @@ shifted the response down by 19 MHz.
 
 ![Smith chart](figures/smith.png)
 
+The shaded area in the right chart is where a VNA measurement of the BLE band at J2 is expected to land. It is an
+assumed uncertainty budget, wider than the tolerance section on purpose:
+
+| input | range | covers |
+|---|---|---|
+| whole response shifted in frequency | ±2 % (about ±50 MHz) | FR4 εr (±5 % alone gives about ±1 %), prepreg and core thickness, copper width after etching, solder mask, the model itself |
+| L2 | ±19 % (about 0.3 nH) | part tolerance 0.1 nH (6 %) plus pads, solder and placement |
+| L3 | ±5 % | part tolerance 2 % plus the same |
+| part Q | −30 % (70-100 % of the datasheet value) | |
+
+Every combination is computed (9 frequency steps × 3 × 3 × 2), and the area is the spread at each frequency in
+the band. In the worst case the worst BLE channel reaches −7.9 dB, at the band edge. Not included: the VNA
+calibration and the MM8130 adapter. The depth of the dip near the centre is not a prediction.
+
 ![VSWR](figures/vswr.png)
 
 ![impedance](figures/impedance.png)
@@ -97,11 +113,11 @@ shifted the response down by 19 MHz.
 
 | frequency shift | worst BLE S11 over part tolerance |
 |---|---|
-| -1 % | -11.6 to -12.8 dB |
-| -0.5 % | -13.1 to -14.7 dB |
-| 0 | -14.3 to -15.4 dB |
-| +0.5 % | -12.3 to -13.3 dB |
-| +1 % | -10.8 to -11.6 dB |
+| -1 % | -11.4 to -12.7 dB |
+| -0.5 % | -12.9 to -14.5 dB |
+| 0 | -14.2 to -15.2 dB |
+| +0.5 % | -12.2 to -13.3 dB |
+| +1 % | -10.7 to -11.5 dB |
 
 The match stays better than -10 dB over the whole band in all cases. The matched band is limited by the
 antenna Q, not by the match. Moving the response by 1 % (24 MHz) costs about 3-4 dB at the band edge.
@@ -112,19 +128,19 @@ antenna Q, not by the match. Moving the response by 1 % (24 MHz) costs about 3-4
 
 | | 2.40 GHz | 2.44 GHz | 2.48 GHz |
 |---|---|---|---|
-| power accepted (1 - \|Γ\|²) | 96.8 % | 100.0 % | 97.8 % |
-| lost in L2 | 1.7 % | 2.0 % | 2.1 % |
-| lost in L3 | 1.4 % | 1.0 % | 0.8 % |
+| power accepted (1 - \|Γ\|²) | 96.8 % | 100.0 % | 97.7 % |
+| lost in L2 | 0.4 % | 0.5 % | 0.5 % |
+| lost in L3 | 0.9 % | 0.6 % | 0.5 % |
 | radiation efficiency of the board | 90.5 % | 91.5 % | 92.5 % |
-| **total efficiency** | **84.8 % (-0.72 dB)** | **88.8 % (-0.52 dB)** | **87.7 % (-0.57 dB)** |
+| **total efficiency** | **86.4 % (-0.64 dB)** | **90.5 % (-0.43 dB)** | **89.5 % (-0.48 dB)** |
 
 The board loss is dielectric loss in the FR4 (tanδ 0.02). Copper loss is not modelled, so the real numbers are
 likely a little lower.
 
-The full-wave run with the parts gives a radiation efficiency of 80 / 82 / 83 %. The cascade predicts 85 / 89 / 88 %
-for the same quantity (power delivered to the board times its radiation efficiency). The gap of 5-6 % is not
+The full-wave run with the parts gives a radiation efficiency of 80 / 82 / 83 %. The cascade predicts 86 / 91 / 89 %
+for the same quantity (power delivered to the board times its radiation efficiency). The gap of 6-9 % is not
 investigated. Possible causes are the 150 mm air box (the 1.089 calibration was measured with 30 mm of air),
-the missing mask, or the lumped-element model. Treat the efficiency as 80-89 %.
+the missing mask, or the lumped-element model. Treat the efficiency as 80-91 %.
 
 ## Radiation pattern
 
