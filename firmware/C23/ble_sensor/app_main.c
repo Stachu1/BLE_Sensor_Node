@@ -8,6 +8,11 @@
  *    asks the BLE task to update the advertising data. GAP calls must run in
  *    the BLE task context, hence BLEAppUtil_invokeFunctionNoData().
  *
+ * DRDY_AMM > 0 (make DRDY=4) is the event-driven variant: the HDC2010 runs in
+ * auto mode, each DRDY wakes the sensor task, which reads the result and asks
+ * the BLE task to load it and send exactly one advertising event. Advertising
+ * is off between events, so there is no periodic advertising and no reload.
+ *
  * Payload format: BTHome v2 (see bthome.h).
  */
 #include <pthread.h>
@@ -18,6 +23,7 @@
 #include <ti/drivers/BatteryMonitor.h>
 #include <ti/drivers/GPIO.h>
 #include <ti/drivers/I2C.h>
+#include <ti/drivers/dpl/SemaphoreP.h>
 
 #include "ti_ble_config.h"
 #include "ti_drivers_config.h"
@@ -44,6 +50,9 @@
 #endif
 #ifndef ADV_TX_DBM
 #define ADV_TX_DBM          0
+#endif
+#ifndef DRDY_AMM
+#define DRDY_AMM            0  /* 1..7: one advert per HDC2010 DRDY at this auto rate (HDC2010_AMM_*) */
 #endif
 
 /* Advertising data; the stack transmits straight from this buffer */
@@ -75,7 +84,14 @@ static BLEAppUtil_AdvInit_t advInit =
     .advParam        = &advParams1
 };
 
-#if ADV_ENABLE
+#if DRDY_AMM
+/* One advertising event per enable, then the set stops by itself */
+static const BLEAppUtil_AdvStart_t advStartOne =
+{
+    .enableOptions       = GAP_ADV_ENABLE_OPTIONS_USE_MAX_EVENTS,
+    .durationOrMaxEvents = 1
+};
+#elif ADV_ENABLE
 static const BLEAppUtil_AdvStart_t advStart =
 {
     .enableOptions       = GAP_ADV_ENABLE_OPTIONS_USE_MAX,
@@ -142,6 +158,51 @@ static void Adv_reload(char *pData)
     }
 }
 
+#if DRDY_AMM
+/* Runs in the BLE task context. Advertising is off here (the single event of the
+ * previous DRDY ended seconds ago), so loading the data disables nothing. */
+static void Adv_sendOne(char *pData)
+{
+    bStatus_t st;
+    size_t len;
+
+    (void)pData;
+    if (!advRunning)
+    {
+        return;
+    }
+    st = GapAdv_prepareLoadByHandle(advHandle, GAP_ADV_FREE_OPTION_DONT_FREE);
+    if (st != SUCCESS)
+    {
+        LOG("[BLE] prepareLoad failed: 0x%02X\r\n", st);
+        return;
+    }
+    len = BtHome_buildAdv(advData, &reading, (const char *)attDeviceName);
+    st = GapAdv_loadByHandle(advHandle, GAP_ADV_DATA_TYPE_ADV, (uint16)len, advData);
+    if (st != SUCCESS)
+    {
+        GapAdv_abortLoad();
+        LOG("[BLE] loadByHandle failed: 0x%02X\r\n", st);
+        return;
+    }
+    advLoadedId = reading.packetId;
+    st = BLEAppUtil_advStart(advHandle, &advStartOne);
+    if (st != SUCCESS)
+    {
+        LOG("[BLE] advStart failed: 0x%02X\r\n", st);
+    }
+}
+
+static SemaphoreP_Struct drdyStruct;
+static SemaphoreP_Handle drdy;
+
+static void drdyCallback(uint_least8_t index)
+{
+    (void)index;
+    SemaphoreP_post(drdy);
+}
+#endif
+
 static void criticalErrorHandler(int32 errorCode, void *pInfo)
 {
     (void)pInfo;
@@ -168,7 +229,7 @@ static void App_StackInitDoneHandler(gapDeviceInitDoneEvent_t *initDone)
     {
         st = BLEAppUtil_initAdvSet(&advHandle, &advInit);
     }
-#if ADV_ENABLE
+#if ADV_ENABLE && !DRDY_AMM
     if (st == SUCCESS)
     {
         st = BLEAppUtil_advStart(advHandle, &advStart);
@@ -212,6 +273,47 @@ static void *sensorThread(void *arg0)
         LOG("[SNS] SHTC3 fitted, put to sleep\r\n");
     }
 
+#if DRDY_AMM
+    /* The rising-edge trigger is set here, not in SysConfig: an interrupt armed on
+     * the floating line before the sensor is configured kept the device awake. */
+    drdy = SemaphoreP_constructBinary(&drdyStruct, 0);
+    if (hdcOk)
+    {
+        GPIO_setConfig(CONFIG_GPIO_HDC_INT,
+                       GPIO_CFG_INPUT | GPIO_CFG_PULL_DOWN_INTERNAL | GPIO_CFG_IN_INT_RISING);
+        GPIO_setCallback(CONFIG_GPIO_HDC_INT, drdyCallback);
+        GPIO_enableInt(CONFIG_GPIO_HDC_INT);
+        hdcOk = Hdc2010_startAuto(i2c, HDC2010_I2C_ADDR, DRDY_AMM);
+    }
+    if (!hdcOk)
+    {
+        LOG("[SNS] no HDC2010 auto mode, nothing to send\r\n");
+        while (1)
+        {
+            sleep(3600);
+        }
+    }
+    while (1)
+    {
+        bool ready;
+
+        SemaphoreP_pend(drdy, SemaphoreP_WAIT_FOREVER);
+        next.vdds_mV = BatteryMonitor_getVoltage();
+        /* Reading the status register releases INT for the next edge */
+        next.sensorValid = Hdc2010_readSample(i2c, HDC2010_I2C_ADDR, &s) &&
+                           Hdc2010_readStatus(i2c, HDC2010_I2C_ADDR, &ready);
+        if (next.sensorValid)
+        {
+            next.temp_cC = s.temp_cC;
+            next.rh_cP = s.rh_cP;
+        }
+        next.packetId++;
+        reading = next;
+        BLEAppUtil_invokeFunctionNoData(Adv_sendOne);
+        LOG("[SNS] #%u " CENTI_FMT " C " CENTI_FMT " %%RH VDDS %u mV\r\n", next.packetId,
+            CENTI_ARG(next.temp_cC), CENTI_ARG(next.rh_cP), next.vdds_mV);
+    }
+#endif
     while (1)
     {
         next.vdds_mV = BatteryMonitor_getVoltage();

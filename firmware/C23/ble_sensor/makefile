@@ -53,16 +53,19 @@ CFLAGS := \
 #   ADV_MS      advertising interval in ms (20..10240); 0 = keep ble_sensor.syscfg
 #   TX_DBM      TX power, rounded down to the PA table
 #   ADV=0       start the BLE stack but never advertise
+#   DRDY=4      event-driven: HDC2010 auto mode at this rate (1 = 120 s, 2 = 60 s, 3 = 10 s,
+#               4 = 5 s, 5 = 1 s), each DRDY sends exactly one advert. SENSOR_S and ADV_MS unused.
 LOG      ?= 1
 SENSOR_S ?= 10
 ADV_MS   ?= 0
 TX_DBM   ?= 0
 ADV      ?= 1
+DRDY     ?= 0
 CFLAGS += -DBSN_LOG_ENABLE=$(LOG) -DSENSOR_PERIOD_S=$(SENSOR_S) -DADV_INTERVAL_MS=$(ADV_MS) \
-          -DADV_TX_DBM=$(TX_DBM) -DADV_ENABLE=$(ADV)
+          -DADV_TX_DBM=$(TX_DBM) -DADV_ENABLE=$(ADV) -DDRDY_AMM=$(DRDY)
 
 # Rebuild whatever depends on the options when they change
-PARAMS := $(LOG) $(SENSOR_S) $(ADV_MS) $(TX_DBM) $(ADV)
+PARAMS := $(LOG) $(SENSOR_S) $(ADV_MS) $(TX_DBM) $(ADV) $(DRDY)
 $(shell mkdir -p build && (echo '$(PARAMS)' | cmp -s - build/params || echo '$(PARAMS)' > build/params))
 
 include ../rules.mak
