@@ -55,9 +55,14 @@ make LOG=0                              # no UART logging (always use for curren
 make LOG=0 ADV_MS=100 TX_DBM=0          # advertising interval (ms) and TX power (dBm, rounded down to the PA table)
 make LOG=0 SENSOR_S=0                   # read the sensor once at boot, then never wake for it
 make LOG=0 SENSOR_S=0 ADV=0             # start the BLE stack but never advertise (floor with the stack idle)
+make LOG=0 DRDY=4                       # one advert per HDC2010 DRDY (4 = 5 s, 3 = 10 s, 2 = 60 s), no periodic advertising
 ```
 
-Defaults: `LOG=1`, `SENSOR_S=10`, `ADV_MS=0` (keep `ble_sensor.syscfg`, 1 s), `TX_DBM=0`, `ADV=1`.
+Every payload reload into a running advertising set costs about 20 µC, more than an advert, because the TI stack
+disables and re-enables advertising for it. `DRDY` avoids reloads: advertising stays off, and each DRDY sends one
+advertising event with the new reading (25.1 µC per event on rev A).
+
+Defaults: `LOG=1`, `SENSOR_S=10`, `ADV_MS=0` (keep `ble_sensor.syscfg`, 1 s), `TX_DBM=0`, `ADV=1`, `DRDY=0`.
 Results: [`hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md).
 
 Host unit tests need any host C compiler (`gcc`, `clang`, or `zig cc` via `pip install ziglang`):
@@ -85,7 +90,7 @@ To edit pins, clocks or BLE parameters graphically, run `make syscfg-gui`, or ed
 
 ### Connections
 
-Rev B test points. The rev A wiring is in this file at the tag `fw/BSN-C23-A`.
+Rev B test points. **Rev A boards use different test points**, see [Rev A wiring](#rev-a-wiring) below the table.
 
 | Signal | Board | XDS110 (10-pin Cortex debug / LaunchPad header) | USB-UART |
 |---|---|---|---|
@@ -97,6 +102,23 @@ Rev B test points. The rev A wiring is in this file at the tag `fw/BSN-C23-A`.
 | UART TX (board to PC) | TP2 (DIO6) | RXD (back-channel) | RX |
 | UART RX (PC to board) | TP8 (DIO20) | not needed | **leave unconnected** (except for the ROM bootloader) |
 | BOOT | TP1 (DIO3) | | short to GND at reset for the ROM bootloader |
+
+#### Rev A wiring
+
+Wiring a rev A board to the rev B test points above fails with "No CFG-AP detected" on every try (2026-11-10).
+
+| Signal | Rev A (`BSN-C23-A`) | Rev B |
+|---|---|---|
+| SWDIO | TP3 | TP5 |
+| SWCLK | TP5 | TP7 |
+| nRESET | TP4 | TP6 |
+| VDD sense (VTREF) | TP9 | TP11 |
+| GND | TP10 | TP10 |
+| UART TX | TP2 (DIO13) | TP2 (DIO6) |
+| UART RX | TP6 (DIO20) | TP8 (DIO20) |
+
+Rev A images must be built from the tag `fw/BSN-C23-A`, because the pins differ in the SysConfig files. On a
+20-pin J-Link connector, pin 2 next to VTref is not connected. The first GND is pin 4.
 
 J3 is a Tag-Connect TC2030-NL footprint with the SWD pins, so a TC2030 cable replaces the five pogo pins.
 

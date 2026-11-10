@@ -4,13 +4,15 @@ Average-current measurements on board #1 (2026-10-26), for the battery-life mode
 variant and the settings trade-offs:
 
 ```
-I_avg = I_floor + Q_adv / T_adv + Q_sensor / T_sensor
+I_avg = I_floor + Q_adv / T_adv + (Q_sensor + Q_reload) / T_sensor
 ```
 
 Each `Q` is the charge of one event above the floor. It is measured as an average current at a known, fast event
-rate, so a slow, precise ammeter is enough: `Q = (I_avg − I_floor) × T_event`.
+rate, so a slow, precise ammeter is enough: `Q = (I_avg − I_floor) × T_event`. `Q_reload` is the cost of loading a
+new reading into the running advertising set (found on 2026-11-10, see [Payload reload](#payload-reload-2026-11-10)).
 
-Raw summary of every reading: [`power_2026-10-26.csv`](power_2026-10-26.csv).
+Raw summary of every reading: [`power_2026-10-26.csv`](power_2026-10-26.csv) and
+[`power_2026-11-10.csv`](power_2026-11-10.csv).
 
 ## Results
 
@@ -25,10 +27,16 @@ All at 3.0 V (3.04 V at TP9) unless noted.
 | **Sensor reading**, MCU timer + 2 ms wait (as in `ble_sensor`) | **9.56 µC** | `pwrtest sensor` |
 | **Sensor reading**, HDC2010 auto mode, DRDY wakes the MCU from standby | **3.72 µC** | `pwrtest sensor_irq` |
 | Sensor reading, HDC2010 auto mode, DRDY wakes the MCU from shutdown (full reboot) | 15.2–15.3 µC | `pwrtest shutdown_wake` |
-| Bare timer wake-up from standby (derived from the full-firmware check) | ≈ 2.4 µC | `ble_sensor` |
+| **Payload reload** (prepare/load on the running advertising set), 2026-11-10 | **20.6 ± 0.4 µC** (19.3 ± 0.7 µC on the no-pi board) | `ble_sensor SENSOR_S=1` |
+| **One advert per DRDY** (DRDY wake, reading, load, one advertising event), 2026-11-10 | **25.1 ± 2.0 µC** | `ble_sensor DRDY=7` |
+| Sleep floor at 2.4 / 2.0 V, relative to 3.0 V, 2026-11-10 | +11 / +20 % (board #1), +12 / +29 % (no-pi board) | `pwrtest standby` |
+| Sensor reading at 2.0 V, relative to 3.0 V, 2026-11-10 (no-pi board) | +25 % (DRDY, 4.68 µC), +26 % (timer) | `pwrtest sensor_irq`, `sensor` |
+| Bare timer wake-up from standby | withdrawn (was ≈ 2.4 µC, see [Full-firmware check](#full-firmware-check)) | |
 | Shutdown floor | **unresolved** (0.42 and 0.9 µA) | `pwrtest shutdown` |
 | SHTC3 (U2) left idle after power-on | +43 µA (fixed in firmware) | |
-| **Full firmware**: 1 s advertising, sensor every 10 s, 0 dBm | **16.1 ± 0.8 µA** (model: 13.9 µA + the 1 s wake-ups) | `ble_sensor` |
+| **Full firmware**: 1 s advertising, sensor every 10 s, 0 dBm | **16.1 ± 0.8 µA** (model with the reload: 15.9 µA) | `ble_sensor` |
+| **Full firmware**: 5 s advertising, sensor every 10 s, no-pi board, 2026-11-10 | **6.5 ± 0.4 µA** (model with the reload: 6.1 µA) | `ble_sensor ADV_MS=5000` |
+| **One advert per DRDY**, every 5.07 s, 2026-11-10 | **5.8 ± 0.6 µA** board #1, 5.4 ± 0.4 µA no-pi (model from the event charge: 5.3 µA) | `ble_sensor DRDY=4` |
 
 ## Setup
 
@@ -188,40 +196,45 @@ The model from the parts measured above:
 0.366 µA + 12.63 µC / 1.005 s + 9.56 µC / 10 s = 0.37 + 12.57 + 0.96 = 13.9 µA
 ```
 
-The measured value is 2.2 ± 0.8 µA higher. The current sensor task also wakes once a second, 9 times per 10 s, to
-check that the payload reload went through. At about **2.4 µC per bare wake-up** that accounts for the difference.
-The model holds, and the check costs about 14 % of the total for nothing. Removing it, and using the DRDY interrupt
-for the sensor, gives 0.37 + 12.57 + 0.37 = **13.3 µA** at the same settings.
+The measured value is 2.2 ± 0.8 µA higher. On 2026-10-26 this was put down to the sensor task waking once a second
+to check the reload, at about 2.4 µC per bare wake-up. That 2.4 µC was derived from this same difference, not
+measured. **On 2026-11-10 the payload reload itself was measured at 20.6 µC** (see
+[Payload reload](#payload-reload-2026-11-10)). With it the model is
+
+```
+0.37 + 12.57 + (9.56 + 20.6) µC / 10 s = 15.9 µA
+```
+
+which matches 16.1 ± 0.8 µA without any cost for the wake-ups. The 2.4 µC per bare wake-up is withdrawn.
 
 Since 2026-10-30 the sensor task wakes once a second only until the reload has gone through, then sleeps for the rest
-of the period (`ble_sensor/app_main.c`). Not verified yet: the only run with it is the unresolved 6.55 µA below.
+of the period (`ble_sensor/app_main.c`).
 
 ## RF CW no-pi board (2026-10-30)
 
 The board used for the conducted comparison with BSN-N54 #2: no U2, PA-side pi network removed (see the
 [rework log](../../../README.md#rework-log)), HDC2010, I2C pull-ups and C5 fitted, **J1 terminated with a 50 Ω
 broadband load** like N54 #2. Meter: Keysight 34465A (the reference meter for the N54 set of the same day). 3.0 V
-at TP9 (the J-Link reported VTref 2.35 V while flashing, with the meter bypassed, not explained).
+at TP9 (the J-Link reported VTref 2.35 V while flashing, with the meter bypassed. On 2026-11-10 the same low VTref
+went away once the J-Link GND and VTref were on the right rev A pins, see [Pitfalls](#pitfalls). Likely the same
+cause here.)
 
 | # | Build | Range | V | Mean | σ | n | Result |
 |---|---|---|---|---|---|---|---|
-| N1 | `ble_sensor LOG=0 ADV_MS=5000 SENSOR_S=10` | 10 mA, NPLC 100, autozero off | 3.0 | **6.55 µA** | | ≈ 200 | model 3.85 µA, **+2.7 µA unexplained** |
+| N1 | `ble_sensor LOG=0 ADV_MS=5000 SENSOR_S=10` | 10 mA, NPLC 100, autozero off | 3.0 | **6.55 µA** | | ≈ 200 | model 3.85 µA, **+2.7 µA, explained on 2026-11-10 by the reload** |
 | N2 | `ble_sensor LOG=0 ADV_MS=50 SENSOR_S=0` | 10 mA | 3.0 | 224 µA | 42 µA | 200 | Q_adv = **12.30 ± 0.16 µC** |
 | N3 | same | 10 mA | 2.0 | 315 µA | 75 µA | 200 | Q_adv = **17.30 ± 0.29 µC** |
 
-N2/N3 use board #1's floor (0.366 µA). This board's own floor is not measured yet.
+N2/N3 use board #1's floor (0.366 µA). This board's own floor, measured on 2026-11-10, is 0.70 µA, which moves Q_adv
+by less than 0.02 µC.
 
 - **The advertising charge matches board #1** (12.63 / 16.92 µC): without the pi network and into 50 Ω the C23 needs
   the same charge per advert. The adverts don't explain N1.
 - **N1:** the model is 0.366 + 12.63 / 5.005 + 9.56 / 10 = 3.85 µA. Checked and ruled out: debug state (J-Link
   unplugged, TP9 shorted before power-on), supply (3.0 V at TP9), C5 (fitted), missing sensor or pull-ups (fitted).
-  Left:
-  - **This board's floor.** Not measured. It would have to be about 3 µA.
-  - **The reload retries.** If the payload reload never succeeds, the sensor task falls back to waking every second,
-    as before the fix: 9 × 2.4 µC / 10 s = +2.2 µA, which gives about 6.0 µA, close to N1.
-
-  Next: `pwrtest standby` on this board (floor), then `ble_sensor LOG=1` on the UART to see whether
-  `prepareLoad`/`loadByHandle` fail at a 5 s interval.
+  The two suspects at the time were this board's floor and the reload retries.
+- **Resolved on 2026-11-10:** the floor is 0.70 µA, and N1 repeats (6.5 µA). The cause is the cost of each payload
+  reload, about 20 µC, see [Payload reload](#payload-reload-2026-11-10).
 
 ### Home check of the floors (2026-10-31, indicative only)
 
@@ -244,50 +257,149 @@ Taken at home with a UNI-T UT139S on the µA range, which shows no mean. The val
 - `ble_sensor LOG=0 ADV_MS=5000 SENSOR_S=10` on board #1 with `tools/bsn_scan.py`: the BTHome packet ID advanced
   about every 10 s, so the reload went through on that board. Windows only reported about one advert a minute,
   too few to look for extra adverts between the 5 s ones. Not yet repeated on the no-pi board.
-- **Second suspect, not checked yet:** `GapAdv_prepareLoadByHandle`/`loadByHandle` may disable and re-enable
-  advertising on every reload, and re-enabling may send an extra advert at once. That would add about
-  12.6 µC / 10 s = 1.3 µA at a 5 s interval.
+- **Second suspect:** `GapAdv_prepareLoadByHandle`/`loadByHandle` may disable and re-enable advertising on every
+  reload. Confirmed on 2026-11-10, see [Payload reload](#payload-reload-2026-11-10).
+
+## Payload reload (2026-11-10)
+
+Repeat of N1 on the no-pi board and the follow-up on both boards. Meter: Keysight 34460A, NPLC 100 (about 2 s per
+sample), 10 mA range unless noted. 3.0 V at TP9. Builds from the tag `fw/BSN-C23-A`, plus the `DRDY` option of the
+`ble_sensor` makefile on main (the same code on both revisions). Floors used: 0.70 µA on the no-pi board (P1 below),
+0.366 µA on board #1 (F4).
+
+| # | Board | Build | Mean | σ | n | Model without reload | Result |
+|---|---|---|---|---|---|---|---|
+| P1 | no-pi | `pwrtest standby SHTC3_SLEEP=0`, µA range | 0.698 µA | 0.051 µA | 100 | | floor 0.70 µA |
+| P2 | no-pi | `ble_sensor ADV_MS=50 SENSOR_S=0` | 229 µA | 13.3 µA | 125 | | Q_adv = 12.56 ± 0.07 µC |
+| P3 | no-pi | `ble_sensor ADV_MS=5000 SENSOR_S=0` | 3.16 µA | 2.99 µA | 550 | 3.21 µA | adverts alone match |
+| P4 | no-pi | `ble_sensor ADV_MS=5000 SENSOR_S=10` | **6.5 µA** | 5.6 µA | 170 | 4.16 µA | N1 repeats |
+| P5 | no-pi | `ble_sensor ADV_MS=5000 SENSOR_S=1` | 32 µA | 6.5 µA | 100 | 12.7 µA | **Q_reload = 19.3 ± 0.7 µC** |
+| P6 | #1 | `ble_sensor ADV_MS=5000 SENSOR_S=1` | 32.9 µA | 5.1 µA | 200 | 12.4 µA | **Q_reload = 20.6 ± 0.4 µC** |
+
+`SENSOR_S=1` reads the sensor and reloads the payload once a second. The model without the reload is floor +
+12.6 µC / 5.005 s + 9.56 µC / 1.004 s. Everything above it is the reload.
+
+- **Each payload reload costs about 20 µC**, 1.6 times an advert. It is the same on both boards, with and without the
+  pi network and antenna.
+- **It explains N1 and P4.** With the reload the model is 0.70 + 2.51 + (9.56 + 19.3) / 10 = 6.1 µA, against 6.5 ± 0.4
+  and 6.55 µA measured.
+- **Why:** the SDK header (`gap_advertiser.h`) states that `GapAdv_prepareLoadByHandle` disables advertising on the
+  set and `GapAdv_loadByHandle` re-enables it. How the 20 µC splits between an extra advert at the re-enable and the
+  stack work was not measured.
+- **The reload went through at 5 s on board #1** (packet ID advancing, home check). On the no-pi board the scanner
+  can't see the adverts (50 Ω load), so failed reloads there are not ruled out. The cost per reload is the same on
+  both boards.
+- **The N54 has no such cost:** its full firmware matches its model without a reload term (6.1 against 6.01 µA).
+  Zephyr's `bt_le_adv_update_data` swaps the data without stopping advertising.
+
+### One advert per DRDY
+
+`ble_sensor DRDY=<rate>`: advertising is off between events. The HDC2010 runs in auto mode, each DRDY wakes the
+sensor task, which reads the result and VDDS, loads the payload and enables advertising for one event
+(`GAP_ADV_ENABLE_OPTIONS_USE_MAX_EVENTS`, 1). No periodic advertising and no reload of a running set. The HDC2010
+period is taken as 1.4 % slow, as measured on board #1 (R3): 5.07 s at `DRDY=4`, 0.2027 s at `DRDY=7`.
+
+| # | Board | Build | Mean | σ | n | Result |
+|---|---|---|---|---|---|---|
+| D1 | #1 | `DRDY=7` (5 events/s) | 124 µA | 105 µA | 115 | **Q_event = 25.1 ± 2.0 µC** |
+| D2 | #1 | `DRDY=4` (every 5.07 s) | **5.8 µA** | 5.6 µA | 100 | model from D1: 0.37 + 25.1 / 5.07 = 5.3 µA |
+| D3 | no-pi | `DRDY=4` | **5.4 µA** | 5.4 µA | 200 | model from D1 with this floor: 5.7 µA |
+
+- **The model holds with the measured event charge.** D2 and D3 agree with the prediction within 1σ.
+- **The event costs about 9 µC more than its parts** (12.63 µC advert + 3.72 µC DRDY reading = 16.4 µC). Likely the
+  host enabling advertising and handling its end for a single event, which periodic advertising doesn't repeat. Not
+  measured separately.
+- **The σ of D1 is large** for 10 events per sample. Not looked into. More samples would tighten Q_event.
+- `tools/bsn_scan.py` on board #1 with `DRDY=4`: packet 67 to 86 in 96 s, 5.05 s per reading, matching the HDC2010
+  period. Valid readings, VDD 3.00 V. So it sends one advert per reading as intended.
+
+### Floor against supply voltage
+
+`pwrtest standby` (board #1) and `pwrtest standby SHTC3_SLEEP=0` (no-pi board), µA range, TP9 shorted before each
+power-on.
+
+| V | Board #1 | n | No-pi board | n | Difference |
+|---|---|---|---|---|---|
+| 3.0 | 0.941 ± 0.006 µA | 60 | 0.703 µA (σ 0.048 µA) | — | 0.24 µA |
+| 2.4 | 1.040 ± 0.008 µA (+11 %) | 80 | 0.788 ± 0.012 µA (+12 %) | 75 | 0.25 µA |
+| 2.0 | 1.132 ± 0.008 µA (+20 %) | 155 | 0.910 ± 0.012 µA (+29 %) | 50 | 0.22 µA |
+
+- **The floor rises by 11–12 % at 2.4 V and 20–29 % at 2.0 V**, less than the +35 % assumed from the N54.
+- **Board #1 reads 0.94 µA, against 0.366 µA (F4) on 2026-10-26** with the same build and procedure. A repeat with
+  the J-Link fully removed gave the same. The cause is not known. Board #1 has visible flux residue.
+- **The difference between the boards is flat with voltage** (0.22–0.25 µA). Candidates: the SHTC3 asleep (only on
+  board #1), or a leak on a regulated node such as the DC/DC output, which would not scale with the supply either.
+  A cleaning test (IPA around U1 and the DC/DC inductor), then lifting U2, would separate them.
+
+### Sensor readings against supply voltage
+
+No-pi board, 1 mA range, floors from the table above (0.703 µA at 3.0 V, 0.910 µA at 2.0 V). The reading periods are
+taken from board #1 (R2, R3), same builds: 101.0 ms for `sensor`, 202.7 ms for `sensor_irq`. Not counted on this
+board.
+
+| # | Build | V | Mean | σ | n | Charge per reading | Board #1 (R2, R3) |
+|---|---|---|---|---|---|---|---|
+| S1 | `pwrtest sensor PERIOD_MS=97` | 3.0 | 68.7 µA | 0.68 µA | 50 | 6.87 ± 0.01 µC | 9.56 µC |
+| S2 | same | 2.0 | 86.7 µA | 2.0 µA | 50 | 8.66 ± 0.03 µC (+26 %) | |
+| S3 | `pwrtest sensor_irq HDC_AMM=7` | 3.0 | 19.2 µA | 2.4 µA | 65 | **3.75 ± 0.06 µC** | 3.72 µC |
+| S4 | same | 2.0 | 24.0 µA | 1.4 µA | 50 | **4.68 ± 0.04 µC (+25 %)** | |
+
+- **A sensor reading costs about 25 % more at 2.0 V** than at 3.0 V, with either wake-up. The adverts rise by 34 %.
+- **The DRDY reading matches board #1** (3.75 against 3.72 µC).
+- **The polled reading does not:** 6.87 µC here against 9.56 µC on board #1, same build. Not explained. The period
+  was not counted on this board, and board #1 was not repeated today.
 
 ## Average current against advertising interval (model)
 
-The charges above put into the model, at 0 dBm and 3.0 V, board #1. Three ways of running the node:
+The charges above put into the model, at 0 dBm and 3.0 V, board #1 (floor 0.366 µA from 2026-10-26). Updated on
+2026-11-10 with the payload reload (Q_reload = 20.6 µC) and the one-advert-per-DRDY event (Q_event = 25.1 µC).
+Four ways of running the node:
 
 ```
-Standby (1, 2):  I_avg = 0.366 µA + 12.63 µC / (T + 5 ms) + Q_sensor / T_sensor
-Shutdown (3):    I_avg = 0.215 µA + (15.2 µC + Q_BLE + 12.63 µC) / T
+Periodic (1, 2):        I_avg = 0.366 µA + 12.63 µC / (T + 5 ms) + (Q_sensor + 20.6 µC) / T_sensor
+One advert per DRDY (3): I_avg = 0.366 µA + 25.1 µC / T
+Shutdown (4):           I_avg = 0.215 µA + (15.2 µC + Q_BLE + 12.63 µC) / T
 ```
 
-1. **Standby, DRDY wake:** HDC2010 auto mode, DRDY wakes the MCU from standby (Q_sensor = 3.72 µC).
-2. **Standby, timer wake:** as the current `ble_sensor` (Q_sensor = 9.56 µC).
-3. **Shutdown, DRDY wake:** every DRDY is a cold boot, a reading, a BLE stack start and one advert, then shutdown
+1. **Periodic advertising, DRDY wake:** HDC2010 auto mode, DRDY wakes the MCU from standby (Q_sensor = 3.72 µC), and
+   each reading is reloaded into the running advertising set.
+2. **Periodic advertising, timer wake:** as the current `ble_sensor` (Q_sensor = 9.56 µC), reload every reading.
+3. **One advert per DRDY:** `ble_sensor DRDY=…`. Advertising off between events, reading period = advertising
+   period. Measured as a whole event (D1).
+4. **Shutdown, DRDY wake:** every DRDY is a cold boot, a reading, a BLE stack start and one advert, then shutdown
    again. Reading period = advertising period.
 
 | Advertising interval T | 1 s | 5 s | 10 s | 60 s | 120 s |
 |---|---|---|---|---|---|
-| 1. Standby, DRDY, reading every advert | 16.7 | 3.63 | 2.00 | 0.64 | **0.50** |
-| 1. Standby, DRDY, reading every 10 s | 13.3 | **3.26** | 2.00 | 0.95 | 0.84 |
-| 2. Standby, timer, reading every advert | 22.5 | 4.80 | 2.58 | 0.74 | 0.55 |
-| 2. Standby, timer, reading every 10 s | 13.9 | 3.85 | 2.58 | 1.53 | 1.43 |
-| 3. Shutdown, DRDY (Q_BLE 10–40 µC) | 48 (38–68) | 9.8 (7.8–13.8) | 5.0 (4.0–7.0) | 1.01 (0.85–1.35) | 0.61 (0.53–0.78) |
+| 1. Periodic, DRDY, reading every advert | 37.3 | 7.75 | 4.06 | 0.98 | 0.67 |
+| 1. Periodic, DRDY, reading every 60 s | 13.3 | **3.29** | 2.03 | 0.98 | 0.88 |
+| 2. Periodic, timer, reading every 10 s (current `ble_sensor`) | 15.9 | 5.91 | 4.64 | 3.59 | 3.49 |
+| 3. One advert per DRDY | 25.5 | 5.39 | **2.88** | **0.78** | **0.58** |
+| 4. Shutdown, DRDY (Q_BLE 10–40 µC) | 48 (38–68) | 9.8 (7.8–13.8) | 5.0 (4.0–7.0) | 1.01 (0.85–1.35) | 0.61 (0.53–0.78) |
 
 All values in µA.
 
-- **Standby with the DRDY interrupt is the best option at every interval.** Shutdown only comes close at 120 s,
-  and even there it is not better.
-- **The adverts dominate up to about 25 s** (DRDY, reading every advert). Past that, the floor and the sensor readings set the current, so a
-  slower reading period matters more than a slower advertising interval.
+- **The reload sets the design.** A reload costs 1.6 adverts, so reading and reloading often is expensive. At 5 s
+  the cheapest option is periodic advertising with a slow reading (every 60 s): 3.29 µA.
+- **From about 10 s up, one advert per DRDY is the best option**, with a fresh reading in every advert. At 120 s it
+  also beats shutdown.
+- **The current `ble_sensor` (row 2) is the worst standby option at 5 s and slower**, because it reloads every 10 s.
+- **Validity:** row 2 matches the 1 s full-firmware check (15.9 against 16.1 ± 0.8 µA) and the 5 s runs on the no-pi
+  board with its own floor (6.1 against 6.5 and 6.55 µA). Row 3 matches D2 and D3 within 1σ.
+- **Not tested:** writing the new reading into the advertising buffer in place, without prepare/load. The stack
+  transmits straight from that buffer, so it might avoid Q_reload. TI documents only the prepare/load route, and a
+  write during an advertising event could send a mixed packet.
 - **Inputs that are not measured:**
   - Shutdown floor: the datasheet value (165 nA CC2340R5 + 50 nA HDC2010 = 0.215 µA), since the measured one is
     unresolved.
   - BLE stack start after a cold boot (Q_BLE): estimated at 20 µC (10–40), about 5–15 ms of stack init at about
     2.5 mA.
 - **Shutdown sends one advert per wake.** A scanner can miss one, so a real node would send 2–3, adding 12.6 µC
-  each.
-- **Validity:** the 1 s full-firmware check (16.1 µA) matches the model once the 1 s reload wake-ups are added.
-  The 6.55 µA at 5 s on the no-pi board (model 3.85 µA) is still unexplained, so treat the standby rows as the best
-  case until it is.
-- An interactive version with the N54 for comparison and the 2.4 / 2.0 V cases was made on 2026-10-30. Redo this
-  table with the rev C numbers for the final results.
+  each. The same applies to row 3.
+- **Board #1's floor read 0.94 µA on 2026-11-10**, not 0.366 µA (see [Floor against supply
+  voltage](#floor-against-supply-voltage)). With 0.94 µA every row moves up by 0.57 µA.
+- An interactive version with the N54 for comparison and the 2.4 / 2.0 V cases was made on 2026-10-30, before the
+  reload was known. Redo this table with the rev B numbers for the final results.
 
 ## Pitfalls
 
@@ -303,25 +415,28 @@ Found during these measurements. Each one gave a plausible but wrong current.
 | BTHome battery 54 %, VDDS 2.64 V at 3.0 V supply | Boot-time reading while C5 charged through the meter's µA shunt | Power on with the meter on 10 mA or bypassed |
 | No SWD connection | Meter on a µA range: its shunt starves the board when the debugger wakes it | Meter on 10 mA or bypassed while flashing |
 | Low or noisy event charge | Too few events per meter reading | Run events at 5–20 Hz |
+| Full firmware 2.7 µA above the model | Each payload reload costs about 20 µC (prepare/load disables and re-enables advertising) | `Q_reload` term in the model, or one advert per DRDY |
+| J-Link "No CFG-AP detected" on every try, VTref 0.77 V below the supply | Wired to the rev B test points (README on main) and J-Link pin 2 taken for GND (it is NC) | Rev A: SWDIO TP3, SWCLK TP5, nRESET TP4, VTref TP9, GND TP10, J-Link GND on pin 4 |
 
 ## Still to measure
 
 For the battery-life model (0 dBm, advertising every 5 s or slower, timer or DRDY sensor wake, room temperature):
 
-- [ ] **The 6.55 µA full-firmware result on the no-pi board** (see above). Floor ruled out at home (≈ 0.5–0.6 µA on
-      the UT139S). Measure it properly on the Keysight. Then the reload with `LOG=1`, and whether each reload
-      sends an extra advert.
-- [ ] Full-firmware check at 5 s advertising on board #1 (model 3.85 µA).
-- [ ] Floor against supply voltage (`pwrtest standby` at 2.4 and 2.0 V). Until measured, assume constant power like
-      the N54 (+35 % at 2.0 V).
-- [ ] Sensor readings at 2.0 V (`pwrtest sensor`, `sensor_irq`). Until measured, assume the advertising scaling.
+- [x] **The 6.55 µA full-firmware result on the no-pi board.** Repeats (6.5 µA), explained by the payload reload
+      (2026-11-10).
+- [x] Full-firmware check at 5 s. Replaced by the one-advert-per-DRDY check on board #1 (5.8 µA, model 5.3 µA) and
+      the reload measured on both boards (2026-11-10).
+- [x] Floor against supply voltage: +11–12 % at 2.4 V, +20–29 % at 2.0 V (2026-11-10).
+- [x] Sensor readings at 2.0 V: +25 % (DRDY) and +26 % (timer) on the no-pi board (2026-11-10).
+- [ ] Polled reading on the no-pi board (6.87 µC) against board #1 (9.56 µC). Count the period, repeat on board #1.
 - [x] The same set on BSN-N54 (2026-10-27/30, see [`hardware/N54/testing/Power`](../../../../N54/testing/Power/POWER_MEASUREMENTS.md)).
 
 Later or out of scope for the model:
 
 - [ ] Real CR2032: VDD dip during TX (sets the end-of-life voltage, on rev B).
 - [ ] Scope and shunt: pulse shape and peak current per advert (CR2032 peak derating), and the phases of an event.
-- [ ] Re-measure the floors with U2 removed and the board cleaned.
+- [ ] Re-measure the floors with U2 removed and the board cleaned. Now also to explain board #1's 0.94 µA
+      (0.366 µA on 2026-10-26).
 - [ ] Shutdown floor with a retained reset-reason and "refused" counter, and the BLE stack start-up charge. Not
       needed for the MCU choice: shutdown saves at most about 0.2 µA, less than a cold boot costs at any interval
       up to about 60 s.

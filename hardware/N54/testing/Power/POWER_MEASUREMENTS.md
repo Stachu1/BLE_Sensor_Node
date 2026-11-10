@@ -18,7 +18,7 @@ All at 3.0 V and 0 dBm unless noted. The 2026-10-30 values (34465A) are the refe
 | **Advertising event**, 3 channels, 31-byte BTHome payload | **7.58 µC** (10.58 µC at 2.0 V) | 12.6 µC (16.9 µC at 2.0 V) |
 | **Sensor reading**, MCU timer + wait (as in `ble_sensor`) | **2.01 µC** | 9.56 µC |
 | **Sensor reading**, HDC2010 auto mode, DRDY wakes the MCU | **1.78 µC** | 3.72 µC |
-| **Full firmware**, 5 s advertising, sensor every 10 s | **6.1 µA** (model 6.01 µA, J1 open, see below) | 6.55 µA on the no-pi board (model 3.85 µA, unresolved) |
+| **Full firmware**, 5 s advertising, sensor every 10 s | **6.1 µA** (model 6.01 µA, J1 open, see below) | 6.5 µA on the no-pi board (model 6.1 µA with the payload reload, about 20 µC each in the TI stack, found 2026-11-10) |
 
 The N54 spends about 40 % less charge per advert and 50–80 % less per sensor reading, but its floor is 3.8 µA
 higher. With these values the break-even advertising interval is about **1.3 s**: faster favours the N54, slower

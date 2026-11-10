@@ -1,0 +1,20 @@
+id,date,board,firmware,build_args,state,reset,vdd_V,tx_dBm,range,samples,mean_uA,stdev_uA,sem_uA,event_period_ms,floor_uA,charge_per_event_uC,charge_err_uC,status,notes
+P1,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=standby SHTC3_SLEEP=0,standby,TP9 short,3.0,,uA,100,0.698,0.051,0.0051,,,,,valid,
+P2,2026-11-10,BSN-C23-A no-pi,ble_sensor,LOG=0 ADV_MS=50 SENSOR_S=0,advertising,TP9 short,3.0,0,10mA,125,229,13.3,1.2,55,0.698,12.56,0.07,valid,
+P3,2026-11-10,BSN-C23-A no-pi,ble_sensor,LOG=0 ADV_MS=5000 SENSOR_S=0,advertising,TP9 short,3.0,0,10mA,550,3.16,2.99,0.13,5005,0.698,,,valid,model 3.21 uA
+P4,2026-11-10,BSN-C23-A no-pi,ble_sensor,LOG=0 ADV_MS=5000 SENSOR_S=10,full firmware,TP9 short,3.0,0,10mA,170,6.5,5.6,0.43,,0.698,,,valid,repeat of N1. Model 4.16 uA without the reload and 6.1 uA with it
+P5,2026-11-10,BSN-C23-A no-pi,ble_sensor,LOG=0 ADV_MS=5000 SENSOR_S=1,advertising + reading and reload every 1 s,TP9 short,3.0,0,10mA,100,32,6.5,0.65,1004,0.698,19.3,0.7,valid,charge is the reload above the model of 12.7 uA
+P6,2026-11-10,BSN-C23-A #1,ble_sensor,LOG=0 ADV_MS=5000 SENSOR_S=1,advertising + reading and reload every 1 s,TP9 short,3.0,0,10mA,200,32.9,5.1,0.36,1004,0.366,20.6,0.4,valid,charge is the reload above the model of 12.4 uA
+D1,2026-11-10,BSN-C23-A #1,ble_sensor,LOG=0 DRDY=7,one advert per DRDY,TP9 short,3.0,0,10mA,115,124,105,9.8,202.7,0.366,25.1,2.0,valid,
+D2,2026-11-10,BSN-C23-A #1,ble_sensor,LOG=0 DRDY=4,one advert per DRDY,TP9 short,3.0,0,10mA,100,5.8,5.6,0.56,5070,0.366,,,valid,model 5.3 uA from D1
+D3,2026-11-10,BSN-C23-A no-pi,ble_sensor,LOG=0 DRDY=4,one advert per DRDY,TP9 short,3.0,0,10mA,200,5.4,5.4,0.38,5070,0.698,,,valid,model 5.7 uA from D1
+V1,2026-11-10,BSN-C23-A #1,pwrtest,MODE=standby,standby,TP9 short,3.0,,uA,60,0.941,0.048,0.0062,,,,,valid,F4 on 2026-10-26 read 0.366 uA. A repeat with the J-Link fully removed gave the same
+V2,2026-11-10,BSN-C23-A #1,pwrtest,MODE=standby,standby,TP9 short,2.4,,uA,80,1.04,0.071,0.0079,,,,,valid,
+V3,2026-11-10,BSN-C23-A #1,pwrtest,MODE=standby,standby,TP9 short,2.0,,uA,155,1.132,0.094,0.0076,,,,,valid,
+V4,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=standby SHTC3_SLEEP=0,standby,TP9 short,3.0,,uA,,0.703,0.048,,,,,,valid,n not recorded
+V5,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=standby SHTC3_SLEEP=0,standby,TP9 short,2.4,,uA,75,0.788,0.1,0.012,,,,,valid,
+V6,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=standby SHTC3_SLEEP=0,standby,TP9 short,2.0,,uA,50,0.91,0.087,0.012,,,,,valid,
+S1,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=sensor PERIOD_MS=97,timer-polled reading,TP9 short,3.0,,1mA,50,68.7,0.68,0.096,101.0,0.703,6.87,0.01,valid,period taken from board #1 R2. Board #1 R2 gave 9.56 uC
+S2,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=sensor PERIOD_MS=97,timer-polled reading,TP9 short,2.0,,1mA,50,86.7,2.0,0.28,101.0,0.910,8.66,0.03,valid,period taken from board #1 R2
+S3,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=sensor_irq HDC_AMM=7,DRDY reading,TP9 short,3.0,,1mA,65,19.2,2.4,0.30,202.7,0.703,3.75,0.06,valid,period taken from board #1 R3
+S4,2026-11-10,BSN-C23-A no-pi,pwrtest,MODE=sensor_irq HDC_AMM=7,DRDY reading,TP9 short,2.0,,1mA,50,24.0,1.4,0.20,202.7,0.910,4.68,0.04,valid,period taken from board #1 R3

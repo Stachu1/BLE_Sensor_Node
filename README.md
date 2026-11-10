@@ -81,12 +81,10 @@ Rev A boards:
 | Board | MCU | Status |
 |---|---|---|
 | `BSN-N54-A` | nRF54L05 | Ordered and assembled (2 boards). Board #1 advertising BTHome. Board #2 (U.FL): HFXO trimmed to 11.75 pF, PA network bypassed (the rev A layout of it loses 10 dB), 0.0 dBm at the 0 dBm setting. Floor 4.20 µA, 7.6 µC per advert |
-| `BSN-C23-A` | CC2340R5 | Ordered and assembled. Board #1 flashed and advertising BTHome, antenna matched with the board lifted off the bench (L2 4.3 nH, L3 2.1 pF). Floor 0.366 µA, 12.6 µC per advert. CW boards with and without the PA pi network |
+| `BSN-C23-A` | CC2340R5 | Ordered and assembled. Board #1 flashed and advertising BTHome, antenna matched with the board lifted off the bench (L2 4.3 nH, L3 2.1 pF). Floor 0.366 µA, 12.6 µC per advert, about 20 µC per payload reload in the TI stack. CW boards with and without the PA pi network |
 
 Open questions:
 
-- A full-firmware run at a 5 s interval on one C23 board read 6.55 µA against a model of 3.85 µA. The board's
-  floor is ruled out and the payload reload is the main suspect.
 - The N54 floor sits about 1.4 µA above the datasheet on both boards. Not needed for the MCU choice, but still being
   looked into for the thesis.
 
