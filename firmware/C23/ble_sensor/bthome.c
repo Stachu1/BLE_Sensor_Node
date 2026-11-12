@@ -70,6 +70,13 @@ size_t BtHome_buildAdv(uint8_t *buf, const BtHome_Reading *r, const char *name)
         *p++ = OBJ_HUMIDITY;
         p = putU16(p, r->rh_cP);
     }
+    else
+    {
+        *p++ = OBJ_TEMPERATURE;
+        p = putU16(p, (uint16_t)-32768);
+        *p++ = OBJ_HUMIDITY;
+        p = putU16(p, 0);
+    }
     *p++ = OBJ_VOLTAGE;
     p = putU16(p, r->vdds_mV);
     *svcLen = (uint8_t)(p - svcLen - 1);

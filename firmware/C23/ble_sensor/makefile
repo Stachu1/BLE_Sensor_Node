@@ -61,11 +61,12 @@ ADV_MS   ?= 0
 TX_DBM   ?= 0
 ADV      ?= 1
 DRDY     ?= 0
+SAFE     ?= 1
 CFLAGS += -DBSN_LOG_ENABLE=$(LOG) -DSENSOR_PERIOD_S=$(SENSOR_S) -DADV_INTERVAL_MS=$(ADV_MS) \
-          -DADV_TX_DBM=$(TX_DBM) -DADV_ENABLE=$(ADV) -DDRDY_AMM=$(DRDY)
+          -DADV_TX_DBM=$(TX_DBM) -DADV_ENABLE=$(ADV) -DDRDY_AMM=$(DRDY) -DSAFE_RELOAD=$(SAFE)
 
 # Rebuild whatever depends on the options when they change
-PARAMS := $(LOG) $(SENSOR_S) $(ADV_MS) $(TX_DBM) $(ADV) $(DRDY)
+PARAMS := $(LOG) $(SENSOR_S) $(ADV_MS) $(TX_DBM) $(ADV) $(DRDY) $(SAFE)
 $(shell mkdir -p build && (echo '$(PARAMS)' | cmp -s - build/params || echo '$(PARAMS)' > build/params))
 
 include ../rules.mak
