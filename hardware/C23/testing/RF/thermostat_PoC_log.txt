@@ -1,0 +1,455 @@
+259.452 I BSN window: 831 adverts, 0 look like BSN, 0 decoded
+
+     259.573 I BSN FCDEC5732F4E RSSI -60 dBm pkt 3 temp 23.73 C
+
+     274.483 I BSN window: 1031 adverts, 1 look like BSN, 1 decoded
+
+     274.833 I BSN FCDEC5732F4E RSSI -33 dBm pkt 18 temp 23.83 C
+
+     289.523 I BSN window: 1022 adverts, 1 look like BSN, 1 decoded
+
+     290.103 I BSN FCDEC5732F4E RSSI -69 dBm pkt 33 temp 23.82 C
+
+     291.103 I BSN FCDEC5732F4E RSSI -67 dBm pkt 34 temp 23.81 C
+
+     293.122 I BSN FCDEC5732F4E RSSI -69 dBm pkt 36 temp 23.79 C
+
+     295.143 I BSN FCDEC5732F4E RSSI -87 dBm pkt 38 temp 23.76 C
+
+     300.233 I BSN FCDEC5732F4E RSSI -97 dBm pkt 43 temp 23.66 C
+
+     302.263 I BSN FCDEC5732F4E RSSI -98 dBm pkt 45 temp 23.62 C
+
+     304.553 I BSN window: 1390 adverts, 6 look like BSN, 6 decoded
+
+     316.493 I BSN FCDEC5732F4E RSSI -91 dBm pkt 59 temp 23.42 C
+
+     319.592 I BSN window: 961 adverts, 1 look like BSN, 1 decoded
+
+     322.603 I BSN FCDEC5732F4E RSSI -97 dBm pkt 65 temp 23.35 C
+
+     326.672 I BSN FCDEC5732F4E RSSI -92 dBm pkt 69 temp 23.32 C
+
+     333.782 I BSN FCDEC5732F4E RSSI -92 dBm pkt 76 temp 23.25 C
+
+     334.623 I BSN window: 1385 adverts, 3 look like BSN, 3 decoded
+
+     349.662 I BSN window: 1072 adverts, 0 look like BSN, 0 decoded
+
+     350.073 I BSN FCDEC5732F4E RSSI -102 dBm pkt 92 temp 23.11 C
+
+     355.163 I BSN FCDEC5732F4E RSSI -81 dBm pkt 97 temp 23.05 C
+
+     359.223 I BSN FCDEC5732F4E RSSI -72 dBm pkt 101 temp 23.02 C
+
+     360.232 I BSN FCDEC5732F4E RSSI -85 dBm pkt 102 temp 23.03 C
+
+     361.242 I BSN FCDEC5732F4E RSSI -62 dBm pkt 103 temp 23.03 C
+
+     362.253 I BSN FCDEC5732F4E RSSI -61 dBm pkt 104 temp 23.03 C
+
+     363.273 I BSN FCDEC5732F4E RSSI -58 dBm pkt 105 temp 23.03 C
+
+     364.313 I BSN FCDEC5732F4E RSSI -56 dBm pkt 106 temp 23.05 C
+
+     364.703 I BSN window: 1092 adverts, 8 look like BSN, 8 decoded
+
+     366.332 I BSN FCDEC5732F4E RSSI -52 dBm pkt 108 temp 23.04 C
+
+     367.343 I BSN FCDEC5732F4E RSSI -50 dBm pkt 109 temp 23.05 C
+
+     368.373 I BSN FCDEC5732F4E RSSI -44 dBm pkt 110 temp 23.06 C
+
+     369.412 I BSN FCDEC5732F4E RSSI -48 dBm pkt 111 temp 23.05 C
+
+     370.393 I BSN FCDEC5732F4E RSSI -54 dBm pkt 112 temp 23.05 C
+
+     371.412 I BSN FCDEC5732F4E RSSI -60 dBm pkt 113 temp 23.05 C
+
+     372.423 I BSN FCDEC5732F4E RSSI -68 dBm pkt 114 temp 23.05 C
+
+     373.442 I BSN FCDEC5732F4E RSSI -73 dBm pkt 115 temp 23.04 C
+
+     375.493 I BSN FCDEC5732F4E RSSI -66 dBm pkt 117 temp 23.05 C
+
+     377.503 I BSN FCDEC5732F4E RSSI -74 dBm pkt 119 temp 23.05 C
+
+     378.553 I BSN FCDEC5732F4E RSSI -84 dBm pkt 120 temp 23.04 C
+
+     379.553 I BSN FCDEC5732F4E RSSI -88 dBm pkt 121 temp 23.03 C
+
+     379.743 I BSN window: 977 adverts, 12 look like BSN, 12 decoded
+
+     380.572 I BSN FCDEC5732F4E RSSI -82 dBm pkt 122 temp 23.04 C
+
+     394.773 I BSN window: 1338 adverts, 1 look like BSN, 1 decoded
+
+     402.933 I BSN FCDEC5732F4E RSSI -89 dBm pkt 144 temp 23.00 C
+
+     408.023 I BSN FCDEC5732F4E RSSI -78 dBm pkt 149 temp 22.97 C
+
+     409.803 I BSN window: 978 adverts, 2 look like BSN, 2 decoded
+
+     410.052 I BSN FCDEC5732F4E RSSI -76 dBm pkt 151 temp 22.95 C
+
+     424.842 I BSN window: 982 adverts, 1 look like BSN, 1 decoded
+
+     425.322 I BSN FCDEC5732F4E RSSI -68 dBm pkt 166 temp 22.82 C
+
+     426.322 I BSN FCDEC5732F4E RSSI -54 dBm pkt 167 temp 22.82 C
+
+     429.373 I BSN FCDEC5732F4E RSSI -50 dBm pkt 170 temp 22.80 C
+
+     430.392 I BSN FCDEC5732F4E RSSI -50 dBm pkt 171 temp 22.81 C
+
+     431.412 I BSN FCDEC5732F4E RSSI -42 dBm pkt 172 temp 22.80 C
+
+     432.442 I BSN FCDEC5732F4E RSSI -48 dBm pkt 173 temp 22.81 C
+
+     433.452 I BSN FCDEC5732F4E RSSI -44 dBm pkt 174 temp 22.80 C
+
+     434.482 I BSN FCDEC5732F4E RSSI -21 dBm pkt 175 temp 22.81 C
+
+     435.503 I BSN FCDEC5732F4E RSSI -28 dBm pkt 176 temp 22.81 C
+
+     436.512 I BSN FCDEC5732F4E RSSI -28 dBm pkt 177 temp 22.85 C
+
+     437.512 I BSN FCDEC5732F4E RSSI -28 dBm pkt 178 temp 22.85 C
+
+     438.523 I BSN FCDEC5732F4E RSSI -95 dBm pkt 179 temp 22.88 C
+
+     439.603 I BSN FCDEC5732F4E RSSI -22 dBm pkt 180 temp 22.89 C
+
+     439.873 I BSN window: 859 adverts, 13 look like BSN, 13 decoded
+
+     440.622 I BSN FCDEC5732F4E RSSI -30 dBm pkt 181 temp 22.91 C
+
+     442.632 I BSN FCDEC5732F4E RSSI -25 dBm pkt 183 temp 22.94 C
+
+     443.622 I BSN FCDEC5732F4E RSSI -27 dBm pkt 184 temp 22.95 C
+
+     444.652 I BSN FCDEC5732F4E RSSI -22 dBm pkt 185 temp 22.97 C
+
+     445.672 I BSN FCDEC5732F4E RSSI -24 dBm pkt 186 temp 23.02 C
+
+     446.672 I BSN FCDEC5732F4E RSSI -22 dBm pkt 187 temp 23.01 C
+
+     447.692 I BSN FCDEC5732F4E RSSI -19 dBm pkt 188 temp 23.05 C
+
+     449.743 I BSN FCDEC5732F4E RSSI -24 dBm pkt 190 temp 23.03 C
+
+     451.773 I BSN FCDEC5732F4E RSSI -24 dBm pkt 192 temp 23.12 C
+
+     452.782 I BSN FCDEC5732F4E RSSI -26 dBm pkt 193 temp 23.13 C
+
+     453.782 I BSN FCDEC5732F4E RSSI -21 dBm pkt 194 temp 23.15 C
+
+     454.803 I BSN FCDEC5732F4E RSSI -17 dBm pkt 195 temp 23.19 C
+
+     454.912 I BSN window: 864 adverts, 12 look like BSN, 12 decoded
+
+     455.813 I BSN FCDEC5732F4E RSSI -19 dBm pkt 196 temp 23.19 C
+
+     456.833 I BSN FCDEC5732F4E RSSI -18 dBm pkt 197 temp 23.19 C
+
+     457.863 I BSN FCDEC5732F4E RSSI -18 dBm pkt 198 temp 23.23 C
+
+     458.903 I BSN FCDEC5732F4E RSSI -17 dBm pkt 199 temp 23.24 C
+
+     459.893 I BSN FCDEC5732F4E RSSI -18 dBm pkt 200 temp 23.29 C
+
+     460.903 I BSN FCDEC5732F4E RSSI -18 dBm pkt 201 temp 23.31 C
+
+     461.913 I BSN FCDEC5732F4E RSSI -17 dBm pkt 202 temp 23.31 C
+
+     462.953 I BSN FCDEC5732F4E RSSI -18 dBm pkt 203 temp 23.32 C
+
+     464.983 I BSN FCDEC5732F4E RSSI -18 dBm pkt 205 temp 23.35 C
+
+     466.043 I BSN FCDEC5732F4E RSSI -17 dBm pkt 206 temp 23.37 C
+
+     467.003 I BSN FCDEC5732F4E RSSI -18 dBm pkt 207 temp 23.40 C
+
+     468.043 I BSN FCDEC5732F4E RSSI -18 dBm pkt 208 temp 23.44 C
+
+     469.052 I BSN FCDEC5732F4E RSSI -17 dBm pkt 209 temp 23.44 C
+
+     469.953 I BSN window: 900 adverts, 13 look like BSN, 13 decoded
+
+     470.052 I BSN FCDEC5732F4E RSSI -18 dBm pkt 210 temp 23.46 C
+
+     484.983 I BSN window: 780 adverts, 1 look like BSN, 1 decoded
+
+     485.322 I BSN FCDEC5732F4E RSSI -42 dBm pkt 225 temp 23.60 C
+
+     500.022 I BSN window: 1066 adverts, 1 look like BSN, 1 decoded
+
+     500.562 I BSN FCDEC5732F4E RSSI -51 dBm pkt 240 temp 23.60 C
+
+     501.553 I BSN FCDEC5732F4E RSSI -50 dBm pkt 241 temp 23.59 C
+
+     503.592 I BSN FCDEC5732F4E RSSI -54 dBm pkt 243 temp 23.59 C
+
+     504.652 I BSN FCDEC5732F4E RSSI -56 dBm pkt 244 temp 23.60 C
+
+     505.643 I BSN FCDEC5732F4E RSSI -66 dBm pkt 245 temp 23.59 C
+
+     506.633 I BSN FCDEC5732F4E RSSI -53 dBm pkt 246 temp 23.60 C
+
+     507.653 I BSN FCDEC5732F4E RSSI -62 dBm pkt 247 temp 23.61 C
+
+     508.683 I BSN FCDEC5732F4E RSSI -65 dBm pkt 248 temp 23.60 C
+
+     509.703 I BSN FCDEC5732F4E RSSI -66 dBm pkt 249 temp 23.59 C
+
+     510.722 I BSN FCDEC5732F4E RSSI -66 dBm pkt 250 temp 23.58 C
+
+     511.732 I BSN FCDEC5732F4E RSSI -61 dBm pkt 251 temp 23.57 C
+
+     512.752 I BSN FCDEC5732F4E RSSI -62 dBm pkt 252 temp 23.55 C
+
+     513.762 I BSN FCDEC5732F4E RSSI -74 dBm pkt 253 temp 23.40 C
+
+     514.773 I BSN FCDEC5732F4E RSSI -77 dBm pkt 254 temp 23.44 C
+
+     515.062 I BSN window: 834 adverts, 14 look like BSN, 14 decoded
+
+     516.803 I BSN FCDEC5732F4E RSSI -65 dBm pkt 0 temp 23.40 C
+
+     518.852 I BSN FCDEC5732F4E RSSI -72 dBm pkt 2 temp 23.38 C
+
+     519.863 I BSN FCDEC5732F4E RSSI -61 dBm pkt 3 temp 23.36 C
+
+     520.872 I BSN FCDEC5732F4E RSSI -62 dBm pkt 4 temp 23.36 C
+
+     521.893 I BSN FCDEC5732F4E RSSI -71 dBm pkt 5 temp 23.35 C
+
+     522.932 I BSN FCDEC5732F4E RSSI -61 dBm pkt 6 temp 23.35 C
+
+     526.983 I BSN FCDEC5732F4E RSSI -61 dBm pkt 10 temp 23.33 C
+
+     528.013 I BSN FCDEC5732F4E RSSI -61 dBm pkt 11 temp 23.32 C
+
+     529.003 I BSN FCDEC5732F4E RSSI -70 dBm pkt 12 temp 23.31 C
+
+     530.023 I BSN FCDEC5732F4E RSSI -63 dBm pkt 13 temp 23.32 C
+
+     530.103 I BSN window: 846 adverts, 10 look like BSN, 10 decoded
+
+     531.043 I BSN FCDEC5732F4E RSSI -60 dBm pkt 14 temp 23.30 C
+
+     532.092 I BSN FCDEC5732F4E RSSI -72 dBm pkt 15 temp 23.29 C
+
+     533.082 I BSN FCDEC5732F4E RSSI -63 dBm pkt 16 temp 23.29 C
+
+     534.093 I BSN FCDEC5732F4E RSSI -70 dBm pkt 17 temp 23.28 C
+
+     535.112 I BSN FCDEC5732F4E RSSI -69 dBm pkt 18 temp 23.29 C
+
+     537.143 I BSN FCDEC5732F4E RSSI -63 dBm pkt 20 temp 23.27 C
+
+     539.223 I BSN FCDEC5732F4E RSSI -69 dBm pkt 22 temp 23.25 C
+
+     540.203 I BSN FCDEC5732F4E RSSI -65 dBm pkt 23 temp 23.23 C
+
+     542.223 I BSN FCDEC5732F4E RSSI -58 dBm pkt 25 temp 23.22 C
+
+     544.263 I BSN FCDEC5732F4E RSSI -69 dBm pkt 27 temp 23.20 C
+
+     545.133 I BSN window: 1017 adverts, 10 look like BSN, 10 decoded
+
+     546.322 I BSN FCDEC5732F4E RSSI -75 dBm pkt 29 temp 23.17 C
+
+     547.313 I BSN FCDEC5732F4E RSSI -75 dBm pkt 30 temp 23.17 C
+
+     548.343 I BSN FCDEC5732F4E RSSI -72 dBm pkt 31 temp 23.16 C
+
+     549.352 I BSN FCDEC5732F4E RSSI -70 dBm pkt 32 temp 23.15 C
+
+     550.373 I BSN FCDEC5732F4E RSSI -72 dBm pkt 33 temp 23.16 C
+
+     551.382 I BSN FCDEC5732F4E RSSI -78 dBm pkt 34 temp 23.15 C
+
+     553.452 I BSN FCDEC5732F4E RSSI -76 dBm pkt 36 temp 23.17 C
+
+     555.443 I BSN FCDEC5732F4E RSSI -74 dBm pkt 38 temp 23.22 C
+
+     557.483 I BSN FCDEC5732F4E RSSI -76 dBm pkt 40 temp 23.24 C
+
+     558.493 I BSN FCDEC5732F4E RSSI -71 dBm pkt 41 temp 23.26 C
+
+     559.523 I BSN FCDEC5732F4E RSSI -72 dBm pkt 42 temp 23.29 C
+
+     560.172 I BSN window: 1002 adverts, 11 look like BSN, 11 decoded
+
+     560.533 I BSN FCDEC5732F4E RSSI -72 dBm pkt 43 temp 23.31 C
+
+     575.203 I BSN window: 873 adverts, 1 look like BSN, 1 decoded
+
+     576.803 I BSN FCDEC5732F4E RSSI -70 dBm pkt 59 temp 23.71 C
+
+     577.852 I BSN FCDEC5732F4E RSSI -73 dBm pkt 60 temp 23.77 C
+
+     579.863 I BSN FCDEC5732F4E RSSI -70 dBm pkt 62 temp 23.83 C
+
+     580.863 I BSN FCDEC5732F4E RSSI -71 dBm pkt 63 temp 23.86 C
+
+     581.893 I BSN FCDEC5732F4E RSSI -71 dBm pkt 64 temp 23.90 C
+
+     582.893 I BSN FCDEC5732F4E RSSI -70 dBm pkt 65 temp 23.92 C
+
+     583.912 I BSN FCDEC5732F4E RSSI -71 dBm pkt 66 temp 23.97 C
+
+     585.972 I BSN FCDEC5732F4E RSSI -73 dBm pkt 68 temp 24.03 C
+
+     586.962 I BSN FCDEC5732F4E RSSI -71 dBm pkt 69 temp 24.05 C
+
+     587.983 I BSN FCDEC5732F4E RSSI -66 dBm pkt 70 temp 24.09 C
+
+     590.232 I BSN window: 1004 adverts, 10 look like BSN, 10 decoded
+
+     591.023 I BSN FCDEC5732F4E RSSI -66 dBm pkt 73 temp 24.18 C
+
+     592.062 I BSN FCDEC5732F4E RSSI -77 dBm pkt 74 temp 24.22 C
+
+     593.062 I BSN FCDEC5732F4E RSSI -66 dBm pkt 75 temp 24.25 C
+
+     595.103 I BSN FCDEC5732F4E RSSI -70 dBm pkt 77 temp 24.31 C
+
+     596.103 I BSN FCDEC5732F4E RSSI -74 dBm pkt 78 temp 24.34 C
+
+     598.142 I BSN FCDEC5732F4E RSSI -68 dBm pkt 80 temp 24.41 C
+
+     599.162 I BSN FCDEC5732F4E RSSI -83 dBm pkt 81 temp 24.44 C
+
+     601.192 I BSN FCDEC5732F4E RSSI -72 dBm pkt 83 temp 24.49 C
+
+     603.242 I BSN FCDEC5732F4E RSSI -76 dBm pkt 85 temp 24.55 C
+
+     605.272 I BSN window: 977 adverts, 9 look like BSN, 9 decoded
+
+     606.273 I BSN FCDEC5732F4E RSSI -77 dBm pkt 88 temp 24.63 C
+
+     609.332 I BSN FCDEC5732F4E RSSI -67 dBm pkt 91 temp 24.72 C
+
+     610.332 I BSN FCDEC5732F4E RSSI -73 dBm pkt 92 temp 24.75 C
+
+     611.353 I BSN FCDEC5732F4E RSSI -74 dBm pkt 93 temp 24.79 C
+
+     612.362 I BSN FCDEC5732F4E RSSI -72 dBm pkt 94 temp 24.80 C
+
+     614.412 I BSN FCDEC5732F4E RSSI -73 dBm pkt 96 temp 24.86 C
+
+     615.422 I BSN FCDEC5732F4E RSSI -70 dBm pkt 97 temp 24.87 C
+
+     616.433 I BSN FCDEC5732F4E RSSI -73 dBm pkt 98 temp 24.91 C
+
+     617.463 I BSN FCDEC5732F4E RSSI -72 dBm pkt 99 temp 24.93 C
+
+     618.463 I BSN FCDEC5732F4E RSSI -71 dBm pkt 100 temp 24.97 C
+
+     619.493 I BSN FCDEC5732F4E RSSI -69 dBm pkt 101 temp 25.00 C
+
+     620.303 I BSN window: 889 adverts, 11 look like BSN, 11 decoded
+
+     620.483 I BSN FCDEC5732F4E RSSI -76 dBm pkt 102 temp 25.03 C
+
+     635.342 I BSN window: 904 adverts, 1 look like BSN, 1 decoded
+
+     635.722 I BSN FCDEC5732F4E RSSI -74 dBm pkt 117 temp 25.37 C
+
+     636.732 I BSN FCDEC5732F4E RSSI -73 dBm pkt 118 temp 25.40 C
+
+     637.773 I BSN FCDEC5732F4E RSSI -71 dBm pkt 119 temp 25.42 C
+
+     638.792 I BSN FCDEC5732F4E RSSI -75 dBm pkt 120 temp 25.44 C
+
+     639.792 I BSN FCDEC5732F4E RSSI -78 dBm pkt 121 temp 25.48 C
+
+     640.792 I BSN FCDEC5732F4E RSSI -73 dBm pkt 122 temp 25.49 C
+
+     641.812 I BSN FCDEC5732F4E RSSI -71 dBm pkt 123 temp 25.52 C
+
+     642.833 I BSN FCDEC5732F4E RSSI -78 dBm pkt 124 temp 25.53 C
+
+     645.923 I BSN FCDEC5732F4E RSSI -72 dBm pkt 127 temp 25.59 C
+
+     646.903 I BSN FCDEC5732F4E RSSI -76 dBm pkt 128 temp 25.62 C
+
+     647.903 I BSN FCDEC5732F4E RSSI -75 dBm pkt 129 temp 25.64 C
+
+     648.923 I BSN FCDEC5732F4E RSSI -74 dBm pkt 130 temp 25.65 C
+
+     649.942 I BSN FCDEC5732F4E RSSI -70 dBm pkt 131 temp 25.68 C
+
+     650.382 I BSN window: 969 adverts, 13 look like BSN, 13 decoded
+
+     650.933 I BSN FCDEC5732F4E RSSI -73 dBm pkt 132 temp 25.70 C
+
+     653.992 I BSN FCDEC5732F4E RSSI -74 dBm pkt 135 temp 25.77 C
+
+     655.003 I BSN FCDEC5732F4E RSSI -74 dBm pkt 136 temp 25.79 C
+
+     656.013 I BSN FCDEC5732F4E RSSI -73 dBm pkt 137 temp 25.81 C
+
+     657.043 I BSN FCDEC5732F4E RSSI -73 dBm pkt 138 temp 25.83 C
+
+     658.082 I BSN FCDEC5732F4E RSSI -77 dBm pkt 139 temp 25.84 C
+
+     660.092 I BSN FCDEC5732F4E RSSI -72 dBm pkt 141 temp 25.88 C
+
+     661.083 I BSN FCDEC5732F4E RSSI -73 dBm pkt 142 temp 25.91 C
+
+     662.112 I BSN FCDEC5732F4E RSSI -86 dBm pkt 143 temp 25.91 C
+
+     664.133 I BSN FCDEC5732F4E RSSI -72 dBm pkt 145 temp 25.95 C
+
+     665.422 I BSN window: 941 adverts, 10 look like BSN, 10 decoded
+
+     666.163 I BSN FCDEC5732F4E RSSI -80 dBm pkt 147 temp 26.00 C
+
+     667.173 I BSN FCDEC5732F4E RSSI -73 dBm pkt 148 temp 26.02 C
+
+     668.193 I BSN FCDEC5732F4E RSSI -74 dBm pkt 149 temp 26.03 C
+
+     671.242 I BSN FCDEC5732F4E RSSI -74 dBm pkt 152 temp 26.11 C
+
+     672.292 I BSN FCDEC5732F4E RSSI -77 dBm pkt 153 temp 26.10 C
+
+     673.272 I BSN FCDEC5732F4E RSSI -76 dBm pkt 154 temp 26.12 C
+
+     674.283 I BSN FCDEC5732F4E RSSI -77 dBm pkt 155 temp 26.13 C
+
+     675.283 I BSN FCDEC5732F4E RSSI -72 dBm pkt 156 temp 26.16 C
+
+     676.332 I BSN FCDEC5732F4E RSSI -74 dBm pkt 157 temp 26.17 C
+
+     677.313 I BSN FCDEC5732F4E RSSI -78 dBm pkt 158 temp 26.19 C
+
+     680.452 I BSN window: 863 adverts, 10 look like BSN, 10 decoded
+
+     681.403 I BSN FCDEC5732F4E RSSI -76 dBm pkt 162 temp 26.25 C
+
+     682.383 I BSN FCDEC5732F4E RSSI -71 dBm pkt 163 temp 26.28 C
+
+     683.403 I BSN FCDEC5732F4E RSSI -75 dBm pkt 164 temp 26.29 C
+
+     685.433 I BSN FCDEC5732F4E RSSI -75 dBm pkt 166 temp 26.32 C
+
+     686.453 I BSN FCDEC5732F4E RSSI -71 dBm pkt 167 temp 26.33 C
+
+     687.472 I BSN FCDEC5732F4E RSSI -80 dBm pkt 168 temp 26.35 C
+
+     689.503 I BSN FCDEC5732F4E RSSI -78 dBm pkt 170 temp 26.38 C
+
+     690.503 I BSN FCDEC5732F4E RSSI -71 dBm pkt 171 temp 26.41 C
+
+     691.542 I BSN FCDEC5732F4E RSSI -73 dBm pkt 172 temp 26.41 C
+
+     692.553 I BSN FCDEC5732F4E RSSI -79 dBm pkt 173 temp 26.43 C
+
+     694.572 I BSN FCDEC5732F4E RSSI -73 dBm pkt 175 temp 26.46 C
+
+     695.493 I BSN window: 1067 adverts, 11 look like BSN, 11 decoded
+
+     695.592 I BSN FCDEC5732F4E RSSI -77 dBm pkt 176 temp 26.47 C

@@ -24,6 +24,7 @@ vendor. Links are given where the vendor has a stable URL.
 |---|---|---|
 | [Coin cells and peak current draw](https://www.ti.com/lit/pdf/swra349) | TI | SWRA349 |
 | CR2032 lithium coin cell, datasheet | Panasonic | — |
+| [CR2032 lithium coin cell, datasheet with discharge characteristics](https://www.mouser.com/datasheet/2/490/Duracell_7_4_2023_CR2032L2r_CSFF_R2_A-3225059.pdf) | Duracell | CR2032L2r CSFF R2 A |
 | CR2032 holder A-BAT-CH-C8-EA-ZSR3, datasheet | — | — |
 
 ## Timing
