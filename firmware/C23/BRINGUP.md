@@ -283,7 +283,7 @@ Copy one row per board. Rev A boards are marked A.
 |---|---|---|---|---|---|---|---|---|---|---|
 | A #1 | No shorts (diode mode) | ~4 mA steady | | PASS | 13/13 PASS | FC:DE:C5:73:2F:4E | Seen (`bsn_scan.py`) / not measured | 0.366 µA (`pwrtest`, U2 fitted) | | Antenna matched (A\*). J-Link: needs a power cycle after `jflash` (see stage 4). |
 | B #1 | | | | | | | | | | |
-| B #2 | | | | | | | | | | |
+| B #2 | | 4 mA at 3.0 V | | PASS (J-Link on J3, Tag-Connect) | 13/13 PASS (2026-11-13, RAM log build) | FC:DE:C5:73:2F:5A | Seen (`bsn_scan.py`, 2026-11-13, `LOG=1 DRDY=7 SAFE=0`), BTHome decoded, about 4.8 adverts/s by the packet counter / −51 to −57 dBm at the laptop on the bench, distance not measured, simulated match values | | | One 100 µF cap, J2 to the antenna, matching network fitted. UART TX on TP2 not checked yet. |
 
 ---
 
