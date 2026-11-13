@@ -15,9 +15,12 @@ in [`../../rev_A/RF/ANTENNA_MATCHING.md`](../../rev_A/RF/ANTENNA_MATCHING.md).
 
 | Board | 100 µF caps | J2 goes to | Matching parts |
 |---|---|---|---|
-| B #1 | none | antenna | L2 0 Ω, L3 open (antenna without parts) |
+| B #1 | none | antenna | L2 0 Ω, L3 open (antenna without parts) for files 03, 09 and 10 |
 | B #2 | 1 | antenna | L2 1.6 nH series, L3 6.8 nH shunt (the simulated start values) |
 | B #3 | 2 | PA | not fitted |
+
+After the sweeps, on 2026-11-13, L2 1.6 nH and L3 6.8 nH were fitted on B #1 and B #3 as well. All three boards
+now have the same matching parts. B #1 and B #3 have not been measured with them.
 
 ## Measurement setup (2026-11-13)
 
@@ -160,4 +163,5 @@ Notes:
 - [ ] Save an independent check of the calibration as a file (a standard that was not used for it).
 - [ ] Hand L-match on the Smith chart from the measured impedance without parts. Calculated, simulated and final
       values side by side. Planned for the weekend of 14–15 Nov.
-- [ ] Fit L2 1.6 nH and L3 6.8 nH on B #1 and B #3.
+- [x] L2 1.6 nH and L3 6.8 nH fitted on B #1 and B #3 (2026-11-13).
+- [ ] One sweep of B #1 with the parts, to see the board-to-board spread of the match.
