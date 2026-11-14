@@ -56,13 +56,21 @@ make LOG=0 ADV_MS=100 TX_DBM=0          # advertising interval (ms) and TX power
 make LOG=0 SENSOR_S=0                   # read the sensor once at boot, then never wake for it
 make LOG=0 SENSOR_S=0 ADV=0             # start the BLE stack but never advertise (floor with the stack idle)
 make LOG=0 DRDY=4                       # one advert per HDC2010 DRDY (4 = 5 s, 3 = 10 s, 2 = 60 s), no periodic advertising
+make LOG=0 DRDY=4 RELOAD=0                # as above, the payload written in place with no prepare/load
 ```
 
 Every payload reload into a running advertising set costs about 20 µC, more than an advert, because the TI stack
 disables and re-enables advertising for it. `DRDY` avoids reloads: advertising stays off, and each DRDY sends one
 advertising event with the new reading (25.1 µC per event on rev A).
 
-Defaults: `LOG=1`, `SENSOR_S=10`, `ADV_MS=0` (keep `ble_sensor.syscfg`, 1 s), `TX_DBM=0`, `ADV=1`, `DRDY=0`.
+`RELOAD` only has an effect together with `DRDY`. With `RELOAD=1` the new reading goes in through
+`GapAdv_prepareLoadByHandle` and `GapAdv_loadByHandle`, the route TI documents. With `RELOAD=0` the BLE task writes
+it straight into the advertising buffer and enables advertising for one event (`Adv_sendOneNoReload` in
+`ble_sensor/app_main.c`). The set is disabled at that point and the payload length does not change. Measured on
+rev A on 2026-11-12: 21.1 µC per event against 24.9 µC with `RELOAD=1`, and 4.83 µA at 5 s.
+
+Defaults: `LOG=1`, `SENSOR_S=10`, `ADV_MS=0` (keep `ble_sensor.syscfg`, 1 s), `TX_DBM=0`, `ADV=1`, `DRDY=0`,
+`RELOAD=1`.
 Results: [`hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md`](../../hardware/C23/testing/rev_A/Power/POWER_MEASUREMENTS.md).
 
 Host unit tests need any host C compiler (`gcc`, `clang`, or `zig cc` via `pip install ziglang`):

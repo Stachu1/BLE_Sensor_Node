@@ -55,18 +55,19 @@ CFLAGS := \
 #   ADV=0       start the BLE stack but never advertise
 #   DRDY=4      event-driven: HDC2010 auto mode at this rate (1 = 120 s, 2 = 60 s, 3 = 10 s,
 #               4 = 5 s, 5 = 1 s), each DRDY sends exactly one advert. SENSOR_S and ADV_MS unused.
+#   RELOAD=0    with DRDY: write the payload in place and enable, no GapAdv prepare/load (1 = prepare/load)
 LOG      ?= 1
 SENSOR_S ?= 10
 ADV_MS   ?= 0
 TX_DBM   ?= 0
 ADV      ?= 1
 DRDY     ?= 0
-SAFE     ?= 1
+RELOAD   ?= 1
 CFLAGS += -DBSN_LOG_ENABLE=$(LOG) -DSENSOR_PERIOD_S=$(SENSOR_S) -DADV_INTERVAL_MS=$(ADV_MS) \
-          -DADV_TX_DBM=$(TX_DBM) -DADV_ENABLE=$(ADV) -DDRDY_AMM=$(DRDY) -DSAFE_RELOAD=$(SAFE)
+          -DADV_TX_DBM=$(TX_DBM) -DADV_ENABLE=$(ADV) -DDRDY_AMM=$(DRDY) -DADV_RELOAD=$(RELOAD)
 
 # Rebuild whatever depends on the options when they change
-PARAMS := $(LOG) $(SENSOR_S) $(ADV_MS) $(TX_DBM) $(ADV) $(DRDY) $(SAFE)
+PARAMS := $(LOG) $(SENSOR_S) $(ADV_MS) $(TX_DBM) $(ADV) $(DRDY) $(RELOAD)
 $(shell mkdir -p build && (echo '$(PARAMS)' | cmp -s - build/params || echo '$(PARAMS)' > build/params))
 
 include ../rules.mak

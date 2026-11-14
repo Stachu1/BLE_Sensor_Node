@@ -11,8 +11,8 @@ Each `Q` is the charge of one event above the floor. It is measured as an averag
 rate, so a slow, precise ammeter is enough: `Q = (I_avg − I_floor) × T_event`. `Q_reload` is the cost of loading a
 new reading into the running advertising set (found on 2026-11-10, see [Payload reload](#payload-reload-2026-11-10)).
 
-Raw summary of every reading: [`power_2026-10-26.csv`](power_2026-10-26.csv) and
-[`power_2026-11-10.csv`](power_2026-11-10.csv).
+Raw summary of every reading: [`power_2026-10-26.csv`](power_2026-10-26.csv),
+[`power_2026-11-10.csv`](power_2026-11-10.csv) and [`power_2026-11-12.csv`](power_2026-11-12.csv).
 
 ## Results
 
@@ -37,6 +37,8 @@ All at 3.0 V (3.04 V at TP9) unless noted.
 | **Full firmware**: 1 s advertising, sensor every 10 s, 0 dBm | **16.1 ± 0.8 µA** (model with the reload: 15.9 µA) | `ble_sensor` |
 | **Full firmware**: 5 s advertising, sensor every 10 s, no-pi board, 2026-11-10 | **6.5 ± 0.4 µA** (model with the reload: 6.1 µA) | `ble_sensor ADV_MS=5000` |
 | **One advert per DRDY**, every 5.07 s, 2026-11-10 | **5.8 ± 0.6 µA** board #1, 5.4 ± 0.4 µA no-pi (model from the event charge: 5.3 µA) | `ble_sensor DRDY=4` |
+| **One advert per DRDY, payload written in place** (no prepare/load), 2026-11-12 | **21.1 ± 1.2 µC**, against 24.9 ± 1.0 µC with prepare/load in the same session | `ble_sensor DRDY=7 RELOAD=0` |
+| **One advert per DRDY, payload written in place**, every 5.07 s, 2026-11-12 | **4.83 ± 0.34 µA** board #1 (model from the event charge: 4.9 µA, floor taken as 0.75 µA) | `ble_sensor DRDY=4 RELOAD=0` |
 
 ## Setup
 
@@ -349,6 +351,40 @@ board.
 - **The polled reading does not:** 6.87 µC here against 9.56 µC on board #1, same build. Not explained. The period
   was not counted on this board, and board #1 was not repeated today.
 
+## In-place payload write (2026-11-12)
+
+`ble_sensor DRDY=<rate> RELOAD=0`: one advert per DRDY as above, but without `GapAdv_prepareLoadByHandle` and
+`GapAdv_loadByHandle`. The BLE task writes the new reading straight into the advertising buffer with
+`BtHome_buildAdv` and then enables advertising for one event (`Adv_sendOneNoReload` in `ble_sensor/app_main.c`).
+The stack transmits from that buffer. The write happens while the set is disabled, because the single event of
+the previous DRDY has ended, and the payload length does not change between readings. `RELOAD=1` (the default)
+keeps the prepare/load route measured on 2026-11-10. The option was named `SAFE` when the images were built, so the
+`BUILD.txt` files in `firmware/C23/revA_prebuild` show `SAFE=0` and `SAFE=1`.
+
+Board #1, Keysight 34460A, NPLC 100 with autozero on, 10 mA range, 3.0 V, 0 dBm, TP9 shorted before power-on.
+The floor was not measured on the day. It is taken as 0.75 µA (an estimate of 0.7 to 0.8 µA, board #1 read
+0.94 µA on 2026-11-10). The periods are taken from 2026-11-10. The charge errors are from the standard error of
+the mean only.
+
+| # | Build | Mean | σ | n | Result |
+|---|---|---|---|---|---|
+| E1 | `DRDY=4 RELOAD=0` (every 5.07 s) | **4.83 µA** | 4.73 µA | 190 | Q_event = 20.7 ± 1.7 µC, model from E2: 0.75 + 21.1 / 5.07 = 4.9 µA |
+| E2 | `DRDY=7 RELOAD=0` (5 events/s) | 105 µA | 93 µA | 245 | **Q_event = 21.1 ± 1.2 µC** |
+| E3 | `DRDY=7 RELOAD=1` (5 events/s, prepare/load) | 123.8 µA | 104.8 µA | 435 | Q_event = 24.9 ± 1.0 µC |
+
+- **The in-place write works.** The adverts carry the new values.
+- **It saves 3.8 ± 1.6 µC per event** (E3 against E2, same session, same board and floor). The floor estimate
+  moves both charges by the same amount, so it does not change the difference.
+- **E3 repeats D1** of 2026-11-10 (123.8 against 124 µA).
+- **E1 and E2 agree:** 20.7 µC at 5.07 s against 21.1 µC at 5 events/s. Over a floor of 0.7 to 0.8 µA, E1 gives
+  20.4 to 20.9 µC.
+- **The event still costs about 4.7 µC more than its parts** (12.63 µC advert + 3.72 µC DRDY reading = 16.4 µC).
+  Likely the enable and the end of a single advertising event. Not measured separately.
+- **The σ is near the mean** in E2 and E3 (min 0 µA, max 255 µA in E3), as in D1. Cause not investigated.
+- **Not built:** advertising always on with the value bytes written in place, with no enable per event. The model
+  is 16.4 µC per event, 0.75 + 16.4 / 5.07 = 4.0 µA. There the write could land during an advertising event and
+  send a mixed packet. Not checked.
+
 ## Average current against advertising interval (model)
 
 The charges above put into the model, at 0 dBm and 3.0 V, board #1 (floor 0.366 µA from 2026-10-26). Updated on
@@ -386,9 +422,11 @@ All values in µA.
 - **The current `ble_sensor` (row 2) is the worst standby option at 5 s and slower**, because it reloads every 10 s.
 - **Validity:** row 2 matches the 1 s full-firmware check (15.9 against 16.1 ± 0.8 µA) and the 5 s runs on the no-pi
   board with its own floor (6.1 against 6.5 and 6.55 µA). Row 3 matches D2 and D3 within 1σ.
-- **Not tested:** writing the new reading into the advertising buffer in place, without prepare/load. The stack
-  transmits straight from that buffer, so it might avoid Q_reload. TI documents only the prepare/load route, and a
-  write during an advertising event could send a mixed packet.
+- **Tested on 2026-11-12:** writing the new reading into the advertising buffer in place, without prepare/load,
+  for row 3. It brings the event from 25.1 to 21.1 µC, see
+  [In-place payload write](#in-place-payload-write-2026-11-12). The table above is not updated with it. TI
+  documents only the prepare/load route. For rows 1 and 2 (advertising running) the in-place write is not tested,
+  and a write during an advertising event could send a mixed packet.
 - **Inputs that are not measured:**
   - Shutdown floor: the datasheet value (165 nA CC2340R5 + 50 nA HDC2010 = 0.215 µA), since the measured one is
     unresolved.

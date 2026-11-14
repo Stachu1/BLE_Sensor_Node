@@ -52,8 +52,8 @@
 #ifndef DRDY_AMM
 #define DRDY_AMM            0  // 1..7: one advert per HDC2010 DRDY at this auto rate (HDC2010_AMM_*)
 #endif
-#ifndef SAFE_RELOAD
-#define SAFE_RELOAD         1  // reload adv PDU properly - less energy efficient
+#ifndef ADV_RELOAD
+#define ADV_RELOAD          1  // reload adv PDU properly - less energy efficient
 #endif
 
 // Advertising data; the stack transmits straight from this buffer
@@ -327,7 +327,7 @@ static void *sensorThread(void *arg0)
         }
         next.packetId++;
         reading = next;
-        BLEAppUtil_invokeFunctionNoData(SAFE_RELOAD ? Adv_sendOne : Adv_sendOneNoReload);
+        BLEAppUtil_invokeFunctionNoData(ADV_RELOAD ? Adv_sendOne : Adv_sendOneNoReload);
         LOG("[SNS] #%u " CENTI_FMT " C " CENTI_FMT " %%RH VDDS %u mV\r\n", next.packetId,
             CENTI_ARG(next.temp_cC), CENTI_ARG(next.rh_cP), next.vdds_mV);
     }
