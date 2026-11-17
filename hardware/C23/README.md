@@ -19,8 +19,11 @@ names.
 - **MM8130 switch connector (J2) instead of the U.FL.** Inserting the probe disconnects the chip side, so the VNA
   sees only the antenna and its match (L2, L3), without moving parts. The 15 pF DC block (C7) stays between the
   chip and J2.
-- **Pi network unchanged** (C8, L1, C9, the rev A C7, L1, C8): same parts, placement and routing, so the rev A
-  harmonics results still hold.
+- **Pi network, same parts** (C8, L1, C9, the rev A C7, L1, C8), but the RF path around it is not identical to
+  rev A: J2 (MM8130) now sits between the pi network and the antenna, the routing bends, there is no U.FL stub,
+  and the vias are placed differently. The rev B harmonics were measured on 2026-11-17 (see
+  [`testing/rev_B/RF/SPECTRUM.md`](testing/rev_B/RF/SPECTRUM.md)): H5 is about 10 dB worse than rev A relative
+  to the carrier, cause not investigated.
 - **0 Ω link R1 in the supply** (VBAT to VDD), with the 2-pin header J1 across it for the ammeter. J4 is a 2-pin
   VDD/GND header for an external supply.
 - **Programming and UART:** Tag-Connect TC2030-NL footprint (J3) for SWD. UART TX moved to DIO6, so with RX on
