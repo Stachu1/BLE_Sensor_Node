@@ -8,6 +8,9 @@ Measurements: [`C23/testing/rev_A/Power`](C23/testing/rev_A/Power/POWER_MEASUREM
 [`N54/testing/Power`](N54/testing/Power/POWER_MEASUREMENTS.md), [`C23/testing/rev_A/RF`](C23/testing/rev_A/RF/RF_CARRIER.md),
 [`N54/testing/RF`](N54/testing/RF/RF_CARRIER.md).
 
+The C23 numbers in reason 1 assumed a free payload reload and a 0.366 µA floor. Both were corrected later, see the
+updates at the end. The measured result at 5 s is 4.83 µA for the C23 against 6.1 µA for the N54.
+
 ## Main reasons
 
 1. **The sleep floor decides it at T_adv ≥ 5 s.** The N54 spends 40–50 % less charge per event, but its floor is
@@ -28,7 +31,12 @@ Measurements: [`C23/testing/rev_A/Power`](C23/testing/rev_A/Power/POWER_MEASUREM
    was adapted from Nordic's reference design with 0402 parts instead of 0201. On this layout it cost 10–11 dB of
    output power, so the N54 harmonics were measured with it bypassed. Getting the N54 to pass would need a new
    filter and another RF iteration. This alone would not have decided it. The power results did.
-4. **Cost and RF simplicity:** a cheaper part and a simpler PA network.
+4. **Cost, size and RF simplicity:** a cheaper part (CC2340R52E0RGER 12.48 DKK against 15.48 DKK for the
+   nRF54L05 at 1,000 pieces, Octopart 2026-11-18), a smaller package (4 × 4 mm VQFN-24 against the nRF54L05's
+   6 × 6 mm VQFN-48 on these boards, fewer pins to route) and a simpler PA network.
+
+Together: lower average current at the intervals this node uses, an RF chain that already works, and a simpler,
+cheaper part. That made the C23 the simpler and lower-risk base for rev B.
 
 ## Strengths and weaknesses
 
@@ -79,6 +87,18 @@ The C23 column of reason 1 assumed a free reload. With the measured costs, at 3.
   keeps reloads rare. With a reload every 10 s, as in the current `ble_sensor`, the C23 would lose at 5 s.
 - **The choice holds, with a firmware condition:** rev B firmware must avoid frequent reloads (one advert per DRDY,
   or slow readings).
+
+## Update 2026-11-12: the reload skipped, 4.83 µA measured
+
+The firmware condition above is met. The C23 firmware now sends one advert per DRDY reading and writes the new
+reading into the running advert, with no prepare/load, so the 20 µC reload is skipped. Measured on board #1 at a
+5.07 s interval: **4.83 ± 0.34 µA** (model 4.9 µA, floor taken as 0.75 µA), against **6.1 µA** measured on the N54
+(model 6.01 µA). Details:
+[`C23/testing/rev_A/Power`](C23/testing/rev_A/Power/POWER_MEASUREMENTS.md).
+
+The C23 floor is about 0.7 µA, not the 0.366 µA used in reason 1. On 2026-11-10 board #1 read 0.94 µA and the
+no-pi board 0.70 µA, cause of the difference not found. The 3.63 µA in reason 1 is therefore too low, and the
+measured 4.83 µA replaces it. The choice stands: the C23 is 1.3 µA lower than the measured N54 at 5 s.
 
 ## Carried into rev B
 

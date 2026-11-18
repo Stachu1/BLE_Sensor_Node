@@ -78,6 +78,16 @@ for (fr, z, lab) in [(*vna("10"), "B #1 without parts, meas."), (*sim("s11_no_pa
 ax.set_aspect("equal"); ax.set_xlim(-1.2,1.2); ax.set_ylim(-1.2,1.2); ax.axis("off")
 ax.set_title("Smith chart, 2.3–2.6 GHz (thick: BLE band), in air with cell", fontsize=10)
 ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, 0.02), ncol=2, frameon=False); figs.append((fig, "5_smith"))
+# 6 overview for the root README: bare antenna sim vs meas, matched board in its typical placement
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(11,4.5))
+f, z = sim("s11_no_parts.csv"); a1.plot(f/1e9, dB(z), "--", label="simulated (openEMS)")
+f, z = vna("10"); a1.plot(f/1e9, dB(z), label="measured, B #1")
+ax_s11(a1, "Antenna without matching parts, in air with cell", 2.2, 2.8); a1.set_ylim(-30, 0)
+a1.legend(fontsize=8, loc="lower left")
+f, z = vna("07"); a2.plot(f/1e9, dB(z), color="C2", label="measured, B #2")
+ax_s11(a2, "With L2 1.6 nH / L3 6.8 nH, on its battery holder with cell", 2.2, 2.8)
+a2.legend(fontsize=8, loc="lower left")
+fig.suptitle("BSN-C23-B printed antenna, S11 at J2"); fig.tight_layout(); figs.append((fig, "6_readme_antenna"))
 with PdfPages(OUT + "/C23-B_VNA_2026-11-13.pdf") as pdf:
     for fg, n in figs:
         fg.savefig(OUT + f"/{n}.png", dpi=150, bbox_inches="tight"); pdf.savefig(fg, bbox_inches="tight")

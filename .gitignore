@@ -65,3 +65,6 @@ hardware/*/bom/
 
 # KiCad BOM exports (CSV), kept locally for ordering, the schematic is the source
 hardware/*/BSN-*.csv
+
+# Full-resolution photos, web versions are in docs/images
+docs/images/originals/

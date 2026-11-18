@@ -124,8 +124,13 @@ the final carrier settings, `sa_04` to `sa_18` the harmonics H1 to H5 for 2402 /
 
 - Analyser reference accuracy (R&S FPH .26). Without it the carrier offset can only be stated as "within the
   reference accuracy". Ask Kasper whether an external 10 MHz reference was fitted. Not investigated.
-- Insertion loss of the MXHS83QE3000 probe and the cable at 2.4 GHz (from the Murata datasheet, then measured
-  on the VNA when it returns) to recover the true conducted power for the link budget and range test.
+- **Insertion loss of the MXHS83QE3000 probe and the analyser cable. Needed before any level in this file is a
+  true conducted power.** The Murata documents found give no loss figure (searched 2026-11-18). Method on the
+  VNA: one-port calibration at the VNA end, then the probe and the analyser cable connected as on 2026-11-17,
+  with the probe on the short standard of 2026-11-13. The reading is the round-trip loss, half of it in dB is
+  the one-way loss. The open and the 50 Ω standard as checks. The P9370B reaches 4.5 GHz, so this corrects the
+  carrier but not H2 to H5. Without it, the conducted power at J2, the link budget and the efficiency from a
+  TRP measurement all carry an unknown offset.
 - H5 radiated level (EIRP) in the chamber, which is what the FCC limit is written against. The conducted -41 dBm
   is only a stand-in. Add H3 as well.
 - Why H5 is about 10 dB worse than rev A: pi network parasitics, the MM8130 and its pads, or the changed

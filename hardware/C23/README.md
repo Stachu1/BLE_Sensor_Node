@@ -5,7 +5,9 @@ schematic and PCB PDFs and the render show rev B. Rev A is at the tag `hw/BSN-C2
 
 ## Rev B (`BSN-C23-B`)
 
-Ordered 2026-11-04 (tag `hw/BSN-C23-B`), not yet assembled. Same 34 × 34 mm, 4-layer board as rev A, with the
+<img src="../../docs/images/BSN-C23-B_top.webp" alt="BSN-C23-B top side: printed inverted-F antenna along the top edge, MM8130 connector J2, CC2340R5 U1, HDC2010 U2" width="420">
+
+Ordered 2026-11-04 (tag `hw/BSN-C23-B`), nine boards hand-assembled from 2026-11-13. Same 34 × 34 mm, 4-layer board as rev A, with the
 changes the rev A tests asked for. Several reference designators changed from rev A, the tables below use the rev B
 names.
 
@@ -35,7 +37,8 @@ names.
 
 **Population:** DNP = C6 (100 µF), D1, R2, J1, J4. AE1, J3 and the test points are copper only.
 
-**RF network as ordered** (antenna-side values from the simulation, not yet measured):
+**RF network as fitted** (antenna-side values from the simulation, kept after the VNA measurement of 2026-11-13,
+see [`testing/rev_B/RF/ANTENNA_MATCHING.md`](testing/rev_B/RF/ANTENNA_MATCHING.md)):
 
 | Ref | Value | Part | Function |
 |---|---|---|---|
@@ -60,6 +63,21 @@ names.
 | LED | DIO4 | 15 | | new |
 | SWDIO / SWCLK | DIO16 / DIO17 | 7 / 8 | TP5 / TP7 | |
 | nRESET | | 13 | TP6 | |
+
+### Rev B boards and rework log
+
+Bring-up details per board are in [`BRINGUP.md`](../../firmware/C23/BRINGUP.md). Measurements are in
+[`testing/rev_B`](testing/rev_B).
+
+| Board | Built as | Rework | Self-test | Use |
+|---|---|---|---|---|
+| B #1 | No 100 µF cap, J2 to the antenna, no R1 (supply through the J1 jumper) | 2026-11-13: L2 0 Ω and L3 open for the bare-antenna sweep, then L2 1.6 nH and L3 6.8 nH fitted | 13/13 (2026-11-16) | Antenna without parts, current measurements |
+| B #2 | One 100 µF cap, J2 to the antenna, no R1 | – | 13/13 (2026-11-13) | VNA match with L2 1.6 nH and L3 6.8 nH |
+| B #3 | Two 100 µF caps, J2 rotated 180° about the axis normal to the board, so the probe sees the PA side and disconnects the antenna, no R1 | 2026-11-13: L2 1.6 nH and L3 6.8 nH fitted | 13/13 (2026-11-16) | Continuous carrier: conducted power, harmonics, supply current |
+| B #4 | One 100 µF cap, J2 to the antenna, R1 0 Ω | 2026-11-16: U2 (HDC2010) replaced after a hand-soldering fault found by `hwtest` | 13/13 (2026-11-16) | `ble_sensor` |
+| B #5 to B #9 | One 100 µF cap, J2 to the antenna, R1 0 Ω | – | 13/13 (2026-11-16) | `ble_sensor` |
+
+All nine boards have L2 1.6 nH and L3 6.8 nH. B #1 to B #3 run from the coin cell only with the jumper on J1.
 
 ## Rev A (`BSN-C23-A`)
 
@@ -90,7 +108,7 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 
 | Board | BLE address | Status |
 |---|---|---|
-| #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. A\*: antenna side matched (L2 4.3 nH, 2.1 pF on the L3 pads). **U2 (SHTC3) is fitted.** Floor 0.366 µA, 16.1 µA with 1 s advertising, see [Current measurements](#current-measurements). |
+| #1 | FC:DE:C5:73:2F:4E | Flashes over SWD. `hwtest` 13/13 PASS. `ble_sensor` advertises BTHome and readings are received on the PC with `tools/bsn_scan.py`. A\*: antenna side matched (L2 4.3 nH, 2.1 pF on the L3 pads). **U2 (SHTC3) is fitted.** Floor 0.366 µA on 2026-10-26, 0.94 µA on 2026-11-10 (cause not found), 16.1 µA with 1 s advertising, see [Current measurements](#current-measurements). |
 | RF test | (no MCU) | Antenna-only board used for VNA matching, see below. |
 | RF CW | | MCU, X1, pi network (C7/L1/C8) and J1 only, no antenna. Used with `cwtest` for the carrier frequency and output power, see [`testing/rev_A/RF/RF_CARRIER.md`](testing/rev_A/RF/RF_CARRIER.md): HFXT trim set to 44 (+2.2 ppm), +6.7 dBm at the +8 dBm setting. |
 | RF CW no-pi | | As RF CW, but with the PA-side pi network removed (see the rework log). `hwtest` PASS. For the conducted power and harmonics comparison with RF CW. |
@@ -99,7 +117,7 @@ Procedure and per-board results: [`firmware/C23/BRINGUP.md`](../../firmware/C23/
 
 Full notes and data: [`testing/rev_A/Power/POWER_MEASUREMENTS.md`](testing/rev_A/Power/POWER_MEASUREMENTS.md).
 
-Board #1 at 3.0 V: sleep floor **0.366 µA** (with or without the BLE stack). One advertising event at 0 dBm costs
+Board #1 at 3.0 V: sleep floor **0.366 µA** (with or without the BLE stack). This did not repeat: on 2026-11-10 board #1 read 0.94 µA and the no-pi board 0.70 µA, close to the datasheet typical of 0.71 µA, so the floor is taken as about 0.7 µA. With one advert per sensor reading and the reading written into the running advert, the average at 5 s is **4.83 µA** (model 4.9 µA). One advertising event at 0 dBm costs
 **12.6 µC** (+34 % at 2.0 V, −8 % at −8 dBm, +116 % at +8 dBm). A sensor reading costs **9.56 µC** with timer polling
 and **3.72 µC** when the HDC2010 auto mode wakes the MCU over DRDY. The full `ble_sensor` (1 s advertising, sensor
 every 10 s) averages **16.1 µA**. The SHTC3, if fitted, idles at about 45 µA after power-on until the firmware puts it
