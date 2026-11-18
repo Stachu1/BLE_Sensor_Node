@@ -110,7 +110,7 @@ housing. The enclosure is out of scope, as this project covers the electronics a
 | Bring-up | 9 boards, all 13/13 in the hardware self-test | Hand-assembled |
 | Antenna match, worst S11 in 2.40–2.48 GHz | −12.0 dB in the air, −18.8 dB standing on the battery holder | Simulated −14.9 dB. Lying flat on a table detunes it by about 330 MHz |
 | Carrier frequency | Within ±0.7 ppm of the analyser reference | 2402, 2440 and 2480 MHz, no crystal retrim needed |
-| Conducted power at the antenna connector | +2.4 dBm at the +8 dBm setting, −4.7 dBm at the 0 dBm setting | Probe loss not yet corrected |
+| Conducted power at the antenna connector | +3.2 dBm at the +8 dBm setting, −3.9 dBm at the 0 dBm setting | Read +2.4 and −4.7 dBm, corrected for the 0.84 dB probe loss measured on the VNA |
 | Harmonics at +8 dBm, conducted | H2 to H4 below −54 dBm. H5 −40.9 dBm: 10.9 dB under ETSI, 0.3 dB under FCC | Probe loss not corrected, the true level is higher. H5 is about 10 dB worse than rev A with the same filter parts, cause not investigated |
 | Supply current, continuous carrier at 3.0 V | 6.14 mA at 0 dBm, 14.20 mA at +8 dBm | Sets the coin-cell budget for a radiated test |
 

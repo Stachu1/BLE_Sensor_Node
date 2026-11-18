@@ -10,8 +10,13 @@ on the spot by Kasper and could not come back. The rev A chip-antenna measuremen
   bound is set by the analyser reference accuracy, which is not yet known (see open items). No sign of a large
   fixed offset. The +120 kHz / +49 ppm read earlier at 2440 MHz was an artefact of a 1 MHz RBW and is
   discarded.
-- **Conducted power at J2: +2.4 dBm at the +8 dBm setting, -4.7 dBm at the 0 dBm setting** (2440 MHz, read at
-  the analyser, probe and cable loss not corrected). The step between the two settings is 7.1 dB.
+- **Conducted power at J2: about +3.2 dBm at the +8 dBm setting, about -3.9 dBm at the 0 dBm setting** (2440 MHz).
+  Read at the analyser as +2.4 and -4.7 dBm, corrected for the probe loss of about 0.84 dB measured on the VNA
+  on 2026-11-18 (see [Probe loss](#probe-loss-vna-2026-11-18)). The step between the two settings is 7.1 dB.
+- **The probe does not explain the lower power against rev A.** With each setup's loss added back, rev B with the
+  pi network is about 2 to 3 dB below rev A at +8 dBm and about 0.7 to 1.7 dB below at 0 dBm, with the same
+  filter parts. The range comes from the rev A setup loss, which is known less well than the rev B probe loss.
+  Cause not investigated: the changed RF path, or the difference between two chips.
 - **H5 (12.0 to 12.4 GHz) is about -41 dBm and sits on the FCC restricted-band line of -41.2 dBm**, before any
   probe and cable loss is added back. It is a real signal from the board, confirmed by an attenuation check and
   a board-off check. This is conducted, not radiated (EIRP), so whether the node passes radiated is open and is
@@ -25,9 +30,11 @@ on the spot by Kasper and could not come back. The rev A chip-antenna measuremen
 
 - B #3: two 100 uF bulk caps, J2 to the PA, L2 1.6 nH and L3 6.8 nH fitted, pi network (C8, L1, C9) unchanged
   from rev A. `cwtest` firmware (`firmware/C23/cwtest`), HFXT trim 44.
-- Measurement point: the Murata MXHS83QE3000 probe on J2, plus the analyser cable. **The insertion loss of the
-  probe and cable is not measured**, so all levels are as read. Both the probe and the cable are only specified
-  to 6 GHz, so the H2 to H5 readings carry an unknown connector loss.
+- Measurement point: the Murata MXHS83QE3000 probe on J2, into the analyser through an SMA female-to-female
+  adapter, no other cable. The probe loss at 2.4 GHz was measured afterwards (about 0.84 dB, see
+  [Probe loss](#probe-loss-vna-2026-11-18)). The adapter is not corrected. The tables below are as read. The
+  probe is only specified to 6 GHz and its loss above 3 GHz is not measured, so the H2 to H5 readings carry an
+  unknown loss.
 - Supply: AA cells at about 3.2 V into the board (the node runs from the DC-DC, so the exact supply has little
   effect). The user to confirm the voltage during the readings.
 - Analyser: Rohde & Schwarz Spectrum Rider FPH, model .26, firmware V2.11. Its clock is wrong (dates read 2021
@@ -57,9 +64,46 @@ The 2402 and 2480 carriers show sidebands at about +/-30 kHz, roughly -40 dBc. T
 | +8 dBm | `sa_02` | +2.4 dBm |
 | 0 dBm | `sa_24` | -4.7 dBm |
 
-Step 7.1 dB for an 8 dB change in setting. The probe and cable loss cancels in the step. Rev A read +5.2 dBm at
-+8 dBm and -3.2 dBm at 0 dBm through a U.FL pigtail, a step of 8.4 dB. The rev B levels are lower because of the
-MM8130 probe loss, not corrected here.
+Step 7.1 dB for an 8 dB change in setting. The probe loss cancels in the step. Rev A read +5.2 dBm at
++8 dBm and -3.2 dBm at 0 dBm through a U.FL pigtail, a step of 8.4 dB.
+
+| Setting | Rev A, pi network, as read | Rev A, setup loss 0.7 dB added | Rev B, as read | Rev B, probe loss 0.84 dB added | Rev B against rev A |
+|---|---|---|---|---|---|
+| +8 dBm | +5.2 dBm | +5.9 dBm | +2.4 dBm | +3.2 dBm | -2.7 dB |
+| 0 dBm | -3.2 dBm | -2.5 dBm | -4.7 dBm | -3.9 dBm | -1.4 dB |
+
+The rev A setup loss (pigtail and adapters) is the 0.7 dB by which the same analyser setup read the N54 below
+the cable-corrected VNA ([`../../../../N54/testing/RF/RF_CARRIER.md`](../../../../N54/testing/RF/RF_CARRIER.md)).
+The rev B adapter is not corrected and would close the gap by a little, likely about 0.1 dB. This 0.7 dB is indirect (measured on
+another board) and the rev A notes first estimated about 0.5 dB. Taking the rev A loss anywhere from 0 to 1 dB,
+the gap is 2.0 to 3.0 dB at +8 dBm and 0.7 to 1.7 dB at 0 dBm. Rev B is lower in every case, so the probe does
+not explain the gap. Cause not
+investigated: the changed RF path around the pi network (J2, routing, vias) or the difference between two chips.
+A bypass of the pi network on B #3 would separate the two.
+
+## Probe loss (VNA, 2026-11-18)
+
+Keysight P9370B (MY61100412), one port, 1 to 3 GHz, 801 points. Calibrated SOL at the end of the VNA cable with
+the Pico Technology SOLT-PREM-M kit (PM: 000084). The kit's own data file (`PM 000084.kit`, on the flash drive in
+the kit box) was not loaded, so the VNA used its default definition for the standards. The kit data gives the open
+and short within 0.04 dB of a perfect reflection at 2.4 GHz and the load below -45 dB, so the effect on the loss
+is likely a few hundredths of a dB, not quantified. Re-measuring the standards after the calibration read the
+load at about -50 dB and the short and open at about 0 dB (not saved). This is not an independent check, as the
+same standards set the calibration. Then the MXHS83QE3000 probe on the cable, no adapter, on the MM8130 standards made on
+2026-11-13. The reading on a short or an open is the loss there and back, so half of it in dB is the one-way loss.
+
+| File | Probe on | Mean S11, 2.40 to 2.4835 GHz | One-way loss |
+|---|---|---|---|
+| `s11_11_probe_short.csv` | short | -2.03 dB | 1.02 dB |
+| `s11_12_probe_open.csv` | open | -1.33 dB | 0.66 dB |
+| `s11_13_probe_load.csv` | 50 ohm | -17.7 dB | (match check) |
+
+**One-way probe loss about 0.84 dB at 2.4 GHz**, the mean of the short and the open (0.83 to 0.87 dB at 2402,
+2440 and 2480 MHz). The short and the open disagree by 0.36 dB one-way. With the probe on the load at about
+-17.7 dB, the probe is not a perfect 50 ohm line, so the reflection on a short and on an open sees the mismatch
+with opposite sign. The mean cancels most of it. Losses in the short and open standards themselves are not
+separated, so the loss is taken as about 0.84 dB with roughly +/-0.2 dB. At 1 GHz the same method gives about
+0.6 dB. Above 3 GHz (H2 to H5) the loss is not measured.
 
 ## Harmonics (span 1 MHz, RBW 10 kHz, ATT 20 dB, Max Hold, Max Peak)
 
@@ -124,7 +168,9 @@ the final carrier settings, `sa_04` to `sa_18` the harmonics H1 to H5 for 2402 /
 
 - Analyser reference accuracy (R&S FPH .26). Without it the carrier offset can only be stated as "within the
   reference accuracy". Ask Kasper whether an external 10 MHz reference was fitted. Not investigated.
-- **Insertion loss of the MXHS83QE3000 probe and the analyser cable. Needed before any level in this file is a
+- [x] **Done 2026-11-18:** probe loss about 0.84 dB at 2.4 GHz (see [Probe loss](#probe-loss-vna-2026-11-18)).
+  Still open: the loss above 3 GHz for H2 to H5, and the F-F adapter. Original note:
+  **Insertion loss of the MXHS83QE3000 probe and the analyser cable. Needed before any level in this file is a
   true conducted power.** The Murata documents found give no loss figure (searched 2026-11-18). Method on the
   VNA: one-port calibration at the VNA end, then the probe and the analyser cable connected as on 2026-11-17,
   with the probe on the short standard of 2026-11-13. The reading is the round-trip loss, half of it in dB is
