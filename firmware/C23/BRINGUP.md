@@ -211,7 +211,7 @@ Or on a phone, install **nRF Connect for Mobile** (Nordic) or **TI SimpleLink Co
 
 > **Rev B antenna match.** L2 = 1.6 nH and L3 = 6.8 nH come from the openEMS simulation
 > (`hardware/C23/testing/RF/antenna_C23-B/README.md`) and have not been measured. Check S11 at J2 (stage 6)
-> before trusting RSSI numbers. On rev A the TI reference values were about three times off
+> before trusting RSSI numbers. On rev A the antenna datasheet value for L2 was about 1.5 times the tuned 4.3 nH
 > (`hardware/C23/testing/rev_A/RF/ANTENNA_MATCHING.md`).
 
 If nothing is seen on the phone while the UART log looks fine, suspect the RF path (C8/L1/C9/C7/J2/L2/L3,

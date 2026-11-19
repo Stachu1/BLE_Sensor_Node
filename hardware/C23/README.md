@@ -72,7 +72,7 @@ Bring-up details per board are in [`BRINGUP.md`](../../firmware/C23/BRINGUP.md).
 | Board | Built as | Rework | Self-test | Use |
 |---|---|---|---|---|
 | B #1 | No 100 µF cap, J2 to the antenna, no R1 (supply through the J1 jumper) | 2026-11-13: L2 0 Ω and L3 open for the bare-antenna sweep, then L2 1.6 nH and L3 6.8 nH fitted | 13/13 (2026-11-16) | Antenna without parts, current measurements |
-| B #2 | One 100 µF cap, J2 to the antenna, no R1 | – | 13/13 (2026-11-13) | VNA match with L2 1.6 nH and L3 6.8 nH |
+| B #2 | One 100 µF cap, J2 to the antenna, no R1 | 2026-11-19: battery holder torn off, solder mask scraped and the holder soldered back on. Pi network removed: C8 and C9 off, L1 bridged with solder | 13/13 (2026-11-13) | VNA match with L2 1.6 nH and L3 6.8 nH. Radiated pattern and harmonics in the chamber (2026-11-19), with and without the pi network |
 | B #3 | Two 100 µF caps, J2 rotated 180° about the axis normal to the board, so the probe sees the PA side and disconnects the antenna, no R1 | 2026-11-13: L2 1.6 nH and L3 6.8 nH fitted | 13/13 (2026-11-16) | Continuous carrier: conducted power, harmonics, supply current |
 | B #4 | One 100 µF cap, J2 to the antenna, R1 0 Ω | 2026-11-16: U2 (HDC2010) replaced after a hand-soldering fault found by `hwtest` | 13/13 (2026-11-16) | `ble_sensor` |
 | B #5 to B #9 | One 100 µF cap, J2 to the antenna, R1 0 Ω | – | 13/13 (2026-11-16) | `ble_sensor` |
@@ -88,7 +88,8 @@ CC2340R5. Rev A was exported and ordered as a separate design (not panelized).
 **Population:** DNP = U2 (SHTC3), X2 (32 kHz, LFOSC is used instead), C9, C14, C15, C16, C19, C20,
 J1 (U.FL), L4. Everything else is fitted.
 
-**RF network as fitted** (values from the TI reference design, not tuned for this board):
+**RF network as fitted** (π network C7, C8, L1 from the TI reference design, L2 and L3 from the evaluation board in the
+AANI-CH-0138-Q datasheet, not tuned for this board):
 
 | Ref | Value | Part |
 |---|---|---|
@@ -127,12 +128,12 @@ to sleep. Always clear the debug state with a full power-on reset before measuri
 
 Full notes and data: [`testing/rev_A/RF/ANTENNA_MATCHING.md`](testing/rev_A/RF/ANTENNA_MATCHING.md).
 
-The TI reference values don't fit this layout. At 2.44 GHz the bare antenna is about 6.4 − j13 Ω (flat on
-the table), and 6.7 nH for L2 is about three times too much. On the RF-only test board (Keysight P9370B through J1):
+The datasheet values for L2 and L3 don't fit this layout. At 2.44 GHz the bare antenna is about 6.4 − j13 Ω (flat on
+the table), and 6.7 nH for L2 is about 1.5 times the 4.3 nH of the final match. On the RF-only test board (Keysight P9370B through J1):
 
 | Date | Configuration | L2 (series) | L3 pads (shunt) | S11 at 2.44 GHz | Worst in 2.40–2.48 GHz |
 |---|---|---|---|---|---|
-| — | TI reference | 6.7 nH | 7.3 nH | not measured | — |
+| — | Antenna datasheet | 6.7 nH | 7.3 nH | not measured | — |
 | 2026-10-23 | Matched, flat on a wooden table | 3.3 nH | 2.0 pF | −18.8 dB | −11.0 dB |
 | 2026-10-23 | Same, lifted | 3.3 nH | 2.0 pF | −3.1 dB (9.5 + j12.3 Ω) | — |
 | 2026-10-26 | **Matched, lifted** | **4.3 nH** | **2.1 pF** | **−32.1 dB** | **−10.3 dB** |

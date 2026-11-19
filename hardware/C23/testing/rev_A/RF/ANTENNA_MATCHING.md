@@ -37,8 +37,8 @@ J1 (U.FL) ── 15 pF series (DC block, C9/C6) ── node ── L2 series ─
   antenna side, rev A numbering. On rev B that shunt is gone and the ref L4 is the 10 uH DC-DC inductor)
   stayed empty. Shunt-first at the antenna can't reach 50 Ω here because the antenna's
   parallel resistance is below 50 Ω.
-- Starting point was the TI reference values (C6 15 pF, L2 6.7 nH, L3 7.3 nH shunt), which were not
-  tuned for this layout.
+- Starting point was C6 15 pF with L2 6.7 nH and L3 7.3 nH shunt, the values of the evaluation board in the
+  AANI-CH-0138-Q datasheet, which were not tuned for this layout.
 
 ## Measurement setup
 
@@ -100,8 +100,8 @@ Impedances in ohms. "In band" is 2.40–2.48 GHz. Files 03–07 flat on the tabl
 ## What was learned
 
 1. **Unmatched antenna (03, flat on the table):** on this board AE1 has its series resonance at 2.69 GHz.
-   At 2.44 GHz it is about 6.4 − j13 Ω: low resistance and slightly capacitive. Lifted it will differ (see 5). The TI reference value of 6.7 nH for
-   L2 is about three times too much inductance for this layout.
+   At 2.44 GHz it is about 6.4 − j13 Ω: low resistance and slightly capacitive. Lifted it will differ (see 5). The datasheet value of 6.7 nH for
+   L2 is about 1.5 times the 4.3 nH of the final match (lifted, see 5).
 2. **Solder bridge vs. real part (03 → 04):** going from a solder blob to a 2.2 nH inductor at L2 also
    changed the *resistance* curve (6.4 → 16.5 Ω at 2.44 GHz, and the antenna's resonances moved about
    300 MHz lower). A series inductor can only add reactance, so the large blob itself changed how the
@@ -148,6 +148,6 @@ Impedances in ohms. "In band" is 2.40–2.48 GHz. Files 03–07 flat on the tabl
       −32.1 dB at 2.44 GHz and better than −10.3 dB in band (file 12).
 - [ ] Check the final match in the enclosure, if there is one.
 - [ ] Confirm on a working board with the radio: compare RSSI with `tools/bsn_scan.py` at a fixed
-      distance and orientation for the TI reference values, the new values, and one step either side.
+      distance and orientation for the datasheet values, the new values, and one step either side.
 - [ ] Rev B: tune with the board lifted or in its final position, not flat on a bench.
 - [x] Update the RF network table in [`../../../README.md`](../../../README.md) with the lifted values.

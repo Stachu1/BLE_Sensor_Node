@@ -38,7 +38,7 @@ budgeting around the coin cell's current limits.
 - **Rev B trace antenna designed in openEMS on the real board, then measured.** A scripted pipeline exports the
   KiCad board (all four copper layers, vias, stack-up, the CR2032) to the FDTD solver on a compute server. The
   chosen inverted-F antenna simulated at −14.9 dB S11 or better across the BLE band with two matching parts. On
-  the built board the VNA measured −12.0 dB or better with the simulated parts unchanged, with the resonance
+  the built board the VNA measured −12.1 dB or better with the simulated parts unchanged, with the resonance
   within 1.5 % of the simulated frequency. The simulated total efficiency is 80 to 91 %, not yet measured
   ([antenna write-up](hardware/C23/testing/RF/antenna_C23-B/README.md), [simulation pipeline](hardware/C23/testing/RF/sim/README.md),
   [VNA measurement](hardware/C23/testing/rev_B/RF/ANTENNA_MATCHING.md)).
@@ -108,7 +108,7 @@ housing. The enclosure is out of scope, as this project covers the electronics a
 | | `BSN-C23-B` | Notes |
 |---|---|---|
 | Bring-up | 9 boards, all 13/13 in the hardware self-test | Hand-assembled |
-| Antenna match, worst S11 in 2.40–2.48 GHz | −12.0 dB in the air, −18.8 dB standing on the battery holder | Simulated −14.9 dB. Lying flat on a table detunes it by about 330 MHz |
+| Antenna match, worst S11 in 2.40–2.48 GHz | −12.1 dB in the air, −18.8 dB standing on the battery holder | Simulated −14.9 dB. Lying flat on a table detunes it by about 330 MHz |
 | Carrier frequency | Within ±0.7 ppm of the analyser reference | 2402, 2440 and 2480 MHz, no crystal retrim needed |
 | Conducted power at the antenna connector | +3.2 dBm at the +8 dBm setting, −3.9 dBm at the 0 dBm setting | Read +2.4 and −4.7 dBm, corrected for the 0.84 dB probe loss measured on the VNA |
 | Harmonics at +8 dBm, conducted | H2 to H4 below −54 dBm. H5 −40.9 dBm: 10.9 dB under ETSI, 0.3 dB under FCC | Probe loss not corrected, the true level is higher. H5 is about 10 dB worse than rev A with the same filter parts, cause not investigated |

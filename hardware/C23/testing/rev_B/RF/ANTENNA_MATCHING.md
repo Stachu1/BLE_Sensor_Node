@@ -7,7 +7,7 @@ in [`../../rev_A/RF/ANTENNA_MATCHING.md`](../../rev_A/RF/ANTENNA_MATCHING.md).
 ## Result
 
 - L2 1.6 nH and L3 6.8 nH, the values from the simulation, stay. No part was changed (decision 2026-11-13).
-- With the coin cell fitted, the worst S11 in the BLE band on B #2 is −12.0 dB with the board hanging in the air
+- With the coin cell fitted, the worst S11 in the BLE band on B #2 is −12.1 dB with the board hanging in the air
   and −18.8 dB with the board standing on its battery holder on the table.
 - Lying flat on the table without the holder, the antenna is detuned by about 330 MHz and the band is not matched.
 
@@ -72,6 +72,8 @@ holder, files 07 to 10 with it. So the comparison "cell against no cell" also co
 ## Measurements
 
 All files are the VNA's CSV export (frequency, R, X in ohms). The −10 dB band is taken between 2 and 3 GHz.
+"Worst S11 in 2.400–2.4835 GHz" is the worst measured point inside the band, with no interpolation to the band
+edges (decision 2026-11-18, the VNA step is 1.875 MHz).
 
 B #2, L2 1.6 nH, L3 6.8 nH:
 
@@ -80,7 +82,7 @@ B #2, L2 1.6 nH, L3 6.8 nH:
 | `s11_04_B2_L2-1n6_L3-6n8.csv` | on holder | −42 dB at 2.420 GHz | 2309–2550 MHz (241) | −15.9 dB | 52.0 − j4.8 / 50.0 + j5.9 / 49.5 + j15.4 |
 | `s11_07_B2_L2-1n6_L3-6n8_bat-fitted.csv` | on holder, cell | −39 dB at 2.440 GHz | 2328–2566 MHz (238) | −18.8 dB | 53.8 − j10.6 / 51.0 + j0.3 / 50.1 + j10.6 |
 | `s11_05_B2_L2-1n6_L3-6n8_in-air.csv` | in air | −18.2 dB at 2.464 GHz | 2371–2558 MHz (187) | −12.5 dB | 44.1 − j22.2 / 40.8 − j10.0 / 38.4 + j1.1 |
-| `s11_08_B2_L2-1n6_L3-6n8_in-air_bat-fitted.csv` | in air, cell | −18.3 dB at 2.479 GHz | 2375–2562 MHz (187) | −12.0 dB | 45.2 − j24.1 / 41.3 − j12.7 / 39.1 − j1.2 |
+| `s11_08_B2_L2-1n6_L3-6n8_in-air_bat-fitted.csv` | in air, cell | −18.3 dB at 2.479 GHz | 2375–2562 MHz (187) | −12.1 dB | 45.2 − j24.1 / 41.3 − j12.7 / 39.1 − j1.2 |
 | `s11_06_B2_L2-1n6_L3-6n8_flat.csv` | flat | −15.7 dB at 2.112 GHz | 2031–2208 MHz (177) | −3.4 dB | 50.8 + j77.7 / 54.8 + j87.3 / 59.7 + j98.8 |
 
 B #1, antenna without parts (L2 0 Ω, L3 open):
@@ -127,7 +129,7 @@ With L2 1.6 nH and L3 6.8 nH, B #2, file 08:
 |---|---|---|---|---|
 | S11 minimum | −52.7 dB at 2.442 GHz | −49.7 dB at 2.455 GHz | −18.3 dB at 2.479 GHz | +37 MHz, +1.5 % |
 | −10 dB band | 2368–2528 MHz (160 MHz) | 2376–2545 MHz (169 MHz) | 2375–2562 MHz (187 MHz) | 27 MHz wider |
-| Worst S11 in the BLE band | −14.9 dB | −13.1 dB | −12.0 dB | 2.9 dB worse |
+| Worst S11 in the BLE band | −14.9 dB | −13.1 dB | −12.1 dB | 2.8 dB worse |
 | Z at 2.40 GHz | 62.5 − j16.2 Ω | 65.7 − j20.5 Ω | 45.2 − j24.1 Ω | |
 | Z at 2.44 GHz | 50.4 − j0.9 Ω | 53.1 − j5.3 Ω | 41.3 − j12.7 Ω | |
 | Z at 2.48 GHz | 42.9 + j12.1 Ω | 45.2 + j7.9 Ω | 39.1 − j1.2 Ω | |
@@ -147,7 +149,7 @@ Notes:
   write-up expected. The resistance agrees within about 3 Ω, the reactance is 7 to 13 Ω less capacitive than
   simulated.
 - Matched: the minimum is 1.5 % above the simulated one, inside ±2 %. It is less deep than simulated, the real
-  part at 2.44 GHz is 41 Ω against 50 Ω. The band is below −12.0 dB against −14.9 dB simulated.
+  part at 2.44 GHz is 41 Ω against 50 Ω. The band is below −12.1 dB against −14.9 dB simulated.
 - The antenna without parts is lower in frequency than simulated and the matched board is higher. These are two
   boards, and the matched board adds the tolerance of L2 and L3 and their pads. Not investigated further.
 - On the holder on the table (files 04, 07, 03, 09) the bands are 50 to 70 MHz wider than in the air. The wider
