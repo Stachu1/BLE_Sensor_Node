@@ -72,7 +72,7 @@ Bring-up details per board are in [`BRINGUP.md`](../../firmware/C23/BRINGUP.md).
 | Board | Built as | Rework | Self-test | Use |
 |---|---|---|---|---|
 | B #1 | No 100 µF cap, J2 to the antenna, no R1 (supply through the J1 jumper) | 2026-11-13: L2 0 Ω and L3 open for the bare-antenna sweep, then L2 1.6 nH and L3 6.8 nH fitted | 13/13 (2026-11-16) | Antenna without parts, current measurements |
-| B #2 | One 100 µF cap, J2 to the antenna, no R1 | 2026-11-19: battery holder torn off, solder mask scraped and the holder soldered back on. Pi network removed: C8 and C9 off, L1 bridged with solder | 13/13 (2026-11-13) | VNA match with L2 1.6 nH and L3 6.8 nH. Radiated pattern and harmonics in the chamber (2026-11-19), with and without the pi network |
+| B #2 | One 100 µF cap, J2 to the antenna, no R1 | 2026-11-19: battery holder torn off, solder mask scraped and the holder soldered back on. Pi network removed: C8 and C9 off, L1 bridged with solder. Later the same day the pi network refitted (C8, C9 1.5 pF, L1 2.8 nH, bridge removed) | 13/13 (2026-11-13), not repeated after the rework | VNA match with L2 1.6 nH and L3 6.8 nH. Radiated pattern and harmonics in the chamber (2026-11-19), with and without the pi network |
 | B #3 | Two 100 µF caps, J2 rotated 180° about the axis normal to the board, so the probe sees the PA side and disconnects the antenna, no R1 | 2026-11-13: L2 1.6 nH and L3 6.8 nH fitted | 13/13 (2026-11-16) | Continuous carrier: conducted power, harmonics, supply current |
 | B #4 | One 100 µF cap, J2 to the antenna, R1 0 Ω | 2026-11-16: U2 (HDC2010) replaced after a hand-soldering fault found by `hwtest` | 13/13 (2026-11-16) | `ble_sensor` |
 | B #5 to B #9 | One 100 µF cap, J2 to the antenna, R1 0 Ω | – | 13/13 (2026-11-16) | `ble_sensor` |
@@ -154,6 +154,7 @@ Hand-modified boards are marked `A*` (see the root README).
 | RF test | 2026-10-26 | Battery holder fitted, L2 = 4.3 nH, 2.1 pF on the L3 pads | Re-match with the board lifted off the table |
 | #1 | 2026-10-26 | L2 = 4.3 nH, 2.1 pF on the L3 pads (antenna side). PA-side pi network unchanged (TI reference) | Fit the tuned match |
 | RF CW no-pi | 2026-10-27 | MCU, X1 and J1 only. C7 and C8 not fitted, L1 shorted with solder, 15 pF series cap to J1 kept as the DC block | Check whether the pi network is needed for harmonics, and its effect on output power |
+| FC:DE:C5:73:2F:53 (by the user's memory the RF CW board, to confirm) | 2026-11-19 | `hwtest` before the rework: HDC2010 ID FAIL, nothing on the I2C bus, because U3 was not fitted. L5 (10 µH DC/DC inductor) found missing and fitted. U3 (HDC2010) fitted and the board powered without a short check. SDA and SCL were shorted, found and removed after, **the MCU or U3 may be damaged**. After the rework the application does not start: after two clean power cycles (J-Link off the header, 30 s off) the CPU sits in the boot ROM (PC 0x0F0024E8) with the `hwtest` image intact in flash. Cause not found | Bring the board to a working state for the soak and range tests. If L5 was missing during earlier measurements on this board, those ran without the DC/DC converter (not checked which measurements) |
 
 Known issues to fix in rev B are listed at the end of [`BRINGUP.md`](../../firmware/C23/BRINGUP.md#notes-for-rev-b).
 
