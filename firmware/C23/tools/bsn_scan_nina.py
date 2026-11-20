@@ -11,7 +11,12 @@ bsn_scan_nina.py - bsn_scan.py, but receiving through a u-blox NINA-W15 (u-conne
 
 The module cannot scan continuously. AT+UBTD runs one discovery window (at most 40 s), so the
 script starts a new window as soon as the module reports the last one finished (the gap is a few
-tens of ms). Prints one line per new reading (BTHome packet id), with RSSI. Stop with Ctrl+C.
+tens of ms). Prints one line per new reading (BTHome packet id), with RSSI. Stop with Ctrl+C, which
+also prints the packets received and lost per node (from gaps in the 8-bit packet id).
+
+Discovery type 4 is used. On NINA-W15 firmware 4.2.0 (checked 2026-11-20) type 1 reports a device
+only once per window and type 4 reports every advert, the opposite of what the names suggest.
+Before that fix the script logged one advert per node per window.
 """
 import argparse
 import csv
@@ -29,6 +34,7 @@ AD_NAME_COMPLETE = 0x09
 AD_SERVICE_DATA_16 = 0x16
 
 MAX_WINDOW_S = 40.0  # u-connectXpress limit for AT+UBTD discovery_length (40000 ms)
+DISCOVERY_TYPE = 4  # every advert on NINA-W15 4.2.0, type 1 gives one report per device per window
 
 
 def parse_ad(data: bytes) -> tuple[str | None, bytes | None]:
@@ -142,7 +148,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--port", default="COM9", help="NINA-W15 serial port (default: COM9)")
     ap.add_argument("--baud", type=int, default=115200, help="module baud rate (default: 115200)")
-    ap.add_argument("--window", type=float, default=15, help=f"discovery window in s, max {MAX_WINDOW_S:.0f} (default: 15)")
+    ap.add_argument("--window", type=float, default=MAX_WINDOW_S, help=f"discovery window in s, max {MAX_WINDOW_S:.0f} (default: {MAX_WINDOW_S:.0f})")
     ap.add_argument("--active", action="store_true", help="active scanning (default: passive, the BSN puts everything in the advert)")
     ap.add_argument("--mac", help="only this device address (case and separators don't matter)")
     ap.add_argument("--name", default="BSN-", help="name prefix filter when --mac is not given (default: BSN-)")
@@ -167,6 +173,7 @@ def main() -> None:
         sys.exit("Bluetooth LE is disabled on the module (+UBTLE:0). Run once with --setup.")
 
     want_mac = args.mac.replace("-", ":").upper() if args.mac else None
+    stats: dict[str, list[int]] = {}  # address -> [received, lost]
     names: dict[str, str] = {}  # address -> name, the name can come from the advert or a scan response
     last_packet: dict[str, int] = {}
     seen_any = False
@@ -191,8 +198,14 @@ def main() -> None:
         pkt = values.get("packet")
         if not args.all and pkt is not None and last_packet.get(addr) == pkt:
             return
+        prev = last_packet.get(addr)
         last_packet[addr] = pkt
         seen_any = True
+        if pkt is not None:
+            st = stats.setdefault(addr, [0, 0])  # received, lost
+            st[0] += 1
+            if prev is not None:
+                st[1] += (pkt - prev - 1) % 256  # 8-bit id, a gap of 256 or more adverts is not seen
 
         now = dt.datetime.now().strftime("%H:%M:%S")
         fields = "  ".join(f"{k}={v:.2f}" if isinstance(v, float) else f"{k}={v}" for k, v in values.items())
@@ -246,17 +259,23 @@ def main() -> None:
                 if left < 0.01:
                     break
                 window = min(window, left)
-            cmd = f"AT+UBTD=1,{mode},{round(window * 1000)}"
+            cmd = f"AT+UBTD={DISCOVERY_TYPE},{mode},{round(window * 1000)}"
             try:
                 scan_window(cmd, window)
             except serial.SerialException as e:
                 print(f"{dt.datetime.now():%H:%M:%S}  Lost {args.port} ({e}), reopening ...", file=sys.stderr, flush=True)
                 nina.reopen()
                 print(f"{dt.datetime.now():%H:%M:%S}  {args.port} back, scanning again.", file=sys.stderr, flush=True)
+    except KeyboardInterrupt:
+        pass
     finally:
         if csv_file:
             csv_file.close()
         nina.close()
+        for addr, (rx, lost) in sorted(stats.items()):
+            total = rx + lost
+            print(f"{addr}  {names.get(addr, '?'):10s} received {rx}, lost {lost} "
+                  f"({100 * lost / total:.1f} % of {total}, from packet id gaps)", flush=True)
     if not seen_any:
         print("No matching advertisements received.")
 
