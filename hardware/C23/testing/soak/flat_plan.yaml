@@ -1,0 +1,39 @@
+# Floor plan of the flat for the soak plots (soak_plan.py). Units cm, origin at the outer corner of the bathroom,
+# x along the bathroom / entrance outer wall, y towards the living room and bedroom windows.
+# Rooms and openings are given by the user (2026-11-20). The user gave the centre and width of each opening, a and b
+# below are its two ends. Node positions are first guesses from the placement table in SOAK.md, to be corrected.
+
+rooms:
+  bathroom:    [[0, 0], [0, 170], [170, 170], [170, 0]]
+  entrance:    [[170, 0], [170, 100], [230, 100], [230, 170], [400, 170], [400, 0]]
+  living room: [[0, 170], [0, 550], [400, 550], [400, 170]]
+  bedroom:     [[400, 170], [400, 550], [820, 550], [820, 170]]
+
+doors:
+  - {name: front door,         a: [240, 0],   b: [340, 0]}
+  - {name: entrance to living, a: [240, 170], b: [340, 170]}
+  - {name: living to bedroom,  a: [400, 310], b: [400, 410]}
+  # Not given by the user. The bathroom has to open somewhere, the entrance is the only room next to it with a
+  # free wall. Position and width guessed.
+  - {name: bathroom, a: [170, 10],  b: [170, 90]}
+
+windows:
+  - {a: [0, 15],   b: [0, 65]}      # bathroom, 0.5 m
+  - {a: [0, 305],  b: [0, 405]}     # living room
+  - {a: [250, 550], b: [350, 550]}  # living room
+  - {a: [450, 550], b: [550, 550]}  # bedroom
+  - {a: [820, 300], b: [820, 400]}  # bedroom
+
+# Address suffix (FC:DE:C5:73:..): board, position [x, y] in cm. All positions guessed.
+nodes:
+  "2F:65": {board: "B #9", xy: [150, 10]}    # bathroom
+  "2F:67": {board: "B #1", xy: [365, 50]}    # entrance
+  "2F:5A": {board: "B #2", xy: [380, 190]}   # living room, corner right of the door
+  "2F:60": {board: "B #3", xy: [300, 535]}    # living room, window next to the coffee machine
+  "2F:4E": {board: "A #1", xy: [15, 355]}   # living room, right window (kitchen side)
+  "2F:5B": {board: "B #8", xy: [100, 200]}   # kitchen, shelves above
+  "2F:77": {board: "A #2", xy: [805, 350]}   # bedroom, window next to the bed
+  "2F:82": {board: "B #6", xy: [500, 535]}   # bedroom, window next to the desks
+
+# Minutes skipped after the first CSV row (nodes settling after placement and handling). --start overrides it.
+skip_first_min: 120

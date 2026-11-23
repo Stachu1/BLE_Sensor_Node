@@ -36,6 +36,11 @@ Packet id rate from the CSV at about 21:30. The soak build (`LOG=0 DRDY=4 RELOAD
 - `soak_2026-11-20.csv`: one row per received advert, no header. Columns: time, address, RSSI (dBm), packet id,
   temperature (°C), RH (%), VDD (V), battery (%).
 - `soak_2026-11-20.log`: scanner console output, the loss summary per node is at the end.
+- `flat_plan.yaml`: floor plan of the flat (rooms, doors, windows, in cm) and the node positions. Rooms from the
+  user, node positions and the bathroom door are first guesses, to be corrected.
+- `soak_plan.py`: temperature and RH on the floor plan, MP4 over time plus a still for the report. Between the
+  nodes the colour is interpolated through the door openings, only the dots are measured.
+- `soak_plan_2026-11-20.mp4`, `soak_plan_2026-11-20_still.png`: first render, data up to 23:27.
 
 ## Event sheet
 

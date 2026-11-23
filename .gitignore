@@ -68,3 +68,8 @@ hardware/*/BSN-*.csv
 
 # Full-resolution photos, web versions are in docs/images
 docs/images/originals/
+
+# Soak raw data and renders (too big for the repo, kept locally)
+hardware/C23/testing/soak/soak_*.csv
+hardware/C23/testing/soak/soak_*.log
+hardware/C23/testing/soak/*.mp4
