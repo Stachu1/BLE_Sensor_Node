@@ -15,13 +15,13 @@ New-Item -ItemType Directory -Force $out | Out-Null
 $src = @(
     (Join-Path $here 'src\main.c'),
     (Join-Path $here 'src\startup.c'),
-    (Join-Path $here '..\ble_sensor\src\bthome.c'),
+    (Join-Path $here 'src\bthome.c'),
     (Join-Path $mdk 'system_nrf52805.c')
 )
 $cflags = @('-mcpu=cortex-m4', '-mthumb', '-mfloat-abi=soft', '-Os', '-g', '-std=gnu11', '-Wall', '-Wextra',
     '-ffunction-sections', '-fdata-sections', '-ffreestanding', '-fno-common',
     '-DNRF52805_XXAA', '-DCONFIG_GPIO_AS_PINRESET',
-    "-I$mdk", "-I$cmsis", ('-I' + (Join-Path $here '..\ble_sensor\src')))
+    "-I$mdk", "-I$cmsis", ('-I' + (Join-Path $here 'src')))
 $ldflags = @('-nostdlib', '-Wl,--gc-sections', ('-T' + (Join-Path $here 'link.ld')),
     ('-Wl,-Map=' + (Join-Path $out 'beacon.map')), '-o', (Join-Path $out 'beacon.elf'))
 
