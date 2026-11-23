@@ -1,6 +1,6 @@
 /*
- * BSN-N52 BLE sensor: HDC2010 in auto mode at 0.2 Hz, every DRDY wakes the SoC, which reads the sample
- * and sends ONE non-connectable BTHome v2 advertising event at 0 dBm, then sleeps again.
+ * BSN-N52 BLE sensor: HDC2010 in auto mode (DRDY_AMM, 0.2 Hz by default), every DRDY wakes the SoC, which reads
+ * the sample and sends ONE non-connectable BTHome v2 advertising event at 0 dBm, then sleeps again.
  * Same behaviour as BLE_Sensor_Node/firmware/C23/ble_sensor in DRDY mode (DRDY=4).
  *
  * Pins: P0.16 SCL, P0.18 SDA, P0.12 HDC2010 INT (push-pull, active high).
@@ -28,7 +28,11 @@
 #define HDC_CFG_SOFT_RESET 0x80
 #define HDC_CFG_INT_EN 0x04
 #define HDC_CFG_INT_POL_HIGH 0x02
-#define HDC_AMM_0_2HZ 4 /* auto measurement mode: 0.2 Hz */
+/* HDC2010 auto-measurement code, set by make DRDY=n: 1 = 120 s, 2 = 60 s, 3 = 10 s, 4 = 5 s, 5 = 1 s, 6 = 0.5 s,
+ * 7 = 0.2 s. 0 = no auto mode: MEAS_TRIG gives one reading and one advert, then the stack stays idle (floor). */
+#ifndef DRDY_AMM
+#define DRDY_AMM 4
+#endif
 #define HDC_STATUS_DRDY 0x80
 
 static const struct device *const i2c = DEVICE_DT_GET(DT_NODELABEL(i2c0));
@@ -49,7 +53,7 @@ static bool hdc_start_auto(void)
 	/* DRDY on INT, active high, level; 14 bit T + RH (MEAS_CFG reset value); MEAS_TRIG starts the AMM sequence */
 	return i2c_reg_write_byte(i2c, HDC_ADDR, HDC_REG_INT_ENABLE, 0x80) == 0 &&
 	       i2c_reg_write_byte(i2c, HDC_ADDR, HDC_REG_CONFIG,
-				  (HDC_AMM_0_2HZ << 4) | HDC_CFG_INT_EN | HDC_CFG_INT_POL_HIGH) == 0 &&
+				  (DRDY_AMM << 4) | HDC_CFG_INT_EN | HDC_CFG_INT_POL_HIGH) == 0 &&
 	       i2c_reg_write_byte(i2c, HDC_ADDR, HDC_REG_MEAS_CFG, 0x01) == 0;
 }
 
@@ -171,7 +175,7 @@ int main(void)
 	gpio_add_callback(hdc_int.port, &int_cb);
 
 	hdc_ok = hdc_start_auto();
-	printk("BSN-N52 up, HDC2010 %s\n", hdc_ok ? "running at 0.2 Hz" : "NOT answering");
+	printk("BSN-N52 up, HDC2010 %s (DRDY code %d)\n", hdc_ok ? "running" : "NOT answering", DRDY_AMM);
 	/* Give a failed start a reading slot anyway: the packet with the invalid-sensor marker is sent every 5 s */
 
 	for (;;) {

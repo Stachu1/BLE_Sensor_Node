@@ -65,7 +65,7 @@ Written 2026-11-23 because `ble_sensor` drew far more than the datasheet suggest
   System OFF until the first DRDY.
 - Fault path: if the sensor does not answer or INT stays high, it sends the invalid-sensor packet, sleeps 5 s on the
   RTC (LFRC) and resets into the cold path.
-- 2.4 kB of code. Built with `.\build.ps1 ble_beacon_min` (own `build.ps1`: NCS GCC + Nordic MDK headers).
+- 2.4 kB of code. Built with `make` in `ble_beacon_min` (NCS GCC + Nordic MDK headers, no west).
 
 Checked on A #3: the scanner receives it, and over SWD the packet counter rose 2 -> 5 in 11 s (one wake per ~5 s).
 
@@ -97,17 +97,20 @@ the firmware handles the wake by hand there). **Always power-cycle with the prob
 
 ## Tools
 
-### Build
+### Build and flash (make, from Git Bash)
 ```
-cd firmware\N52
-.\build.ps1 hwtest                       # firmware\N52\hwtest\build\zephyr\zephyr.hex
-.\build.ps1 hwtest -Carrier              # ends in a continuous RF carrier at 2440.25 MHz, no BLE
-.\build.ps1 hwtest -SkipDcdc             # skips the DC/DC test (use if a board boot-loops in it)
-.\build.ps1 ble_sensor                   # product build, no console
-.\build.ps1 ble_sensor -Conf debug.conf  # printk over RTT
-.\build.ps1 <app> -Pristine              # clean build
+cd firmware/N52/hwtest                   # or ble_sensor, ble_beacon_min
+make                                     # build only
+make jflash                              # build + program + run with the J-Link
+make stflash                             # the same with an ST-Link (pyocd, untested)
+make CARRIER=1 jflash                    # hwtest: ends in a continuous RF carrier (tone at 2440.25 MHz), no BLE
+make SKIP_DCDC=1 jflash                  # hwtest: skips the DC/DC test (use if a board boot-loops in it)
+make LOG=1 jflash                        # ble_sensor: printk over RTT
+make DRDY=7 jflash                       # ble_sensor / ble_beacon_min: HDC2010 rate code (4 = 5 s default, 7 = 0.2 s, 0 = one shot)
+make clean                               # clean build
 ```
-Uses the installed nRF Connect SDK v3.4.0 (`C:\ncs`, toolchain `dcbdc366a1`). Output is in `<app>\build\zephyr\`.
+Uses the installed nRF Connect SDK v3.4.0 (`C:\ncs`, toolchain `dcbdc366a1`). All targets and options are in
+[README.md](README.md#building-and-flashing). The old `build.ps1` still builds the default variants.
 
 ### hwtest.py (`firmware\N52\hwtest\scripts\hwtest.py`)
 ```
@@ -121,14 +124,13 @@ The tests are 11 numbered checks. The report is also in RAM (symbol `hwtest_repo
 `HW`, pass bitmask, number passed, number failed). The numbers after each result are test-specific values, explained
 in `detail()` in `hwtest\src\tests.c`.
 
-Typical new-board flow:
+Typical new-board flow (Git Bash, add `PROBE=stlink` to `soc` / `run` for an ST-Link):
 ```
-python hwtest.py soc                                                      # chip alive, note the BLE address
-python hwtest.py run                                                      # all 11 must pass
-python hwtest.py flash ..\..\ble_sensor\build\zephyr\zephyr.hex           # then check the scanner
+cd firmware/N52/hwtest && make soc       # chip alive, note the BLE address
+make run                                 # all 11 must pass
+cd ../ble_beacon_min && make jflash      # then check the scanner
 ```
-Run these from `firmware\N52\hwtest\scripts`. `report` needs the hwtest build in `hwtest\build\zephyr` (it reads the
-symbol address from there).
+`report` needs the hwtest build in `hwtest/build/zephyr` (it reads the symbol address from there).
 
 ### Probes
 
@@ -160,7 +162,8 @@ reports `VTref=0.000V` / "Target voltage too low".
 
 ## Not tested yet
 
-- Absolute crystal frequency (build with `-Carrier`, measure 2440.25 MHz).
+- Absolute crystal frequency (`make CARRIER=1 jflash` in `hwtest`, measure the tone at 2440.25 MHz radiated: no RF
+  connector, so a spectrum analyser or SDR antenna next to the board).
 - BLE range and antenna performance of the MIFA on the real boards.
 - Average current on a lower meter range or with a PPK2 (the 10 mA range result is 1.706 uA, see above).
   For comparison, the C23 board measured about 4.8 uA at a 5 s DRDY interval.

@@ -3,3 +3,8 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(bsn_n52_ble_sensor)
 
 target_sources(app PRIVATE src/main.c src/bthome.c)
+
+# make DRDY=n (see makefile): HDC2010 auto-measurement code, default 4 (5 s) in main.c
+if(DEFINED DRDY)
+  target_compile_definitions(app PRIVATE DRDY_AMM=${DRDY})
+endif()

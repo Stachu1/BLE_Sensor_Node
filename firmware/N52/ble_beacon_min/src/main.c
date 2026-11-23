@@ -1,10 +1,10 @@
 /*
  * ble_beacon_min: bare-metal BTHome beacon for BSN-N52 (nRF52805). No Zephyr, no BLE stack, no LFCLK.
  *
- * The SoC sleeps in System OFF (no clocks, no RAM retention). The HDC2010 runs in auto mode at 0.2 Hz and drives
- * INT (P0.12, push-pull, active high) on every DRDY. GPIO SENSE on P0.12 wakes the chip, which is a reset: main()
- * runs from the top, reads the sample, measures VDD, sends ONE ADV_NONCONN_IND on channels 37, 38, 39 through the
- * RADIO registers and goes back to System OFF. Awake roughly 2 ms per 5 s.
+ * The SoC sleeps in System OFF (no clocks, no RAM retention). The HDC2010 runs in auto mode (DRDY_AMM, 0.2 Hz by
+ * default) and drives INT (P0.12, push-pull, active high) on every DRDY. GPIO SENSE on P0.12 wakes the chip, which
+ * is a reset: main() runs from the top, reads the sample, measures VDD, sends ONE ADV_NONCONN_IND on channels 37,
+ * 38, 39 through the RADIO registers and goes back to System OFF. Awake roughly 2 ms per DRDY.
  *
  * Same payload, name and address as ble_sensor (BSN-N52), so scanners / Home Assistant see the same device.
  * The BTHome packet id lives in POWER->GPREGRET (retained in System OFF).
@@ -37,7 +37,11 @@
 #define HDC_CFG_SOFT_RESET 0x80
 #define HDC_CFG_INT_EN 0x04
 #define HDC_CFG_INT_POL_HIGH 0x02
-#define HDC_AMM_0_2HZ 4
+/* HDC2010 auto-measurement code, set by make DRDY=n: 1 = 120 s, 2 = 60 s, 3 = 10 s, 4 = 5 s, 5 = 1 s, 6 = 0.5 s,
+ * 7 = 0.2 s. 0 = no auto mode: MEAS_TRIG gives one reading, one advert, then System OFF for good (floor). */
+#ifndef DRDY_AMM
+#define DRDY_AMM 4
+#endif
 #define HDC_STATUS_DRDY 0x80
 
 /* GPREGRET2 marker: "reset because INT rose during emulated System OFF" (debugger attached), handled as warm */
@@ -181,7 +185,7 @@ static bool hdc_start_auto(void)
 	delay_us(20000);
 	/* DRDY on INT, active high, push-pull; 14 bit T + RH; MEAS_TRIG starts the auto sequence */
 	return hdc_write(HDC_REG_INT_ENABLE, 0x80) &&
-	       hdc_write(HDC_REG_CONFIG, (HDC_AMM_0_2HZ << 4) | HDC_CFG_INT_EN | HDC_CFG_INT_POL_HIGH) &&
+	       hdc_write(HDC_REG_CONFIG, (DRDY_AMM << 4) | HDC_CFG_INT_EN | HDC_CFG_INT_POL_HIGH) &&
 	       hdc_write(HDC_REG_MEAS_CFG, 0x01);
 }
 
@@ -413,7 +417,7 @@ int main(void)
 		i2c_bus_recover();
 		twi_on();
 		if (hdc_start_auto()) {
-			system_off(); /* first DRDY wakes us in <= 5 s */
+			system_off(); /* the first DRDY wakes us (MEAS_TRIG starts a conversion now) */
 		}
 		/* sensor not answering: tell the receiver, retry in 5 s */
 		hfxo_start();

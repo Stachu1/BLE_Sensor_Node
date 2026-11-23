@@ -198,7 +198,7 @@ def default_hex():
 def cmd_flash(probe, hexf=None):
     hexf = os.path.abspath(hexf or default_hex())
     if not os.path.exists(hexf):
-        sys.exit(f"{hexf} not found - build first (firmware\\build.ps1 hwtest)")
+        sys.exit(f"{hexf} not found - build first (make in firmware/N52/hwtest)")
     r = probe.run([("flash", hexf), ("reset_run",)])
     ok = r.get("flash_ok")
     print("flash", "OK" if ok else "FAILED", "-", hexf)

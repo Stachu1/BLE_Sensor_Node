@@ -21,9 +21,10 @@ and per-board results: [`firmware/N52`](../../firmware/N52) and [`firmware/N52/B
 - **HDC2010** temperature/humidity sensor on I2C with its interrupt line (DRDY) to the SoC. No external I2C
   pull-ups (the nRF internal ones are used).
 - **Printed meandered inverted-F antenna (MIFA)** along the top edge in a 20 × 5 mm keep-out, designed in openEMS on
-  this board ([`testing/RF/sim`](testing/RF/sim)). Fed through a Murata MM8130 switch connector and a T network
-  L2 4.7 nH series, C1 0.5 pF shunt, L1 8.2 nH series (match and harmonic filter, from the r7 simulation with the
-  solder mask and the cell).
+  this board ([`testing/RF/sim`](testing/RF/sim)). Fed through a T network L2 4.7 nH series, C1 0.5 pF shunt,
+  L1 8.2 nH series (match and harmonic filter, from the r7 simulation with the solder mask and the cell).
+  **No RF connector** (no MM8130 or test port): the antenna and the carrier can only be measured radiated, and the
+  matching parts and the 32 MHz crystal load caps are fixed in hardware (no firmware trim).
 - **SWD only**: Tag-Connect TC2030-NL (J1) with VCC, SWDIO, RESET, SWCLK, GND. No LED, no UART.
 - The silkscreen carries the author's handle, not the board ID. The ID is in the KiCad title block only.
 
