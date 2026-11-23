@@ -1,0 +1,5 @@
+board:
+  name: bsn_n52
+  full_name: BSN-N52 BLE Sensor Node (nRF52805)
+  socs:
+  - name: nrf52805

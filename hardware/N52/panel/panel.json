@@ -1,0 +1,9 @@
+{
+  "layout":   { "type": "grid", "rows": 3, "cols": 3, "space": "2mm" },
+  "tabs":     { "type": "fixed", "width": "2.2mm", "vcount": 2, "hcount": 1 },
+  "cuts":     { "type": "mousebites", "drill": "0.5mm", "spacing": "0.8mm", "offset": "-0.5mm", "prolong": "0mm" },
+  "framing":  { "type": "railstb", "width": "5mm", "space": "2mm" },
+  "fiducials":{ "type": "none" },
+  "tooling":  { "type": "none" },
+  "post":     { "millradius": "1mm" }
+}

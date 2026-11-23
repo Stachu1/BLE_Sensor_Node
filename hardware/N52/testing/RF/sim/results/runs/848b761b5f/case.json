@@ -1,0 +1,47 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "explicit",
+ "er_scale": 1.0,
+ "nf2ff": false,
+ "board": "build/r7/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 2.0,
+  "S": 1.825,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 5.5,
+  "Nd": 1.0,
+  "Nw": 0.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "field_dumps": true,
+ "mesh": {
+  "air": 150
+ },
+ "trace_port": {
+  "y": 2.785,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r7 visual air150 mask",
+ "tag": "r7_visual",
+ "purpose": "Field movies 2026-11-15 (r7): antenna driven at the L1 pad (end of the matching network), normal mesh with the 20 um mask, 150 mm air so the radiated wave is visible, time-domain and 2.44 GHz field dumps."
+}

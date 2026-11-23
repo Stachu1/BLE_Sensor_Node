@@ -1,0 +1,67 @@
+[
+ {
+  "name": "r4 fold-back W1.0 D1.5",
+  "purpose": "Board r4 (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: fold-back arm, 1 mm traces, return row 0.5 mm below the arm, return length R tuned.",
+  "case": {
+   "board": "build/r4/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.6,
+   "hi": 11.5
+  }
+ },
+ {
+  "name": "r4 meander W1.0 P1.5",
+  "purpose": "Board r4 (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: meander end, 1 mm traces, pitch 1.5 mm, fingers 1 mm above the ground, n tuned.",
+  "case": {
+   "board": "build/r4/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "mifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.0,
+    "G": 1.0,
+    "P": 1.5,
+    "n": 1.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.3,
+   "hi": 1.95
+  }
+ }
+]

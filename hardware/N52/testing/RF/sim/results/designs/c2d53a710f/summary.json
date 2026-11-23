@@ -1,0 +1,32 @@
+{
+ "hash": "c2d53a710f",
+ "name": "r4 meander W1.0 P1.5 it0",
+ "tag": "r4_a",
+ "board": "build/r4/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1.25 H=4.6 A=12 G=1 n=1.5 P=1.5 W=1  (15.8 x 4.6 mm, L 22.0 mm)",
+ "size": {
+  "w": 15.75,
+  "h": 4.6,
+  "area": 72.45,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2493000000.0,
+ "s_min": -12.630382263542504,
+ "ble_none": -1.2118417140486963,
+ "ble_1": -3.5977133957523173,
+ "ble_2": -6.476583294248675,
+ "match1": "series 1.00 pF",
+ "match2": "shunt 0.27 pF, series 0.83 pF",
+ "Z2440": [
+  27.069730913393,
+  82.85809609853487
+ ],
+ "rad_eff": 0.3993883212068477,
+ "Dmax": 2.5334774498380046,
+ "purpose": "Board r4 (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: meander end, 1 mm traces, pitch 1.5 mm, fingers 1 mm above the ground, n tuned."
+}

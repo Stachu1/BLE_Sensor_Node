@@ -1,0 +1,44 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r4v/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.25,
+  "H": 4.6,
+  "A": 12.0,
+  "G": 1.0,
+  "n": 1.5,
+  "P": 1.5,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "mifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "trace_port": {
+  "y": 2.035,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r4v meander W1.0 P1.5 it0",
+ "tag": "r4v_a",
+ "purpose": "Board r4v = r4 export plus 3 GND vias in the F.Cu pour island under the short leg (left of the feed trace), which is floating on the real r4 board (it0 there: 22 MHz band, 40 % efficiency). (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: meander end, 1 mm traces, pitch 1.5 mm, fingers 1 mm above the ground, n tuned."
+}

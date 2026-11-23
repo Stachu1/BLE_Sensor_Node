@@ -1,0 +1,28 @@
+{
+ "hash": "9ec22c0d1a",
+ "name": "H3 S2 it0",
+ "tag": "expl1",
+ "board": "build/disc30c7/board.json",
+ "model": "m2",
+ "battery": true,
+ "desc": "mifa S=2 H=3 A=2.4 G=1 n=4 P=1.2 W=0.5  (8.5 x 3.0 mm, L 16.8 mm)",
+ "size": {
+  "w": 8.5,
+  "h": 3.0,
+  "area": 25.5
+ },
+ "f_min": 3400000000.0,
+ "s_min": -1.649157230897127,
+ "ble_none": -0.11980407281593865,
+ "ble_1": -0.5198605536632651,
+ "ble_2": -2.6299330471171527,
+ "match1": "series 0.70 pF",
+ "match2": "series 0.82 pF, shunt 4.00 pF",
+ "Z2440": [
+  1.7019755001245043,
+  95.07194706486177
+ ],
+ "rad_eff": 0.6449769135862828,
+ "Dmax": 1.6744686368870998,
+ "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz."
+}

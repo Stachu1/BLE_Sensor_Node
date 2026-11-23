@@ -1,0 +1,32 @@
+{
+ "model": "m3",
+ "ports": "feed",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r2/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.25,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 2.0,
+  "R": 2.6,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -8.0,
+   "w": 24.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "name": "r2 fold-back W1.0 D2.0 it0",
+ "tag": "r2_f1",
+ "purpose": "Board r2 (AirTag.kicad_pcb of 2026-11-14 14:30: 24 x 20 mm, F.Cu GND pour only, AE1 at (146, 97), feed routed from L1). With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed). New family fmifa: the arm folds back towards the feed on a lower row instead of meandering down towards the ground (less copper near the ground). Return length R tuned so the S11 minimum sits at 2.460 GHz. Variant: 1 mm traces, return row 1 mm below the arm (less arm-return coupling, closer to the ground)."
+}

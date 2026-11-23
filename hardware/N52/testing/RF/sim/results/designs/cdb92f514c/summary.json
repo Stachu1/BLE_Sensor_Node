@@ -1,0 +1,32 @@
+{
+ "hash": "cdb92f514c",
+ "name": "r7 final ref normal mesh no mask",
+ "tag": "r7_ref",
+ "board": "build/r7/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.825 H=4.6 A=12.4 D=1.5 R=5.5 W=1  (15.7 x 4.6 mm, L 25.3 mm)",
+ "size": {
+  "w": 15.725,
+  "h": 4.6,
+  "area": 72.34,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2511000000.0,
+ "s_min": -8.402075528472437,
+ "ble_none": -2.6290348642847556,
+ "ble_1": -3.2879556645896835,
+ "ble_2": -6.683466163858176,
+ "match1": "series 1.30 pF",
+ "match2": "shunt 6.68 nH, series 0.99 pF",
+ "Z2440": [
+  173.34261690070656,
+  -68.39406757134162
+ ],
+ "rad_eff": 0.7459418845598099,
+ "Dmax": 1.6668899164420723,
+ "purpose": "Final check 2026-11-15 on the board as saved (r7). Same antenna as d2774450d4 (r6), normal mesh without solder mask: shows what changed from r6 to r7 and is the low-resolution reference."
+}

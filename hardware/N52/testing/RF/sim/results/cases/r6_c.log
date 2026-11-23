@@ -1,0 +1,2 @@
+r6 fold-back W1.5 H3.95 D1.8 R2.8 034919da50  min -12.96 dB @ 2.380 GHz  BLE worst  -2.34  Z(2.44) 13.4-2.9j  eff [0.55, 0.61, 0.65]  15.6x4.0 mm
+r6 fold-back D2.5 R2.2         952e8ac6d0  min -13.90 dB @ 2.415 GHz  BLE worst  -4.23  Z(2.44) 26.7-7.7j  eff [0.64, 0.68, 0.75]  15.3x4.6 mm

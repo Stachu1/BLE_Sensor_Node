@@ -1,0 +1,6 @@
+#include <zephyr/dt-bindings/regulator/nrf5x.h>
+
+/* The DC/DC (L3) was verified by the hwtest on rev 1. */
+&reg {
+	regulator-initial-mode = <NRF5X_REG_MODE_DCDC>;
+};

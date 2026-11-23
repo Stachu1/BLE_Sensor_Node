@@ -1,0 +1,137 @@
+{
+ "case": {
+  "model": "m3",
+  "ports": "trace",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/r4/board.json",
+  "antenna": {
+   "W": 1.0,
+   "Wf": 0.5,
+   "Ws": 1.0,
+   "S": 1.25,
+   "H": 4.6,
+   "A": 12.0,
+   "G": 1.0,
+   "n": 1.5,
+   "P": 1.5,
+   "Nd": 1.0,
+   "Nw": 1.0,
+   "K": 1.0,
+   "family": "mifa",
+   "keepout": {
+    "u0": -4.0,
+    "w": 20.0,
+    "h": 5.0,
+    "m": 0.3
+   }
+  },
+  "trace_port": {
+   "y": 2.035,
+   "x": [
+    -4.63,
+    -4.31,
+    -3.68,
+    -3.37
+   ],
+   "len": 0.4,
+   "part": "L1"
+  },
+  "name": "r4 meander W1.0 P1.5 it0",
+  "tag": "r4_a",
+  "purpose": "Board r4 (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: meander end, 1 mm traces, pitch 1.5 mm, fingers 1 mm above the ground, n tuned."
+ },
+ "mesh": {
+  "cells": [
+   177,
+   130,
+   89
+  ],
+  "ncells": 2047890,
+  "min_cell": [
+   0.05999999999999961,
+   0.07874999999999988,
+   0.06600800000000001
+  ],
+  "t_run": 3990.9835107326508
+ },
+ "t_total": 4005.0912647247314,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 3.3329690606867484e-29,
+   "rad_eff": 0.2844464143064195,
+   "tot_eff": 0.06925923929020464,
+   "Dmax_dBi": 2.5964827898086424,
+   "flux_eff": 0.23799134893540771
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 8.180112897719936e-29,
+   "rad_eff": 0.3993883212068477,
+   "tot_eff": 0.16885840193958743,
+   "Dmax_dBi": 2.5334774498380046,
+   "flux_eff": 0.3336217701570363
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 1.8558361492735964e-28,
+   "rad_eff": 0.4319475337103142,
+   "tot_eff": 0.3848238554972771,
+   "Dmax_dBi": 2.4795338453764737,
+   "flux_eff": 0.3622363787596094
+  }
+ ],
+ "size": {
+  "w": 15.75,
+  "h": 4.6,
+  "area": 72.45,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "length": 22.000000000000004,
+ "params": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.25,
+  "H": 4.6,
+  "A": 12.0,
+  "G": 1.0,
+  "n": 1.5,
+  "P": 1.5,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 2493000000.0,
+  "s_min": -12.630382263542504,
+  "ble_worst": -1.2118407931860855,
+  "ble_best": -10.5997683774537,
+  "Z_2440": [
+   27.069730913393,
+   82.85809609853487
+  ],
+  "S11_2440_dB": -2.3866806302864476,
+  "bw10": [
+   2482000000.0,
+   2504000000.0
+  ],
+  "bw6": [
+   2468000000.0,
+   2519000000.0
+  ],
+  "f_Rmax": 2472000000.0,
+  "Rmax": 66.68200327965775,
+  "Z_fmin": [
+   46.14364336007497,
+   22.755630817602828
+  ],
+  "min_interior": true
+ }
+}

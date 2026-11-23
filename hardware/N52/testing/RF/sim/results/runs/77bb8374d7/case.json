@@ -1,0 +1,55 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r7/board.json",
+ "port_at": {
+  "ref": "L2",
+  "net": "Net-(U2-ANT)",
+  "len": 0.2
+ },
+ "part_ports": [
+  "L2",
+  "C1",
+  "L1"
+ ],
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 2.0,
+  "S": 1.825,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 5.5,
+  "Nd": 1.0,
+  "Nw": 0.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "field_dumps": "fd",
+ "excite": 0,
+ "trace_port": {
+  "y": -0.985,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.2,
+  "part": "L2"
+ },
+ "name": "r7 smoke 4-port e0 normal mesh",
+ "tag": "r7_smoke4",
+ "purpose": "Smoke test 2026-11-15 of the 4-port chain (S-matrix, parts on the laptop, field and far-field superposition) on the normal mesh without mask, before the high-resolution r7_final results arrive. Also a convergence point."
+}

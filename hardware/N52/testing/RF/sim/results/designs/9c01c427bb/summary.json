@@ -1,0 +1,32 @@
+{
+ "hash": "9c01c427bb",
+ "name": "r5 fold-back S1.80 Ws2 Wf1.0 it0",
+ "tag": "r5_c",
+ "board": "build/r5/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.8 H=4.6 A=12.4 D=1.5 R=4.6 W=1  (15.7 x 4.6 mm, L 24.4 mm)",
+ "size": {
+  "w": 15.7,
+  "h": 4.6,
+  "area": 72.22,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2559000000.0,
+ "s_min": -7.894639790997264,
+ "ble_none": -1.8217104768900363,
+ "ble_1": -3.3535694666706166,
+ "ble_2": -6.551420223038686,
+ "match1": "series 1.20 pF",
+ "match2": "shunt 12.13 nH, series 0.76 pF",
+ "Z2440": [
+  197.70426824525092,
+  157.0600065984025
+ ],
+ "rad_eff": 0.7539368853793077,
+ "Dmax": 1.6356113192974706,
+ "purpose": "r5 S1.55 Ws2.0 (00308fa64b): Rmax 219 ohm, best match -11.2 dB at 2.639 GHz (Z 39-23j) above the resonance. Lengthen the return row R so this match point moves to 2.460 GHz. Feed leg 1 mm wide (pad stays 0.5 mm, short moved to keep the 0.3 mm gap): less series inductance (Z2440 had +120j)?"
+}

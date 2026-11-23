@@ -1,0 +1,8 @@
+b1 S1.0 W0.5 A12 P1.0        it0 n=1.700 S=1.00  f_res 2.348 GHz  Rmax 270 ohm  S11 min -9.6 dB @ 2.348 GHz
+b1 S1.25 W1.0 A12 P1.5       it0 n=1.700 S=1.25  f_res 2.329 GHz  Rmax 181 ohm  S11 min -12.4 dB @ 2.329 GHz
+b1 S1.0 W0.5 A11 P1.0 n2     it0 n=2.200 S=1.00  f_res 2.368 GHz  Rmax 276 ohm  S11 min -9.6 dB @ 2.368 GHz
+b4 S1.0 W0.5 straight        it0 A=15.500 S=1.00  f_res 2.551 GHz  Rmax 233 ohm  S11 min -14.4 dB @ 2.551 GHz
+b1 S1.0 W0.5 A12 P1.0        it1 n=1.427 S=1.00  f_res 2.388 GHz  Rmax 274 ohm  S11 min -9.8 dB @ 2.388 GHz
+b1 S1.25 W1.0 A12 P1.5       it1 n=1.389 S=1.25  f_res 2.371 GHz  Rmax 184 ohm  S11 min -12.6 dB @ 2.371 GHz
+b1 S1.0 W0.5 A11 P1.0 n2     it1 n=1.963 S=1.00  f_res 2.409 GHz  Rmax 280 ohm  S11 min -9.7 dB @ 2.409 GHz
+b4 S1.0 W0.5 straight        it1 A=16.224 S=1.00  f_res 2.476 GHz  Rmax 232 ohm  S11 min -13.4 dB @ 2.476 GHz

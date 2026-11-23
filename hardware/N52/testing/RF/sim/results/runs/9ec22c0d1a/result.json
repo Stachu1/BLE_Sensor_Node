@@ -1,0 +1,110 @@
+{
+ "case": {
+  "model": "m2",
+  "ports": "feed",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/disc30c7/board.json",
+  "antenna": {
+   "W": 0.5,
+   "Wf": 0.5,
+   "Ws": 0.5,
+   "S": 2.0,
+   "H": 3,
+   "A": 2.4,
+   "G": 1.0,
+   "n": 4.0,
+   "P": 1.2,
+   "Nd": 1.0,
+   "Nw": 1.0,
+   "K": 1.0,
+   "family": "mifa"
+  },
+  "name": "H3 S2 it0",
+  "tag": "expl1",
+  "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz."
+ },
+ "mesh": {
+  "cells": [
+   148,
+   129,
+   82
+  ],
+  "ncells": 1565544,
+  "min_cell": [
+   0.0833330000000001,
+   0.08333299999999966,
+   0.06600800000000001
+  ],
+  "t_run": 1261.633271932602
+ },
+ "t_total": 1277.660656452179,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 1.394144289110959e-29,
+   "rad_eff": 0.6091223083455691,
+   "tot_eff": 0.016573566795259047,
+   "Dmax_dBi": 1.6727886795403304,
+   "flux_eff": 0.5270564396738594
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 1.588401216353288e-29,
+   "rad_eff": 0.6449769135862828,
+   "tot_eff": 0.01874584221357473,
+   "Dmax_dBi": 1.6744686368870998,
+   "flux_eff": 0.5584667156731111
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 1.7917364312303642e-29,
+   "rad_eff": 0.6811610396690184,
+   "tot_eff": 0.02120288326723314,
+   "Dmax_dBi": 1.6779633898070672,
+   "flux_eff": 0.5902641882049746
+  }
+ ],
+ "size": {
+  "w": 8.5,
+  "h": 3.0,
+  "area": 25.5
+ },
+ "length": 16.75,
+ "params": {
+  "W": 0.5,
+  "Wf": 0.5,
+  "Ws": 0.5,
+  "S": 2.0,
+  "H": 3,
+  "A": 2.4,
+  "G": 1.0,
+  "n": 4.0,
+  "P": 1.2,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 3400000000.0,
+  "s_min": -1.649157230897127,
+  "ble_worst": -0.11980425177477023,
+  "ble_best": -0.13807065926407458,
+  "Z_2440": [
+   1.7019755001245043,
+   95.07194706486177
+  ],
+  "S11_2440_dB": -0.12809557729758764,
+  "bw10": null,
+  "bw6": null,
+  "f_Rmax": 3340000000.0,
+  "Rmax": 622.4361949055709,
+  "Z_fmin": [
+   455.057576905287,
+   -181.5720800484182
+  ],
+  "min_interior": false
+ }
+}

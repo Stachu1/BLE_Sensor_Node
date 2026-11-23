@@ -1,0 +1,15 @@
+mainmenu "BSN-N52 hwtest"
+
+config HWTEST_CARRIER
+	bool "Finish with a continuous RF carrier instead of BLE advertising"
+	help
+	  After the tests, run the radio in a continuous TX (all ones, 2440 MHz) so the crystal / antenna can be
+	  checked with a spectrum analyser or counter. The tone sits ~250 kHz above 2440 MHz (GFSK deviation).
+	  Disables the Bluetooth stack.
+
+config HWTEST_SKIP_DCDC
+	bool "Skip the DC/DC test (stay on the LDO)"
+	help
+	  Use this if the board boot-loops in the DC/DC test (missing or bad L3).
+
+source "Kconfig.zephyr"

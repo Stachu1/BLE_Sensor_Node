@@ -1,0 +1,126 @@
+{
+ "case": {
+  "model": "m2",
+  "ports": "feed",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/rect24/board.json",
+  "antenna": {
+   "W": 1.0,
+   "Wf": 0.5,
+   "Ws": 0.5,
+   "S": 1.5,
+   "H": 4.5,
+   "A": 13.2905,
+   "G": 1.0,
+   "n": 0,
+   "P": 1.0,
+   "Nd": 1.0,
+   "Nw": 1.0,
+   "K": 1.0,
+   "family": "mifa",
+   "keepout": {
+    "u0": -5.0,
+    "w": 24.0,
+    "h": 5.0,
+    "m": 0.3
+   }
+  },
+  "name": "IFA H4.5 W1.0 it1",
+  "tag": "keepout24",
+  "purpose": "Can the antenna reach 50 ohm without a matching network inside the 24 x 5 mm keep-out (full PCB width, user 2026-11-14)? Synthetic board matching AirTag.kicad_pcb as of 2026-11-14 (24 x 24 mm outline, 2 layers 1.6 mm, CR1632 on the back at BT1 (150, 109), overhanging the bottom edge as laid out, no pours yet so all ground below the keep-out), AE1 feed at (143, 93): keep-out = full width, top edge. Tuned: arm length to 2.465 GHz and S towards Rmax 50 ohm. Variant: straight IFA with a 1 mm arm."
+ },
+ "mesh": {
+  "cells": [
+   185,
+   132,
+   90
+  ],
+  "ncells": 2197800,
+  "min_cell": [
+   0.08333299999999966,
+   0.08333299999999966,
+   0.06600800000000001
+  ],
+  "t_run": 3488.69296503067
+ },
+ "t_total": 3526.2407381534576,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 1.6384456182541971e-28,
+   "rad_eff": 0.9414682588392467,
+   "tot_eff": 0.19087070230614175,
+   "Dmax_dBi": 1.8919263642346926,
+   "flux_eff": 0.8183595483726118
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 2.0588586817551016e-28,
+   "rad_eff": 0.9821890619276668,
+   "tot_eff": 0.2383806672408878,
+   "Dmax_dBi": 1.9020223301845927,
+   "flux_eff": 0.8523793203067044
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 2.592369435310067e-28,
+   "rad_eff": 1.0275244814602877,
+   "tot_eff": 0.30137916604252796,
+   "Dmax_dBi": 1.9124508876893154,
+   "flux_eff": 0.8909456616091546
+  }
+ ],
+ "size": {
+  "w": 15.04,
+  "h": 4.5,
+  "area": 67.68,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "length": 18.7905,
+ "params": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 0.5,
+  "S": 1.5,
+  "H": 4.5,
+  "A": 13.2905,
+  "G": 1.0,
+  "n": 0,
+  "P": 1.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 2787000000.0,
+  "s_min": -12.163992293470196,
+  "ble_worst": -0.9839853627121513,
+  "ble_best": -1.5347911734845625,
+  "Z_2440": [
+   71.12904090124138,
+   209.62277621367232
+  ],
+  "S11_2440_dB": -1.2073401779946482,
+  "bw10": [
+   2735000000.0,
+   2842000000.0
+  ],
+  "bw6": [
+   2667000000.0,
+   2924000000.0
+  ],
+  "f_Rmax": 2550000000.0,
+  "Rmax": 347.36430597693055,
+  "Z_fmin": [
+   34.99066866895918,
+   -15.08027150277581
+  ],
+  "min_interior": true
+ }
+}

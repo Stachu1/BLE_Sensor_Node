@@ -1,0 +1,171 @@
+"""Convert the openEMS field dumps of the detailed run into ParaView files.
+
+Input: the run's sim folder (copied from the server, see README), with
+    fd_<E|H>_<plane>.h5, fd_J_cu.h5, fd_<E|H>_vol.h5   2.44 GHz phasors (hdf5)
+    td_<E|H>_<plane>_<step>.vtr                         time-domain samples written by openEMS (in metres)
+Output in <out>:
+    fd/<name>_vol.vtr                   volume around the board: real and imaginary part and peak amplitude
+    fd/<name>.pvd + fd/<name>/p<k>.vtr  planes: phase animation of the 2.44 GHz steady state: field(t) = Re(F e^(j wt)),
+                                        one period in NPHASE frames. Arrays: vector field, its magnitude and
+                                        the peak amplitude |F| (same in every frame, good for a still picture).
+    td/<name>.pvd + td/<name>/t<k>.vtr  the openEMS time samples in mm, one series with the time in ns (pvpython)
+    geometry/*.vtk                      antenna AE1, copper layers, board outline, battery outline (mm)
+Coordinates are in mm in the simulation frame (x_sim = x_kicad - 150, y_sim = 99.7 - y_kicad, z up from B.Cu,
+F.Cu at z 1.51 mm). BSN-N52 r7 copy of the C23 script (2026-11-15).
+
+Usage:  python fields_to_vtk.py <sim_e0 dir> <out dir> [nphase]
+"""
+import glob
+import json
+import os
+import re
+import subprocess
+import sys
+
+import h5py
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+BOARD = os.path.normpath(os.path.join(HERE, '..', 'build', 'r7', 'board.json'))
+PVPYTHON = r'C:\Program Files\ParaView 6.2.0\bin\pvpython.exe'
+NPHASE = 36
+DT = 1.77722e-13       # overwritten from run.log when it is found next to sim_e0
+
+
+def write_vtr(path, x, y, z, arrays):
+	"""VTK XML RectilinearGrid, raw appended float32 data. arrays: {name: (n,) or (n, 3)} in x-fastest order."""
+	blocks = [np.asarray(x, '<f4'), np.asarray(y, '<f4'), np.asarray(z, '<f4')]
+	names = []
+	for n, a in arrays.items():
+		a = np.asarray(a, '<f4')
+		blocks.append(a)
+		names.append((n, 1 if a.ndim == 1 else a.shape[1]))
+	offs, o = [], 0
+	for b in blocks:
+		offs.append(o)
+		o += 4 + b.nbytes
+	ext = '0 %d 0 %d 0 %d' % (len(x) - 1, len(y) - 1, len(z) - 1)
+	h = ['<?xml version="1.0"?>',
+		'<VTKFile type="RectilinearGrid" version="0.1" byte_order="LittleEndian" header_type="UInt32">',
+		'<RectilinearGrid WholeExtent="%s"><Piece Extent="%s">' % (ext, ext), '<PointData>']
+	for (n, nc), off in zip(names, offs[3:]):
+		h.append('<DataArray type="Float32" Name="%s" NumberOfComponents="%d" format="appended" offset="%d"/>' % (n, nc, off))
+	h.append('</PointData><Coordinates>')
+	for k, c in enumerate('xyz'):
+		h.append('<DataArray type="Float32" Name="%s" format="appended" offset="%d"/>' % (c, offs[k]))
+	h += ['</Coordinates></Piece></RectilinearGrid>', '<AppendedData encoding="raw">']
+	with open(path, 'wb') as fh:
+		fh.write(('\n'.join(h) + '\n_').encode())
+		for b in blocks:
+			fh.write(np.uint32(b.nbytes).tobytes())
+			fh.write(b.tobytes())
+		fh.write(b'\n</AppendedData></VTKFile>\n')
+
+
+def write_pvd(path, items):
+	with open(path, 'w') as fh:
+		fh.write('<?xml version="1.0"?>\n<VTKFile type="Collection" version="0.1">\n<Collection>\n')
+		for t, f in items:
+			fh.write('<DataSet timestep="%.6g" file="%s"/>\n' % (t, f))
+		fh.write('</Collection>\n</VTKFile>\n')
+
+
+def read_fd(path):
+	h = h5py.File(path, 'r')
+	x, y, z = (np.array(h['Mesh'][k], float) * 1e3 for k in 'xyz')     # m -> mm
+	F = np.array(h['FieldData/FD/f0']).astype(complex)                   # (3, nx, ny, nz)
+	assert F.shape[1:] == (len(x), len(y), len(z)), (F.shape, len(x), len(y), len(z))
+	return x, y, z, F
+
+
+def convert_fd(src, out, nphase):
+	os.makedirs(os.path.join(out, 'fd'), exist_ok=True)
+	for p in sorted(glob.glob(os.path.join(src, 'fd_*.h5'))):
+		name = os.path.splitext(os.path.basename(p))[0]
+		qty = name.split('_')[1]                                         # E, H or J
+		x, y, z, F = read_fd(p)
+		V = F.transpose(3, 2, 1, 0).reshape(-1, 3)                       # x fastest
+		amp = np.sqrt(np.sum(np.abs(V) ** 2, axis=1))
+		if name.endswith('_vol'):
+			# volume: one file, real and imaginary part (ParaView Calculator: re*cos(t) - im*sin(t) for any phase t)
+			write_vtr(os.path.join(out, 'fd', name + '.vtr'), x, y, z,
+				{qty + '_re': V.real, qty + '_im': V.imag, '%s_peak' % qty: amp})
+			print('%-14s %s points, re/im/peak' % (name, 'x'.join(map(str, (len(x), len(y), len(z))))), flush=True)
+			continue
+		d = os.path.join(out, 'fd', name)
+		os.makedirs(d, exist_ok=True)
+		items = []
+		for k in range(nphase):
+			ph = 2 * np.pi * k / nphase
+			R = np.real(V * np.exp(1j * ph))
+			write_vtr(os.path.join(d, 'p%02d.vtr' % k), x, y, z,
+				{qty: R, '%s_mag' % qty: np.sqrt(np.sum(R ** 2, axis=1)), '%s_peak' % qty: amp})
+			items.append((k / nphase, '%s/p%02d.vtr' % (name, k)))
+		write_pvd(os.path.join(out, 'fd', name + '.pvd'), items)
+		print('%-14s %s points, %d phases' % (name, 'x'.join(map(str, (len(x), len(y), len(z)))), nphase), flush=True)
+
+
+def convert_td(src, out, dt):
+	"""openEMS writes the time-domain files in metres, rewrite them in mm with pvpython (td_convert_pv.py)."""
+	pv = os.environ.get('PVPYTHON', PVPYTHON)
+	if not os.path.exists(pv):
+		print('pvpython not found (%s), time-domain series skipped. Set PVPYTHON.' % pv)
+		return
+	subprocess.run([pv, os.path.join(HERE, 'td_convert_pv.py'), src, os.path.join(out, 'td'), repr(dt)], check=True)
+
+
+def write_poly_vtk(path, polys, z, faces=False):
+	"""Legacy VTK polydata at height z (mm): closed outlines (lines) or filled polygons."""
+	pts, cells = [], []
+	for p in polys:
+		p = np.asarray(p, float)
+		i0 = len(pts)
+		pts += [(x, y, z) for x, y in p]
+		cells.append(list(range(i0, i0 + len(p))) + ([] if faces else [i0]))
+	with open(path, 'w') as fh:
+		fh.write('# vtk DataFile Version 3.0\n%s\nASCII\nDATASET POLYDATA\nPOINTS %d float\n' % (os.path.basename(path), len(pts)))
+		for q in pts:
+			fh.write('%.4f %.4f %.4f\n' % q)
+		fh.write('%s %d %d\n' % ('POLYGONS' if faces else 'LINES', len(cells), sum(len(c) + 1 for c in cells)))
+		for c in cells:
+			fh.write('%d %s\n' % (len(c), ' '.join(map(str, c))))
+
+
+def write_geometry(out, board_path):
+	"""Copper and board outlines for ParaView overlays, same mm frame as the fields."""
+	b = json.load(open(board_path))
+	d = os.path.join(out, 'geometry')
+	os.makedirs(d, exist_ok=True)
+	st = b['stackup']['copper']
+	zF = st['F.Cu']['z']
+	write_poly_vtk(os.path.join(d, 'antenna_AE1.vtk'), b['ae1']['copper'], zF, faces=True)
+	# outlines 0.1 mm above F.Cu so they show on top of the field plane 0.05 mm above the copper
+	write_poly_vtk(os.path.join(d, 'antenna_AE1_outline.vtk'), b['ae1']['copper'], zF + 0.1)
+	write_poly_vtk(os.path.join(d, 'board_outline_top.vtk'), b['outline'], zF + 0.1)
+	write_poly_vtk(os.path.join(d, 'board_outline_bottom.vtk'), b['outline'], 0.0)
+	for layer in b['copper']:
+		dz = 0.1 if layer == 'F.Cu' else 0.0
+		write_poly_vtk(os.path.join(d, 'copper_%s.vtk' % layer.replace('.', '')), b['copper'][layer], st[layer]['z'] + dz)
+	pos = [p['c'] for p in b['pads']['BT1']['pads'] if p['num'] == '1']     # cell centre = midpoint of the + clip pads
+	bx, by = (pos[0][0] + pos[1][0]) / 2, (pos[0][1] + pos[1][1]) / 2
+	t = np.linspace(0, 2 * np.pi, 73)
+	write_poly_vtk(os.path.join(d, 'battery_CR1632_outline.vtk'), [np.c_[bx + 8 * np.cos(t), by + 8 * np.sin(t)]], -0.3)
+	print('geometry ->', d, flush=True)
+
+
+def main():
+	src, out = os.path.abspath(sys.argv[1]), os.path.abspath(sys.argv[2])
+	nphase = int(sys.argv[3]) if len(sys.argv) > 3 else NPHASE
+	dt = DT
+	log = os.path.join(os.path.dirname(src), 'run.log')
+	if os.path.exists(log):
+		m = re.search(r'FDTD timestep is: ([0-9.eE+-]+) s', open(log).read())
+		if m:
+			dt = float(m.group(1))
+	write_geometry(out, BOARD)
+	convert_fd(src, out, nphase)
+	convert_td(src, out, dt)
+
+
+if __name__ == '__main__':
+	main()

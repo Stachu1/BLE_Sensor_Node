@@ -1,0 +1,123 @@
+{
+ "case": {
+  "model": "m3",
+  "ports": "feed",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/b5/board.json",
+  "antenna": {
+   "W": 0.5,
+   "Wf": 0.5,
+   "Ws": 0.5,
+   "S": 1.0,
+   "H": 3.2,
+   "A": 15.5,
+   "G": 1.0,
+   "n": 1.0,
+   "P": 1.0,
+   "Nd": 1.0,
+   "Nw": 1.0,
+   "K": 1.0,
+   "family": "mifa",
+   "keepout": {
+    "u0": -5.0,
+    "w": 24.0,
+    "h": 4.0,
+    "m": 0.3
+   }
+  },
+  "name": "b5 k4 H3.2 fold A15.5 it0",
+  "tag": "b56_s11",
+  "purpose": "Keep-out height experiment, feed at (143, 92) like b4, the keep-out top stays at the board edge (KiCad y 88). Board copy b5 (sim/boards/b5: AirTag.kicad_pcb of 2026-11-14 01:21 with GND pours and a via fence, AE1 = MIFA_f143k4: 24 x 4 mm keep-out). b4 (24 x 5) straight IFA it0 gave S11 -14.4 dB at 2.551 GHz with Z 40-14j at the minimum and a 90 MHz -10 dB band. Does a 4 mm (lower) keep-out widen (or narrow) the matched band? S at its minimum, length tuned so the S11 minimum sits at 2.465 GHz. Variant: IFA with a fold down at the end (in case the straight arm runs out of length)."
+ },
+ "mesh": {
+  "cells": [
+   187,
+   127,
+   89
+  ],
+  "ncells": 2113661,
+  "min_cell": [
+   0.07915199999999967,
+   0.08333299999999966,
+   0.06600800000000001
+  ],
+  "t_run": 8513.58042550087
+ },
+ "t_total": 8542.216382026672,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 4.771266930432754e-28,
+   "rad_eff": 0.8658032746466565,
+   "tot_eff": 0.5538688176361981,
+   "Dmax_dBi": 1.8906735890797102,
+   "flux_eff": 0.7494361317401007
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 3.636303398120582e-28,
+   "rad_eff": 0.8791699204207594,
+   "tot_eff": 0.4168213466657082,
+   "Dmax_dBi": 1.9101837503552277,
+   "flux_eff": 0.762041190504741
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 2.769157737678096e-28,
+   "rad_eff": 0.8629249286046141,
+   "tot_eff": 0.3172989060799586,
+   "Dmax_dBi": 1.9299550232562168,
+   "flux_eff": 0.7486984398844663
+  }
+ ],
+ "size": {
+  "w": 17.0,
+  "h": 3.2,
+  "area": 54.4,
+  "keepout": [
+   24.0,
+   4.0
+  ]
+ },
+ "length": 21.15,
+ "params": {
+  "W": 0.5,
+  "Wf": 0.5,
+  "Ws": 0.5,
+  "S": 1.0,
+  "H": 3.2,
+  "A": 15.5,
+  "G": 1.0,
+  "n": 1.0,
+  "P": 1.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 2325000000.0,
+  "s_min": -9.830559129016354,
+  "ble_worst": -1.94635645194088,
+  "ble_best": -4.433558734793527,
+  "Z_2440": [
+   8.33123358316619,
+   10.580930099312361
+  ],
+  "S11_2440_dB": -2.791032986236691,
+  "bw10": null,
+  "bw6": [
+   2275000000.0,
+   2377000000.0
+  ],
+  "f_Rmax": 2255000000.0,
+  "Rmax": 189.4712868917928,
+  "Z_fmin": [
+   41.638712581850264,
+   -29.941278605269503
+  ],
+  "min_interior": true
+ }
+}

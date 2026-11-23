@@ -1,0 +1,52 @@
+[
+ {
+  "name": "r7 smoke parts + dumps",
+  "purpose": "Smoke test 2026-11-15 of the full chain for the final r7 run: real L2 3.3 nH / C1 1.0 pF / L1 5.1 nH as lumped elements on their pads, port at the radio side of L2, field dumps. Normal mesh, no mask.",
+  "case": {
+   "board": "build/r7/board.json",
+   "ports": "trace",
+   "port_at": {
+    "ref": "L2",
+    "net": "Net-(U2-ANT)",
+    "len": 0.2
+   },
+   "parts": {
+    "L2": {
+     "L": 3.3e-09,
+     "Q": 50
+    },
+    "C1": {
+     "C": 1e-12,
+     "Q": 100
+    },
+    "L1": {
+     "L": 5.1e-09,
+     "Q": 50
+    }
+   },
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 2.0,
+    "S": 1.825,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "Nd": 1.0,
+    "Nw": 0.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "battery": true,
+   "nf2ff": true,
+   "field_dumps": true
+  }
+ }
+]

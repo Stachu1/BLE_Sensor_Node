@@ -1,0 +1,32 @@
+{
+ "hash": "c6c1fddafe",
+ "name": "IFA H4.5 W0.5 it1",
+ "tag": "keepout24",
+ "board": "build/rect24/board.json",
+ "model": "m2",
+ "battery": true,
+ "desc": "mifa S=1.5 H=4.5 A=13.3853 G=1 n=0 P=1 W=0.5  (15.1 x 4.5 mm, L 19.1 mm)",
+ "size": {
+  "w": 15.135,
+  "h": 4.5,
+  "area": 68.11,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "f_min": 2835000000.0,
+ "s_min": -12.999941051282615,
+ "ble_none": -0.7896220146861388,
+ "ble_1": -5.7773573993410965,
+ "ble_2": -8.345020331460374,
+ "match1": "series 0.30 pF",
+ "match2": "shunt 43.73 nH, series 0.41 pF",
+ "Z2440": [
+  66.71287980812215,
+  229.2123440559166
+ ],
+ "rad_eff": 0.9458197711044414,
+ "Dmax": 1.9002589225521096,
+ "purpose": "Can the antenna reach 50 ohm without a matching network inside the 24 x 5 mm keep-out (full PCB width, user 2026-11-14)? Synthetic board matching AirTag.kicad_pcb as of 2026-11-14 (24 x 24 mm outline, 2 layers 1.6 mm, CR1632 on the back at BT1 (150, 109), overhanging the bottom edge as laid out, no pours yet so all ground below the keep-out), AE1 feed at (143, 93): keep-out = full width, top edge. Tuned: arm length to 2.465 GHz and S towards Rmax 50 ohm. Variant: straight IFA, the generic start."
+}

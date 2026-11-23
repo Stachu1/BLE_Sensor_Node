@@ -1,0 +1,160 @@
+[
+ {
+  "name": "r2 W1.0 A12 P1.5 G1.0",
+  "purpose": "Board r2 (AirTag.kicad_pcb of 2026-11-14 14:30: 24 x 20 mm, F.Cu GND pour only, AE1 at (146, 97), feed routed from L1). With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed), so the end meanders. Keep-out 24 x 5 (x 138..162, the generic MIFA_2G4 one, u0 -8). S11 minimum tuned to 2.460 GHz (2.442 + 0.73 % mask shift measured on T1). Variant: 1 mm traces (best on the 24 mm board), one fold down, link, up.",
+  "case": {
+   "board": "build/r2/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "A": 12,
+    "P": 1.5,
+    "G": 1.0,
+    "n": 1.5
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.5,
+   "hi": 4.2
+  }
+ },
+ {
+  "name": "r2 W1.0 A12 P2.0 G1.0",
+  "purpose": "Board r2 (AirTag.kicad_pcb of 2026-11-14 14:30: 24 x 20 mm, F.Cu GND pour only, AE1 at (146, 97), feed routed from L1). With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed), so the end meanders. Keep-out 24 x 5 (x 138..162, the generic MIFA_2G4 one, u0 -8). S11 minimum tuned to 2.460 GHz (2.442 + 0.73 % mask shift measured on T1). Variant: 1 mm traces, wider finger pitch 2 mm (less finger coupling).",
+  "case": {
+   "board": "build/r2/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "A": 12,
+    "P": 2.0,
+    "G": 1.0,
+    "n": 1.4
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.5,
+   "hi": 4.2
+  }
+ },
+ {
+  "name": "r2 W1.0 A11 P2.0 G1.5",
+  "purpose": "Board r2 (AirTag.kicad_pcb of 2026-11-14 14:30: 24 x 20 mm, F.Cu GND pour only, AE1 at (146, 97), feed routed from L1). With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed), so the end meanders. Keep-out 24 x 5 (x 138..162, the generic MIFA_2G4 one, u0 -8). S11 minimum tuned to 2.460 GHz (2.442 + 0.73 % mask shift measured on T1). Variant: 1 mm traces, pitch 2 mm, fingers end 1.5 mm above the ground (less ground coupling).",
+  "case": {
+   "board": "build/r2/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "A": 11,
+    "P": 2.0,
+    "G": 1.5,
+    "n": 1.7
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.5,
+   "hi": 4.2
+  }
+ },
+ {
+  "name": "r2 W0.5 A12 P1.5 G1.0",
+  "purpose": "Board r2 (AirTag.kicad_pcb of 2026-11-14 14:30: 24 x 20 mm, F.Cu GND pour only, AE1 at (146, 97), feed routed from L1). With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed), so the end meanders. Keep-out 24 x 5 (x 138..162, the generic MIFA_2G4 one, u0 -8). S11 minimum tuned to 2.460 GHz (2.442 + 0.73 % mask shift measured on T1). Variant: 0.5 mm traces, pitch 1.5 mm.",
+  "case": {
+   "board": "build/r2/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 0.5,
+    "S": 1.0,
+    "A": 12,
+    "P": 1.5,
+    "G": 1.0,
+    "n": 1.5
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.5,
+   "hi": 4.2
+  }
+ },
+ {
+  "name": "r2 W0.5 A9 P1.0 G1.0 MIFA",
+  "purpose": "Board r2 (AirTag.kicad_pcb of 2026-11-14 14:30: 24 x 20 mm, F.Cu GND pour only, AE1 at (146, 97), feed routed from L1). With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed), so the end meanders. Keep-out 24 x 5 (x 138..162, the generic MIFA_2G4 one, u0 -8). S11 minimum tuned to 2.460 GHz (2.442 + 0.73 % mask shift measured on T1). Variant: classic compact MIFA: 0.5 mm traces, 1 mm pitch, short arm, about 3 fingers (smallest footprint, x up to about 158).",
+  "case": {
+   "board": "build/r2/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 0.5,
+    "S": 1.0,
+    "A": 9,
+    "P": 1.0,
+    "G": 1.0,
+    "n": 3.0
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.5,
+   "hi": 4.2
+  }
+ }
+]

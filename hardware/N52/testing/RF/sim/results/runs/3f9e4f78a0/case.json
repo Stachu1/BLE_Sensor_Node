@@ -1,0 +1,16 @@
+{
+ "model": "m1",
+ "ports": "feed",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/disc30_notch/board.json",
+ "antenna": {
+  "family": "mifa",
+  "n": 4
+ },
+ "name": "n4 notch in polygon",
+ "tag": "smoke",
+ "purpose": "Validation: feed notch built into the ground polygon instead of cut by the keep-out boxes. Must match n4."
+}

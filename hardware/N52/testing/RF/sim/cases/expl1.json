@@ -1,0 +1,110 @@
+[
+ {
+  "name": "H3 S1",
+  "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz.",
+  "case": {
+   "board": "build/disc30c7/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 3,
+    "S": 1.0
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "iters": 5,
+   "match": "S"
+  }
+ },
+ {
+  "name": "H3 S2",
+  "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz.",
+  "case": {
+   "board": "build/disc30c7/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 3,
+    "S": 2.0
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "iters": 5,
+   "match": "S"
+  }
+ },
+ {
+  "name": "H4 S1",
+  "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz.",
+  "case": {
+   "board": "build/disc30c7/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4,
+    "S": 1.0
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "iters": 5,
+   "match": "S"
+  }
+ },
+ {
+  "name": "H4 S2",
+  "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz.",
+  "case": {
+   "board": "build/disc30c7/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4,
+    "S": 2.0
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "iters": 5,
+   "match": "S"
+  }
+ },
+ {
+  "name": "H5 S1",
+  "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz.",
+  "case": {
+   "board": "build/disc30c7/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 5,
+    "S": 1.0
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "iters": 5,
+   "match": "S"
+  }
+ },
+ {
+  "name": "H5 S2",
+  "purpose": "First exploration on a synthetic 30 mm disc board (2 layers 1.0 mm, CR1632 under the board, 7 mm clearance): how arm height H and feed-short spacing S set the peak feed resistance and the matched bandwidth once the meander length n is tuned to 2.465 GHz.",
+  "case": {
+   "board": "build/disc30c7/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 5,
+    "S": 2.0
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "iters": 5,
+   "match": "S"
+  }
+ }
+]

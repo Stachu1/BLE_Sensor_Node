@@ -1,0 +1,37 @@
+vias: 50 as drill-size barrels, 7 as wires
+mesh {'cells': [177, 128, 89], 'ncells': 2016384, 'min_cell': [0.05999999999999961, 0.07874999999999988, 0.06600800000000001]}
+openEMS - fixed number of threads: 10
+ ---------------------------------------------------------------------- 
+ | openEMS 64bit -- version v0.37.0-rc3-16-g5b1ecb1
+ | (C) 2010-2026 Thorsten Liebig <thorsten.liebig@gmx.de>  GPL license
+ ---------------------------------------------------------------------- 
+	Used external libraries:
+		CSXCAD -- Version: v0.7.0-rc3-1-gbd2c133
+		hdf5   -- Version: 1.10.7
+		          compiled against: HDF5 library version: 1.10.7
+		tinyxml -- compiled against: 2.6.2
+		fparser
+		boost  -- compiled against: 1_74
+		vtk -- Version: 9.1.0
+		       compiled against: 9.1.0
+
+Create FDTD operator (compressed SSE + multi-threading)
+FDTD simulation size: 177x128x89 --> 2.01638e+06 FDTD cells 
+FDTD timestep is: 1.33321e-13 s; Nyquist rate: 1027 timesteps @3.65176e+09 Hz
+openEMS::SetupFDTD: Warning, the timestep seems to be very small --> long simulation. Check your mesh!?
+Excitation signal length is: 17907 timesteps (2.38738e-09s)
+Max. number of timesteps: 1000000 ( --> 55.8441 * Excitation signal length)
+Create FDTD engine (compressed SSE + multi-threading)
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Running FDTD engine... this may take a while... grab a cup of coffee?!?
+[@        9s] Timestep:          256 || Speed:   57.2 MC/s (3.524e-02 s/TS) || Energy: ~1.04e-23 (- 0.00dB)
+[@       17s] Timestep:          512 || Speed:   57.5 MC/s (3.506e-02 s/TS) || Energy: ~2.21e-23 (- 0.00dB)
+[@       26s] Timestep:          768 || Speed:   57.5 MC/s (3.505e-02 s/TS) || Energy: ~2.23e-23 (- 0.00dB)
+[@       36s] Timestep:         1024 || Speed:   56.3 MC/s (3.584e-02 s/TS) || Energy: ~2.23e-22 (- 0.00dB)
+[@       45s] Timestep:         1280 || Speed:   57.2 MC/s (3.524e-02 s/TS) || Energy: ~1.41e-21 (- 0.00dB)
+[@       54s] Timestep:         1536 || Speed:   56.7 MC/s (3.554e-02 s/TS) || Energy: ~4.60e-21 (- 0.00dB)
+[@     1m03s] Timestep:         1792 || Speed:   55.9 MC/s (3.610e-02 s/TS) || Energy: ~8.81e-21 (- 0.00dB)
+[@     1m23s] Timestep:         2048 || Speed:   26.3 MC/s (7.664e-02 s/TS) || Energy: ~9.21e-21 (- 0.00dB)
+[@     1m37s] Timestep:         2304 || Speed:   36.9 MC/s (5.467e-02 s/TS) || Energy: ~6.09e-21 (- 1.80dB)
+[@     1m47s] Timestep:         2560 || Speed:   47.9 MC/s (4.212e-02 s/TS) || Energy: ~3.46e-20 (- 0.00dB)

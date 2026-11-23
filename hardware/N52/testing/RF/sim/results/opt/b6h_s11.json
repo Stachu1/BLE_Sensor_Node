@@ -1,0 +1,77 @@
+[
+ {
+  "name": "b6 k6 H5.6 straight",
+  "purpose": "Board copy b6 (feed at (143, 94), 24 x 6 keep-out, GND pours). b6 H5.4 straight it0 gave the deepest dip so far (-17.2 dB at 2.561 GHz, -10 dB band 110 MHz vs 75 MHz for the 5 mm keep-out b4). Variant: arm at the 6 mm keep-out limit (5.6 mm, 0.4 mm board edge clearance), length tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b6/board.json",
+   "antenna": {
+    "W": 0.5,
+    "Wf": 0.5,
+    "Ws": 0.5,
+    "S": 1.0,
+    "H": 5.6,
+    "A": 15.95,
+    "G": 1.0,
+    "n": 0,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 6.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "A",
+   "f": 2465000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 12.0,
+   "hi": 15.95
+  },
+  "hist": [
+   {
+    "hash": "d8c53d80fd",
+    "A": 15.6,
+    "S": 1.0,
+    "L": 21.95,
+    "f_res": 2507000000.0,
+    "f_min": 2507000000.0,
+    "s_min": -16.569456604898956,
+    "f_Rmax": 2350000000.0,
+    "Rmax": 283.694175014509,
+    "Z_fmin": [
+     41.13899693012686,
+     -10.336416464838628
+    ],
+    "ble_worst": -4.968673488929594,
+    "interior": true
+   },
+   {
+    "hash": "db16f3d621",
+    "A": 15.95,
+    "S": 1.0,
+    "L": 22.299999999999997,
+    "f_res": 2475000000.0,
+    "f_min": 2475000000.0,
+    "s_min": -15.945601829239347,
+    "f_Rmax": 2323000000.0,
+    "Rmax": 283.279486133315,
+    "Z_fmin": [
+     40.37315376744704,
+     -10.86582789298388
+    ],
+    "ble_worst": -7.102579875086009,
+    "interior": true
+   }
+  ],
+  "done": true
+ }
+]

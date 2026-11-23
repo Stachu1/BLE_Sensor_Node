@@ -1,0 +1,52 @@
+[
+ {
+  "name": "r5 fold-back S1.05 Ws1.0",
+  "purpose": "r5 fold-back it0 (a18ad9bd49): clean single resonance at 2.46 GHz but Rmax 360 ohm, no match without parts. Short leg at the minimum 0.3 mm gap to the feed leg, short width 1.0 mm: how far does Rmax drop?",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.05,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0
+   }
+  }
+ },
+ {
+  "name": "r5 fold-back S1.55 Ws2.0",
+  "purpose": "r5 fold-back it0 (a18ad9bd49): clean single resonance at 2.46 GHz but Rmax 360 ohm, no match without parts. Short leg at the minimum 0.3 mm gap to the feed leg, short width 2.0 mm: how far does Rmax drop?",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.55,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0
+   }
+  }
+ }
+]

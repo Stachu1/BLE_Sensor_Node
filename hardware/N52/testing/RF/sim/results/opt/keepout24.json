@@ -1,0 +1,302 @@
+[
+ {
+  "name": "IFA H4.5 W0.5",
+  "purpose": "Can the antenna reach 50 ohm without a matching network inside the 24 x 5 mm keep-out (full PCB width, user 2026-11-14)? Synthetic board matching AirTag.kicad_pcb as of 2026-11-14 (24 x 24 mm outline, 2 layers 1.6 mm, CR1632 on the back at BT1 (150, 109), overhanging the bottom edge as laid out, no pours yet so all ground below the keep-out), AE1 feed at (143, 93): keep-out = full width, top edge. Tuned: arm length to 2.465 GHz and S towards Rmax 50 ohm. Variant: straight IFA, the generic start.",
+  "case": {
+   "board": "build/rect24/board.json",
+   "antenna": {
+    "W": 0.5,
+    "Wf": 0.5,
+    "Ws": 0.5,
+    "S": 1.2,
+    "H": 4.5,
+    "A": 14.2596,
+    "G": 1.0,
+    "n": 0,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "A",
+   "f": 2465000000.0,
+   "metric": "Rmax",
+   "tol": 10000000.0,
+   "iters": 7,
+   "match": "S",
+   "lo": 0.8,
+   "hi": 20.0
+  },
+  "hist": [
+   {
+    "hash": "d39ba04c5e",
+    "A": 15.0,
+    "S": 2.5,
+    "L": 21.75,
+    "f_res": 2282000000.0,
+    "f_min": 2627000000.0,
+    "s_min": -8.127453345355828,
+    "f_Rmax": 2282000000.0,
+    "Rmax": 741.7668797663621,
+    "Z_fmin": [
+     23.815177371549606,
+     -13.44461158337709
+    ],
+    "ble_worst": -2.246860428780027,
+    "interior": true
+   },
+   {
+    "hash": "c6c1fddafe",
+    "A": 13.3853,
+    "S": 1.5,
+    "L": 19.1353,
+    "f_res": 2569000000.0,
+    "f_min": 2835000000.0,
+    "s_min": -12.999941051282615,
+    "f_Rmax": 2569000000.0,
+    "Rmax": 412.28999728046574,
+    "Z_fmin": [
+     34.99514872780666,
+     -12.006270671697907
+    ],
+    "ble_worst": -0.7896207038255622,
+    "interior": true
+   }
+  ],
+  "done": false
+ },
+ {
+  "name": "IFA H4.5 W1.0",
+  "purpose": "Can the antenna reach 50 ohm without a matching network inside the 24 x 5 mm keep-out (full PCB width, user 2026-11-14)? Synthetic board matching AirTag.kicad_pcb as of 2026-11-14 (24 x 24 mm outline, 2 layers 1.6 mm, CR1632 on the back at BT1 (150, 109), overhanging the bottom edge as laid out, no pours yet so all ground below the keep-out), AE1 feed at (143, 93): keep-out = full width, top edge. Tuned: arm length to 2.465 GHz and S towards Rmax 50 ohm. Variant: straight IFA with a 1 mm arm.",
+  "case": {
+   "board": "build/rect24/board.json",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 0.5,
+    "S": 1.2,
+    "H": 4.5,
+    "A": 14.04,
+    "G": 1.0,
+    "n": 0,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "A",
+   "f": 2465000000.0,
+   "metric": "Rmax",
+   "tol": 10000000.0,
+   "iters": 7,
+   "match": "S",
+   "lo": 0.8,
+   "hi": 20.0
+  },
+  "hist": [
+   {
+    "hash": "f73ff68fb5",
+    "A": 15.0,
+    "S": 2.5,
+    "L": 21.5,
+    "f_res": 2269000000.0,
+    "f_min": 2577000000.0,
+    "s_min": -7.563583633461937,
+    "f_Rmax": 2269000000.0,
+    "Rmax": 635.1830045944704,
+    "Z_fmin": [
+     23.26932961520913,
+     -16.562597002571913
+    ],
+    "ble_worst": -3.1193089874782505,
+    "interior": true
+   },
+   {
+    "hash": "93e0a88c9c",
+    "A": 13.2905,
+    "S": 1.5,
+    "L": 18.7905,
+    "f_res": 2550000000.0,
+    "f_min": 2787000000.0,
+    "s_min": -12.163992293470196,
+    "f_Rmax": 2550000000.0,
+    "Rmax": 347.36430597693055,
+    "Z_fmin": [
+     34.99066866895918,
+     -15.08027150277581
+    ],
+    "ble_worst": -0.9839853627121513,
+    "interior": true
+   }
+  ],
+  "done": false
+ },
+ {
+  "name": "MIFA H4.5 P2.0",
+  "purpose": "Can the antenna reach 50 ohm without a matching network inside the 24 x 5 mm keep-out (full PCB width, user 2026-11-14)? Synthetic board matching AirTag.kicad_pcb as of 2026-11-14 (24 x 24 mm outline, 2 layers 1.6 mm, CR1632 on the back at BT1 (150, 109), overhanging the bottom edge as laid out, no pours yet so all ground below the keep-out), AE1 feed at (143, 93): keep-out = full width, top edge. Tuned: arm length to 2.465 GHz and S towards Rmax 50 ohm. Variant: meander with 2 mm pitch, shorter than the IFA.",
+  "case": {
+   "board": "build/rect24/board.json",
+   "antenna": {
+    "W": 0.5,
+    "Wf": 0.5,
+    "Ws": 0.5,
+    "S": 1.2,
+    "H": 4.5,
+    "A": 6.0,
+    "G": 1.0,
+    "n": 2.2235,
+    "P": 2.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "metric": "Rmax",
+   "tol": 10000000.0,
+   "iters": 7,
+   "match": "S",
+   "lo": 0.5,
+   "hi": 14.0
+  },
+  "hist": [
+   {
+    "hash": "498cb84d72",
+    "n": 2.5,
+    "S": 2.5,
+    "L": 23.25,
+    "f_res": 2263000000.0,
+    "f_min": 2648000000.0,
+    "s_min": -5.446435839487615,
+    "f_Rmax": 2263000000.0,
+    "Rmax": 957.5006549412357,
+    "Z_fmin": [
+     16.930085362255294,
+     -16.071020814810687
+    ],
+    "ble_worst": -1.7065242450253526,
+    "interior": true
+   },
+   {
+    "hash": "de607d4517",
+    "n": 2.1189,
+    "S": 1.5,
+    "L": 20.3445,
+    "f_res": 2515000000.0,
+    "f_min": 2793000000.0,
+    "s_min": -7.556580773046871,
+    "f_Rmax": 2515000000.0,
+    "Rmax": 574.895631225897,
+    "Z_fmin": [
+     24.116900340972446,
+     -18.8927948048627
+    ],
+    "ble_worst": -0.8339137612974112,
+    "interior": true
+   }
+  ],
+  "done": false
+ },
+ {
+  "name": "IFA H3.5 W0.5",
+  "purpose": "Can the antenna reach 50 ohm without a matching network inside the 24 x 5 mm keep-out (full PCB width, user 2026-11-14)? Synthetic board matching AirTag.kicad_pcb as of 2026-11-14 (24 x 24 mm outline, 2 layers 1.6 mm, CR1632 on the back at BT1 (150, 109), overhanging the bottom edge as laid out, no pours yet so all ground below the keep-out), AE1 feed at (143, 93): keep-out = full width, top edge. Tuned: arm length to 2.465 GHz and S towards Rmax 50 ohm. Variant: arm 1 mm lower: what a 4 mm keep-out would cost.",
+  "case": {
+   "board": "build/rect24/board.json",
+   "antenna": {
+    "W": 0.5,
+    "Wf": 0.5,
+    "Ws": 0.5,
+    "S": 1.2,
+    "H": 3.5,
+    "A": 14.5478,
+    "G": 1.0,
+    "n": 0,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "A",
+   "f": 2465000000.0,
+   "metric": "Rmax",
+   "tol": 10000000.0,
+   "iters": 7,
+   "match": "S",
+   "lo": 0.8,
+   "hi": 20.0
+  },
+  "hist": [
+   {
+    "hash": "062fd90c74",
+    "A": 16.0,
+    "S": 2.5,
+    "L": 21.75,
+    "f_res": 2218000000.0,
+    "f_min": 2472000000.0,
+    "s_min": -5.750122761624765,
+    "f_Rmax": 2218000000.0,
+    "Rmax": 633.4038843192304,
+    "Z_fmin": [
+     19.659852196908677,
+     -22.46969661237727
+    ],
+    "ble_worst": -4.667100595273058,
+    "interior": true
+   },
+   {
+    "hash": "e89bd61db3",
+    "A": 13.8206,
+    "S": 1.5,
+    "L": 18.5706,
+    "f_res": 2550000000.0,
+    "f_min": 2751000000.0,
+    "s_min": -9.402720003813526,
+    "f_Rmax": 2550000000.0,
+    "Rmax": 346.23981539202003,
+    "Z_fmin": [
+     31.21441724093094,
+     -21.36070982714407
+    ],
+    "ble_worst": -0.9509111777413535,
+    "interior": true
+   }
+  ],
+  "done": false
+ }
+]

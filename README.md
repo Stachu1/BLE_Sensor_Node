@@ -162,9 +162,11 @@ hardware/
   MCU_DECISION.md   Why rev B uses the CC2340R5
   C23/              BSN-C23 - TI CC2340R5 variant: KiCad project, schematic/PCB PDFs, testing/
   N54/              BSN-N54 - Nordic nRF54L variant (concluded at rev A)
+  N52/              BSN-N52 - Nordic nRF52805 side variant: smaller, CR1632 (rev A)
 firmware/
   C23/              Firmware for BSN-C23 boards (TI SimpleLink SDK)
   N54/              Firmware for BSN-N54 boards (nRF Connect SDK)
+  N52/              Firmware for BSN-N52 boards (nRF Connect SDK, and a bare-metal beacon)
 docs/
   datasheets/       Links to the datasheets and application notes used
   images/           Photos
@@ -173,6 +175,8 @@ docs/
 The two MCU candidates are different chips (different pinout, power tree and BOM) rather than build options of one
 board, so each has its own KiCad project under `hardware/<variant>/` and its own `firmware/<variant>/`. The N54
 folders stay as the record of the rev A comparison. Only the C23 variant continues.
+`BSN-N52` is a later side variant outside the original requirements: a smaller, cheaper node on a CR1632
+with the same sensor and a printed antenna, see [`hardware/N52/README.md`](hardware/N52/README.md).
 
 Test results live next to the board they were measured on, in `hardware/<variant>/testing/`, with the bring-up
 procedures in `firmware/<variant>/BRINGUP.md`. The C23 rev A measurements are in `hardware/C23/testing/rev_A/`, the
@@ -186,7 +190,7 @@ Each board is identified as **`BSN-<variant>-<revision>`**, e.g. `BSN-C23-A`.
 ```
 BSN-C23-A
  │   │  └─ PCB revision  (A, B, C …)
- │   └──── MCU variant   (C23 = TI CC2340R5, N54 = Nordic nRF54L)
+ │   └──── MCU variant   (C23 = TI CC2340R5, N54 = Nordic nRF54L, N52 = Nordic nRF52805)
  └──────── Board name    (BSN = BLE Sensor Node)
 ```
 
@@ -198,4 +202,4 @@ BSN-C23-A
   revision.
 - **Reworked boards** are marked `A*`, with the rework noted in the variant README.
 - **The ID is on the board itself:** set in the KiCad title block and printed on the silkscreen. The firmware board
-  target is `BSN_C23` / `BSN_N54`.
+  target is `BSN_C23` / `BSN_N54` / `bsn_n52`.

@@ -1,0 +1,32 @@
+{
+ "hash": "db16f3d621",
+ "name": "b6 k6 H5.6 straight it1",
+ "tag": "b6h_s11",
+ "board": "build/b6/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1 H=5.6 A=15.95 G=1 n=0 P=1 W=0.5  (17.2 x 5.6 mm, L 22.3 mm)",
+ "size": {
+  "w": 17.2,
+  "h": 5.6,
+  "area": 96.32,
+  "keepout": [
+   24.0,
+   6.0
+  ]
+ },
+ "f_min": 2475000000.0,
+ "s_min": -15.945601829239347,
+ "ble_none": -7.102580990005631,
+ "ble_1": -9.414714246835006,
+ "ble_2": -11.212848351886425,
+ "match1": "series 2.20 nH",
+ "match2": "shunt 4.85 nH, series 2.10 pF",
+ "Z2440": [
+  57.799350330613244,
+  -27.25522654769103
+ ],
+ "rad_eff": 1.0763734585948281,
+ "Dmax": 1.8396247408802884,
+ "purpose": "Board copy b6 (feed at (143, 94), 24 x 6 keep-out, GND pours). b6 H5.4 straight it0 gave the deepest dip so far (-17.2 dB at 2.561 GHz, -10 dB band 110 MHz vs 75 MHz for the 5 mm keep-out b4). Variant: arm at the 6 mm keep-out limit (5.6 mm, 0.4 mm board edge clearance), length tuned so the S11 minimum sits at 2.465 GHz."
+}

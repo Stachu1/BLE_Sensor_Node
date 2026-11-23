@@ -1,0 +1,35 @@
+[
+ {
+  "name": "n2",
+  "purpose": "Smoke test of the AirTag pipeline (synthetic 30 mm disc board, CR1632 on the bottom)",
+  "case": {
+   "board": "build/disc30/board.json",
+   "antenna": {
+    "family": "mifa",
+    "n": 2
+   }
+  }
+ },
+ {
+  "name": "n4",
+  "purpose": "Smoke test of the AirTag pipeline (synthetic 30 mm disc board, CR1632 on the bottom)",
+  "case": {
+   "board": "build/disc30/board.json",
+   "antenna": {
+    "family": "mifa",
+    "n": 4
+   }
+  }
+ },
+ {
+  "name": "n4 notch in polygon",
+  "purpose": "Validation: feed notch built into the ground polygon instead of cut by the keep-out boxes. Must match n4.",
+  "case": {
+   "board": "build/disc30_notch/board.json",
+   "antenna": {
+    "family": "mifa",
+    "n": 4
+   }
+  }
+ }
+]

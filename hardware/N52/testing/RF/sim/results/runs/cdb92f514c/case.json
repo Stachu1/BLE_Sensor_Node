@@ -1,0 +1,43 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r7/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 2.0,
+  "S": 1.825,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 5.5,
+  "Nd": 1.0,
+  "Nw": 0.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "trace_port": {
+  "y": 2.785,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r7 final ref normal mesh no mask",
+ "tag": "r7_ref",
+ "purpose": "Final check 2026-11-15 on the board as saved (r7). Same antenna as d2774450d4 (r6), normal mesh without solder mask: shows what changed from r6 to r7 and is the low-resolution reference."
+}

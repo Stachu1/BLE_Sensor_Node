@@ -1,0 +1,32 @@
+{
+ "hash": "b49d658213",
+ "name": "r6 fold-back S1.700 Ws2 Wf0.25 gap0.575",
+ "tag": "r6_d",
+ "board": "build/r6/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.7 H=4.6 A=12.4 D=1.5 R=5.5 W=1  (15.6 x 4.6 mm, L 25.2 mm)",
+ "size": {
+  "w": 15.6,
+  "h": 4.6,
+  "area": 71.76,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2491000000.0,
+ "s_min": -10.197538686256827,
+ "ble_none": -3.3978538721095166,
+ "ble_1": -3.599463368583441,
+ "ble_2": -7.187091114040883,
+ "match1": "series 1.30 pF",
+ "match2": "shunt 5.92 nH, series 1.24 pF",
+ "Z2440": [
+  109.31250953778576,
+  -60.13798651596704
+ ],
+ "rad_eff": 0.6996263449987508,
+ "Dmax": 1.660972542257361,
+ "purpose": "User rule 2026-11-15: short-to-feed gap at least 0.575 mm edge to edge (chosen design 1d83d77615 had 0.3 mm). Same fold-back with the gap opened to 0.575 mm, feed leg 0.25 mm. New L2-C1-L1 values from match_tee.py."
+}

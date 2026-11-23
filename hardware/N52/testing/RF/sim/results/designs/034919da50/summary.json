@@ -1,0 +1,32 @@
+{
+ "hash": "034919da50",
+ "name": "r6 fold-back W1.5 H3.95 D1.8 R2.8",
+ "tag": "r6_c",
+ "board": "build/r6/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.425 H=3.95 A=12.4 D=1.8 R=2.8 W=1.5  (15.6 x 4.0 mm, L 21.6 mm)",
+ "size": {
+  "w": 15.575,
+  "h": 3.95,
+  "area": 61.52,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2380000000.0,
+ "s_min": -12.956764487459145,
+ "ble_none": -2.3353294160791602,
+ "ble_1": -3.572316603555123,
+ "ble_2": -6.563790289316406,
+ "match1": "shunt 1.65 pF",
+ "match2": "series 1.28 nH, shunt 1.72 pF",
+ "Z2440": [
+  13.427622648683466,
+  -2.919614579967614
+ ],
+ "rad_eff": 0.6106388991332299,
+ "Dmax": 1.6700960326077283,
+ "purpose": "Matching parts allowed, lowest antenna Q wanted. feb8a63c15 resonated at 2.20 GHz (Q 26 there): return row shortened so the resonance lands near 2.44 GHz, then compare Q and the match_tee result with the base 1d83d77615 (Q 30-33, -1.16 dB worst channel)."
+}

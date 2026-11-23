@@ -1,0 +1,135 @@
+{
+ "case": {
+  "model": "m3",
+  "ports": "trace",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/r6/board.json",
+  "antenna": {
+   "W": 1.5,
+   "Wf": 0.25,
+   "Ws": 2.0,
+   "S": 1.425,
+   "H": 3.95,
+   "A": 12.4,
+   "D": 1.8,
+   "R": 5.5,
+   "Nd": 1.0,
+   "Nw": 0.0,
+   "K": 1.0,
+   "family": "fmifa",
+   "keepout": {
+    "u0": -4.0,
+    "w": 20.0,
+    "h": 5.0,
+    "m": 0.3
+   }
+  },
+  "trace_port": {
+   "y": 2.785,
+   "x": [
+    -4.63,
+    -4.31,
+    -3.68,
+    -3.37
+   ],
+   "len": 0.4,
+   "part": "L1"
+  },
+  "name": "r6 fold-back W1.5 H3.95 D1.8",
+  "tag": "r6_a",
+  "purpose": "Board r6 = AirTag.kicad_pcb of 2026-11-14 23:46: L1 moved 0.75 mm up against the AE1 feed pad (feed trace in the pour almost gone), 7 vias moved. Matching parts are allowed now (user 2026-11-14): the antenna is scored by its Q and by match_tee.py (L2-C1-L1 T network, real 0402 parts, power into the antenna, >= 20 dB harmonic rejection). Base a63681b23e (S1.425 Ws2 Wf0.25 R5.5, Q 32, best T: worst channel -1.25 dB). Variant: 1.5 mm traces (H lowered to 3.95 so the arm stays in the 5 mm keep-out). Lower Q?"
+ },
+ "mesh": {
+  "cells": [
+   177,
+   124,
+   89
+  ],
+  "ncells": 1953372,
+  "min_cell": [
+   0.05750000000000011,
+   0.07874999999999988,
+   0.06600800000000001
+  ],
+  "t_run": 2477.2629532814026
+ },
+ "t_total": 2494.5520951747894,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 4.4291420225843677e-29,
+   "rad_eff": 0.6160724952036204,
+   "tot_eff": 0.07443337041559615,
+   "Dmax_dBi": 1.6900411672883457,
+   "flux_eff": 0.5216307855000336
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 3.361253577543409e-29,
+   "rad_eff": 0.5517227497723282,
+   "tot_eff": 0.05604899853021166,
+   "Dmax_dBi": 1.7143849698268046,
+   "flux_eff": 0.4693778174686778
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 2.765445862649045e-29,
+   "rad_eff": 0.599186895529166,
+   "tot_eff": 0.04621873971845802,
+   "Dmax_dBi": 1.7238111983549436,
+   "flux_eff": 0.5074860548610887
+  }
+ ],
+ "size": {
+  "w": 15.575,
+  "h": 3.95,
+  "area": 61.52,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "length": 24.325,
+ "params": {
+  "W": 1.5,
+  "Wf": 0.25,
+  "Ws": 2.0,
+  "S": 1.425,
+  "H": 3.95,
+  "A": 12.4,
+  "D": 1.8,
+  "R": 5.5,
+  "Nd": 1.0,
+  "Nw": 0.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 2201000000.0,
+  "s_min": -13.015032497857636,
+  "ble_worst": -0.33693295202380624,
+  "ble_best": -0.5592179232019824,
+  "Z_2440": [
+   1.6193748686540443,
+   22.88075733773753
+  ],
+  "S11_2440_dB": -0.465249709150389,
+  "bw10": [
+   2182000000.0,
+   2220000000.0
+  ],
+  "bw6": [
+   2159000000.0,
+   2242000000.0
+  ],
+  "f_Rmax": 2168000000.0,
+  "Rmax": 111.75194737145088,
+  "Z_fmin": [
+   54.6953497292512,
+   -23.516679239491378
+  ],
+  "min_interior": true
+ }
+}

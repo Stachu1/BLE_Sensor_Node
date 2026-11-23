@@ -1,0 +1,54 @@
+[
+ {
+  "name": "r6 fold-back S1.700 Ws2 Wf0.25 gap0.575",
+  "purpose": "User rule 2026-11-15: short-to-feed gap at least 0.575 mm edge to edge (chosen design 1d83d77615 had 0.3 mm). Same fold-back with the gap opened to 0.575 mm, feed leg 0.25 mm. New L2-C1-L1 values from match_tee.py.",
+  "case": {
+   "board": "build/r6/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.7,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ },
+ {
+  "name": "r6 fold-back S1.825 Ws2 Wf0.50 gap0.575",
+  "purpose": "User rule 2026-11-15: short-to-feed gap at least 0.575 mm edge to edge (chosen design 1d83d77615 had 0.3 mm). Same fold-back with the gap opened to 0.575 mm, feed leg 0.50 mm. New L2-C1-L1 values from match_tee.py.",
+  "case": {
+   "board": "build/r6/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.825,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.5
+   }
+  }
+ }
+]

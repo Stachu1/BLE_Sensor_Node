@@ -1,0 +1,32 @@
+{
+ "hash": "e098bdd1e9",
+ "name": "b6 k6 H5.6 W1.0 S1.25 fold it1",
+ "tag": "b6w_s11",
+ "board": "build/b6/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1.25 H=5.6 A=15.4 G=1 n=0.15 P=1 W=1  (17.6 x 5.6 mm, L 22.3 mm)",
+ "size": {
+  "w": 17.65,
+  "h": 5.6,
+  "area": 98.84,
+  "keepout": [
+   24.0,
+   6.0
+  ]
+ },
+ "f_min": 2423000000.0,
+ "s_min": -22.686849923277883,
+ "ble_none": -8.722230503854032,
+ "ble_1": -10.621193468745584,
+ "ble_2": -11.420359296172318,
+ "match1": "shunt 0.40 pF",
+ "match2": "series 0.88 nH, shunt 0.58 pF",
+ "Z2440": [
+  38.42112618170189,
+  -0.7278701160312535
+ ],
+ "rad_eff": 1.1019847326565937,
+ "Dmax": 1.8458089603577754,
+ "purpose": "Board copy b6 (feed at (143, 94), 24 x 6 keep-out, GND pours). On b4 (5 mm keep-out) 1 mm traces widened the -10 dB band from 68 to 83 MHz (-17.6 dB dip). Variant: the same 1 mm traces in the 6 mm keep-out, arm 5.6 mm high, short fold at the end (the corner limits a straight arm to A 15.95), fold length n tuned so the S11 minimum sits at 2.465 GHz."
+}

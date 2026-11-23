@@ -1,0 +1,32 @@
+{
+ "hash": "3089150f78",
+ "name": "b1 S1.0 W0.5 A12 P1.0 it0",
+ "tag": "b1_s11",
+ "board": "build/b1/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1 H=4.5 A=12 G=1 n=1.7 P=1 W=0.5  (14.5 x 4.5 mm, L 23.1 mm)",
+ "size": {
+  "w": 14.5,
+  "h": 4.5,
+  "area": 65.25,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "f_min": 2348000000.0,
+ "s_min": -9.647092757463113,
+ "ble_none": -2.668032639397935,
+ "ble_1": -5.543726335269231,
+ "ble_2": -8.089970299666716,
+ "match1": "shunt 1.15 pF",
+ "match2": "series 0.65 nH, shunt 1.82 pF",
+ "Z2440": [
+  11.997481136002124,
+  10.968554149099331
+ ],
+ "rad_eff": 0.9370811850478422,
+ "Dmax": 1.9298615011350866,
+ "purpose": "Real board copy b1 (sim/boards/b1: AirTag.kicad_pcb of 2026-11-14 01:21 with GND pours and a via fence, AE1 = generic 24 x 5 keep-out, feed at (146, 93) above L1, port across the notch). Can it match 50 ohm without parts? The peak R cannot reach 50 ohm (keepout24 it1: 742 -> 412 ohm for S 2.5 -> 1.5) but the S11 minimum on the slope above the resonance deepens as S shrinks, so: S at its minimum, length tuned so the S11 MINIMUM sits at 2.465 GHz (2.44 + 1 % for the mask). Variant: IFA with 1-2 meander folds at the end (a straight arm does not fit right of the feed), 0.5 mm traces."
+}

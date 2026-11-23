@@ -1,0 +1,32 @@
+{
+ "hash": "b7ffa43b12",
+ "name": "r4v fold-back W1.0 D1.5 it0",
+ "tag": "r4v_a",
+ "board": "build/r4v/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.25 H=4.6 A=12.4 D=1.5 R=3 W=1  (14.7 x 4.6 mm, L 22.2 mm)",
+ "size": {
+  "w": 14.65,
+  "h": 4.6,
+  "area": 67.39,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2457000000.0,
+ "s_min": -13.598139972021258,
+ "ble_none": -3.3849412132816106,
+ "ble_1": -3.387032932601583,
+ "ble_2": -10.37543470668882,
+ "match1": "series 9.90 pF",
+ "match2": "shunt 7.90 nH, series 0.97 pF",
+ "Z2440": [
+  93.64682769371584,
+  -20.417043824620492
+ ],
+ "rad_eff": 0.38276966819374336,
+ "Dmax": 3.083966920008821,
+ "purpose": "Board r4v = r4 export plus 3 GND vias in the F.Cu pour island under the short leg (left of the feed trace), which is floating on the real r4 board (it0 there: 22 MHz band, 40 % efficiency). (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: fold-back arm, 1 mm traces, return row 0.5 mm below the arm, return length R tuned."
+}

@@ -1,0 +1,32 @@
+{
+ "hash": "1b132cdadc",
+ "name": "T1 er x0.96",
+ "tag": "robust1",
+ "board": "build/b4/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1.25 H=4.6 A=15.4 G=1 n=0.1656 P=1 W=1  (17.6 x 4.6 mm, L 21.2 mm)",
+ "size": {
+  "w": 17.65,
+  "h": 4.6,
+  "area": 81.19,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "f_min": 2485000000.0,
+ "s_min": -20.000039255103065,
+ "ble_none": -5.513165917675419,
+ "ble_1": -5.965227035159498,
+ "ble_2": -10.4685091665711,
+ "match1": "series 1.70 pF",
+ "match2": "shunt 6.82 nH, series 1.50 pF",
+ "Z2440": [
+  91.92477702043823,
+  -14.498187543691849
+ ],
+ "rad_eff": 1.0478290088303777,
+ "Dmax": 1.8687145652764126,
+ "purpose": "Robustness of the chosen design MIFA_2G4_T1 (run a21ed6f324: b4, feed (143, 93), 5 mm keep-out, H4.6 W1.0 S1.25 A15.4 n0.17, S11 min -18.5 dB at 2.459 GHz, -10 dB band 88 MHz). FR4 er 4% low (er spread between fabs): how far does the band move?"
+}

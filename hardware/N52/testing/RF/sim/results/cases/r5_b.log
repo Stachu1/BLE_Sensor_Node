@@ -1,0 +1,2 @@
+r5 fold-back S1.05 Ws1.0       ed9893c722  min  -8.78 dB @ 2.604 GHz  BLE worst  -1.32  Z(2.44) 76.1+171.4j  eff [0.64, 0.71, 0.77]  14.4x4.6 mm
+r5 fold-back S1.55 Ws2.0       00308fa64b  min -11.19 dB @ 2.639 GHz  BLE worst  -0.92  Z(2.44) 26.0+119.8j  eff [0.66, 0.67, 0.73]  15.4x4.6 mm

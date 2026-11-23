@@ -1,0 +1,54 @@
+geometry -> C:\Users\SBA.OJ\Documents\KiCad\10.0\projects\AirTag\sim\report_r7\work_final\vtk\geometry
+fd_E_bot       222x178x1 points, 36 phases
+fd_E_sub       222x178x1 points, 36 phases
+fd_E_top       233x195x1 points, 36 phases
+fd_E_vol       231x193x122 points, re/im/peak
+fd_E_xz_arm    243x1x134 points, 36 phases
+fd_E_xz_gap    243x1x134 points, 36 phases
+fd_E_yz_feed   1x207x134 points, 36 phases
+fd_E_yz_mid    1x207x134 points, 36 phases
+fd_H_bot       223x178x1 points, 36 phases
+fd_H_sub       223x178x1 points, 36 phases
+fd_H_top       232x195x1 points, 36 phases
+fd_H_vol       231x193x122 points, re/im/peak
+fd_H_xz_arm    242x1x133 points, 36 phases
+fd_H_xz_gap    242x1x133 points, 36 phases
+fd_H_yz_feed   1x206x133 points, 36 phases
+fd_H_yz_mid    1x206x133 points, 36 phases
+fd_J_B         218x173x1 points, 36 phases
+fd_J_F         218x173x1 points, 36 phases
+td_E_top       219 samples, 0 .. 7.46 ns
+td_E_xz_arm    219 samples, 0 .. 7.46 ns
+td_E_xz_gap    219 samples, 0 .. 7.46 ns
+td_E_yz_feed   219 samples, 0 .. 7.46 ns
+td_E_yz_mid    219 samples, 0 .. 7.46 ns
+td_H_top       219 samples, 0 .. 7.46 ns
+(  43.201s) [paraview        ]vtkSMTransferFunctionPr:117   WARN| Range not valid for log. Assuming control points are not specified in log space.
+(  73.289s) [paraview        ]vtkSMTransferFunctionPr:117   WARN| Range not valid for log. Assuming control points are not specified in log space.
+( 118.007s) [paraview        ]vtkSMTransferFunctionPr:117   WARN| Range not valid for log. Assuming control points are not specified in log space.
+Ez_top_phase 36 frames
+E_top_peak_wide 1 frames
+J_top_phase 36 frames
+J_bottom_phase 36 frames
+Ez_yz_mid_phase 36 frames
+E_yz_feed_phase 36 frames
+Ez_xz_arm_phase 36 frames
+E_bot_peak 1 frames
+Ez_3d_phase 36 frames
+td_E_top 219 frames
+td_E_yz_mid 219 frames
+td_E_xz_arm 219 frames
+td_E_yz_near 219 frames
+wrote still E_bot_peak
+wrote still E_top_peak_wide
+wrote E_yz_feed_phase 36 frames
+wrote Ez_3d_phase 36 frames
+wrote Ez_top_phase 36 frames
+wrote Ez_xz_arm_phase 36 frames
+wrote Ez_yz_mid_phase 36 frames
+wrote J_bottom_phase 36 frames
+wrote J_top_phase 36 frames
+wrote td_E_top 219 frames
+wrote td_E_xz_arm 219 frames
+wrote td_E_yz_mid 219 frames
+wrote td_E_yz_near 219 frames

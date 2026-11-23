@@ -1,0 +1,43 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r3/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.25,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 3.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -8.0,
+   "w": 24.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "trace_port": {
+  "y": 1.28,
+  "x": [
+   -4.56,
+   -4.24,
+   -3.75,
+   -3.44
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r3 fold-back W1.0 D1.5 (smoke)",
+ "tag": "r3_smoke",
+ "purpose": "Smoke test of the trace port on r3 (AirTag.kicad_pcb of 2026-11-14 15:38): two 100 ohm sub-ports across the feed trace gaps 0.3 mm above L1, no notch cut, footprint feed pad added. Expect S11 well below -1 dB and sub-port voltage ratio about 1."
+}

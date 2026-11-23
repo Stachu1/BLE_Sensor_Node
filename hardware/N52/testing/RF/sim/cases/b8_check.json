@@ -1,0 +1,30 @@
+[
+ {
+  "name": "MIFA_2G4_T1_K6 on b8",
+  "purpose": "footprint check: library MIFA_2G4_T1_K6 (from run 0d79b3552c) at (143, 94) on board copy b8",
+  "case": {
+   "board": "build/b8/board.json",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 5.6,
+    "A": 15.4,
+    "G": 1.0,
+    "n": 0.0375,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 6.0,
+     "m": 0.3
+    }
+   }
+  }
+ }
+]

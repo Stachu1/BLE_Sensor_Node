@@ -1,0 +1,3 @@
+n2                             1a98467ebd  min  -0.65 dB @ 3.400 GHz  BLE worst  -0.09  Z(2.44) 1.3+99.5j  eff [0.62, 0.65, 0.69]  5.7x4.0 mm
+n4                             84f49edf96  min  -8.13 dB @ 3.400 GHz  BLE worst  -0.17  Z(2.44) 4.1+126.2j  eff [0.82, 0.82, 0.81]  8.1x4.0 mm
+n4 notch in polygon            3f9e4f78a0  min  -8.13 dB @ 3.400 GHz  BLE worst  -0.17  Z(2.44) 4.1+126.2j  eff [0.82, 0.82, 0.81]  8.1x4.0 mm

@@ -73,3 +73,6 @@ docs/images/originals/
 hardware/C23/testing/soak/soak_*.csv
 hardware/C23/testing/soak/soak_*.log
 hardware/C23/testing/soak/*.mp4
+
+# Extra build dirs (e.g. hwtest/build-carrier)
+**/build-*/

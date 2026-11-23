@@ -1,0 +1,12 @@
+identifier: bsn_n52/nrf52805
+name: BSN-N52
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - gpio
+  - i2c
+ram: 24
+flash: 192

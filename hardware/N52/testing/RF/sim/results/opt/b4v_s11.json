@@ -1,0 +1,199 @@
+[
+ {
+  "name": "b4 H4.6 W0.5 S1.0 fold",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm raised to the board edge limit (4.6 mm, 0.4 mm edge clearance) for more bandwidth. The corner limits a straight arm to A 15.95 at this height, so a short fold down at the end (n) is tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b4/board.json",
+   "antenna": {
+    "W": 0.5,
+    "Wf": 0.5,
+    "Ws": 0.5,
+    "S": 1.0,
+    "H": 4.6,
+    "A": 15.7,
+    "G": 1.0,
+    "n": 0.1821,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 0.0,
+   "hi": 1.0
+  },
+  "hist": [
+   {
+    "hash": "8c7b7fedd6",
+    "n": 0.3,
+    "S": 1.0,
+    "L": 21.979999999999997,
+    "f_res": 2424000000.0,
+    "f_min": 2424000000.0,
+    "s_min": -12.795270609462202,
+    "f_Rmax": 2307000000.0,
+    "Rmax": 239.31488579885334,
+    "Z_fmin": [
+     39.03253404819724,
+     -17.680356805078457
+    ],
+    "ble_worst": -7.650299718634361,
+    "interior": true
+   },
+   {
+    "hash": "986b24b1db",
+    "n": 0.1821,
+    "S": 1.0,
+    "L": 21.614509999999996,
+    "f_res": 2459000000.0,
+    "f_min": 2459000000.0,
+    "s_min": -13.296075361674099,
+    "f_Rmax": 2337000000.0,
+    "Rmax": 237.9869201826667,
+    "Z_fmin": [
+     39.58944723536343,
+     -16.748398662701796
+    ],
+    "ble_worst": -7.564780571927936,
+    "interior": true
+   }
+  ],
+  "done": true
+ },
+ {
+  "name": "b4 H4.6 W1.0 S1.25 fold",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm 4.6 mm high and 1 mm wide traces (lower Q?). The corner limits a straight arm to A 15.95 at this height, so a short fold down at the end (n) is tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b4/board.json",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 15.5,
+    "G": 1.0,
+    "n": 0.3,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 0.0,
+   "hi": 1.0
+  },
+  "hist": [
+   {
+    "hash": "d2a6eadcc9",
+    "error": [
+     "copper 0.40 mm from the board edge at (9.00, 11.60), minimum 0.4"
+    ]
+   }
+  ],
+  "done": true
+ },
+ {
+  "name": "b4 H4.6 W0.5 S1.5",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm 4.6 mm high and S 1.5 (R at the minimum was 40 ohm, larger S raises it towards 50). Length tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b4/board.json",
+   "antenna": {
+    "W": 0.5,
+    "Wf": 0.5,
+    "Ws": 0.5,
+    "S": 1.5,
+    "H": 4.6,
+    "A": 15.95,
+    "G": 1.0,
+    "n": 0,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "A",
+   "f": 2465000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 12.0,
+   "hi": 15.95
+  },
+  "hist": [
+   {
+    "hash": "4b7801486c",
+    "A": 15.6,
+    "S": 1.5,
+    "L": 21.45,
+    "f_res": 2556000000.0,
+    "f_min": 2556000000.0,
+    "s_min": -11.106540629797525,
+    "f_Rmax": 2352000000.0,
+    "Rmax": 396.3218063159925,
+    "Z_fmin": [
+     32.197243027597395,
+     -14.970139117711613
+    ],
+    "ble_worst": -3.1791304309840482,
+    "interior": true
+   },
+   {
+    "hash": "9c28d236eb",
+    "A": 15.95,
+    "S": 1.5,
+    "L": 21.799999999999997,
+    "f_res": 2519000000.0,
+    "f_min": 2519000000.0,
+    "s_min": -10.752397556823375,
+    "f_Rmax": 2324000000.0,
+    "Rmax": 396.9474917787142,
+    "Z_fmin": [
+     31.941625252165693,
+     -16.137929540938124
+    ],
+    "ble_worst": -4.25706339623931,
+    "interior": true
+   }
+  ],
+  "done": true
+ }
+]

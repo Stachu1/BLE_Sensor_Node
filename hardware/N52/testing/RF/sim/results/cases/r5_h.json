@@ -1,0 +1,54 @@
+[
+ {
+  "name": "r5 fold-back D2.5",
+  "purpose": "Matching parts are allowed now (user 2026-11-14): the antenna is scored by its Q and by match_tee.py (L2-C1-L1 T network, real 0402 parts, power into the antenna, >= 20 dB harmonic rejection). Base a63681b23e (S1.425 Ws2 Wf0.25 R5.5, Q 32, best T: worst channel -1.25 dB). Variant: return row 2.5 mm below the arm instead of 1.5 mm: less coupling between the opposite currents in arm and return row. Lower Q?",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 2.5,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ },
+ {
+  "name": "r5 fold-back W1.5 H3.95 D1.8",
+  "purpose": "Matching parts are allowed now (user 2026-11-14): the antenna is scored by its Q and by match_tee.py (L2-C1-L1 T network, real 0402 parts, power into the antenna, >= 20 dB harmonic rejection). Base a63681b23e (S1.425 Ws2 Wf0.25 R5.5, Q 32, best T: worst channel -1.25 dB). Variant: 1.5 mm traces (H lowered to 3.95 so the arm stays in the 5 mm keep-out). Lower Q?",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.5,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 3.95,
+    "A": 12.4,
+    "D": 1.8,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ }
+]

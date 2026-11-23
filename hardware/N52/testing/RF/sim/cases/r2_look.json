@@ -1,0 +1,30 @@
+[
+ {
+  "name": "T1 as placed on r2",
+  "purpose": "look at the new board",
+  "case": {
+   "board": "build/r2/board.json",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 15.4,
+    "G": 1.0,
+    "n": 0.1656,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  }
+ }
+]

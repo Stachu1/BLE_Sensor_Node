@@ -1,0 +1,2 @@
+r4v fold-back W1.0 D1.5      it0 R=3.000 S=1.25  f_res 2.457 GHz  Rmax 275 ohm  S11 min -13.6 dB @ 2.457 GHz
+r4v meander W1.0 P1.5        it0 n=1.500 S=1.25  f_res 2.495 GHz  Rmax 310 ohm  S11 min -8.3 dB @ 2.495 GHz

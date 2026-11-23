@@ -1,0 +1,118 @@
+[
+ {
+  "name": "r5 fold-back S1.55 Ws2 Wf0.5",
+  "purpose": "r5 S1.55 Ws2.0 (00308fa64b): Rmax 219 ohm, best match -11.2 dB at 2.639 GHz (Z 39-23j) above the resonance. Lengthen the return row R so this match point moves to 2.460 GHz.",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 2.0,
+    "S": 1.55,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.4835,
+    "Nd": 1.0,
+    "Nw": 0.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 0.6,
+   "hi": 11.5
+  },
+  "hist": [
+   {
+    "hash": "66fe09e3a9",
+    "R": 4.6,
+    "S": 1.55,
+    "L": 24.15,
+    "f_res": 2550000000.0,
+    "f_min": 2550000000.0,
+    "s_min": -10.655900168197984,
+    "f_Rmax": 2467000000.0,
+    "Rmax": 215.3642262108875,
+    "Z_fmin": [
+     38.74810489689364,
+     -24.54402073985174
+    ],
+    "ble_worst": -1.7302146206896982,
+    "interior": true
+   }
+  ],
+  "done": false
+ },
+ {
+  "name": "r5 fold-back S1.80 Ws2 Wf1.0",
+  "purpose": "r5 S1.55 Ws2.0 (00308fa64b): Rmax 219 ohm, best match -11.2 dB at 2.639 GHz (Z 39-23j) above the resonance. Lengthen the return row R so this match point moves to 2.460 GHz. Feed leg 1 mm wide (pad stays 0.5 mm, short moved to keep the 0.3 mm gap): less series inductance (Z2440 had +120j)?",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 1.0,
+    "Ws": 2.0,
+    "S": 1.8,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.582,
+    "Nd": 1.0,
+    "Nw": 0.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 0.6,
+   "hi": 11.5
+  },
+  "hist": [
+   {
+    "hash": "9c01c427bb",
+    "R": 4.6,
+    "S": 1.8,
+    "L": 24.4,
+    "f_res": 2559000000.0,
+    "f_min": 2559000000.0,
+    "s_min": -7.894639790997264,
+    "f_Rmax": 2459000000.0,
+    "Rmax": 256.3312968196742,
+    "Z_fmin": [
+     33.793175916228144,
+     -32.36622069878663
+    ],
+    "ble_worst": -1.8217072761315878,
+    "interior": true
+   }
+  ],
+  "done": false
+ }
+]

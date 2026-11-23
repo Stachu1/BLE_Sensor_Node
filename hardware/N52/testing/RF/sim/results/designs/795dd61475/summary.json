@@ -1,0 +1,32 @@
+{
+ "hash": "795dd61475",
+ "name": "r5 fold-back S1.55 Ws2 H3.6 it0",
+ "tag": "r5_d",
+ "board": "build/r5/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.55 H=3.6 A=12.4 D=1.5 R=4.6 W=1  (15.4 x 3.6 mm, L 23.1 mm)",
+ "size": {
+  "w": 15.45,
+  "h": 3.6,
+  "area": 55.62,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2409000000.0,
+ "s_min": -9.49755753666973,
+ "ble_none": -3.5246326952468605,
+ "ble_1": -3.567425877483406,
+ "ble_2": -6.222160654810005,
+ "match1": "shunt 0.65 pF",
+ "match2": "series 1.93 nH, shunt 1.16 pF",
+ "Z2440": [
+  21.865696178155247,
+  -15.72425478099816
+ ],
+ "rad_eff": 0.5877375757983554,
+ "Dmax": 1.6459744939017655,
+ "purpose": "r5 S1.55 Ws2 (66fe09e3a9): Rmax still 215 ohm, match only on the upper flank (-10.7 dB, ~30 MHz). Lower arm (H 3.6 instead of 4.6) shrinks the feed-short loop: does Rmax come down towards 50-100 ohm? R tuned to 2.460 GHz."
+}

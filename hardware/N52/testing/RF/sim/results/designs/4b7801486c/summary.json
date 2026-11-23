@@ -1,0 +1,32 @@
+{
+ "hash": "4b7801486c",
+ "name": "b4 H4.6 W0.5 S1.5 it0",
+ "tag": "b4v_s11",
+ "board": "build/b4/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1.5 H=4.6 A=15.6 G=1 n=0 P=1 W=0.5  (17.4 x 4.6 mm, L 21.4 mm)",
+ "size": {
+  "w": 17.35,
+  "h": 4.6,
+  "area": 79.81,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "f_min": 2556000000.0,
+ "s_min": -11.106540629797525,
+ "ble_none": -3.1791350583486415,
+ "ble_1": -4.20785094900544,
+ "ble_2": -9.484071802054695,
+ "match1": "series 7.60 nH",
+ "match2": "shunt 0.36 pF, series 4.75 nH",
+ "Z2440": [
+  105.5368924182558,
+  -88.98209400447344
+ ],
+ "rad_eff": 1.0375331765162936,
+ "Dmax": 1.8708325715021754,
+ "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm 4.6 mm high and S 1.5 (R at the minimum was 40 ohm, larger S raises it towards 50). Length tuned so the S11 minimum sits at 2.465 GHz."
+}

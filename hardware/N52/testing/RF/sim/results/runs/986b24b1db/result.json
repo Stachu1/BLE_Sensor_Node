@@ -1,0 +1,126 @@
+{
+ "case": {
+  "model": "m3",
+  "ports": "feed",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/b4/board.json",
+  "antenna": {
+   "W": 0.5,
+   "Wf": 0.5,
+   "Ws": 0.5,
+   "S": 1.0,
+   "H": 4.6,
+   "A": 15.7,
+   "G": 1.0,
+   "n": 0.1821,
+   "P": 1.0,
+   "Nd": 1.0,
+   "Nw": 1.0,
+   "K": 1.0,
+   "family": "mifa",
+   "keepout": {
+    "u0": -5.0,
+    "w": 24.0,
+    "h": 5.0,
+    "m": 0.3
+   }
+  },
+  "name": "b4 H4.6 W0.5 S1.0 fold it1",
+  "tag": "b4v_s11",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm raised to the board edge limit (4.6 mm, 0.4 mm edge clearance) for more bandwidth. The corner limits a straight arm to A 15.95 at this height, so a short fold down at the end (n) is tuned so the S11 minimum sits at 2.465 GHz."
+ },
+ "mesh": {
+  "cells": [
+   187,
+   130,
+   89
+  ],
+  "ncells": 2163590,
+  "min_cell": [
+   0.07915199999999967,
+   0.08333299999999966,
+   0.06600800000000001
+  ],
+  "t_run": 4776.138943433762
+ },
+ "t_total": 4792.053458213806,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 7.102699801929075e-28,
+   "rad_eff": 1.009605706612202,
+   "tot_eff": 0.832727738969024,
+   "Dmax_dBi": 1.843406890217007,
+   "flux_eff": 0.8765394234128897
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 8.234451307003554e-28,
+   "rad_eff": 1.0190628124577783,
+   "tot_eff": 0.9564741661868655,
+   "Dmax_dBi": 1.8595391214434456,
+   "flux_eff": 0.8847582833163912
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 8.426254938369058e-28,
+   "rad_eff": 1.0422629807475283,
+   "tot_eff": 0.9771907454262636,
+   "Dmax_dBi": 1.8766159011755157,
+   "flux_eff": 0.9042992178108723
+  }
+ ],
+ "size": {
+  "w": 17.2,
+  "h": 4.6,
+  "area": 79.12,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "length": 21.614509999999996,
+ "params": {
+  "W": 0.5,
+  "Wf": 0.5,
+  "Ws": 0.5,
+  "S": 1.0,
+  "H": 4.6,
+  "A": 15.7,
+  "G": 1.0,
+  "n": 0.1821,
+  "P": 1.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 2459000000.0,
+  "s_min": -13.296075361674099,
+  "ble_worst": -7.564780571927936,
+  "ble_best": -13.296075361674099,
+  "Z_2440": [
+   50.28986880930568,
+   -25.653030784461485
+  ],
+  "S11_2440_dB": -12.11705395341665,
+  "bw10": [
+   2423000000.0,
+   2498000000.0
+  ],
+  "bw6": [
+   2383000000.0,
+   2544000000.0
+  ],
+  "f_Rmax": 2337000000.0,
+  "Rmax": 237.9869201826667,
+  "Z_fmin": [
+   39.58944723536343,
+   -16.748398662701796
+  ],
+  "min_interior": true
+ }
+}

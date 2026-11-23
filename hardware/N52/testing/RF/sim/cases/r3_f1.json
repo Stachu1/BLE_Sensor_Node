@@ -1,0 +1,97 @@
+[
+ {
+  "name": "r3 fold-back W1.0 D1.5",
+  "purpose": "Board r3 (AirTag.kicad_pcb of 2026-11-14 15:38: 24 x 20 mm, GND pours on both layers, 12 vias, VDD routed, AE1 at (146, 97), feed trace routed from L1). Port on the feed trace just above L1 (trace port, no notch), so the impedance is the one the matching network sees, trace included. With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed). New family fmifa: the arm folds back towards the feed on a lower row instead of meandering down towards the ground (less copper near the ground). Return length R tuned so the S11 minimum sits at 2.460 GHz. Variant: 1 mm traces, return row 0.5 mm below the arm.",
+  "case": {
+   "board": "build/r3/board.json",
+   "antenna": {
+    "family": "fmifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0
+   },
+   "ports": "trace"
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.6,
+   "hi": 11.5
+  }
+ },
+ {
+  "name": "r3 fold-back W1.0 D2.0",
+  "purpose": "Board r3 (AirTag.kicad_pcb of 2026-11-14 15:38: 24 x 20 mm, GND pours on both layers, 12 vias, VDD routed, AE1 at (146, 97), feed trace routed from L1). Port on the feed trace just above L1 (trace port, no notch), so the impedance is the one the matching network sees, trace included. With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed). New family fmifa: the arm folds back towards the feed on a lower row instead of meandering down towards the ground (less copper near the ground). Return length R tuned so the S11 minimum sits at 2.460 GHz. Variant: 1 mm traces, return row 1 mm below the arm (less arm-return coupling, closer to the ground).",
+  "case": {
+   "board": "build/r3/board.json",
+   "antenna": {
+    "family": "fmifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "A": 12.4,
+    "D": 2.0,
+    "R": 2.6
+   },
+   "ports": "trace"
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.6,
+   "hi": 11.5
+  }
+ },
+ {
+  "name": "r3 fold-back W0.5 D1.0",
+  "purpose": "Board r3 (AirTag.kicad_pcb of 2026-11-14 15:38: 24 x 20 mm, GND pours on both layers, 12 vias, VDD routed, AE1 at (146, 97), feed trace routed from L1). Port on the feed trace just above L1 (trace port, no notch), so the impedance is the one the matching network sees, trace included. With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed). New family fmifa: the arm folds back towards the feed on a lower row instead of meandering down towards the ground (less copper near the ground). Return length R tuned so the S11 minimum sits at 2.460 GHz. Variant: 0.5 mm traces, return row 0.5 mm below the arm.",
+  "case": {
+   "board": "build/r3/board.json",
+   "antenna": {
+    "family": "fmifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 0.5,
+    "S": 1.0,
+    "A": 12.7,
+    "D": 1.0,
+    "R": 3.0
+   },
+   "ports": "trace"
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 6,
+   "lo": 0.6,
+   "hi": 11.5
+  }
+ }
+]

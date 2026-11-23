@@ -1,0 +1,43 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r5/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 2.0,
+  "S": 1.55,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 3.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "trace_port": {
+  "y": 2.035,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r5 fold-back S1.55 Ws2.0",
+ "tag": "r5_b",
+ "purpose": "r5 fold-back it0 (a18ad9bd49): clean single resonance at 2.46 GHz but Rmax 360 ohm, no match without parts. Short leg at the minimum 0.3 mm gap to the feed leg, short width 2.0 mm: how far does Rmax drop?"
+}

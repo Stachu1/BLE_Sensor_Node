@@ -1,0 +1,33 @@
+[
+ {
+  "name": "b6 k6 H5.6 W1.0 S1.25 fold",
+  "purpose": "Board copy b6 (feed at (143, 94), 24 x 6 keep-out, GND pours). On b4 (5 mm keep-out) 1 mm traces widened the -10 dB band from 68 to 83 MHz (-17.6 dB dip). Variant: the same 1 mm traces in the 6 mm keep-out, arm 5.6 mm high, short fold at the end (the corner limits a straight arm to A 15.95), fold length n tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b6/board.json",
+   "antenna": {
+    "family": "mifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 5.6,
+    "G": 1.0,
+    "P": 1.0,
+    "n": 0.3,
+    "A": 15.4,
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 6.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "metric": "S11min",
+   "iters": 5,
+   "lo": 0.0,
+   "hi": 1.0
+  }
+ }
+]

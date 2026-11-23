@@ -1,0 +1,93 @@
+[
+ {
+  "name": "b4 H4.6 W0.5 S1.0 fold",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm raised to the board edge limit (4.6 mm, 0.4 mm edge clearance) for more bandwidth. The corner limits a straight arm to A 15.95 at this height, so a short fold down at the end (n) is tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b4/board.json",
+   "antenna": {
+    "family": "mifa",
+    "G": 1.0,
+    "P": 1.0,
+    "n": 0.3,
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 0.5,
+    "S": 1.0,
+    "H": 4.6,
+    "A": 15.7
+   }
+  },
+  "tune": {
+   "param": "n",
+   "metric": "S11min",
+   "iters": 5,
+   "lo": 0.0,
+   "hi": 1.0
+  }
+ },
+ {
+  "name": "b4 H4.6 W1.0 S1.25 fold",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm 4.6 mm high and 1 mm wide traces (lower Q?). The corner limits a straight arm to A 15.95 at this height, so a short fold down at the end (n) is tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b4/board.json",
+   "antenna": {
+    "family": "mifa",
+    "G": 1.0,
+    "P": 1.0,
+    "n": 0.3,
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 15.5
+   }
+  },
+  "tune": {
+   "param": "n",
+   "metric": "S11min",
+   "iters": 5,
+   "lo": 0.0,
+   "hi": 1.0
+  }
+ },
+ {
+  "name": "b4 H4.6 W0.5 S1.5",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm 4.6 mm high and S 1.5 (R at the minimum was 40 ohm, larger S raises it towards 50). Length tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b4/board.json",
+   "antenna": {
+    "family": "mifa",
+    "G": 1.0,
+    "P": 1.0,
+    "n": 0,
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 0.5,
+    "S": 1.5,
+    "H": 4.6,
+    "A": 15.6
+   }
+  },
+  "tune": {
+   "param": "A",
+   "metric": "S11min",
+   "iters": 5,
+   "lo": 12.0,
+   "hi": 15.95
+  }
+ }
+]

@@ -1,0 +1,51 @@
+[
+ {
+  "name": "r3 W1.0 A12 P1.5 G1.0 (smoke)",
+  "purpose": "Smoke test of the trace port on r3 (AirTag.kicad_pcb of 2026-11-14 15:38): two 100 ohm sub-ports across the feed trace gaps 0.3 mm above L1, no notch cut, footprint feed pad added. Expect S11 well below -1 dB and sub-port voltage ratio about 1.",
+  "case": {
+   "board": "build/r3/board.json",
+   "antenna": {
+    "family": "mifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "A": 12,
+    "P": 1.5,
+    "G": 1.0,
+    "n": 1.5
+   },
+   "ports": "trace"
+  }
+ },
+ {
+  "name": "r3 fold-back W1.0 D1.5 (smoke)",
+  "purpose": "Smoke test of the trace port on r3 (AirTag.kicad_pcb of 2026-11-14 15:38): two 100 ohm sub-ports across the feed trace gaps 0.3 mm above L1, no notch cut, footprint feed pad added. Expect S11 well below -1 dB and sub-port voltage ratio about 1.",
+  "case": {
+   "board": "build/r3/board.json",
+   "antenna": {
+    "family": "fmifa",
+    "H": 4.6,
+    "keepout": {
+     "u0": -8.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0
+   },
+   "ports": "trace"
+  }
+ }
+]

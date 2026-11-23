@@ -1,0 +1,54 @@
+[
+ {
+  "name": "r6 fold-back W1.5 H3.95 D1.8 R2.8",
+  "purpose": "Matching parts allowed, lowest antenna Q wanted. feb8a63c15 resonated at 2.20 GHz (Q 26 there): return row shortened so the resonance lands near 2.44 GHz, then compare Q and the match_tee result with the base 1d83d77615 (Q 30-33, -1.16 dB worst channel).",
+  "case": {
+   "board": "build/r6/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.5,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 3.95,
+    "A": 12.4,
+    "D": 1.8,
+    "R": 2.8,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ },
+ {
+  "name": "r6 fold-back D2.5 R2.2",
+  "purpose": "Matching parts allowed, lowest antenna Q wanted. df2a380b0b resonated at 2.13 GHz (Q 29 there): return row shortened so the resonance lands near 2.44 GHz, then compare Q and the match_tee result with the base 1d83d77615 (Q 30-33, -1.16 dB worst channel).",
+  "case": {
+   "board": "build/r6/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 2.5,
+    "R": 2.2,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ }
+]

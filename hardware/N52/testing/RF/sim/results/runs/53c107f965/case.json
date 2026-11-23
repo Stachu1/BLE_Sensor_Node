@@ -1,0 +1,33 @@
+{
+ "model": "m2",
+ "ports": "feed",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/b1/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.25,
+  "H": 4.5,
+  "A": 12.0,
+  "G": 1.0,
+  "n": 1.1991,
+  "P": 1.5,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "mifa",
+  "keepout": {
+   "u0": -8.0,
+   "w": 24.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "name": "b1 S1.25 W1.0 A12 P1.5 it1",
+ "tag": "b1_s11",
+ "purpose": "Real board copy b1 (sim/boards/b1: AirTag.kicad_pcb of 2026-11-14 01:21 with GND pours and a via fence, AE1 = generic 24 x 5 keep-out, feed at (146, 93) above L1, port across the notch). Can it match 50 ohm without parts? The peak R cannot reach 50 ohm (keepout24 it1: 742 -> 412 ohm for S 2.5 -> 1.5) but the S11 minimum on the slope above the resonance deepens as S shrinks, so: S at its minimum, length tuned so the S11 MINIMUM sits at 2.465 GHz (2.44 + 1 % for the mask). Variant: 1 mm arm and short leg (lower R), folds at the end."
+}

@@ -1,0 +1,7 @@
+b6 k6 H5.6 W1.0 S1.25 fold   it0 n=0.300 S=1.25  f_res 2.376 GHz  Rmax 185 ohm  S11 min -20.2 dB @ 2.376 GHz
+b6 k6 H5.6 W1.0 S1.25 fold   it1 n=0.150 S=1.25  f_res 2.423 GHz  Rmax 184 ohm  S11 min -22.7 dB @ 2.423 GHz
+b6 k6 H5.6 W1.0 S1.25 fold   it2 n=0.075 S=1.25  f_res 2.445 GHz  Rmax 183 ohm  S11 min -23.9 dB @ 2.445 GHz
+b6 k6 H5.6 W1.0 S1.25 fold   it3 n=0.037 S=1.25  f_res 2.456 GHz  Rmax 182 ohm  S11 min -24.6 dB @ 2.456 GHz
+
+final
+b6 k6 H5.6 W1.0 S1.25 fold   0d79b3552c  n=0.037 S=1.25  f_res 2.456 GHz  Rmax 182 ohm  S11 min -24.6 dB @ 2.456  BLE worst -9.1 dB

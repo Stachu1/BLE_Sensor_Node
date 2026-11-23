@@ -1,0 +1,32 @@
+{
+ "hash": "ed9893c722",
+ "name": "r5 fold-back S1.05 Ws1.0",
+ "tag": "r5_b",
+ "board": "build/r5/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.05 H=4.6 A=12.4 D=1.5 R=3 W=1  (14.4 x 4.6 mm, L 22.1 mm)",
+ "size": {
+  "w": 14.45,
+  "h": 4.6,
+  "area": 66.47,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2604000000.0,
+ "s_min": -8.775977105870748,
+ "ble_none": -1.319591219967788,
+ "ble_1": -3.7271998641468382,
+ "ble_2": -6.7276413101723005,
+ "match1": "series 0.50 pF",
+ "match2": "shunt 27.80 nH, series 0.59 pF",
+ "Z2440": [
+  76.0852053040946,
+  171.37181820991728
+ ],
+ "rad_eff": 0.7075398043918208,
+ "Dmax": 1.632242629173743,
+ "purpose": "r5 fold-back it0 (a18ad9bd49): clean single resonance at 2.46 GHz but Rmax 360 ohm, no match without parts. Short leg at the minimum 0.3 mm gap to the feed leg, short width 1.0 mm: how far does Rmax drop?"
+}

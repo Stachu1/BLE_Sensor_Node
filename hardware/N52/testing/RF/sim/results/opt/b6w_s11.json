@@ -1,0 +1,111 @@
+[
+ {
+  "name": "b6 k6 H5.6 W1.0 S1.25 fold",
+  "purpose": "Board copy b6 (feed at (143, 94), 24 x 6 keep-out, GND pours). On b4 (5 mm keep-out) 1 mm traces widened the -10 dB band from 68 to 83 MHz (-17.6 dB dip). Variant: the same 1 mm traces in the 6 mm keep-out, arm 5.6 mm high, short fold at the end (the corner limits a straight arm to A 15.95), fold length n tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b6/board.json",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 5.6,
+    "A": 15.4,
+    "G": 1.0,
+    "n": 0.0375,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 6.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 0.0,
+   "hi": 1.0
+  },
+  "hist": [
+   {
+    "hash": "9c2449b94e",
+    "n": 0.3,
+    "S": 1.25,
+    "L": 22.83,
+    "f_res": 2376000000.0,
+    "f_min": 2376000000.0,
+    "s_min": -20.234820820362707,
+    "f_Rmax": 2275000000.0,
+    "Rmax": 185.09819823180777,
+    "Z_fmin": [
+     45.602125716828,
+     -8.23947346324616
+    ],
+    "ble_worst": -4.599249157319976,
+    "interior": true
+   },
+   {
+    "hash": "e098bdd1e9",
+    "n": 0.15,
+    "S": 1.25,
+    "L": 22.29,
+    "f_res": 2423000000.0,
+    "f_min": 2423000000.0,
+    "s_min": -22.686849923277883,
+    "f_Rmax": 2316000000.0,
+    "Rmax": 183.53232303103405,
+    "Z_fmin": [
+     46.87450469280156,
+     -6.4034087595033835
+    ],
+    "ble_worst": -8.722231519090434,
+    "interior": true
+   },
+   {
+    "hash": "8cb788c384",
+    "n": 0.075,
+    "S": 1.25,
+    "L": 22.02,
+    "f_res": 2445000000.0,
+    "f_min": 2445000000.0,
+    "s_min": -23.948870775319957,
+    "f_Rmax": 2336000000.0,
+    "Rmax": 182.6610004356095,
+    "Z_fmin": [
+     47.33873428565207,
+     -5.586596405932842
+    ],
+    "ble_worst": -10.624155050078786,
+    "interior": true
+   },
+   {
+    "hash": "0d79b3552c",
+    "n": 0.0375,
+    "S": 1.25,
+    "L": 21.885,
+    "f_res": 2456000000.0,
+    "f_min": 2456000000.0,
+    "s_min": -24.5748095047621,
+    "f_Rmax": 2345000000.0,
+    "Rmax": 182.1373007655021,
+    "Z_fmin": [
+     47.21992267257712,
+     -5.032166646608193
+    ],
+    "ble_worst": -9.088714264388148,
+    "interior": true
+   }
+  ],
+  "done": true
+ }
+]

@@ -1,0 +1,28 @@
+[
+ {
+  "name": "r5 fold-back S1.425 Ws2 Wf0.25",
+  "purpose": "Fills the idle slot while r5_e tunes: narrow feed leg (0.25 mm) with the short leg moved in to keep the 0.3 mm gap (S 1.425 instead of 1.55), R 5.5. Sensitivity of Rmax and the match to S at this feed width.",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ }
+]

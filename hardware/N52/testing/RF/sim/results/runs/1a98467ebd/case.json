@@ -1,0 +1,16 @@
+{
+ "model": "m1",
+ "ports": "feed",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/disc30/board.json",
+ "antenna": {
+  "family": "mifa",
+  "n": 2
+ },
+ "name": "n2",
+ "tag": "smoke",
+ "purpose": "Smoke test of the AirTag pipeline (synthetic 30 mm disc board, CR1632 on the bottom)"
+}

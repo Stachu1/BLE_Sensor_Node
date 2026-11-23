@@ -1,0 +1,43 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": false,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r4v/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.25,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 3.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "trace_port": {
+  "y": 2.035,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r4v fold-back it0 no battery",
+ "tag": "r4v_b",
+ "purpose": "r4v fold-back it0 (b7ffa43b12) shows two resonances at 2.39 and 2.515 GHz with the match loop between them (BLE worst -3.4 dB, 120k steps ring-down). Is the second resonator the CR1632 cell and holder? Same case without the battery."
+}

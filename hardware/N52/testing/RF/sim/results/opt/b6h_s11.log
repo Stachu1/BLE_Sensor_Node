@@ -1,0 +1,5 @@
+b6 k6 H5.6 straight          it0 A=15.600 S=1.00  f_res 2.507 GHz  Rmax 284 ohm  S11 min -16.6 dB @ 2.507 GHz
+b6 k6 H5.6 straight          it1 A=15.950 S=1.00  f_res 2.475 GHz  Rmax 283 ohm  S11 min -15.9 dB @ 2.475 GHz
+
+final
+b6 k6 H5.6 straight          db16f3d621  A=15.950 S=1.00  f_res 2.475 GHz  Rmax 283 ohm  S11 min -15.9 dB @ 2.475  BLE worst -7.1 dB

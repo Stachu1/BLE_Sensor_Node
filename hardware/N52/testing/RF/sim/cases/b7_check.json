@@ -1,0 +1,30 @@
+[
+ {
+  "name": "MIFA_2G4_T1 on b7",
+  "purpose": "footprint check: library MIFA_2G4_T1 (from run a21ed6f324) placed at (143, 93) on board copy b7, sim rectangles vs footprint copper",
+  "case": {
+   "board": "build/b7/board.json",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 15.4,
+    "G": 1.0,
+    "n": 0.1656,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  }
+ }
+]

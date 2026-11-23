@@ -1,0 +1,32 @@
+{
+ "hash": "d4e7c56748",
+ "name": "b6 k6 H5.4 straight it1",
+ "tag": "b56_s11",
+ "board": "build/b6/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1 H=5.4 A=15.8237 G=1 n=0 P=1 W=0.5  (17.1 x 5.4 mm, L 22.0 mm)",
+ "size": {
+  "w": 17.074,
+  "h": 5.4,
+  "area": 92.2,
+  "keepout": [
+   24.0,
+   6.0
+  ]
+ },
+ "f_min": 2478000000.0,
+ "s_min": -15.484925803573311,
+ "ble_none": -6.732652491243649,
+ "ble_1": -8.806162972983685,
+ "ble_2": -11.05810194141755,
+ "match1": "series 2.60 nH",
+ "match2": "shunt 4.85 nH, series 1.94 pF",
+ "Z2440": [
+  60.559102878738955,
+  -29.720951639342395
+ ],
+ "rad_eff": 1.0653081999892966,
+ "Dmax": 1.8394904800452965,
+ "purpose": "Keep-out height experiment, feed at (143, 94) like b4, the keep-out top stays at the board edge (KiCad y 88). Board copy b6 (sim/boards/b6: AirTag.kicad_pcb of 2026-11-14 01:21 with GND pours and a via fence, AE1 = MIFA_f143k6: 24 x 6 mm keep-out). b4 (24 x 5) straight IFA it0 gave S11 -14.4 dB at 2.551 GHz with Z 40-14j at the minimum and a 90 MHz -10 dB band. Does a 6 mm (taller) keep-out widen (or narrow) the matched band? S at its minimum, length tuned so the S11 minimum sits at 2.465 GHz. Variant: straight IFA, arm 5.4 mm high (max straight A 17.0)."
+}

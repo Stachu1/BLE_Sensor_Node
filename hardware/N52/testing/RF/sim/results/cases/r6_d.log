@@ -1,0 +1,2 @@
+r6 fold-back S1.700 Ws2 Wf0.25 gap0.575 b49d658213  min -10.20 dB @ 2.491 GHz  BLE worst  -3.40  Z(2.44) 109.3-60.1j  eff [0.68, 0.7, 0.72]  15.6x4.6 mm
+r6 fold-back S1.825 Ws2 Wf0.50 gap0.575 d2774450d4  min  -8.03 dB @ 2.493 GHz  BLE worst  -3.48  Z(2.44) 95.8-72.2j  eff [0.69, 0.7, 0.72]  15.7x4.6 mm

@@ -1,0 +1,32 @@
+{
+ "hash": "1d83d77615",
+ "name": "r6 fold-back S1.425 Ws2 Wf0.25",
+ "tag": "r6_a",
+ "board": "build/r6/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.425 H=4.6 A=12.4 D=1.5 R=5.5 W=1  (15.3 x 4.6 mm, L 24.9 mm)",
+ "size": {
+  "w": 15.325,
+  "h": 4.6,
+  "area": 70.49,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2491000000.0,
+ "s_min": -14.249675522138265,
+ "ble_none": -3.171999677301357,
+ "ble_1": -5.296497551163104,
+ "ble_2": -7.345958161914407,
+ "match1": "series 1.40 pF",
+ "match2": "shunt 9.36 nH, series 1.19 pF",
+ "Z2440": [
+  142.6895228772818,
+  11.43069446063626
+ ],
+ "rad_eff": 0.6789920772439492,
+ "Dmax": 1.6649951222306283,
+ "purpose": "Board r6 = AirTag.kicad_pcb of 2026-11-14 23:46: L1 moved 0.75 mm up against the AE1 feed pad (feed trace in the pour almost gone), 7 vias moved. Fills the idle slot while r5_e tunes: narrow feed leg (0.25 mm) with the short leg moved in to keep the 0.3 mm gap (S 1.425 instead of 1.55), R 5.5. Sensitivity of Rmax and the match to S at this feed width."
+}

@@ -1,0 +1,3 @@
+# BSN-N52 board: nRF52805-CAAA (WLCSP-28)
+config BOARD_BSN_N52
+	select SOC_NRF52805_CAAA

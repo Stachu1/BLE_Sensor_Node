@@ -1,0 +1,123 @@
+{
+ "case": {
+  "model": "m3",
+  "ports": "feed",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/b1/board.json",
+  "antenna": {
+   "W": 0.5,
+   "Wf": 0.5,
+   "Ws": 0.5,
+   "S": 1.0,
+   "H": 4.5,
+   "A": 11.0,
+   "G": 1.0,
+   "n": 2.2,
+   "P": 1.0,
+   "Nd": 1.0,
+   "Nw": 1.0,
+   "K": 1.0,
+   "family": "mifa",
+   "keepout": {
+    "u0": -8.0,
+    "w": 24.0,
+    "h": 5.0,
+    "m": 0.3
+   }
+  },
+  "name": "b1 S1.0 W0.5 A11 P1.0 n2 it0",
+  "tag": "b1_s11",
+  "purpose": "Real board copy b1 (sim/boards/b1: AirTag.kicad_pcb of 2026-11-14 01:21 with GND pours and a via fence, AE1 = generic 24 x 5 keep-out, feed at (146, 93) above L1, port across the notch). Can it match 50 ohm without parts? The peak R cannot reach 50 ohm (keepout24 it1: 742 -> 412 ohm for S 2.5 -> 1.5) but the S11 minimum on the slope above the resonance deepens as S shrinks, so: S at its minimum, length tuned so the S11 MINIMUM sits at 2.465 GHz (2.44 + 1 % for the mask). Variant: more meander, 1 mm shorter arm (more compact)."
+ },
+ "mesh": {
+  "cells": [
+   186,
+   131,
+   89
+  ],
+  "ncells": 2168574,
+  "min_cell": [
+   0.08333299999999966,
+   0.08333299999999966,
+   0.06600800000000001
+  ],
+  "t_run": 3489.032722711563
+ },
+ "t_total": 3507.3905029296875,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 6.435226118097506e-28,
+   "rad_eff": 0.8957151499574567,
+   "tot_eff": 0.7570394723290411,
+   "Dmax_dBi": 1.9006476532651235,
+   "flux_eff": 0.7771636798865735
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 5.655796211001497e-28,
+   "rad_eff": 0.9391553697466006,
+   "tot_eff": 0.6564947238900154,
+   "Dmax_dBi": 1.9157762641592566,
+   "flux_eff": 0.8144614698198948
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 4.506034743783575e-28,
+   "rad_eff": 0.9631561711675469,
+   "tot_eff": 0.5219472236050815,
+   "Dmax_dBi": 1.9337691143271198,
+   "flux_eff": 0.8360736476320808
+  }
+ ],
+ "size": {
+  "w": 14.3,
+  "h": 4.5,
+  "area": 64.35,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "length": 24.05,
+ "params": {
+  "W": 0.5,
+  "Wf": 0.5,
+  "Ws": 0.5,
+  "S": 1.0,
+  "H": 4.5,
+  "A": 11.0,
+  "G": 1.0,
+  "n": 2.2,
+  "P": 1.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 2368000000.0,
+  "s_min": -9.605408494778175,
+  "ble_worst": -3.2943728375799215,
+  "ble_best": -8.101696231478687,
+  "Z_2440": [
+   14.723403973067203,
+   4.83991534731556
+  ],
+  "S11_2440_dB": -5.214720990341806,
+  "bw10": null,
+  "bw6": [
+   2313000000.0,
+   2427000000.0
+  ],
+  "f_Rmax": 2261000000.0,
+  "Rmax": 275.5481679651769,
+  "Z_fmin": [
+   34.538040807128844,
+   -24.706642519013798
+  ],
+  "min_interior": true
+ }
+}

@@ -1,0 +1,77 @@
+[
+ {
+  "name": "b4 H4.6 W1.0 S1.25 fold",
+  "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm 4.6 mm high and 1 mm wide traces (lower Q?). The corner limits a straight arm to A 15.95 at this height, so a short fold down at the end (n) is tuned so the S11 minimum sits at 2.465 GHz.",
+  "case": {
+   "board": "build/b4/board.json",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 15.4,
+    "G": 1.0,
+    "n": 0.1656,
+    "P": 1.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -5.0,
+     "w": 24.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2465000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 5,
+   "match": null,
+   "lo": 0.0,
+   "hi": 1.0
+  },
+  "hist": [
+   {
+    "hash": "852b6afdd7",
+    "n": 0.3,
+    "S": 1.25,
+    "L": 21.53,
+    "f_res": 2425000000.0,
+    "f_min": 2425000000.0,
+    "s_min": -17.57910333585743,
+    "f_Rmax": 2338000000.0,
+    "Rmax": 159.22240973370396,
+    "Z_fmin": [
+     45.709562877635264,
+     -12.002653437280062
+    ],
+    "ble_worst": -8.01374712482047,
+    "interior": true
+   },
+   {
+    "hash": "a21ed6f324",
+    "n": 0.1656,
+    "S": 1.25,
+    "L": 21.18056,
+    "f_res": 2459000000.0,
+    "f_min": 2459000000.0,
+    "s_min": -18.531363881658827,
+    "f_Rmax": 2368000000.0,
+    "Rmax": 157.7090884505997,
+    "Z_fmin": [
+     46.2363199586595,
+     -10.833298077988536
+    ],
+    "ble_worst": -7.861807817226119,
+    "interior": true
+   }
+  ],
+  "done": true
+ }
+]

@@ -1,0 +1,4 @@
+r5 fold-back S1.55 Ws2 Wf0.5 it0 R=4.600 S=1.55  f_res 2.550 GHz  Rmax 215 ohm  S11 min -10.7 dB @ 2.550 GHz
+r5 fold-back S1.55 Ws2 H3.6  it0 R=4.600 S=1.55  f_res 2.409 GHz  Rmax 172 ohm  S11 min -9.5 dB @ 2.409 GHz
+r5 fold-back S1.55 Ws2 Wf0.5 it1 R=5.484 S=1.55  f_res 2.502 GHz  Rmax 213 ohm  S11 min -10.5 dB @ 2.502 GHz
+r5 fold-back S1.55 Ws2 H3.6  it1 R=4.120 S=1.55  f_res 2.442 GHz  Rmax 175 ohm  S11 min -9.5 dB @ 2.442 GHz

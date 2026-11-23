@@ -1,0 +1,34 @@
+vias: 68 as drill-size barrels, 10 as wires
+mesh {'cells': [185, 130, 89], 'ncells': 2140450, 'min_cell': [0.08333299999999966, 0.08333299999999966, 0.06600800000000001]}
+openEMS - fixed number of threads: 5
+ ---------------------------------------------------------------------- 
+ | openEMS 64bit -- version v0.37.0-rc3-16-g5b1ecb1
+ | (C) 2010-2026 Thorsten Liebig <thorsten.liebig@gmx.de>  GPL license
+ ---------------------------------------------------------------------- 
+	Used external libraries:
+		CSXCAD -- Version: v0.7.0-rc3-1-gbd2c133
+		hdf5   -- Version: 1.10.7
+		          compiled against: HDF5 library version: 1.10.7
+		tinyxml -- compiled against: 2.6.2
+		fparser
+		boost  -- compiled against: 1_74
+		vtk -- Version: 9.1.0
+		       compiled against: 9.1.0
+
+Create FDTD operator (compressed SSE + multi-threading)
+FDTD simulation size: 185x130x89 --> 2.14045e+06 FDTD cells 
+FDTD timestep is: 1.46988e-13 s; Nyquist rate: 931 timesteps @3.65375e+09 Hz
+Excitation signal length is: 16242 timesteps (2.38738e-09s)
+Max. number of timesteps: 1000000 ( --> 61.5688 * Excitation signal length)
+Create FDTD engine (compressed SSE + multi-threading)
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Running FDTD engine... this may take a while... grab a cup of coffee?!?
+[@       24s] Timestep:          232 || Speed:   20.4 MC/s (1.047e-01 s/TS) || Energy: ~1.64e-23 (- 0.00dB)
+[@       49s] Timestep:          464 || Speed:   20.1 MC/s (1.066e-01 s/TS) || Energy: ~3.21e-23 (- 0.00dB)
+[@     1m18s] Timestep:          696 || Speed:   16.6 MC/s (1.286e-01 s/TS) || Energy: ~2.72e-23 (- 0.73dB)
+[@     1m43s] Timestep:          928 || Speed:   20.5 MC/s (1.043e-01 s/TS) || Energy: ~3.21e-22 (- 0.00dB)

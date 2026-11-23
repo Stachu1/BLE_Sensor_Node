@@ -1,0 +1,51 @@
+[
+ {
+  "name": "r5 fold-back it0",
+  "purpose": "Board r5 = AirTag.kicad_pcb of 2026-11-14 19:20 with the GND via stitching added by the user (57 vias, short-leg island stitched). Fold-back it0 geometry (W1 S1.25 H4.6 A12.4 D1.5 R3), compare with r4 (floating island) and r4v (3 test vias, double resonance 2.39/2.515 GHz).",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  }
+ },
+ {
+  "name": "r5 fold-back it0 no battery",
+  "purpose": "Board r5 = AirTag.kicad_pcb of 2026-11-14 19:20 with the GND via stitching added by the user (57 vias, short-leg island stitched). Same without the CR1632 and holder: is the cell the second resonator that splits the r4v resonance?",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "battery": false
+  }
+ }
+]

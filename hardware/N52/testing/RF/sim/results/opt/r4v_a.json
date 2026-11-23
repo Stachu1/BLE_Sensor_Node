@@ -1,0 +1,119 @@
+[
+ {
+  "name": "r4v fold-back W1.0 D1.5",
+  "purpose": "Board r4v = r4 export plus 3 GND vias in the F.Cu pour island under the short leg (left of the feed trace), which is floating on the real r4 board (it0 there: 22 MHz band, 40 % efficiency). (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: fold-back arm, 1 mm traces, return row 0.5 mm below the arm, return length R tuned.",
+  "case": {
+   "board": "build/r4v/board.json",
+   "ports": "trace",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 6,
+   "match": null,
+   "lo": 0.6,
+   "hi": 11.5
+  },
+  "hist": [
+   {
+    "hash": "b7ffa43b12",
+    "R": 3.0,
+    "S": 1.25,
+    "L": 22.25,
+    "f_res": 2457000000.0,
+    "f_min": 2457000000.0,
+    "s_min": -13.598139972021258,
+    "f_Rmax": 2392000000.0,
+    "Rmax": 274.53524271050674,
+    "Z_fmin": [
+     74.76401274743175,
+     8.339985969062571
+    ],
+    "ble_worst": -3.384937511740482,
+    "interior": true
+   }
+  ],
+  "done": true
+ },
+ {
+  "name": "r4v meander W1.0 P1.5",
+  "purpose": "Board r4v = r4 export plus 3 GND vias in the F.Cu pour island under the short leg (left of the feed trace), which is floating on the real r4 board (it0 there: 22 MHz band, 40 % efficiency). (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: meander end, 1 mm traces, pitch 1.5 mm, fingers 1 mm above the ground, n tuned.",
+  "case": {
+   "board": "build/r4v/board.json",
+   "ports": "trace",
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.0,
+    "G": 1.0,
+    "n": 1.5763,
+    "P": 1.5,
+    "Nd": 1.0,
+    "Nw": 1.0,
+    "K": 1.0,
+    "family": "mifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   }
+  },
+  "tune": {
+   "param": "n",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "tol": 10000000.0,
+   "iters": 6,
+   "match": null,
+   "lo": 0.3,
+   "hi": 1.95
+  },
+  "hist": [
+   {
+    "hash": "6ac39ab340",
+    "n": 1.5,
+    "S": 1.25,
+    "L": 22.000000000000004,
+    "f_res": 2495000000.0,
+    "f_min": 2495000000.0,
+    "s_min": -8.300314751523912,
+    "f_Rmax": 2229000000.0,
+    "Rmax": 309.9809309552922,
+    "Z_fmin": [
+     25.899413079154165,
+     17.83930731003566
+    ],
+    "ble_worst": -3.9259880200906494,
+    "interior": true
+   }
+  ],
+  "done": false
+ }
+]

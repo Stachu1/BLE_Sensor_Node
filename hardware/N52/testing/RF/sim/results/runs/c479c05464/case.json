@@ -1,0 +1,33 @@
+{
+ "model": "m3",
+ "ports": "feed",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r2/board.json",
+ "antenna": {
+  "W": 0.5,
+  "Wf": 0.5,
+  "Ws": 0.5,
+  "S": 1.0,
+  "H": 4.6,
+  "A": 12,
+  "G": 1.0,
+  "n": 1.5,
+  "P": 1.5,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "mifa",
+  "keepout": {
+   "u0": -8.0,
+   "w": 24.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "name": "r2 W0.5 A12 P1.5 G1.0 it0",
+ "tag": "r2_m1",
+ "purpose": "Board r2 (AirTag.kicad_pcb of 2026-11-14 14:30: 24 x 20 mm, F.Cu GND pour only, AE1 at (146, 97), feed routed from L1). With the feed at x 146 a straight arm ends at A 13 (L 18.4 mm, about 21.5 needed), so the end meanders. Keep-out 24 x 5 (x 138..162, the generic MIFA_2G4 one, u0 -8). S11 minimum tuned to 2.460 GHz (2.442 + 0.73 % mask shift measured on T1). Variant: 0.5 mm traces, pitch 1.5 mm."
+}

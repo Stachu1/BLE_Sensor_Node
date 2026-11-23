@@ -1,0 +1,8 @@
+IFA H4.5 W0.5                it0 A=15.000 S=2.50  f_res 2.282 GHz  Rmax 742 ohm  S11 min -8.1 dB @ 2.627 GHz
+IFA H4.5 W1.0                it0 A=15.000 S=2.50  f_res 2.269 GHz  Rmax 635 ohm  S11 min -7.6 dB @ 2.577 GHz
+MIFA H4.5 P2.0               it0 n=2.500 S=2.50  f_res 2.263 GHz  Rmax 958 ohm  S11 min -5.4 dB @ 2.648 GHz
+IFA H3.5 W0.5                it0 A=16.000 S=2.50  f_res 2.218 GHz  Rmax 633 ohm  S11 min -5.8 dB @ 2.472 GHz
+IFA H4.5 W0.5                it1 A=13.385 S=1.50  f_res 2.569 GHz  Rmax 412 ohm  S11 min -13.0 dB @ 2.835 GHz
+IFA H4.5 W1.0                it1 A=13.290 S=1.50  f_res 2.550 GHz  Rmax 347 ohm  S11 min -12.2 dB @ 2.787 GHz
+MIFA H4.5 P2.0               it1 n=2.119 S=1.50  f_res 2.515 GHz  Rmax 575 ohm  S11 min -7.6 dB @ 2.793 GHz
+IFA H3.5 W0.5                it1 A=13.821 S=1.50  f_res 2.550 GHz  Rmax 346 ohm  S11 min -9.4 dB @ 2.751 GHz

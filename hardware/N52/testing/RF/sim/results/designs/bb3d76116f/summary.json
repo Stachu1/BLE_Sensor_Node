@@ -1,0 +1,32 @@
+{
+ "hash": "bb3d76116f",
+ "name": "T1 solder mask",
+ "tag": "robust1",
+ "board": "build/b4/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1.25 H=4.6 A=15.4 G=1 n=0.1656 P=1 W=1  (17.6 x 4.6 mm, L 21.2 mm)",
+ "size": {
+  "w": 17.65,
+  "h": 4.6,
+  "area": 81.19,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "f_min": 2441000000.0,
+ "s_min": -17.653090193465864,
+ "ble_none": -10.240962296757042,
+ "ble_1": -10.226618995066744,
+ "ble_2": -10.359223346389047,
+ "match1": "shunt 39.75 nH",
+ "match2": "series 0.65 nH, shunt 0.17 pF",
+ "Z2440": [
+  46.3104259062446,
+  -12.18549193337155
+ ],
+ "rad_eff": 0.9613290867171119,
+ "Dmax": 1.924041513916244,
+ "purpose": "Robustness of the chosen design MIFA_2G4_T1 (run a21ed6f324: b4, feed (143, 93), 5 mm keep-out, H4.6 W1.0 S1.25 A15.4 n0.17, S11 min -18.5 dB at 2.459 GHz, -10 dB band 88 MHz). explicit 20 um solder mask (er 3.8) on both sides, checks the assumed -1 % shift that the 2.465 GHz target is based on. Slow (fine z cells)."
+}

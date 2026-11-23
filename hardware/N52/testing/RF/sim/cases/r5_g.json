@@ -1,0 +1,70 @@
+[
+ {
+  "name": "r5 fold-back S1.425 Ws2 Wf0.25",
+  "purpose": "Narrow feed leg trend (Wf 0.5 / 0.25 at S1.55: -10.5 / -12.4 dB, Wf 0.25 S1.425 a63681b23e: -14.8 dB, -10 dB band 50 MHz at 2.496 GHz). Feed leg 0.25 mm (pad stays 0.5 mm), short leg at the 0.3 mm gap, R tuned to move the match to 2.460 GHz.",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 6.2,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 5,
+   "lo": 0.6,
+   "hi": 11.5
+  }
+ },
+ {
+  "name": "r5 fold-back S1.375 Ws2 Wf0.15",
+  "purpose": "Narrow feed leg trend (Wf 0.5 / 0.25 at S1.55: -10.5 / -12.4 dB, Wf 0.25 S1.425 a63681b23e: -14.8 dB, -10 dB band 50 MHz at 2.496 GHz). Feed leg 0.15 mm (pad stays 0.5 mm), short leg at the 0.3 mm gap, R tuned to move the match to 2.460 GHz.",
+  "case": {
+   "board": "build/r5/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.375,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 6.2,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.15
+   }
+  },
+  "tune": {
+   "param": "R",
+   "f": 2460000000.0,
+   "metric": "S11min",
+   "iters": 5,
+   "lo": 0.6,
+   "hi": 11.5
+  }
+ }
+]

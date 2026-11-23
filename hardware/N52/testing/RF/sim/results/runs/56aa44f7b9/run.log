@@ -1,0 +1,31 @@
+vias: 68 as drill-size barrels, 10 as wires
+mesh {'cells': [186, 132, 89], 'ncells': 2185128, 'min_cell': [0.08333299999999966, 0.08333299999999966, 0.06600800000000001]}
+openEMS - fixed number of threads: 4
+ ---------------------------------------------------------------------- 
+ | openEMS 64bit -- version v0.37.0-rc3-16-g5b1ecb1
+ | (C) 2010-2026 Thorsten Liebig <thorsten.liebig@gmx.de>  GPL license
+ ---------------------------------------------------------------------- 
+	Used external libraries:
+		CSXCAD -- Version: v0.7.0-rc3-1-gbd2c133
+		hdf5   -- Version: 1.10.7
+		          compiled against: HDF5 library version: 1.10.7
+		tinyxml -- compiled against: 2.6.2
+		fparser
+		boost  -- compiled against: 1_74
+		vtk -- Version: 9.1.0
+		       compiled against: 9.1.0
+
+Create FDTD operator (compressed SSE + multi-threading)
+FDTD simulation size: 186x132x89 --> 2.18513e+06 FDTD cells 
+FDTD timestep is: 1.46988e-13 s; Nyquist rate: 931 timesteps @3.65375e+09 Hz
+Excitation signal length is: 16242 timesteps (2.38738e-09s)
+Max. number of timesteps: 1000000 ( --> 61.5688 * Excitation signal length)
+Create FDTD engine (compressed SSE + multi-threading)
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Running FDTD engine... this may take a while... grab a cup of coffee?!?
+[@       16s] Timestep:          232 || Speed:   30.3 MC/s (7.206e-02 s/TS) || Energy: ~4.34e-24 (- 0.00dB)

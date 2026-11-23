@@ -1,0 +1,9 @@
+b4 H4.6 W0.5 S1.0 fold       it0 n=0.300 S=1.00  f_res 2.424 GHz  Rmax 239 ohm  S11 min -12.8 dB @ 2.424 GHz
+b4 H4.6 W0.5 S1.5            it0 A=15.600 S=1.50  f_res 2.556 GHz  Rmax 396 ohm  S11 min -11.1 dB @ 2.556 GHz
+b4 H4.6 W0.5 S1.0 fold       it1 n=0.182 S=1.00  f_res 2.459 GHz  Rmax 238 ohm  S11 min -13.3 dB @ 2.459 GHz
+b4 H4.6 W0.5 S1.5            it1 A=15.950 S=1.50  f_res 2.519 GHz  Rmax 397 ohm  S11 min -10.8 dB @ 2.519 GHz
+
+final
+b4 H4.6 W0.5 S1.0 fold       986b24b1db  n=0.182 S=1.00  f_res 2.459 GHz  Rmax 238 ohm  S11 min -13.3 dB @ 2.459  BLE worst -7.6 dB
+b4 H4.6 W1.0 S1.25 fold      failed [{'hash': 'd2a6eadcc9', 'error': ['copper 0.40 mm from the board edge at (9.00, 11.60), minimum 0.4']}]
+b4 H4.6 W0.5 S1.5            9c28d236eb  A=15.950 S=1.50  f_res 2.519 GHz  Rmax 397 ohm  S11 min -10.8 dB @ 2.519  BLE worst -4.3 dB

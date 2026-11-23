@@ -1,0 +1,52 @@
+[
+ {
+  "name": "r4v fold-back it0 no battery",
+  "purpose": "r4v fold-back it0 (b7ffa43b12) shows two resonances at 2.39 and 2.515 GHz with the match loop between them (BLE worst -3.4 dB, 120k steps ring-down). Is the second resonator the CR1632 cell and holder? Same case without the battery.",
+  "case": {
+   "board": "build/r4v/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "battery": false
+  }
+ },
+ {
+  "name": "r4v fold-back it0 lossless",
+  "purpose": "r4v fold-back it0 (b7ffa43b12): radiation efficiency only 36-45 %. Same case with tand 0: is the lost power dielectric loss in the high-Q double resonance?",
+  "case": {
+   "board": "build/r4v/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 1.0,
+    "S": 1.25,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 3.0,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "tand_scale": 0.0
+  }
+ }
+]

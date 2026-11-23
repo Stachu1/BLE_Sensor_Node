@@ -1,0 +1,28 @@
+{
+ "hash": "1a98467ebd",
+ "name": "n2",
+ "tag": "smoke",
+ "board": "build/disc30/board.json",
+ "model": "m1",
+ "battery": true,
+ "desc": "mifa S=1.6 H=4 A=2.4 G=1 n=2 P=1.2 W=0.5  (5.7 x 4.0 mm, L 13.9 mm)",
+ "size": {
+  "w": 5.7,
+  "h": 4.0,
+  "area": 22.8
+ },
+ "f_min": 3400000000.0,
+ "s_min": -0.6534644910466978,
+ "ble_none": -0.08741994649456972,
+ "ble_1": -0.11085778430949195,
+ "ble_2": -2.2844171436402916,
+ "match1": "shunt 0.70 pF",
+ "match2": "series 0.79 pF, shunt 3.45 pF",
+ "Z2440": [
+  1.3176886432858643,
+  99.47744325227136
+ ],
+ "rad_eff": 0.6496023099753069,
+ "Dmax": 1.7515021557268842,
+ "purpose": "Smoke test of the AirTag pipeline (synthetic 30 mm disc board, CR1632 on the bottom)"
+}

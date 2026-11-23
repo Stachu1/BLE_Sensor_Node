@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "BSN-N52")(type "KiCad")(uri "${KIPRJMOD}/library/BSN-N52.kicad_sym")(options "")(descr "BSN-N52 project symbols"))
+)

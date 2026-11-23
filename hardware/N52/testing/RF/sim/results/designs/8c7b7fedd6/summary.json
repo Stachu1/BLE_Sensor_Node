@@ -1,0 +1,32 @@
+{
+ "hash": "8c7b7fedd6",
+ "name": "b4 H4.6 W0.5 S1.0 fold it0",
+ "tag": "b4v_s11",
+ "board": "build/b4/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "mifa S=1 H=4.6 A=15.7 G=1 n=0.3 P=1 W=0.5  (17.2 x 4.6 mm, L 22.0 mm)",
+ "size": {
+  "w": 17.2,
+  "h": 4.6,
+  "area": 79.12,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "f_min": 2424000000.0,
+ "s_min": -12.795270609462202,
+ "ble_none": -7.65028340251268,
+ "ble_1": -7.995866613560687,
+ "ble_2": -9.875095899808262,
+ "match1": "shunt 0.35 pF",
+ "match2": "series 3.92 pF, shunt 5.41 nH",
+ "Z2440": [
+  32.275711773335004,
+  -10.790858716398128
+ ],
+ "rad_eff": 1.021547240881701,
+ "Dmax": 1.859115027997964,
+ "purpose": "Board copy b4 (feed at (143, 93), 24 x 5 keep-out, GND pours). b4 straight IFA (H4.5 W0.5 S1.0) it1 reached the target: S11 min -13.4 dB at 2.476 GHz but its -10 dB band is only 77 MHz (BLE needs 78), so the antenna Q is the limit. Variant: arm raised to the board edge limit (4.6 mm, 0.4 mm edge clearance) for more bandwidth. The corner limits a straight arm to A 15.95 at this height, so a short fold down at the end (n) is tuned so the S11 minimum sits at 2.465 GHz."
+}

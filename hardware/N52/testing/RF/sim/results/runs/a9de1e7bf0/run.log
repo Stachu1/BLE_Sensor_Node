@@ -1,0 +1,50 @@
+vias: 67 as drill-size barrels, 12 as wires
+mesh {'cells': [186, 127, 89], 'ncells': 2102358, 'min_cell': [0.07915199999999967, 0.08333299999999966, 0.06600800000000001]}
+openEMS - fixed number of threads: 2
+ ---------------------------------------------------------------------- 
+ | openEMS 64bit -- version v0.37.0-rc3-16-g5b1ecb1
+ | (C) 2010-2026 Thorsten Liebig <thorsten.liebig@gmx.de>  GPL license
+ ---------------------------------------------------------------------- 
+	Used external libraries:
+		CSXCAD -- Version: v0.7.0-rc3-1-gbd2c133
+		hdf5   -- Version: 1.10.7
+		          compiled against: HDF5 library version: 1.10.7
+		tinyxml -- compiled against: 2.6.2
+		fparser
+		boost  -- compiled against: 1_74
+		vtk -- Version: 9.1.0
+		       compiled against: 9.1.0
+
+Create FDTD operator (compressed SSE + multi-threading)
+FDTD simulation size: 186x127x89 --> 2.10236e+06 FDTD cells 
+FDTD timestep is: 1.45248e-13 s; Nyquist rate: 943 timesteps @3.65047e+09 Hz
+Excitation signal length is: 16437 timesteps (2.38744e-09s)
+Max. number of timesteps: 1000000 ( --> 60.8384 * Excitation signal length)
+Create FDTD engine (compressed SSE + multi-threading)
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Running FDTD engine... this may take a while... grab a cup of coffee?!?
+[@       39s] Timestep:          235 || Speed:   12.6 MC/s (1.662e-01 s/TS) || Energy: ~2.06e-23 (- 0.00dB)
+[@     1m19s] Timestep:          470 || Speed:   12.2 MC/s (1.725e-01 s/TS) || Energy: ~3.30e-23 (- 0.00dB)
+[@     2m00s] Timestep:          705 || Speed:   12.1 MC/s (1.736e-01 s/TS) || Energy: ~2.47e-23 (- 1.26dB)
+[@     2m41s] Timestep:          940 || Speed:   12.1 MC/s (1.736e-01 s/TS) || Energy: ~4.04e-22 (- 0.00dB)
+[@     3m22s] Timestep:         1175 || Speed:   11.9 MC/s (1.765e-01 s/TS) || Energy: ~2.58e-21 (- 0.00dB)
+[@     4m02s] Timestep:         1410 || Speed:   12.5 MC/s (1.681e-01 s/TS) || Energy: ~8.18e-21 (- 0.00dB)
+[@     4m41s] Timestep:         1645 || Speed:   12.4 MC/s (1.690e-01 s/TS) || Energy: ~1.49e-20 (- 0.00dB)
+[@     5m32s] Timestep:         1880 || Speed:    9.7 MC/s (2.161e-01 s/TS) || Energy: ~1.38e-20 (- 0.34dB)
+[@     6m21s] Timestep:         2115 || Speed:   10.1 MC/s (2.086e-01 s/TS) || Energy: ~6.77e-21 (- 3.42dB)
+[@     7m04s] Timestep:         2350 || Speed:   11.6 MC/s (1.811e-01 s/TS) || Energy: ~6.07e-20 (- 0.00dB)
+[@     7m40s] Timestep:         2585 || Speed:   13.7 MC/s (1.539e-01 s/TS) || Energy: ~3.36e-19 (- 0.00dB)
+[@     8m14s] Timestep:         2820 || Speed:   14.7 MC/s (1.430e-01 s/TS) || Energy: ~9.26e-19 (- 0.00dB)
+[@     8m45s] Timestep:         3055 || Speed:   15.8 MC/s (1.332e-01 s/TS) || Energy: ~1.48e-18 (- 0.00dB)

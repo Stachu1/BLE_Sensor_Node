@@ -1,0 +1,120 @@
+{
+ "case": {
+  "model": "m2",
+  "ports": "feed",
+  "battery": true,
+  "mask": "none",
+  "er_scale": 1.0,
+  "nf2ff": true,
+  "board": "build/b1/board.json",
+  "antenna": {
+   "W": 0.5,
+   "Wf": 0.5,
+   "Ws": 1.0,
+   "S": 1.75,
+   "H": 4.5,
+   "A": 13.4,
+   "G": 1.0,
+   "n": 0,
+   "P": 1.0,
+   "Nd": 1.0,
+   "Nw": 1.0,
+   "K": 1.0,
+   "family": "mifa",
+   "keepout": {
+    "u0": -8.0,
+    "w": 24.0,
+    "h": 5.0,
+    "m": 0.3
+   }
+  },
+  "name": "b1 IFA W0.5 Ws1.0 it0",
+  "tag": "b1_ifa",
+  "purpose": "Real board copy b1 (sim/boards/b1: AirTag.kicad_pcb of 2026-11-14 01:21, AE1 = generic MIFA_2G4 with the 24 x 5 mm keep-out at (146.0, 93.0) straight above L1, GND pours on both layers with a via fence, feed trace not routed, port across the notch). Can the antenna reach 50 ohm without parts? Tuned: arm length A to 2.465 GHz and S towards Rmax 50 ohm. Variant: 1 mm short leg only (lower stub inductance)."
+ },
+ "mesh": {
+  "cells": [
+   184,
+   130,
+   89
+  ],
+  "ncells": 2128880,
+  "min_cell": [
+   0.08333299999999966,
+   0.08333299999999966,
+   0.06600800000000001
+  ],
+  "t_run": 10291.482958555222
+ },
+ "t_total": 10332.229152202606,
+ "eff": [
+  {
+   "f": 2400000000.0,
+   "Prad": 2.8304837232028167e-30,
+   "rad_eff": 0.3784695320144102,
+   "tot_eff": 0.0033105550056466673,
+   "Dmax_dBi": 1.887601304845872,
+   "flux_eff": 0.32934794399359
+  },
+  {
+   "f": 2440000000.0,
+   "Prad": 4.3552131488903086e-30,
+   "rad_eff": 0.4719222540288243,
+   "tot_eff": 0.005055128432608692,
+   "Dmax_dBi": 1.9040760723831383,
+   "flux_eff": 0.409367215810077
+  },
+  {
+   "f": 2480000000.0,
+   "Prad": 7.657118731267927e-30,
+   "rad_eff": 0.6111134745869866,
+   "tot_eff": 0.008907687443179317,
+   "Dmax_dBi": 1.9220906340965858,
+   "flux_eff": 0.530710218480193
+  }
+ ],
+ "size": {
+  "w": 15.65,
+  "h": 4.5,
+  "area": 70.42,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "length": 19.4,
+ "params": {
+  "W": 0.5,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.75,
+  "H": 4.5,
+  "A": 13.4,
+  "G": 1.0,
+  "n": 0,
+  "P": 1.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0
+ },
+ "metrics": {
+  "f_min": 2643000000.0,
+  "s_min": -0.3761235826002043,
+  "ble_worst": -0.03815580228047695,
+  "ble_best": -0.06577462970412601,
+  "Z_2440": [
+   46.54543476704798,
+   -927.2163462821339
+  ],
+  "S11_2440_dB": -0.04677163271193979,
+  "bw10": null,
+  "bw6": null,
+  "f_Rmax": 2672000000.0,
+  "Rmax": 373.7343097890458,
+  "Z_fmin": [
+   329.9278492012044,
+   -806.8656061444365
+  ],
+  "min_interior": true
+ }
+}

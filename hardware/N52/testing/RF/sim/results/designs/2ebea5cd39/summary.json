@@ -1,0 +1,32 @@
+{
+ "hash": "2ebea5cd39",
+ "name": "b1 IFA W0.5 it0",
+ "tag": "b1_ifa",
+ "board": "build/b1/board.json",
+ "model": "m2",
+ "battery": true,
+ "desc": "mifa S=1.5 H=4.5 A=13.4 G=1 n=0 P=1 W=0.5  (15.2 x 4.5 mm, L 19.1 mm)",
+ "size": {
+  "w": 15.15,
+  "h": 4.5,
+  "area": 68.17,
+  "keepout": [
+   24.0,
+   5.0
+  ]
+ },
+ "f_min": 2584000000.0,
+ "s_min": -0.449635614771965,
+ "ble_none": -0.05342432278475892,
+ "ble_1": -0.09260340304964422,
+ "ble_2": -1.3481771266315234,
+ "match1": "series 14.80 nH",
+ "match2": "shunt 13.23 nH, series 0.27 pF",
+ "Z2440": [
+  68.51682622403436,
+  -873.013151828749
+ ],
+ "rad_eff": 0.6405877292884664,
+ "Dmax": 1.9049424421749148,
+ "purpose": "Real board copy b1 (sim/boards/b1: AirTag.kicad_pcb of 2026-11-14 01:21, AE1 = generic MIFA_2G4 with the 24 x 5 mm keep-out at (146.0, 93.0) straight above L1, GND pours on both layers with a via fence, feed trace not routed, port across the notch). Can the antenna reach 50 ohm without parts? Tuned: arm length A to 2.465 GHz and S towards Rmax 50 ohm. Variant: the generic copper (0.5 mm arm and legs)."
+}

@@ -1,0 +1,170 @@
+[
+ {
+  "name": "r7 smoke 4-port e0 normal mesh",
+  "purpose": "Smoke test 2026-11-15 of the 4-port chain (S-matrix, parts on the laptop, field and far-field superposition) on the normal mesh without mask, before the high-resolution r7_final results arrive. Also a convergence point.",
+  "case": {
+   "board": "build/r7/board.json",
+   "ports": "trace",
+   "port_at": {
+    "ref": "L2",
+    "net": "Net-(U2-ANT)",
+    "len": 0.2
+   },
+   "part_ports": [
+    "L2",
+    "C1",
+    "L1"
+   ],
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 2.0,
+    "S": 1.825,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "Nd": 1.0,
+    "Nw": 0.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "battery": true,
+   "nf2ff": true,
+   "field_dumps": "fd",
+   "excite": 0
+  }
+ },
+ {
+  "name": "r7 smoke 4-port e1 normal mesh",
+  "purpose": "Smoke test 2026-11-15 of the 4-port chain (S-matrix, parts on the laptop, field and far-field superposition) on the normal mesh without mask, before the high-resolution r7_final results arrive. Also a convergence point.",
+  "case": {
+   "board": "build/r7/board.json",
+   "ports": "trace",
+   "port_at": {
+    "ref": "L2",
+    "net": "Net-(U2-ANT)",
+    "len": 0.2
+   },
+   "part_ports": [
+    "L2",
+    "C1",
+    "L1"
+   ],
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 2.0,
+    "S": 1.825,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "Nd": 1.0,
+    "Nw": 0.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "battery": true,
+   "nf2ff": true,
+   "field_dumps": "fd",
+   "excite": 1
+  }
+ },
+ {
+  "name": "r7 smoke 4-port e2 normal mesh",
+  "purpose": "Smoke test 2026-11-15 of the 4-port chain (S-matrix, parts on the laptop, field and far-field superposition) on the normal mesh without mask, before the high-resolution r7_final results arrive. Also a convergence point.",
+  "case": {
+   "board": "build/r7/board.json",
+   "ports": "trace",
+   "port_at": {
+    "ref": "L2",
+    "net": "Net-(U2-ANT)",
+    "len": 0.2
+   },
+   "part_ports": [
+    "L2",
+    "C1",
+    "L1"
+   ],
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 2.0,
+    "S": 1.825,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "Nd": 1.0,
+    "Nw": 0.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "battery": true,
+   "nf2ff": true,
+   "field_dumps": "fd",
+   "excite": 2
+  }
+ },
+ {
+  "name": "r7 smoke 4-port e3 normal mesh",
+  "purpose": "Smoke test 2026-11-15 of the 4-port chain (S-matrix, parts on the laptop, field and far-field superposition) on the normal mesh without mask, before the high-resolution r7_final results arrive. Also a convergence point.",
+  "case": {
+   "board": "build/r7/board.json",
+   "ports": "trace",
+   "port_at": {
+    "ref": "L2",
+    "net": "Net-(U2-ANT)",
+    "len": 0.2
+   },
+   "part_ports": [
+    "L2",
+    "C1",
+    "L1"
+   ],
+   "antenna": {
+    "W": 1.0,
+    "Wf": 0.5,
+    "Ws": 2.0,
+    "S": 1.825,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "Nd": 1.0,
+    "Nw": 0.0,
+    "K": 1.0,
+    "family": "fmifa",
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    }
+   },
+   "battery": true,
+   "nf2ff": true,
+   "field_dumps": "fd",
+   "excite": 3
+  }
+ }
+]

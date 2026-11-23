@@ -1,0 +1,43 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r5/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.25,
+  "Ws": 2.0,
+  "S": 1.425,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 6.2,
+  "Nd": 1.0,
+  "Nw": 0.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "trace_port": {
+  "y": 2.035,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r5 fold-back S1.425 Ws2 Wf0.25 it0",
+ "tag": "r5_g",
+ "purpose": "Narrow feed leg trend (Wf 0.5 / 0.25 at S1.55: -10.5 / -12.4 dB, Wf 0.25 S1.425 a63681b23e: -14.8 dB, -10 dB band 50 MHz at 2.496 GHz). Feed leg 0.25 mm (pad stays 0.5 mm), short leg at the 0.3 mm gap, R tuned to move the match to 2.460 GHz."
+}

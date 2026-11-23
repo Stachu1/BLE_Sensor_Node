@@ -1,0 +1,22 @@
+/* Pins from hardware/N52/BSN-N52.kicad_sch:
+ *   P0.16 = SCL, P0.18 = SDA  (HDC2010 U1)
+ *   P0.12 = INT               (HDC2010 DRDY/INT)
+ * There are NO external I2C pull-ups on the board, so the nRF internal pull-ups (~13k) are used.
+ */
+&pinctrl {
+	i2c0_default: i2c0_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 18)>,
+				<NRF_PSEL(TWIM_SCL, 0, 16)>;
+			bias-pull-up;
+		};
+	};
+
+	i2c0_sleep: i2c0_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 18)>,
+				<NRF_PSEL(TWIM_SCL, 0, 16)>;
+			low-power-enable;
+		};
+	};
+};

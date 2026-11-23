@@ -1,0 +1,75 @@
+/dts-v1/;
+#include <nordic/nrf52805_caaa.dtsi>
+#include "bsn_n52-pinctrl.dtsi"
+
+/ {
+	model = "BSN-N52 (nRF52805-CAAA)";
+	compatible = "oj,bsn-n52";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+	};
+
+	/* HDC2010 DRDY/INT: push-pull when enabled, polarity set by the firmware (ble_sensor: active high). */
+	hdc_int: hdc_int {
+		gpios = <&gpio0 12 GPIO_ACTIVE_HIGH>;
+	};
+
+	aliases {
+		hdcint = &hdc_int;
+		watchdog0 = &wdt0;
+	};
+};
+
+/* Regulator stays in LDO mode at boot on purpose: the hwtest enables the DC/DC itself and checks that it works
+ * (L3 on DEC2/DCC). The real firmware should set regulator-initial-mode = <NRF5X_REG_MODE_DCDC> once verified. */
+
+&adc {
+	status = "okay";
+};
+
+/* P0.21 is the reset pin (J1 pin 3). */
+&uicr {
+	gpio-as-nreset;
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&wdt0 {
+	status = "okay";
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/* No bootloader: whole flash is the app, last 8 kB for storage. */
+		slot0_partition: partition@0 {
+			label = "image-0";
+			reg = <0x00000000 0x0002e000>;
+		};
+
+		storage_partition: partition@2e000 {
+			label = "storage";
+			reg = <0x0002e000 0x00002000>;
+		};
+	};
+};

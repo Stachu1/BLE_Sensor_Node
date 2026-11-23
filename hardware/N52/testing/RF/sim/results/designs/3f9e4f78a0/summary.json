@@ -1,0 +1,28 @@
+{
+ "hash": "3f9e4f78a0",
+ "name": "n4 notch in polygon",
+ "tag": "smoke",
+ "board": "build/disc30_notch/board.json",
+ "model": "m1",
+ "battery": true,
+ "desc": "mifa S=1.6 H=4 A=2.4 G=1 n=4 P=1.2 W=0.5  (8.1 x 4.0 mm, L 21.3 mm)",
+ "size": {
+  "w": 8.1,
+  "h": 4.0,
+  "area": 32.4
+ },
+ "f_min": 3400000000.0,
+ "s_min": -8.131976958546478,
+ "ble_none": -0.16776870784730485,
+ "ble_1": -0.19707274810991662,
+ "ble_2": -3.4704899943891316,
+ "match1": "shunt 0.55 pF",
+ "match2": "series 0.61 pF, shunt 3.15 pF",
+ "Z2440": [
+  4.121462400115486,
+  126.22473582091516
+ ],
+ "rad_eff": 0.8176083563018944,
+ "Dmax": 1.7477599061206615,
+ "purpose": "Validation: feed notch built into the ground polygon instead of cut by the keep-out boxes. Must match n4."
+}

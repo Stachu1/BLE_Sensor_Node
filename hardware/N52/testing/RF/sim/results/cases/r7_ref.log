@@ -1,0 +1,2 @@
+r7 final ref normal mesh no mask cdb92f514c  min  -8.40 dB @ 2.511 GHz  BLE worst  -2.63  Z(2.44) 173.3-68.4j  eff [0.73, 0.75, 0.75]  15.7x4.6 mm
+r7 final ref normal mesh + mask 1d7585b9c4  min  -8.29 dB @ 2.492 GHz  BLE worst  -3.30  Z(2.44) 100.3-72.0j  eff [0.67, 0.67, 0.69]  15.7x4.6 mm

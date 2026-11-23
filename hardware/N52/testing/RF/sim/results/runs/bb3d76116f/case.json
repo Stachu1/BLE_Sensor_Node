@@ -1,0 +1,33 @@
+{
+ "model": "m3",
+ "ports": "feed",
+ "battery": true,
+ "mask": "explicit",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/b4/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 1.0,
+  "S": 1.25,
+  "H": 4.6,
+  "A": 15.4,
+  "G": 1.0,
+  "n": 0.1656,
+  "P": 1.0,
+  "Nd": 1.0,
+  "Nw": 1.0,
+  "K": 1.0,
+  "family": "mifa",
+  "keepout": {
+   "u0": -5.0,
+   "w": 24.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "name": "T1 solder mask",
+ "tag": "robust1",
+ "purpose": "Robustness of the chosen design MIFA_2G4_T1 (run a21ed6f324: b4, feed (143, 93), 5 mm keep-out, H4.6 W1.0 S1.25 A15.4 n0.17, S11 min -18.5 dB at 2.459 GHz, -10 dB band 88 MHz). explicit 20 um solder mask (er 3.8) on both sides, checks the assumed -1 % shift that the 2.465 GHz target is based on. Slow (fine z cells)."
+}

@@ -1,0 +1,32 @@
+{
+ "hash": "a18ad9bd49",
+ "name": "r5 fold-back it0",
+ "tag": "r5_a",
+ "board": "build/r5/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.25 H=4.6 A=12.4 D=1.5 R=3 W=1  (14.7 x 4.6 mm, L 22.2 mm)",
+ "size": {
+  "w": 14.65,
+  "h": 4.6,
+  "area": 67.39,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2610000000.0,
+ "s_min": -7.359481197914085,
+ "ble_none": -1.3748462218060997,
+ "ble_1": -2.330863104481099,
+ "ble_2": -6.485625578084921,
+ "match1": "series 1.10 pF",
+ "match2": "shunt 13.13 nH, series 0.58 pF",
+ "Z2440": [
+  232.41328786855246,
+  237.6855579498065
+ ],
+ "rad_eff": 0.7396634015081636,
+ "Dmax": 1.6307217378573635,
+ "purpose": "Board r5 = AirTag.kicad_pcb of 2026-11-14 19:20 with the GND via stitching added by the user (57 vias, short-leg island stitched). Fold-back it0 geometry (W1 S1.25 H4.6 A12.4 D1.5 R3), compare with r4 (floating island) and r4v (3 test vias, double resonance 2.39/2.515 GHz)."
+}

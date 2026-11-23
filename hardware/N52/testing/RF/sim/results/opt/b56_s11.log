@@ -1,0 +1,3 @@
+b5 k4 H3.2 straight          it0 A=17.000 S=1.00  f_res 2.399 GHz  Rmax 183 ohm  S11 min -10.8 dB @ 2.399 GHz
+b5 k4 H3.2 fold A15.5        it0 n=1.000 S=1.00  f_res 2.325 GHz  Rmax 189 ohm  S11 min -9.8 dB @ 2.325 GHz
+b6 k6 H5.4 straight          it0 A=15.000 S=1.00  f_res 2.561 GHz  Rmax 275 ohm  S11 min -17.2 dB @ 2.561 GHz

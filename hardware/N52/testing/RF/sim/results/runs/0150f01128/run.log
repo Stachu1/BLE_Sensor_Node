@@ -1,0 +1,37 @@
+vias: 68 as drill-size barrels, 10 as wires
+mesh {'cells': [186, 130, 89], 'ncells': 2152020, 'min_cell': [0.07915199999999967, 0.08333299999999966, 0.06600800000000001]}
+openEMS - fixed number of threads: 4
+ ---------------------------------------------------------------------- 
+ | openEMS 64bit -- version v0.37.0-rc3-16-g5b1ecb1
+ | (C) 2010-2026 Thorsten Liebig <thorsten.liebig@gmx.de>  GPL license
+ ---------------------------------------------------------------------- 
+	Used external libraries:
+		CSXCAD -- Version: v0.7.0-rc3-1-gbd2c133
+		hdf5   -- Version: 1.10.7
+		          compiled against: HDF5 library version: 1.10.7
+		tinyxml -- compiled against: 2.6.2
+		fparser
+		boost  -- compiled against: 1_74
+		vtk -- Version: 9.1.0
+		       compiled against: 9.1.0
+
+Create FDTD operator (compressed SSE + multi-threading)
+FDTD simulation size: 186x130x89 --> 2.15202e+06 FDTD cells 
+FDTD timestep is: 1.45168e-13 s; Nyquist rate: 943 timesteps @3.65248e+09 Hz
+Excitation signal length is: 16446 timesteps (2.38743e-09s)
+Max. number of timesteps: 1000000 ( --> 60.8051 * Excitation signal length)
+Create FDTD engine (compressed SSE + multi-threading)
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Warning: Unused primitive (type: Polygon) detected in property: Cu!
+Running FDTD engine... this may take a while... grab a cup of coffee?!?
+[@       16s] Timestep:          235 || Speed:   31.5 MC/s (6.837e-02 s/TS) || Energy: ~4.34e-24 (- 0.00dB)

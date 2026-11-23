@@ -1,0 +1,3 @@
+CONFIG_ARM_MPU=y
+CONFIG_GPIO=y
+# No UART on this board (only SWD + I2C + INT are wired). Console goes over RTT.

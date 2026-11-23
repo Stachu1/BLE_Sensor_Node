@@ -1,0 +1,32 @@
+{
+ "hash": "2dbe6d660b",
+ "name": "r4 fold-back W1.0 D1.5 it0",
+ "tag": "r4_a",
+ "board": "build/r4/board.json",
+ "model": "m3",
+ "battery": true,
+ "desc": "fmifa S=1.25 H=4.6 A=12.4 D=1.5 R=3 W=1  (14.7 x 4.6 mm, L 22.2 mm)",
+ "size": {
+  "w": 14.65,
+  "h": 4.6,
+  "area": 67.39,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 2532000000.0,
+ "s_min": -11.182761108973969,
+ "ble_none": -0.6152894176323156,
+ "ble_1": -1.7023363986493403,
+ "ble_2": -5.139705257435971,
+ "match1": "series 1.00 pF",
+ "match2": "series 1.47 pF, shunt 1.89 pF",
+ "Z2440": [
+  10.40348197828101,
+  75.51119870036808
+ ],
+ "rad_eff": 0.3337179911680081,
+ "Dmax": 2.6126566379493656,
+ "purpose": "Board r4 (AirTag.kicad_pcb of 2026-11-14 15:53: 24 x 17 mm, GND pours on both layers, AE1 at (146, 96.15), keep-out 20 x 5 mm (x 142..162) from the user-edited footprint, no notch, L1 right below the feed pad). Port beside the L1 feed pad (end of the matching network), so the result is what the network sees with no extra parts. S11 minimum tuned to 2.460 GHz. Variant: fold-back arm, 1 mm traces, return row 0.5 mm below the arm, return length R tuned."
+}

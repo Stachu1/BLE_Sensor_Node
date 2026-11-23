@@ -1,0 +1,60 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "explicit",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r7/board.json",
+ "port_at": {
+  "ref": "L2",
+  "net": "Net-(U2-ANT)",
+  "len": 0.2
+ },
+ "part_ports": [
+  "L2",
+  "C1",
+  "L1"
+ ],
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.5,
+  "Ws": 2.0,
+  "S": 1.825,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 5.5,
+  "Nd": 1.0,
+  "Nw": 0.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "field_dumps": "fd",
+ "mesh": {
+  "ant": 0.125,
+  "port": 0.06,
+  "board": 0.4
+ },
+ "excite": 1,
+ "trace_port": {
+  "y": -0.985,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.2,
+  "part": "L2"
+ },
+ "name": "r7 final 4-port e1 L2 gap",
+ "tag": "r7_final",
+ "purpose": "Final check 2026-11-15 on the board as saved (r7): 4-port S-matrix of the antenna, board, CR1632 and the L2-C1-L1 pads and traces, high-resolution mesh (0.125 / 0.06 / 0.4 mm) with the explicit 20 um solder mask. Excitation 1 of 4 (L2 gap). The real parts are added on the laptop, the matched 2.44 GHz fields and far field are the weighted sum of the four runs."
+}

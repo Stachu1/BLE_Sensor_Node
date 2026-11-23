@@ -1,0 +1,32 @@
+{
+ "hash": "8db01be0d9",
+ "name": "r4 meander it0 no battery",
+ "tag": "r4_diag",
+ "board": "build/r4/board.json",
+ "model": "m3",
+ "battery": false,
+ "desc": "mifa S=1.25 H=4.6 A=12 G=1 n=1.5 P=1.5 W=1  (15.8 x 4.6 mm, L 22.0 mm)",
+ "size": {
+  "w": 15.75,
+  "h": 4.6,
+  "area": 72.45,
+  "keepout": [
+   20.0,
+   5.0
+  ]
+ },
+ "f_min": 1600000000.0,
+ "s_min": -20.766853380555222,
+ "ble_none": -0.7040576034866481,
+ "ble_1": -1.6674989076458127,
+ "ble_2": -9.47057334455277,
+ "match1": "shunt 1.50 pF",
+ "match2": "series 2.53 pF, shunt 3.97 pF",
+ "Z2440": [
+  3.648982500550029,
+  40.38181108501746
+ ],
+ "rad_eff": 0.07528585466418397,
+ "Dmax": 1.1254828889868576,
+ "purpose": "Diagnostic of r4 meander it0 (c2d53a710f: -10 dB band only 22 MHz, radiation efficiency 40 %, ring-down 112k steps). Without the CR1632 and holder: on r4 the cell edge reaches the antenna ground edge right under the feed. Does the bandwidth / efficiency recover?"
+}

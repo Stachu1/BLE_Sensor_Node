@@ -1,0 +1,80 @@
+[
+ {
+  "name": "r6 fold-back S1.425 Ws2 Wf0.25",
+  "purpose": "Board r6 = AirTag.kicad_pcb of 2026-11-14 23:46: L1 moved 0.75 mm up against the AE1 feed pad (feed trace in the pour almost gone), 7 vias moved. Fills the idle slot while r5_e tunes: narrow feed leg (0.25 mm) with the short leg moved in to keep the 0.3 mm gap (S 1.425 instead of 1.55), R 5.5. Sensitivity of Rmax and the match to S at this feed width.",
+  "case": {
+   "board": "build/r6/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 1.5,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ },
+ {
+  "name": "r6 fold-back D2.5",
+  "purpose": "Board r6 = AirTag.kicad_pcb of 2026-11-14 23:46: L1 moved 0.75 mm up against the AE1 feed pad (feed trace in the pour almost gone), 7 vias moved. Matching parts are allowed now (user 2026-11-14): the antenna is scored by its Q and by match_tee.py (L2-C1-L1 T network, real 0402 parts, power into the antenna, >= 20 dB harmonic rejection). Base a63681b23e (S1.425 Ws2 Wf0.25 R5.5, Q 32, best T: worst channel -1.25 dB). Variant: return row 2.5 mm below the arm instead of 1.5 mm: less coupling between the opposite currents in arm and return row. Lower Q?",
+  "case": {
+   "board": "build/r6/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.0,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 4.6,
+    "A": 12.4,
+    "D": 2.5,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ },
+ {
+  "name": "r6 fold-back W1.5 H3.95 D1.8",
+  "purpose": "Board r6 = AirTag.kicad_pcb of 2026-11-14 23:46: L1 moved 0.75 mm up against the AE1 feed pad (feed trace in the pour almost gone), 7 vias moved. Matching parts are allowed now (user 2026-11-14): the antenna is scored by its Q and by match_tee.py (L2-C1-L1 T network, real 0402 parts, power into the antenna, >= 20 dB harmonic rejection). Base a63681b23e (S1.425 Ws2 Wf0.25 R5.5, Q 32, best T: worst channel -1.25 dB). Variant: 1.5 mm traces (H lowered to 3.95 so the arm stays in the 5 mm keep-out). Lower Q?",
+  "case": {
+   "board": "build/r6/board.json",
+   "ports": "trace",
+   "antenna": {
+    "family": "fmifa",
+    "W": 1.5,
+    "Ws": 2.0,
+    "S": 1.425,
+    "H": 3.95,
+    "A": 12.4,
+    "D": 1.8,
+    "R": 5.5,
+    "keepout": {
+     "u0": -4.0,
+     "w": 20.0,
+     "h": 5.0,
+     "m": 0.3
+    },
+    "Nw": 0.0,
+    "Wf": 0.25
+   }
+  }
+ }
+]

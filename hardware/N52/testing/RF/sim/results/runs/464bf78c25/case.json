@@ -1,0 +1,43 @@
+{
+ "model": "m3",
+ "ports": "trace",
+ "battery": true,
+ "mask": "none",
+ "er_scale": 1.0,
+ "nf2ff": true,
+ "board": "build/r6/board.json",
+ "antenna": {
+  "W": 1.0,
+  "Wf": 0.25,
+  "Ws": 3.0,
+  "S": 1.925,
+  "H": 4.6,
+  "A": 12.4,
+  "D": 1.5,
+  "R": 5.5,
+  "Nd": 1.0,
+  "Nw": 0.0,
+  "K": 1.0,
+  "family": "fmifa",
+  "keepout": {
+   "u0": -4.0,
+   "w": 20.0,
+   "h": 5.0,
+   "m": 0.3
+  }
+ },
+ "trace_port": {
+  "y": 2.785,
+  "x": [
+   -4.63,
+   -4.31,
+   -3.68,
+   -3.37
+  ],
+  "len": 0.4,
+  "part": "L1"
+ },
+ "name": "r6 fold-back Ws3 S1.925 Wf0.25",
+ "tag": "r6_b",
+ "purpose": "Matching parts allowed: lower antenna Q wanted. r6 base 1d83d77615 (Ws2 S1.425, Q 30-33, best T 6.2/0.8/6.8: worst channel -1.16 dB). Short leg 3 mm wide (gap to the feed leg kept at 0.3 mm)."
+}
