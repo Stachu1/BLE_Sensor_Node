@@ -71,8 +71,17 @@ built, with the pi network) was measured at 2440 MHz. The two B #2 runs show onl
 
 ## Open
 
-- [ ] Measurement distance and board direction for the two sweeps (ask the lab), to turn the sweep floor into an
+- Chamber axes (user, 2026-11-24): X towards the receiving antenna (board X as in KiCad), Y to the left seen from
+  the board, Z up. Right-handed, the usual convention for antenna measurements. Chamber Y is the opposite sign of
+  KiCad Y (KiCad's Y points down on screen). Keep this in mind when comparing with the simulated pattern.
+- [ ] Measurement distance and board direction for the two sweeps (ask the lab on the second session), to turn the sweep floor into an
       EIRP limit for H2 to H5.
-- [ ] Why the B #9 TRP is above the conducted power at J2 on B #3.
+- [x] Why the B #9 TRP is above the conducted power at J2 on B #3. Settled with the supervisor 2026-11-24: the
+      chamber is the reference (calibrated). Possible causes of the gap, the author's and agreed as likely by the
+      supervisor, not investigated: different boards
+      (assembly, part tolerances), and J2 not being a true 50 Ω point, so the PA output may be better matched to the
+      antenna than to the analyser input.
+- [x] Harmonics in the 3D runs: the 2400 MHz runs on B #2 read about the same at the harmonic frequencies as the
+      2440 MHz run, which supports that the readings are the chamber floor (2026-11-24).
 - [ ] Compare the B #9 pattern with the simulated pattern (`../../RF/antenna_C23-B/data/pattern_2440MHz_matched.csv`).
 - [ ] Pi network effect on the radiated harmonics: not measured (both B #2 runs at the wrong frequency).

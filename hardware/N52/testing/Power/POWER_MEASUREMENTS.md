@@ -52,9 +52,35 @@ Nominal capacities, no self-discharge, no pulse or temperature derating:
 At these currents self-discharge (about 1 % a year) and the cell's shelf life matter as much as the load, so
 these numbers are an upper bound, not a projection.
 
+## Session 2026-11-25, A #3: floor, charge per event, 5 s repeat
+
+Same board (device ID `47a70671fbe71ff6`), `ble_beacon_min`, 0 dBm, bench supply at 3.005 V, J-Link unplugged
+and the board power-cycled after every flash. Meter: same DMM, 100 PLC, autozero on. Board identity read over SWD
+before each flash.
+
+| # | Build | Range | Mean | σ | n | SEM | Event period |
+|---|---|---|---|---|---|---|---|
+| N3 (N-T1b) | `make DRDY=0` (one advert at power-up, then System OFF for good) | 100 µA | **0.323 µA** | 0.026 µA | 352 | 0.001 µA | – |
+| N4 (N-T1d) | `make DRDY=7` (0.2 s) | 10 mA | **40.95 µA** | 3.64 µA | 270 | 0.22 µA | 210.9 ± 0.6 ms |
+| N5 (N2 repeat) | `make DRDY=4` (5 s) | 10 mA | **1.771 µA** | 2.027 µA | 1525 | 0.052 µA | 5.268 ± 0.006 s |
+
+- **Periods** from the packet id against time on the NINA (`bsn_scan_nina.py --mac DB:1C:AA:DB:F2:9D`), id
+  unwrapped (8 bits), least-squares fit, error from the 1 s timestamps over the span:
+  [`a3_drdy7.csv`](a3_drdy7.csv) (360 s, 1705 ids, 556 received) and [`a3_drdy4.csv`](a3_drdy4.csv) (880 s, 168
+  ids, 62 received). Both periods are about 5.4 % longer than nominal, so the HDC2010 timer on this board runs
+  slow by about the same factor at both rates.
+- **Charge per event:** Q = (N4 − N3) × 0.2109 s = **8.57 ± 0.05 µC**. C23-B: 21.3 µC (B #1), so about 2.5 times
+  less per event.
+- **Model at the measured 5.268 s:** 0.323 + 8.57 / 5.268 = **1.950 µA**. At exactly 5 s: 2.037 µA.
+- **N5 is 9 % below the model** (1.771 against 1.950 µA, about 3.4 SEM). The C23-B also measured 5 to 11 % below
+  its model with the same method. Cause not investigated. Candidates: the charge per event is not the same at
+  0.2 s and at 5 s, or the 10 mA range offset (N4 and N5 are both on it, the floor is not).
+- **N5 agrees with N2** (1.771 ± 0.052 against 1.706 ± 0.076 µA, within 1σ of the combined error). The 23 Nov
+  reading stands, now with the period known.
+- The NINA received only 33 % (0.2 s) and 37 % (5 s) of the ids. That does not affect the period fit. The C23
+  nodes near the module lost 13 to 18 %. Cause not investigated.
+
 ## Open (if there is time)
 
-- Floor: System OFF with the HDC2010 stopped (or INT not wired), on the 1 mA range.
-- Charge per event: `ble_beacon_min` at a faster DRDY rate (0.2 s, as `DRDY=7` on the C23), then the model at 5 s.
-- The DRDY period of the measured board from the packet id on the NINA scanner.
 - A second board.
+- The model gap (above), shared with the C23.
