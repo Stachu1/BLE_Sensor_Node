@@ -1,7 +1,8 @@
 # Supply current and VDD sag during an advert, against bulk capacitance (T3)
 
 BSN-C23-B with 0, 1 and 2 × 100 µF bulk capacitance, and BSN-N52-A A #3 for comparison, on a bench supply with a
-fixed series resistor in place of the CR2032. Session 2026-11-26, 17:37–18:38.
+fixed series resistor in place of the CR2032. Session on the morning of 2026-11-26, before 12:00. The file times
+on the scope (17:37–18:38) are wrong, the scope clock is not set.
 
 This replaces the first session on CR2032 cells (2026-11-20). That run is not valid for comparing the boards: the
 cell was shorted at every removal from the holder, so the cell state and its internal resistance changed between
@@ -19,7 +20,8 @@ boards and were not known. Its data, script and plots are in git history (commit
 - Bench supply in series with **R = 22.41 Ω** (measured 2026-11-25) into the board's battery input. Supply set to
   3.004, 2.4036 and 2.0035 V. The R is close to the 19–23 Ω instant IR drop measured on a no-brand CR2032
   on 2026-11-17 ([`CW_CURRENT.md`](CW_CURRENT.md)).
-- Keysight MSO-X 4154G. Two kinds of capture:
+- Keysight InfiniiVision MSO-X 4154G, for both kinds of capture. How the probe was connected across R is not
+  recorded. Two kinds of capture:
   - **shunt:** voltage across R, so the supply current is I = V / R. At all three supply voltages.
   - **vdd:** VDD at the board, behind the same R. At 2.0035 V only. The current from it is (V_base − VDD) / R.
 - 5 captures per board and condition. The time base was not the same for all sets: 1.3 to 4 µs per sample, a
@@ -37,7 +39,7 @@ boards and were not known. Its data, script and plots are in git history (commit
 
 **Capture order.** The scope files run by supply voltage first, then by board: `scope_0`–`19` shunt at 3.0 V
 (B #1, B #2, B #3, N52, five each), `20`–`39` at 2.4 V, `40`–`59` at 2.0 V, `60`–`79` VDD at 2.0 V. This is
-confirmed by the file times (a 13 min gap at each supply change) and by the waveforms: the B #1 sets have sharp
+confirmed by the file times (a 13 min gap at each supply change, the clock is wrong but the gaps hold) and by the waveforms: the B #1 sets have sharp
 edges, the B #2 and B #3 sets are low-passed with about twice the time constant on B #3, and the N52 event is
 about 2.5 ms long against 6.5 ms on the C23.
 
@@ -119,12 +121,28 @@ VDD at the board, supply 2.0035 V through 22.41 Ω:
   At 2.0 V the residual is larger (96–164 µA) and the B #1 current is above the model before the TX bursts. A
   likely reason: B #1 has the lowest VDD, and the converter draws more current at a lower input. Not
   investigated.
-- **Lowest VDD at 2.0 V supply.** B #1 reached 1.712 V on the raw trace. CC2340R5 minimum supply: 1.71 V
-  (datasheet value, **to check**). The five B #1 captures all show the same complete event. With bulk
-  capacitance the lowest point is 1.81–1.85 V.
+- **Lowest VDD at 2.0 V supply.** B #1 reached 1.712 V on the raw trace, 2 mV above the CC2340R5 minimum
+  operating supply of 1.71 V and 42 mV above the typical brown-out falling threshold of 1.67 V (datasheet
+  SWRS272F, tables 7.3 and 7.6, the BOD has only a typical value). The five B #1 captures all show the same
+  complete event, so the node did not reset. With bulk capacitance the lowest point is 1.81–1.85 V.
+- **Falling VDD slew rate.** The datasheet gives a maximum falling supply slew rate of 1 mV/µs (table 7.3), with
+  a note that coin cells with a high end-of-life source resistance need a 10 µF VDDS input capacitor to meet it.
+  Steepest fall in the VDD captures at 2.0 V (slope of the VDD trace averaged over 50 µs, then over 2 µs):
+
+  | Board | 50 µs average | 2 µs average |
+  |---|---|---|
+  | B #1, no bulk C | 1.23–1.29 mV/µs | 2.4–2.7 mV/µs |
+  | B #2, 1 × 100 µF | 0.20–0.22 mV/µs | 0.45–0.59 mV/µs |
+  | B #3, 2 × 100 µF | 0.12–0.13 mV/µs | 0.30–0.36 mV/µs |
+
+  B #1 is above the 1 mV/µs limit at both averages, B #2 and B #3 are below it. The 2 µs value includes scope
+  noise, so it is an upper bound. The rev B BOM has two 10 µF parts (C1, C10), which of them is on VDDS was not
+  checked here. With 22.41 Ω as the source this is a cell near the end of its life (19–23 Ω measured on
+  2026-11-17), so this is the case the datasheet note is about. B #1 ran through every capture, what the limit
+  guards against was not investigated. The N52 VDD files are not in this folder and were not checked.
 
 ## Open
 
-- How the shunt voltage was taken (differential probe, two channels and math, or one probe across R).
-- CC2340R5 and nRF52805 minimum supply and brown-out levels from the datasheets, for the end-of-life argument
-  with T2.
+- How the probe was connected across R (one probe, two channels and math, or a differential probe).
+- nRF52805 minimum supply and brown-out level, for the N52 end-of-life argument with T2 (no nRF52805 datasheet in
+  `docs/datasheets/` yet). The CC2340R5 values are above.
