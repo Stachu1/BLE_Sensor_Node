@@ -23,8 +23,9 @@ boards and were not known. Its data, script and plots are in git history (commit
 - Keysight InfiniiVision MSO-X 4154G, one probe, for both kinds of capture. Chain: supply + → R → board VDD,
   board GND → supply −. Two kinds of capture:
   - **shunt:** the probe across R (tip and ground clip on the two ends of R), so the supply current is I = V / R.
-    At all three supply voltages. The ground clip ties one end of R to the scope ground, which works with a
-    floating supply output (likely the case here, not checked).
+    At all three supply voltages. The ground clip ties one end of R to the scope ground, so the supply output
+    was floating: with an earthed output the clip would short either the supply or the board through R, and the
+    captures would not show the event (they do, and the charge agrees with T1).
   - **vdd:** the probe from board VDD to board GND, behind the same R, so the drop across R shows as the VDD dip.
     At 2.0035 V only. The current from it is (V_base − VDD) / R.
 - 5 captures per board and condition. The time base was not the same for all sets: 1.3 to 4 µs per sample, a
