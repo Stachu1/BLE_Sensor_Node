@@ -34,6 +34,22 @@ including the B #9 run, so the board is taken from the run times. Numbered in th
 The `.DAT` files are the receiver's own export. The `.csv` files hold the same points in the layout of the VNA
 files (`!` header lines with the settings, then `Freq(Hz),Level(dBuV/m)`).
 
+### Extracted data
+
+`chamber_extract.py` reads all ten reports (rev A and rev B) by word position and writes:
+
+- `chamber_2026-11-19_pattern.csv`: one row per report, frequency, azimuth and elevation (19 × 10 points, 20° steps,
+  azimuth 360 repeats 0), total EIRP in dBm (both polarisations combined), with board, run and a `valid` flag (False
+  for the B #2 runs at the wrong frequency).
+- `chamber_2026-11-19_summary.csv`: the "OTA Evaluation Results" of each report (TRP, directivity, peak/min/average
+  EIRP, beamwidths, boresight, cal data, run times). The 4880 / 9760 MHz files have no summary page, only the table.
+- `chamber_2026-11-19.json`: the same, nested, with the pattern as a 2D array per measurement.
+
+Check columns: `grid_avg_dBm` (linear mean of the 190 points) equals the report's "Average Power". `grid_trp_sin_dBm`
+(sin θ solid-angle sum of the 20° table) equals the report TRP for the flat noise-floor patterns, but reads 0.12 dB
+low for B #9 and 0.55 dB low for A #1 at 2440 MHz. The lab software integrates differently (probably per polarisation
+on its own data), so the report TRP stays the reference.
+
 The first B #2 run was set up at 2400 MHz while the board transmitted at 2440 MHz. Its harmonic results led to
 removing the pi network from B #2, and it was measured again, still at 2400 MHz. The error was then found and B #9 (as
 built, with the pi network) was measured at 2440 MHz. The two B #2 runs show only the noise floor (TRP about
