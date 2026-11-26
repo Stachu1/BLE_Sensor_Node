@@ -80,6 +80,22 @@ before each flash.
 - The NINA received only 33 % (0.2 s) and 37 % (5 s) of the ids. That does not affect the period fit. The C23
   nodes near the module lost 13 to 18 %. Cause not investigated.
 
+## Session 2026-11-26, A #3: supply current and VDD sag with a series resistor
+
+Raw captures in [`vdd_sag_2026-11-26/`](vdd_sag_2026-11-26/). Measured together with the C23 rev B boards, script
+and plots in
+[`hardware/C23/testing/rev_B/Power/VDD_SAG.md`](../../../C23/testing/rev_B/Power/VDD_SAG.md). Bench supply through
+22.41 Ω, `ble_beacon_min DRDY=4`, 5 captures per point:
+
+| Supply | Peak current | Charge per event | Energy | Event length |
+|---|---|---|---|---|
+| 3.004 V | 4.91 mA | 8.43 µC | 24.7 µJ | 2.49 ms |
+| 2.404 V | 5.82 mA | 9.92 µC | 23.0 µJ | 2.68 ms |
+| 2.004 V | 6.71 mA | 11.62 µC | 22.2 µJ | 2.88 ms |
+
+8.43 µC at 3.0 V agrees with the 8.57 µC from the 2026-11-25 meter run. VDD dip at 2.0 V supply 152 mV, lowest
+VDD 1.847 V.
+
 ## Open (if there is time)
 
 - A second board.

@@ -1,35 +1,38 @@
-"""VDD sag on the CR2032 during one advertising event, BSN-C23-B, 0 / 1 / 2 x 100 uF, scope 2026-11-20.
+"""Supply current and VDD sag during one advertising event, on a bench supply with a series resistor.
 
-Raw data: vdd_sag_2026-11-20/scope_N.csv (Keysight MSO-X 4154G, one channel on VDD, time [s], volt [V]).
-The scope measurements (Pk-Pk, Top, Min) are not in the CSV, so they are recomputed here.
+BSN-C23-B B #1 (no bulk C), B #2 (1 x 100 uF), B #3 (2 x 100 uF) and BSN-N52-A A #3 (47 uF), scope 2026-11-26.
+
+Raw data: vdd_sag_2026-11-26/<board>_<what>_<supply>_<n>.csv (Keysight MSO-X 4154G, time [s], volt [V]),
+the N52 files in hardware/N52/testing/Power/vdd_sag_2026-11-26/.
+  what = shunt: voltage across the 22.41 ohm series resistor, so supply current I = V / R
+  what = vdd:   VDD at the board, behind the same resistor
+  supply = 3V0 / 2V4 / 2V0: bench supply 3.004 / 2.4036 / 2.0035 V. n = 1..5 repeats.
+scope_file_map.csv in the same folder maps the original scope_N.csv names to the new ones.
 
 Run: python vdd_sag.py [out dir]   (default: this folder). Needs numpy, scipy, matplotlib.
 
 Writes:
   vdd_sag_summary.csv        one row per capture, all metrics
-  vdd_sag_same_cell.png      cell 3 on B #3 (14), B #2 (15) and B #1 (16)
-  vdd_sag_repeats.png        the three 5-capture sets, repeats overlaid
-  vdd_sag_rc_fit.png         traces with bulk capacitance against the low-passed trace without (RC model)
-  vdd_sag_metrics.png        dip depth, RC tau and drop area per capture
-  vdd_sag_model_caps.png     model: 0, 1 and 2 x 100 uF on the same cell (cell 1 and cell 3)
+  vdd_sag_current.png        supply current per board, one panel per supply voltage
+  vdd_sag_vdd.png            VDD at 2.0 V supply, and the current from the VDD drop against the shunt current
+  vdd_sag_repeats.png        all 80 captures, 5 repeats overlaid per board and condition
+  vdd_sag_metrics.png        peak current, charge per event and VDD dip against supply voltage
+  vdd_sag_rc_fit.png         B #2 and B #3 current against the B #1 current low-passed (RC model)
 
-Metric definitions (all on the VDD node at the scope probe):
-  V_base   mean of the first 1.5 ms (before the event)
-  V_top    most common value in the upper half of the trace, 0.25 mV bins (like the scope's Top)
-  V_min    lowest raw sample (like the scope's Min, includes noise)
-  V_pp     V_max - V_min, raw samples (like the scope's Pk-Pk)
-  dV       V_base minus the minimum of the 50 us moving average (dip depth without noise)
-  onset    first time the smoothed drop exceeds 3 mV
-  t_min    time of the smoothed minimum after onset
-  t_rec50  from t_min until the drop is below 50 % of dV and stays there
-  t_rec90  from t_min until the drop is below 10 % of dV and stays there (long when the cell's own
-           slow recovery tail is larger than 10 % of dV)
-  t_settle10  from onset until the drop is below 10 mV and stays there
-  area     integral of the drop over the window, mV*ms (charge times source resistance, so the caps
-           should move it around in time but not change it for the same cell and same current)
-RC model: with a source resistance R and a bulk capacitance C at VDD, the drop with C is the drop without C
-passed through a first-order low-pass with tau = R*C, times k = R_capped / R_template. Fitted for tau, k and a
-time shift.
+Metric definitions:
+  offset    mean of the first 0.2 ms of the capture (before the event). Subtracted from shunt captures,
+            V_base for VDD captures
+  I         (V_shunt - offset) / R, or (V_base - V_vdd) / R for VDD captures (same series R, same current)
+  I_peak    maximum of I on a 50 us moving average
+  E         energy into the board, V_supply * Q - R * integral(I^2) (the loss in the series R taken out,
+            tail not included)
+  Q         integral of I over the capture, plus the exponential tail past the capture end (I_end * tau)
+  t_event   time from I first above 1 mA until I last above 1 mA
+  tau       time constant of the decay after the last TX burst, exponential fit from 70 % to 10 % of the
+            peak current. With the series R it gives C = tau / R (approximate, see VDD_SAG.md)
+  dV        V_base minus the minimum of the 50 us moving average (VDD captures only)
+RC model: the B #2 / B #3 current is the B #1 current at the same supply through a first-order low-pass with
+tau = R C, times k (charge ratio). Fitted for tau, k and a time shift.
 """
 import os
 import sys
@@ -42,36 +45,36 @@ from scipy.optimize import least_squares
 from scipy.signal import lfilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RAW = os.path.join(HERE, "vdd_sag_2026-11-20")
+RAW = os.path.join(HERE, "vdd_sag_2026-11-26")
+RAW_N52 = os.path.normpath(os.path.join(HERE, "..", "..", "..", "..", "N52", "testing", "Power", "vdd_sag_2026-11-26"))
 OUT = sys.argv[1] if len(sys.argv) > 1 else HERE
 
-# Capture sets. caps = number of 100 uF bulk capacitors (C6) on VDD. Boards from hardware/C23/README.md:
-# B #1 none, B #2 one, B #3 two. The board of sets 0-4 and 10-14 is from the user's memory (order B #2, B #1,
-# B #3), the sets without bulk capacitor are confirmed by the waveform (sharp edges, RC fit tau ~ 0).
-# Cells are numbered after the board they came with. Each board ran its own cell for the first 15 captures,
-# then cell 3 (from B #3) was moved to B #2 (15) and B #1 (16).
-SETS = [
-    dict(name="B #2, 1 x 100 µF, cell 2", caps=1, cell="cell 2", idx=[0, 1, 2, 3, 4]),
-    dict(name="B #1, no bulk C, cell 1",  caps=0, cell="cell 1", idx=[5, 6, 7, 8, 9]),
-    dict(name="B #3, 2 x 100 µF, cell 3", caps=2, cell="cell 3", idx=[10, 11, 12, 13, 14]),
-    dict(name="B #2, 1 x 100 µF, cell 3", caps=1, cell="cell 3", idx=[15]),
-    dict(name="B #1, no bulk C, cell 3",  caps=0, cell="cell 3", idx=[16]),
-]
-CAPCOL = {0: "#2a78d6", 1: "#eb6834", 2: "#1baf7a"}  # categorical slots 1-3
-BOARD = {0: "B #1", 1: "B #2", 2: "B #3"}
-BULK = {0: "no bulk capacitor", 1: "1 x 100 µF", 2: "2 x 100 µF"}
-# RC fits: (capture with bulk C, template without). Same cell where possible (15 vs 16). For the own-cell sets the
-# template is set 5-9 on B #1 (another cell), k then carries the resistance ratio of the two cells.
-FITS = [(0, 5), (1, 6), (2, 7), (3, 8), (4, 9), (10, 5), (11, 6), (12, 7), (13, 8), (14, 9),
-        (15, 16), (6, 5), (16, 5)]
-
+R_SER = 22.41                                   # ohm, measured 2026-11-25 (22.410)
+SUPPLY = {"3V0": 3.004, "2V4": 2.4036, "2V0": 2.0035}
+BOARDS = ["B1", "B2", "B3", "N52-A3"]
+LABEL = {"B1": "B #1, no bulk C", "B2": "B #2, 1 x 100 µF", "B3": "B #3, 2 x 100 µF",
+         "N52-A3": "N52 A #3, 47 µF"}
+SHORT = {"B1": "B #1", "B2": "B #2", "B3": "B #3", "N52-A3": "N52 A #3"}
+COL = {"B1": "#2a78d6", "B2": "#eb6834", "B3": "#1baf7a", "N52-A3": "#6250d6"}  # slots 1, 2, 3, 7
+LS = {"B1": "-", "B2": "--", "B3": "-.", "N52-A3": ":"}
+MK = {"B1": "o", "B2": "s", "B3": "^", "N52-A3": "D"}
+CONDS = [("shunt", "3V0"), ("shunt", "2V4"), ("shunt", "2V0"), ("vdd", "2V0")]
+N_REP = 5
 SMOOTH_S = 50e-6
+SHOW = 3                                        # capture shown in the single-trace figures (1 is an outlier on
+                                                # B #2 shunt 2.0 V and B #1 VDD 2.0 V)
+
 plt.rcParams.update({"font.size": 9, "axes.grid": True, "grid.alpha": 0.3,
                      "axes.spines.top": False, "axes.spines.right": False})
 
 
-def load(i):
-    d = np.loadtxt(os.path.join(RAW, f"scope_{i}.csv"), delimiter=",", skiprows=2)
+def fname(b, what, sup, n):
+    return f"{b}_{what}_{sup}_{n}.csv"
+
+
+def load(b, what, sup, n):
+    d = np.genfromtxt(os.path.join(RAW_N52 if b.startswith("N52") else RAW, fname(b, what, sup, n)), delimiter=",", skip_header=2)
+    d = d[~np.isnan(d).any(axis=1)]             # the scope pads the last rows with empty values
     return d[:, 0], d[:, 1]
 
 
@@ -81,43 +84,48 @@ def smooth(v, dt, w=SMOOTH_S):
     return np.convolve(np.r_[np.full(n, v[0]), v, np.full(n, v[-1])], k, "same")[n:-n]
 
 
-def metrics(i):
-    t, v = load(i)
+def current(b, what, sup, n):
+    """Time [s] aligned at the event onset (I > 1 mA), supply current [A], raw volt, offset."""
+    t, v = load(b, what, sup, n)
+    off = v[t < t[0] + 0.2e-3].mean()
+    i = (v - off) / R_SER if what == "shunt" else (off - v) / R_SER
     dt = np.median(np.diff(t))
-    base = v[t < t[0] + 1.5e-3].mean()
-    vs = smooth(v, dt)
-    drop = base - vs
-    i_on = int(np.argmax(drop > 3e-3))
-    i_min = i_on + int(np.argmax(drop[i_on:]))
-    dv = drop[i_min]
-    after = drop[i_min:]
-
-    def settle(frac):
-        above = np.nonzero(after > frac * dv)[0]
-        j = above[-1] + 1 if len(above) else 0
-        return np.nan if i_min + j >= len(t) - 1 else t[i_min + j] - t[i_min]
-
-    above10 = np.nonzero(drop > 10e-3)[0]
-    t_set10 = np.nan if not len(above10) or above10[-1] >= len(t) - 2 else t[above10[-1] + 1] - t[i_on]
-    mid = 0.5 * (v.max() + v.min())
-    up = v[v > mid]
-    h, e = np.histogram(up, bins=np.arange(up.min(), up.max() + 2.5e-4, 2.5e-4))
-    top = 0.5 * (e[np.argmax(h)] + e[np.argmax(h) + 1])
-    return dict(scope=i, dt_us=dt * 1e6, n=len(v), V_base=base, V_top=top, V_max=v.max(), V_min=v.min(),
-                V_pp_mV=(v.max() - v.min()) * 1e3, dV_mV=dv * 1e3, noise_mV=v[t < t[0] + 1.5e-3].std() * 1e3,
-                onset_ms=t[i_on] * 1e3, t_min_ms=t[i_min] * 1e3, t_min_from_onset_ms=(t[i_min] - t[i_on]) * 1e3,
-                t_rec50_ms=settle(0.5) * 1e3, t_rec90_ms=settle(0.1) * 1e3,
-                t_settle10_ms=t_set10 * 1e3,
-                area_mVms=np.trapezoid(base - v, t) * 1e6)
+    t_on = t[int(np.argmax(smooth(i, dt) > 1e-3))]
+    return t - t_on, i, v, off
 
 
-def drop_aligned(i):
-    t, v = load(i)
+def tail_tau(t, i, dt):
+    """Exponential fit to the decay after the peak, 70 % to 10 % of the peak (smoothed)."""
+    s = smooth(i, dt)
+    j = int(np.argmax(s))
+    p = s[j]
+    after = s[j:]
+    a = j + int(np.argmax(after < 0.7 * p))
+    e = j + int(np.argmax(after < 0.1 * p))
+    if e <= a + 5:
+        return np.nan
+    sl, _ = np.polyfit(t[a:e], np.log(s[a:e]), 1)
+    return -1 / sl
+
+
+def metrics(b, what, sup, n):
+    t, i, v, off = current(b, what, sup, n)
     dt = np.median(np.diff(t))
-    base = v[t < t[0] + 1.5e-3].mean()
-    d = base - v
-    t_on = t[int(np.argmax(base - smooth(v, dt) > 3e-3))]
-    return t - t_on, d
+    s = smooth(i, dt)
+    tau = tail_tau(t, i, dt) if b != "B1" else np.nan   # B #1 has no RC tail, the fit there means nothing
+    i_end = s[-int(round(0.1e-3 / dt)):].mean()
+    q_tail = max(i_end, 0) * (tau if np.isfinite(tau) else 0)
+    above = np.nonzero(s > 1e-3)[0]
+    m = dict(board=b, what=what, supply=sup, V_supply=SUPPLY[sup], rep=n, file=fname(b, what, sup, n),
+             dt_us=dt * 1e6, n=len(t), offset_mV=off * 1e3, noise_uA=i[t < t[0] + 0.2e-3].std() * 1e6,
+             I_peak_mA=s.max() * 1e3, Q_uC=(np.trapezoid(i, t) + q_tail) * 1e6, Q_tail_uC=q_tail * 1e6,
+             E_uJ=(SUPPLY[sup] * np.trapezoid(i, t) - R_SER * np.trapezoid(i ** 2, t)) * 1e6,
+             t_event_ms=(t[above[-1]] - t[above[0]]) * 1e3, tau_us=tau * 1e6, C_uF=tau / R_SER * 1e6,
+             I_end_uA=i_end * 1e6)
+    if what == "vdd":
+        m.update(V_base=off, V_min_raw=v.min(), dV_mV=s.max() * R_SER * 1e3,
+                 V_min_smooth=off - s.max() * R_SER)
+    return m
 
 
 def lpf(x, tau, dt):
@@ -125,180 +133,170 @@ def lpf(x, tau, dt):
     return lfilter([a], [1, -(1 - a)], x, zi=[x[0] * (1 - a)])[0]
 
 
-def rc_fit(ic, i0):
-    tc, dc = drop_aligned(ic)
-    t0, d0 = drop_aligned(i0)
+def rc_fit(b, sup, n, n_tmpl):
+    tc, ic, _, _ = current(b, "shunt", sup, n)
+    t0, i0, _, _ = current("B1", "shunt", sup, n_tmpl)
     dt = np.median(np.diff(tc))
+    t0r = np.arange(t0[0], t0[-1], dt)          # template on the capture's sample step
+    i0r = np.interp(t0r, t0, i0)
 
     def model(p):
-        k, lt, s = p
-        return k * lpf(np.interp(tc - s, t0, d0, left=0, right=d0[-1]), np.exp(lt), dt)
+        k, lt, sh = p
+        return k * lpf(np.interp(tc - sh, t0r, i0r, left=0, right=0), np.exp(lt), dt)
 
     best = None
-    for lt0 in np.log([20e-6, 100e-6, 300e-6, 1e-3]):
-        r = least_squares(lambda p: model(p) - dc, [1, lt0, 0],
-                          bounds=([0.1, np.log(1e-6), -2e-3], [5, np.log(5e-3), 2e-3]), x_scale=[0.1, 0.3, 1e-4])
+    for lt0 in np.log([100e-6, 300e-6, 1e-3, 3e-3]):
+        r = least_squares(lambda p: model(p) - ic, [1, lt0, 0],
+                          bounds=([0.3, np.log(1e-6), -3e-3], [3, np.log(2e-2), 3e-3]), x_scale=[0.1, 0.3, 1e-4])
         if best is None or r.cost < best.cost:
             best = r
-    k, lt, s = best.x
-    return dict(capped=ic, template=i0, k=k, tau_us=np.exp(lt) * 1e6, shift_us=s * 1e6,
-                rms_mV=np.sqrt(np.mean(best.fun ** 2)) * 1e3, t=tc, meas=dc, model=model(best.x))
-
-
-def set_of(i):
-    return next(s for s in SETS if i in s["idx"])
+    k, lt, sh = best.x
+    return dict(board=b, supply=sup, rep=n, k=k, tau_us=np.exp(lt) * 1e6, C_uF=np.exp(lt) / R_SER * 1e6,
+                shift_us=sh * 1e6, rms_uA=np.sqrt(np.mean(best.fun ** 2)) * 1e6, t=tc, meas=ic, model=model(best.x))
 
 
 # ---------------------------------------------------------------- metrics table
-rows = []
-for s in SETS:
-    for i in s["idx"]:
-        m = metrics(i)
-        m.update(set=s["name"], caps=s["caps"], cell=s["cell"], board=BOARD[s["caps"]])
-        rows.append(m)
-fits = [rc_fit(a, b) for a, b in FITS]
-fit_by = {f["capped"]: f for f in fits if set_of(f["capped"])["caps"] > 0}  # fits on B #1 are null tests
-
-cols = ["scope", "set", "caps", "board", "cell", "dt_us", "n", "noise_mV", "V_base", "V_top", "V_max", "V_min",
-        "V_pp_mV", "dV_mV", "onset_ms", "t_min_ms", "t_min_from_onset_ms", "t_rec50_ms", "t_rec90_ms",
-        "t_settle10_ms", "area_mVms", "rc_template", "rc_k", "rc_tau_us", "rc_rms_mV"]
+rows = [metrics(b, w, s, n) for (w, s) in CONDS for b in BOARDS for n in range(1, N_REP + 1)]
+cols = ["file", "board", "what", "supply", "V_supply", "rep", "dt_us", "n", "offset_mV", "I_peak_mA", "Q_uC",
+        "Q_tail_uC", "E_uJ", "t_event_ms", "noise_uA", "tau_us", "C_uF", "I_end_uA", "V_base", "V_min_raw", "V_min_smooth", "dV_mV"]
 with open(os.path.join(OUT, "vdd_sag_summary.csv"), "w", encoding="utf-8") as f:
     f.write(",".join(cols) + "\n")
     for m in rows:
-        ft = fit_by.get(m["scope"])
-        m.update(rc_template=ft["template"] if ft else "", rc_k=ft["k"] if ft else "",
-                 rc_tau_us=ft["tau_us"] if ft else "", rc_rms_mV=ft["rms_mV"] if ft else "")
-        f.write(",".join(f"{m[c]:.6g}" if isinstance(m[c], (float, np.floating)) else str(m[c]) for c in cols)
-                + "\n")
+        f.write(",".join(f"{m[c]:.6g}" if isinstance(m.get(c), (float, np.floating)) else str(m.get(c, ""))
+                         for c in cols) + "\n")
 
-print(f"{'#':>3} {'set':18} {'V_base':>7} {'V_top':>7} {'V_min':>7} {'Vpp':>6} {'dV':>6} {'rec50':>6} "
-      f"{'rec90':>6} {'set10':>6} {'area':>6}")
-for m in rows:
-    print(f"{m['scope']:>3} {m['set']:18} {m['V_base']:7.4f} {m['V_top']:7.4f} {m['V_min']:7.4f} "
-          f"{m['V_pp_mV']:6.1f} {m['dV_mV']:6.1f} {m['t_rec50_ms']:6.2f} {m['t_rec90_ms']:6.2f} {m['t_settle10_ms']:6.2f} "
-          f"{m['area_mVms']:6.1f}")
-print("\nset means (n = 5 where a set has 5):")
-for s in SETS:
-    sel = [m for m in rows if m["scope"] in s["idx"]]
-    def ms(key):
-        x = np.array([m[key] for m in sel])
-        return f"{x.mean():.2f}" + (f" +- {x.std(ddof=1):.2f}" if len(x) > 1 else "")
-    print(f"  {s['name']:18} dV {ms('dV_mV')} mV, Vpp {ms('V_pp_mV')} mV, rec50 {ms('t_rec50_ms')} ms, "
-          f"rec90 {ms('t_rec90_ms')} ms, settle10 {ms('t_settle10_ms')} ms, area {ms('area_mVms')} mV*ms")
-print("\nRC fits (k = R_capped / R_template, tau = R*C):")
-for f in fits:
-    print(f"  {f['capped']:>2} vs {f['template']:>2}: k {f['k']:.3f}, tau {f['tau_us']:6.1f} us, "
-          f"rms {f['rms_mV']:.2f} mV")
 
-# ---------------------------------------------------------------- figure 1: same cell
-fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 4.6))
-for i, caps in [(16, 0), (15, 1), (14, 2)]:
-    t, v = load(i)
-    a1.plot(t * 1e3, v, color=CAPCOL[caps], lw=0.6, label=f"scope_{i}: {BOARD[caps]}, {BULK[caps]}")
-    ta, d = drop_aligned(i)
-    m = next(r for r in rows if r["scope"] == i)
-    a2.plot(ta * 1e3, d * 1e3, color=CAPCOL[caps], lw=0.6,
-            label=f"{BOARD[caps]}, {BULK[caps]}: dip {m['dV_mV']:.1f} mV")
-a1.set(xlabel="time [ms] (scope trigger at 0)", ylabel="VDD [V]",
-       title="VDD (absolute, V_base not settled between boards)")
-a2.set(xlabel="time from event onset [ms]", ylabel="drop below V_base [mV]",
-       title="Drop below the pre-event level, aligned at onset")
-a2.invert_yaxis()
-for a in (a1, a2):
-    a.legend(loc="lower right" if a is a1 else "lower right", fontsize=8)
-fig.suptitle("BSN-C23-B, one CR2032 (cell 3) moved from B #3 (scope_14) to B #2 (scope_15) to B #1 (scope_16), 2026-11-20")
+def sel(b, w, s):
+    return [m for m in rows if m["board"] == b and m["what"] == w and m["supply"] == s]
+
+
+def ms(x, fmt="{:.2f}"):
+    x = np.asarray(x, float)
+    if np.all(np.isnan(x)):
+        return "-"
+    return (fmt + " ± " + fmt).format(np.nanmean(x), np.nanstd(x, ddof=1))
+
+
+print(f"R = {R_SER} ohm. Means of 5 captures ± sample std.\n")
+print(f"{'board':9} {'what':5} {'supply':6} {'I_peak mA':>16} {'Q uC':>16} {'E uJ':>16} {'t_event ms':>15} {'tau us':>14} "
+      f"{'C uF':>14} {'dV mV':>14}")
+for (w, s) in CONDS:
+    for b in BOARDS:
+        g = sel(b, w, s)
+        dv = ms([m["dV_mV"] for m in g], "{:.1f}") if w == "vdd" else ""
+        print(f"{b:9} {w:5} {s:6} {ms([m['I_peak_mA'] for m in g]):>16} {ms([m['Q_uC'] for m in g]):>16} "
+              f"{ms([m['E_uJ'] for m in g]):>16} {ms([m['t_event_ms'] for m in g]):>15} {ms([m['tau_us'] for m in g], '{:.0f}'):>14} "
+              f"{ms([m['C_uF'] for m in g], '{:.1f}'):>14} {dv:>14}")
+
+fits = [rc_fit(b, s, n, n) for b in ["B2", "B3"] for s in SUPPLY for n in range(1, N_REP + 1)]
+print("\nRC fits against B #1 at the same supply (k = charge ratio, C = tau / R):")
+for b in ["B2", "B3"]:
+    for s in SUPPLY:
+        g = [f for f in fits if f["board"] == b and f["supply"] == s]
+        print(f"  {b} {s}: tau {ms([f['tau_us'] for f in g], '{:.0f}')} us, C {ms([f['C_uF'] for f in g], '{:.1f}')} uF,"
+              f" k {ms([f['k'] for f in g], '{:.3f}')}, rms {ms([f['rms_uA'] for f in g], '{:.0f}')} uA")
+
+# ---------------------------------------------------------------- figure 1: current per supply voltage
+fig, axs = plt.subplots(1, 3, figsize=(15, 4.6), sharey=True)
+for a, s in zip(axs, SUPPLY):
+    for b in BOARDS:
+        t, i, _, _ = current(b, "shunt", s, SHOW)
+        g = sel(b, "shunt", s)
+        a.plot(t * 1e3, i * 1e3, color=COL[b], ls=LS[b], lw=1.0,
+               label=f"{LABEL[b]}: peak {np.mean([m['I_peak_mA'] for m in g]):.1f} mA, "
+                     f"{np.mean([m['Q_uC'] for m in g]):.1f} µC")
+    a.set(title=f"Supply {SUPPLY[s]:.3f} V through {R_SER} Ω", xlabel="time from event onset [ms]", xlim=(-0.5, 12))
+    a.legend(loc="upper right", fontsize=7.5)
+axs[0].set_ylabel("supply current [mA]")
+fig.suptitle("Supply current during one advert (capture 3 of 5 shown, peak and charge are means of 5), 2026-11-26")
 fig.tight_layout()
-fig.savefig(os.path.join(OUT, "vdd_sag_same_cell.png"), dpi=150)
+fig.savefig(os.path.join(OUT, "vdd_sag_current.png"), dpi=150)
 
-# ---------------------------------------------------------------- figure 2: repeats
-fig, axs = plt.subplots(1, 3, figsize=(14, 4.4), sharey=True)
-for a, s in zip(axs, SETS[:3]):
-    for i in s["idx"]:
-        ta, d = drop_aligned(i)
-        a.plot(ta * 1e3, d * 1e3, color=CAPCOL[s["caps"]], lw=0.5, alpha=0.7)
-    dv = [m["dV_mV"] for m in rows if m["scope"] in s["idx"]]
-    a.set(title=f"{BOARD[s['caps']]}, {BULK[s['caps']]}, {s['cell']}, n = 5\n"
-                f"dip {np.mean(dv):.1f} ± {np.std(dv, ddof=1):.1f} mV",
-          xlabel="time from event onset [ms]", xlim=(-1, 14))
-axs[0].set_ylabel("drop below V_base [mV]")
-axs[0].invert_yaxis()
-fig.suptitle("Repeatability, 5 captures per board, each board on its own cell (cells differ, so depths are not "
-             "comparable between panels)")
+# ---------------------------------------------------------------- figure 2: VDD at 2.0 V and cross-check
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 4.8))
+for b in BOARDS:
+    t, i, v, off = current(b, "vdd", "2V0", SHOW)
+    g = sel(b, "vdd", "2V0")
+    a1.plot(t * 1e3, v, color=COL[b], ls=LS[b], lw=1.0,
+            label=f"{LABEL[b]}: dip {ms([m['dV_mV'] for m in g], '{:.1f}')} mV")
+    ts, i_s, _, _ = current(b, "shunt", "2V0", SHOW)
+    a2.plot(ts * 1e3, i_s * 1e3, color=COL[b], ls="-", lw=0.8, alpha=0.6)
+    a2.plot(t * 1e3, smooth(i, np.median(np.diff(t))) * 1e3, color=COL[b], ls=LS[b], lw=1.2, label=SHORT[b])
+a1.set(title=f"VDD at the board, supply {SUPPLY['2V0']:.4f} V through {R_SER} Ω",
+       xlabel="time from event onset [ms]", ylabel="VDD [V]", xlim=(-0.5, 12))
+a1.legend(loc="lower right", fontsize=8)
+a2.set(title="Current from the VDD drop (dashed / dotted, 50 µs average)\nagainst the shunt capture (thin solid)",
+       xlabel="time from event onset [ms]", ylabel="supply current [mA]", xlim=(-0.5, 12))
+a2.legend(loc="upper right", fontsize=8)
+fig.suptitle("VDD sag at 2.0 V supply (capture 3 of 5 shown), 2026-11-26")
+fig.tight_layout()
+fig.savefig(os.path.join(OUT, "vdd_sag_vdd.png"), dpi=150)
+
+# ---------------------------------------------------------------- figure 3: all repeats
+fig, axs = plt.subplots(4, 4, figsize=(15, 11), sharex=True)
+for c, (w, s) in enumerate(CONDS):
+    for r, b in enumerate(BOARDS):
+        a = axs[r][c]
+        for n in range(1, N_REP + 1):
+            t, i, v, off = current(b, w, s, n)
+            y = v if w == "vdd" else i * 1e3
+            a.plot(t * 1e3, y, color=COL[b], lw=0.5, alpha=0.8)
+        g = sel(b, w, s)
+        txt = (f"dip {ms([m['dV_mV'] for m in g], '{:.1f}')} mV" if w == "vdd"
+               else f"peak {ms([m['I_peak_mA'] for m in g])} mA\nQ {ms([m['Q_uC'] for m in g])} µC")
+        a.text(0.98, 0.05 if w == "vdd" else 0.95, txt, transform=a.transAxes, ha="right",
+               va="bottom" if w == "vdd" else "top", fontsize=7.5)
+        if r == 0:
+            a.set_title(f"{'VDD' if w == 'vdd' else 'current'}, supply {SUPPLY[s]:.3f} V")
+        if c == 0:
+            a.set_ylabel(f"{SHORT[b]}\ncurrent [mA]")
+        if c == 3:
+            a.set_ylabel("VDD [V]")
+        a.set_xlim(-1, 12)
+for a in axs[-1]:
+    a.set_xlabel("time from event onset [ms]")
+fig.suptitle("All 80 captures, 5 repeats overlaid per board and condition, 2026-11-26")
 fig.tight_layout()
 fig.savefig(os.path.join(OUT, "vdd_sag_repeats.png"), dpi=150)
 
-# ---------------------------------------------------------------- figure 3: RC fit
-show = [f for f in fits if f["capped"] in (0, 10, 15)]
-fig, axs = plt.subplots(1, 3, figsize=(14, 4.4))
-for a, f in zip(axs, show):
-    caps = set_of(f["capped"])["caps"]
-    a.plot(f["t"] * 1e3, f["meas"] * 1e3, color=CAPCOL[caps], lw=0.6, label=f"measured scope_{f['capped']}")
-    a.plot(f["t"] * 1e3, f["model"] * 1e3, color="0.15", lw=1.0, ls="--",
-           label=f"scope_{f['template']} (B #1, no bulk C) low-passed")
-    a.set(title=f"{BOARD[caps]}, {BULK[caps]}: tau {f['tau_us']:.0f} µs, k {f['k']:.2f}, rms {f['rms_mV']:.2f} mV",
-          xlabel="time from event onset [ms]", xlim=(-1, 14))
-    a.invert_yaxis()
-    a.legend(loc="lower right", fontsize=8)
-axs[0].set_ylabel("drop below V_base [mV]")
-fig.suptitle("RC model: drop with bulk C = k x first-order low-pass (tau = R C) of the drop on B #1 (no bulk C)")
-fig.tight_layout()
-fig.savefig(os.path.join(OUT, "vdd_sag_rc_fit.png"), dpi=150)
-
-# ---------------------------------------------------------------- figure 4: metrics
-fig, axs = plt.subplots(1, 3, figsize=(14, 4.2))
-labels = [s["name"].replace(", ", "\n") for s in SETS]
-for a, key, yl in zip(axs, ["dV_mV", "rc_tau_us", "area_mVms"],
-                      ["dip depth dV [mV]", "RC time constant tau [µs] (B #1: no fit)",
-                       "area of the drop [mV ms]"]):
-    for x, s in enumerate(SETS):
-        y = [m[key] for m in rows if m["scope"] in s["idx"] and m[key] != ""]
-        if not y:
-            continue
-        a.plot(np.full(len(y), x) + np.linspace(-0.12, 0.12, len(y)), y, "o", ms=6,
-               color=CAPCOL[s["caps"]], mec="white", mew=1)
-    a.set_xticks(range(len(SETS)), labels, fontsize=8)
-    a.set_ylabel(yl)
-    a.axvspan(1.5, 4.5, color="0.5", alpha=0.08, lw=0)
+# ---------------------------------------------------------------- figure 4: metrics against supply voltage
+fig, axs = plt.subplots(1, 3, figsize=(15, 4.4))
+for b in BOARDS:
+    vs = [SUPPLY[s] for s in SUPPLY]
+    for a, key in zip(axs[:2], ["I_peak_mA", "Q_uC"]):
+        y = [[m[key] for m in sel(b, "shunt", s)] for s in SUPPLY]
+        a.errorbar(vs, [np.mean(x) for x in y], yerr=[np.std(x, ddof=1) for x in y], color=COL[b], ls=LS[b],
+                   marker=MK[b], ms=6, lw=1.2, capsize=3, label=LABEL[b])
+    g = sel(b, "vdd", "2V0")
+    axs[2].bar(BOARDS.index(b), np.mean([m["dV_mV"] for m in g]), color=COL[b], width=0.6,
+               yerr=np.std([m["dV_mV"] for m in g], ddof=1), capsize=3)
+    axs[2].text(BOARDS.index(b), np.mean([m["dV_mV"] for m in g]) + 8, f"{np.mean([m['dV_mV'] for m in g]):.0f} mV",
+                ha="center", fontsize=8)
+axs[0].set(xlabel="supply voltage [V]", ylabel="peak supply current [mA] (50 µs average)")
+axs[1].set(xlabel="supply voltage [V]", ylabel="charge per event [µC]")
+axs[2].set(ylabel=f"VDD dip [mV] (supply 2.0 V, {R_SER} Ω)", title="VDD dip")
+axs[2].set_xticks(range(len(BOARDS)), [LABEL[b].replace(", ", "\n") for b in BOARDS], fontsize=8)
+axs[2].grid(axis="x", visible=False)
+for a in axs[:2]:
     a.set_ylim(bottom=0)
-axs[0].text(3.0, axs[0].get_ylim()[1] * 0.97, "cell 3", ha="center", va="top", fontsize=8, color="0.35")
-fig.suptitle("Per capture. Shaded: cell 3, on B #3 (5 captures), then B #2 and B #1 (one capture each)")
+    a.legend(fontsize=7.5, loc="lower left")
+axs[0].set_title("Peak current")
+axs[1].set_title("Charge per event")
+fig.suptitle("Means of 5 captures, error bars ± 1 sample std, 2026-11-26")
 fig.tight_layout()
 fig.savefig(os.path.join(OUT, "vdd_sag_metrics.png"), dpi=150)
 
-# ---------------------------------------------------------------- capacitance and model prediction
-# k chains the source resistance to cell 1 (scope 5-9): R(cell) / R(cell 1).
-k_of = {f["capped"]: f for f in fits}
-r1 = np.mean([k_of[i]["k"] for i in range(0, 5)])            # cell 2
-r2a = np.mean([k_of[i]["k"] for i in range(10, 15)])         # cell 3 at scope 10-14
-r16 = k_of[16]["k"]                                          # cell 3 at scope 16
-r15 = r16 * k_of[15]["k"]                                    # cell 3 at scope 15
-c1a = np.mean([k_of[i]["tau_us"] for i in range(0, 5)]) / r1      # C in us per R(cell 1)
-c1b = k_of[15]["tau_us"] / r15
-c2 = np.mean([k_of[i]["tau_us"] for i in range(10, 15)]) / r2a
-C1 = 0.5 * (c1a + c1b)
-print(f"\nsource R relative to cell 1: cell 2 {r1:.3f}, cell 3 at 10-14 {r2a:.3f}, at 15 {r15:.3f}, at 16 {r16:.3f}")
-print(f"C = tau / R_rel [us]: B #2 (0-4) {c1a:.0f}, B #2 (15) {c1b:.0f}, B #3 (10-14) {c2:.0f}, "
-      f"C2/C1 = {c2 / C1:.2f}")
-
-fig, axs = plt.subplots(1, 2, figsize=(12, 4.6))
-for a, (tmpl, rr, cname, meas) in zip(axs, [(5, 1.0, "cell 1 (template scope_5 on B #1)", {0: None}),
-                                            (16, r16, "cell 3 (template scope_16 on B #1)", {0: None, 1: 15})]):
-    t0, d0 = drop_aligned(tmpl)
-    dt = np.median(np.diff(t0))
-    for n, c in [(0, 0.0), (1, C1), (2, c2)]:
-        tau = rr * c * 1e-6
-        d = d0 if tau == 0 else lpf(d0, tau, dt)
-        lab = BULK[n] + ("" if n == 0 else f", model tau {tau * 1e6:.0f} µs") + \
-              f": dip {smooth(d, dt).max() * 1e3:.1f} mV"
-        if n in meas and meas[n] is not None:
-            lab += f" (measured scope_{meas[n]}: {next(r['dV_mV'] for r in rows if r['scope'] == meas[n]):.1f})"
-        a.plot(t0 * 1e3, d * 1e3, color=CAPCOL[n], lw=0.7 if n == 0 else 1.0, label=lab)
-    a.set(title=cname, xlabel="time from event onset [ms]", xlim=(-1, 14))
-    a.invert_yaxis()
-    a.legend(loc="lower right", fontsize=8)
-axs[0].set_ylabel("drop below V_base [mV]")
-fig.suptitle(f"Model: one cell's trace without bulk C low-passed with tau = R C (C from the fits, C2/C1 = {c2 / C1:.2f}), "
-             "same cell and same event")
+# ---------------------------------------------------------------- figure 5: RC fit at 2.0 V
+fig, axs = plt.subplots(1, 2, figsize=(13, 4.6), sharey=True)
+for a, b in zip(axs, ["B2", "B3"]):
+    f = next(x for x in fits if x["board"] == b and x["supply"] == "2V0" and x["rep"] == 3)
+    a.plot(f["t"] * 1e3, f["meas"] * 1e3, color=COL[b], lw=0.7, label=f"{LABEL[b]}, measured")
+    a.plot(f["t"] * 1e3, f["model"] * 1e3, color="0.15", lw=1.0, ls="--", label="B #1 current, low-passed")
+    a.set(title=f"{LABEL[b]}: tau {f['tau_us']:.0f} µs, C = tau / R {f['C_uF']:.0f} µF, k {f['k']:.2f}, "
+                f"rms {f['rms_uA']:.0f} µA", xlabel="time from event onset [ms]", xlim=(-0.5, 12))
+    a.legend(loc="upper right", fontsize=8)
+axs[0].set_ylabel("supply current [mA]")
+fig.suptitle(f"RC model at 2.0 V supply (capture 3): current with bulk C = k x low-pass (tau = R C) of the B #1 current")
 fig.tight_layout()
-fig.savefig(os.path.join(OUT, "vdd_sag_model_caps.png"), dpi=150)
+fig.savefig(os.path.join(OUT, "vdd_sag_rc_fit.png"), dpi=150)
 print("\nwrote figures and vdd_sag_summary.csv to", OUT)

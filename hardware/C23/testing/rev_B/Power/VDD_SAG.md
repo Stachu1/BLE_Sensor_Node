@@ -1,117 +1,130 @@
-# BSN-C23-B VDD sag during an advert, against bulk capacitance (0, 1 and 2 × 100 µF)
+# Supply current and VDD sag during an advert, against bulk capacitance (T3)
 
-Scope captures of VDD on a CR2032 during one advertising event, on the three boards built with different bulk
-capacitance on VDD (T3 part 1, and the bulk capacitance comparison planned at the rev B build on 2026-11-13).
+BSN-C23-B with 0, 1 and 2 × 100 µF bulk capacitance, and BSN-N52-A A #3 for comparison, on a bench supply with a
+fixed series resistor in place of the CR2032. Session 2026-11-26, 17:37–18:38.
 
-- Raw data: [`vdd_sag_2026-11-20/`](vdd_sag_2026-11-20/) (`scope_0.csv` to `scope_16.csv`, two screenshots).
-  Original scope file names kept. The scope clock reads 21 Nov 00:20–00:43, the session was the evening of
-  2026-11-20.
-- Script: [`vdd_sag.py`](vdd_sag.py) recomputes the scope measurements (the CSV holds only the trace) and makes
-  the plots and [`vdd_sag_summary.csv`](vdd_sag_summary.csv).
+This replaces the first session on CR2032 cells (2026-11-20). That run is not valid for comparing the boards: the
+cell was shorted at every removal from the holder, so the cell state and its internal resistance changed between
+boards and were not known. Its data, script and plots are in git history (commit `de434e7`).
+
+- Raw data: [`vdd_sag_2026-11-26/`](vdd_sag_2026-11-26/), named `<board>_<shunt|vdd>_<supply>_<n>.csv`, 60 files.
+  The 20 N52 files are in [`hardware/N52/testing/Power/vdd_sag_2026-11-26/`](../../../../N52/testing/Power/vdd_sag_2026-11-26/).
+  [`scope_file_map.csv`](vdd_sag_2026-11-26/scope_file_map.csv) maps them to the original `scope_0.csv` to
+  `scope_79.csv`.
+- Script: [`vdd_sag.py`](vdd_sag.py) computes the metrics (the CSV holds only the trace), writes
+  [`vdd_sag_summary.csv`](vdd_sag_summary.csv) and the plots below.
 
 ## Setup
 
-- Keysight MSO-X 4154G, one channel on VDD. Captures 0–9 at 4 µs per sample with a 12.6 µV step (likely High-Res
-  mode), 10–16 at 1.25 µs with an 83.7 µV step. Noise before the event is about 0.45 mV σ in all 17.
-- Bulk capacitance is C6, Murata GRM21BR60J107ME15 (100 µF, 6.3 V, X5R, 0805). Its value at about 3 V DC bias was
-  not looked up.
-- Firmware, TX power and advert interval: not recorded here. **Open:** fill in.
+- Bench supply in series with **R = 22.41 Ω** (measured 2026-11-25) into the board's battery input. Supply set to
+  3.004, 2.4036 and 2.0035 V. The R is close to the 19–23 Ω instant IR drop measured on a no-brand CR2032
+  on 2026-11-17 ([`CW_CURRENT.md`](CW_CURRENT.md)).
+- Keysight MSO-X 4154G. Two kinds of capture:
+  - **shunt:** voltage across R, so the supply current is I = V / R. At all three supply voltages.
+  - **vdd:** VDD at the board, behind the same R. At 2.0035 V only. The current from it is (V_base − VDD) / R.
+- 5 captures per board and condition. The time base was not the same for all sets: 1.3 to 4 µs per sample, a
+  6.5 to 20 ms window, about 5000 points each. The scope pads the last rows of each CSV with empty values, the
+  script drops them.
+- Firmware and TX power, unchanged from 2026-11-25 (confirmed by the user): B #1, B #2, B #3
+  `ble_sensor LOG=0 DRDY=4 RELOAD=0` (5 s, 0 dBm), A #3 `ble_beacon_min DRDY=4` (5 s, 0 dBm).
 
 | Board | Bulk capacitance on VDD |
 |---|---|
-| B #1 | none |
-| B #2 | 1 × 100 µF |
+| B #1 | none (C6 not fitted) |
+| B #2 | 1 × 100 µF (C6, Murata GRM21BR60J107ME15, 6.3 V X5R 0805) |
 | B #3 | 2 × 100 µF |
+| N52 A #3 | 47 µF (C2, Cal-Chip GMC21X5R476M6R3NT, 6.3 V X5R 0805) |
 
-Cells are numbered after the board they came with (cell 1 from B #1 and so on).
-
-| Captures | Board | Cell | Note |
-|---|---|---|---|
-| 0–4 | B #2, 1 × 100 µF | cell 2 | |
-| 5–9 | B #1, no bulk capacitor | cell 1 | |
-| 10–14 | B #3, 2 × 100 µF | cell 3 | |
-| 15 | B #2, 1 × 100 µF | cell 3, moved from B #3 | one capture |
-| 16 | B #1, no bulk capacitor | cell 3, after B #2 | one capture |
-| `scope_17.png` | B #1, no bulk capacitor | cell 3 | screenshot, Pk-Pk 45.8 mV, Top 3.0379 V, Min 2.9921 V |
-| `scope_18.png` | B #1, no bulk capacitor | cell 3 | infinite persistence, Pk-Pk 45.8 mV, Top 3.0466 V, Min 3.0008 V |
-
-The board of sets 0–4 and 10–14 is from the user's memory of the order (B #2, B #1, B #3). The data agree with it:
-the RC fit below gives the same capacitance for 0–4 and for 15 (both B #2) and about 1.6 times that for 10–14. The
-B #1 sets have sharp edges and fit with τ ≈ 0.
+**Capture order.** The scope files run by supply voltage first, then by board: `scope_0`–`19` shunt at 3.0 V
+(B #1, B #2, B #3, N52, five each), `20`–`39` at 2.4 V, `40`–`59` at 2.0 V, `60`–`79` VDD at 2.0 V. This is
+confirmed by the file times (a 13 min gap at each supply change) and by the waveforms: the B #1 sets have sharp
+edges, the B #2 and B #3 sets are low-passed with about twice the time constant on B #3, and the N52 event is
+about 2.5 ms long against 6.5 ms on the C23.
 
 ## Data check
 
-- 17 CSVs, 5000 or 16000 points each, no gaps, no NaN, no sample at a rail (no clipping).
-- Repeats agree: dip σ 0.3–0.4 mV within each 5-capture set, drop area σ about 1 %.
-- The persistence screenshot shows the same shape over many events on B #1, trace width a few mV.
-- Event timing varies between adverts. In captures 6, 9 and 11 the TX burst comes about 0.5–1.5 ms later after
-  the first step than in the others. Cause not investigated. It does not change the dip depth.
-- **Cell 3 changed state at the swaps.** V_base was 3.306 V on B #3 (10–14, 00:27), 3.077 V on B #2 (15, 00:32),
-  3.028 V on B #1 (16, 00:38), then rising again, 3.038 V (Top, 00:40) and 3.047 V (00:43) in the screenshots.
-  The fitted source resistance, relative to cell 1, was 0.64 on B #3, 0.35 on B #2 and 0.41 on B #1. The scale
-  applies to the whole event, including the steps before TX where bulk capacitance makes no difference, so it is
-  the source and not the TX current. **Cause (the user, 2026-11-20):** the cell is shorted every time it is taken
-  out of the holder, to get it out without tearing the holder off the board. So 15 and 16 are on a cell that had
-  just been hard shorted, and the 230 mV fall followed by a slow rise is the cell recovering from that.
-- So the three captures on cell 3 (14, 15, 16) are the same cell but not the same cell state. The raw dips cannot
-  be compared directly. B #3 has the largest dip (55.9 mV) because the cell had about 1.5 times the resistance
-  it had at 16.
+- 80 CSVs, no clipping, offset of the shunt channel −1.7 to −3.4 mV before the event (subtracted per capture).
+- Repeats agree: peak current σ 0.01–0.06 mA and charge σ 0.1–0.4 µC within each 5-capture set, except two
+  first captures:
+  - **B #2 shunt 2.0 V, capture 1** (`scope_45`): higher current through the whole event, 36.7 µC against
+    31.0–31.5 µC in the other four.
+  - **B #1 VDD 2.0 V, capture 1** (`scope_60`): lower VDD through the whole event, 39.6 µC against 34.7–35.9 µC.
+  Both are the first capture after a change. Cause not investigated. Means below include them, values without
+  them are given where they matter.
+- The two ways of getting the current at 2.0 V agree on the shape (`vdd_sag_vdd.png`, right). The charge agrees
+  within 2 % on B #2, B #3 and N52. On B #1 the VDD capture gives 35.2 µC (without capture 1) against 33.9 µC
+  from the shunt, 4 % higher. Cause not investigated.
 
 ## Results
 
-Means of 5 captures (± σ), single captures for 15 and 16. dV is the dip below the pre-event level on a 50 µs
-moving average. V_pp, V_top and V_min use the raw samples like the scope.
+Means of 5 captures ± sample σ. I_peak is on a 50 µs moving average. Q is the charge per event, E the energy into
+the board (V_supply · Q minus the loss in R). τ is the decay after the last TX burst, C = τ / R.
 
-| Board, cell (captures) | V_base | V_top | V_min | V_pp | dV | Drop area | τ (RC fit) |
+| Board | Supply | I_peak | Q | E | Event length | τ | C = τ / R |
 |---|---|---|---|---|---|---|---|
-| B #2, 1 × 100 µF, cell 2 (0–4) | 3.0065 V | 3.0065 V | 2.9171 V | 90.8 ± 0.3 mV | 88.8 ± 0.4 mV | 392 mV·ms | 500 µs |
-| B #1, no bulk C, cell 1 (5–9) | 2.9672 V | 2.9671 V | 2.8678 V | 100.9 ± 0.3 mV | 98.6 ± 0.3 mV | 381 mV·ms | – |
-| B #3, 2 × 100 µF, cell 3 (10–14) | 3.3060 V | 3.3042 V | 3.2497 V | 57.8 ± 0.3 mV | 55.7 ± 0.3 mV | 245 mV·ms | 515 µs |
-| B #2, 1 × 100 µF, cell 3 (15) | 3.0767 V | 3.0766 V | 3.0424 V | 35.5 mV | 33.6 mV | 143 mV·ms | 187 µs |
-| B #1, no bulk C, cell 3 (16) | 3.0278 V | 3.0278 V | 2.9846 V | 44.6 mV | 42.0 mV | 166 mV·ms | – |
+| B #1, no bulk C | 3.004 V | 7.38 ± 0.04 mA | 21.41 ± 0.09 µC | 62.3 µJ | 6.41 ms | – | – |
+| B #2, 1 × 100 µF | 3.004 V | 5.47 ± 0.05 mA | 21.08 ± 0.36 µC | 61.8 µJ | 7.19 ms | 768 µs | 34.3 µF |
+| B #3, 2 × 100 µF | 3.004 V | 4.51 ± 0.06 mA | 21.08 ± 0.28 µC | 61.9 µJ | 7.93 ms | 1453 µs | 64.8 µF |
+| N52 A #3, 47 µF | 3.004 V | 4.91 ± 0.03 mA | 8.43 ± 0.11 µC | 24.7 µJ | 2.49 ms | 465 µs | 20.8 µF |
+| B #1 | 2.404 V | 8.95 ± 0.02 mA | 25.72 ± 0.18 µC | 58.9 µJ | 6.44 ms | – | – |
+| B #2 | 2.404 V | 6.51 ± 0.01 mA | 25.01 ± 0.11 µC | 58.0 µJ | 7.52 ms | 893 µs | 39.8 µF |
+| B #3 | 2.404 V | 5.18 ± 0.04 mA | 25.07 ± 0.12 µC | 58.5 µJ | 8.49 ms | 1680 µs | 75.0 µF |
+| N52 A #3 | 2.404 V | 5.82 ± 0.05 mA | 9.92 ± 0.17 µC | 23.0 µJ | 2.68 ms | 548 µs | 24.5 µF |
+| B #1 | 2.004 V | 11.74 ± 0.01 mA | 33.91 ± 0.24 µC | 62.8 µJ | 6.50 ms | – | – |
+| B #2 | 2.004 V | 8.53 ± 0.38 mA | 32.35 ± 2.45 µC (31.26 without capture 1) | 61.3 µJ | 8.06 ms | 1014 µs | 45.3 µF |
+| B #3 | 2.004 V | 6.60 ± 0.03 mA | 31.47 ± 0.33 µC | 60.3 µJ | 9.31 ms | 1894 µs | 84.5 µF |
+| N52 A #3 | 2.004 V | 6.71 ± 0.01 mA | 11.62 ± 0.14 µC | 22.2 µJ | 2.88 ms | 618 µs | 27.6 µF |
 
-### RC model
+VDD at the board, supply 2.0035 V through 22.41 Ω:
 
-With the cell as a source resistance R and the bulk capacitance C on VDD, the drop with C is the drop without C
-through a first-order low-pass with τ = RC, scaled by k = R / R_template. Fitted for τ, k and a time shift, with a
-B #1 capture as the template ([`vdd_sag_rc_fit.png`](vdd_sag_rc_fit.png)):
+| Board | VDD dip (50 µs average) | Lowest VDD (raw sample, any capture) |
+|---|---|---|
+| B #1, no bulk C | 276.3 ± 6.7 mV (273.4 without capture 1) | 1.712 V |
+| B #2, 1 × 100 µF | 192.0 ± 0.8 mV | 1.808 V |
+| B #3, 2 × 100 µF | 149.8 ± 1.0 mV | 1.850 V |
+| N52 A #3, 47 µF | 152.3 ± 0.6 mV | 1.847 V |
 
-- The fit residual is 0.6–0.9 mV rms on every capture with bulk C, about the trace noise. The model describes
-  the data.
-- Null test: a B #1 capture fitted against another B #1 capture gives τ 16 µs and k 0.99.
-- The drop area scales with k, as it should when the capacitors only move charge in time: 392/381 = 1.03
-  against k 1.02, 245/381 = 0.64 against k 0.64, 143/166 = 0.86 against k 0.85.
-- C as τ / R with R relative to cell 1: B #2 492 (0–4) and 535 (15), B #3 809 (10–14). The two B #2 values agree
-  within 9 %. B #3 / B #2 = 1.58, not 2. The absolute C needs the source resistance in ohms, which needs the
-  current. Not measured here.
+![Supply current per supply voltage](vdd_sag_current.png)
 
-### Effect of the bulk capacitance on one cell (model, [`vdd_sag_model_caps.png`](vdd_sag_model_caps.png))
+![VDD at 2.0 V and the current from the VDD drop](vdd_sag_vdd.png)
 
-Each cell's B #1 trace, low-passed with the fitted C:
+![Peak current, charge and VDD dip](vdd_sag_metrics.png)
 
-| Cell | No bulk C | 1 × 100 µF | 2 × 100 µF |
-|---|---|---|---|
-| cell 1 (R 1.00) | 98.9 mV (measured) | 86.1 mV (−13 %), τ 513 µs | 79.3 mV (−20 %), τ 809 µs |
-| cell 3 at 16 (R 0.41) | 42.0 mV (measured) | 38.8 mV (−8 %), τ 212 µs | 37.4 mV (−11 %), τ 334 µs |
+![All 80 captures](vdd_sag_repeats.png)
 
-Measured on cell 3: 42.0 mV on B #1 (16) and 33.6 mV on B #2 (15), −20 %. About half of that comes from the
-cell's lower resistance at 15 (38.8 × 0.85 = 32.9 mV, against 33.6 mV measured).
+![RC model at 2.0 V](vdd_sag_rc_fit.png)
 
-- **The bulk capacitors cut the peak of the dip only partly.** The TX part is three channel bursts of about
-  0.4 ms each over about 2 ms, and τ is 0.2–0.8 ms. The capacitors smooth the short steps and the gaps between
-  channels, but the dip still reaches most of the depth without them.
-- **The higher the cell resistance, the more the capacitors help** (τ = RC and the relative cut grows with τ). A
-  cell near end of life has a higher resistance, so the cut there will be larger than on these cells. Not
-  measured.
-- **Recovery:** the capacitors delay the return by about τ (0.2–0.8 ms) after each step. Time from onset until
-  the drop stays below 10 mV: 9.1 ms (B #1, cell 1), 9.7 ms (B #2, cell 2), 8.6 ms (B #3, cell 3), 7.5 and
-  7.3 ms on cell 3 (B #1 and B #2). The tail after the event (a few mV, several ms) is the cell's own slow
-  recovery and is the same with and without bulk capacitance.
+### What the data show
+
+- **The charge per event agrees with the T1 meter results.** At 3.0 V: B #1 21.41 µC here against 21.3 µC per
+  advert in T1 (2026-11-20), N52 A #3 8.43 µC against 8.57 µC (2026-11-25). Two different instruments and
+  methods.
+- **The bulk capacitance moves the charge in time but does not change it.** At 3.0 V and 2.4 V the three C23
+  boards are within 3 % of each other. The peak supply current falls from 7.38 mA (no bulk C) to 5.47 mA
+  (1 × 100 µF) and 4.51 mA (2 × 100 µF) at 3.0 V, −26 % and −39 %. At 2.0 V the VDD dip falls from 276 mV to
+  192 mV and 150 mV, −31 % and −46 %.
+- **The charge per event rises as the supply falls, the energy stays about the same.** C23: 21.4 µC at 3.0 V,
+  33.9 µC at 2.0 V (+58 %), 58–63 µJ at all three. N52: 8.4 to 11.6 µC, 22–25 µJ. This is what a DC-DC
+  converter on the supply does (likely the cause, the converter settings were not checked). For the battery
+  projection the charge at the cell voltage is the number to use, not the 3.0 V value.
+- **The N52 uses about 40 % of the C23's energy per event** (24.7 against 62 µJ at 3.0 V), and its event is
+  about 2.5 ms against 6.5 ms.
+- **Capacitance from τ.** B #3 / B #2 = 1.89 at 3.0 V, 1.88 at 2.4 V, 1.87 at 2.0 V, close to the 2 fitted
+  parts. The effective C is 34–45 µF for one 100 µF part and rises as the voltage falls, which fits the DC-bias
+  loss of an 0805 X5R part (likely, the datasheet curve was not looked up). Same trend on the N52 47 µF part,
+  21–28 µF. These are approximate: the R the capacitor sees is 22.41 Ω plus the supply and wiring, in parallel
+  with the board's own load, and the other decoupling on the board is included.
+- **RC model.** The B #2 and B #3 current is the B #1 current through a first-order low-pass, with C = τ / R
+  within 1 µF of the tail fit (33.9 and 64.5 µF at 3.0 V). The fit residual is 33–41 µA rms at 3.0 V and 2.4 V.
+  At 2.0 V the residual is larger (96–164 µA) and the B #1 current is above the model before the TX bursts. A
+  likely reason: B #1 has the lowest VDD, and the converter draws more current at a lower input. Not
+  investigated.
+- **Lowest VDD at 2.0 V supply.** B #1 reached 1.712 V on the raw trace. CC2340R5 minimum supply: 1.71 V
+  (datasheet value, **to check**). The five B #1 captures all show the same complete event. With bulk
+  capacitance the lowest point is 1.81–1.85 V.
 
 ## Open
 
-- Firmware build, TX power and interval for these captures.
-- **Redo planned (decided 2026-11-20):** 3.0 V bench supply with about 30 Ω in series in place of the cell, the
-  same source on all three boards, 5 captures each. Gives measured numbers in place of the model ones, the event
-  current from I = ΔV / R and the absolute C from τ = RC. This CR2032 run stays as the real-cell reference.
-- T3 itself: a partly used cell, and the current during the event for R in ohms and C at bias.
+- How the shunt voltage was taken (differential probe, two channels and math, or one probe across R).
+- CC2340R5 and nRF52805 minimum supply and brown-out levels from the datasheets, for the end-of-life argument
+  with T2.
