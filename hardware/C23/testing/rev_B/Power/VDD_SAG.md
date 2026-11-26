@@ -20,10 +20,13 @@ boards and were not known. Its data, script and plots are in git history (commit
 - Bench supply in series with **R = 22.41 Ω** (measured 2026-11-25) into the board's battery input. Supply set to
   3.004, 2.4036 and 2.0035 V. The R is close to the 19–23 Ω instant IR drop measured on a no-brand CR2032
   on 2026-11-17 ([`CW_CURRENT.md`](CW_CURRENT.md)).
-- Keysight InfiniiVision MSO-X 4154G, for both kinds of capture. How the probe was connected across R is not
-  recorded. Two kinds of capture:
-  - **shunt:** voltage across R, so the supply current is I = V / R. At all three supply voltages.
-  - **vdd:** VDD at the board, behind the same R. At 2.0035 V only. The current from it is (V_base − VDD) / R.
+- Keysight InfiniiVision MSO-X 4154G, one probe, for both kinds of capture. Chain: supply + → R → board VDD,
+  board GND → supply −. Two kinds of capture:
+  - **shunt:** the probe across R (tip and ground clip on the two ends of R), so the supply current is I = V / R.
+    At all three supply voltages. The ground clip ties one end of R to the scope ground, which works with a
+    floating supply output (likely the case here, not checked).
+  - **vdd:** the probe from board VDD to board GND, behind the same R, so the drop across R shows as the VDD dip.
+    At 2.0035 V only. The current from it is (V_base − VDD) / R.
 - 5 captures per board and condition. The time base was not the same for all sets: 1.3 to 4 µs per sample, a
   6.5 to 20 ms window, about 5000 points each. The scope pads the last rows of each CSV with empty values, the
   script drops them.
@@ -143,6 +146,5 @@ VDD at the board, supply 2.0035 V through 22.41 Ω:
 
 ## Open
 
-- How the probe was connected across R (one probe, two channels and math, or a differential probe).
 - nRF52805 minimum supply and brown-out level, for the N52 end-of-life argument with T2 (no nRF52805 datasheet in
   `docs/datasheets/` yet). The CC2340R5 values are above.
