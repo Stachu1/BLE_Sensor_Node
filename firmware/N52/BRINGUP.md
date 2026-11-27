@@ -5,7 +5,7 @@ Build and layout details: [README.md](README.md).
 
 ## Boards
 
-All three: nRF52805-CAAA (variant `AAA2`, package 0x2004, 24 kB RAM, 192 kB flash), flashed and tested with a
+All boards: nRF52805-CAAA (variant `AAA2`, package 0x2004, 24 kB RAM, 192 kB flash), flashed and tested with a
 SEGGER J-Link (S/N 853003024).
 
 | Board | nRF device ID | BLE address | hwtest | App flashed | Notes |
@@ -13,12 +13,16 @@ SEGGER J-Link (S/N 853003024).
 | A #1 | `82bf85646c20248b` | `DF:55:EE:37:04:CD` | 11/11 pass | not recorded | The first board, used to develop the tests. Last hwtest run was before the bus-recovery change. |
 | A #2 | `6023d594055cb484` | `C2:D7:6D:9C:B3:20` | 11/11 pass (after sensor rework) | yes | First attempt failed: SDA and INT held low by U1 (bad solder / short at the HDC2010). Fixed by reworking the sensor. |
 | A #3 | `47a70671fbe71ff6` | `DB:1C:AA:DB:F2:9D` | 11/11 pass | yes | Transmits correct BTHome data (confirmed on the scanner). First flash attempt gave "Failed to power up DAP", the retry worked. |
+| A #4 | `9a43d616e19acfd4` | `C9:B4:27:18:56:11` (advertising seen on the scanner) | 11/11 pass (after U2 reball) | `ble_beacon_min` (default, 5 s), 2026-11-27 | Assembled 2026-11-27. First two runs: 32 MHz crystal FAIL, no start within 20 ms (value -1), the other 10 pass. Reflowing X1 did not help. U2 (nRF52805 WLCSP) removed, reballed and refitted: crystal start 368 us, HFINT vs HFXO +0.78 %, VDD 3006 mV, DC/DC 3007-3009 mV, all pass. Cause: a bad U2 ball joint at XC1/XC2 (open or bridged; firmware cannot tell which, XC1/XC2 are not GPIOs). |
+| A #5 | `021d3af38762087e` | `CD:7C:8D:C8:9F:C8` (advertising seen on the scanner) | 11/11 pass | `ble_beacon_min` (default, 5 s), 2026-11-27 | Assembled 2026-11-27, no rework. Crystal start 364 us, HFINT vs HFXO +1.43 %, VDD 3009 mV, DC/DC 3008-3009 mV. |
+| A #6 | `31e8bc69b2c7d20e` | `DD:63:30:4F:29:49` (advertising seen on the scanner) | 11/11 pass | `ble_beacon_min` (default, 5 s), 2026-11-27 | Assembled 2026-11-27, no rework. Crystal start 365 us, HFINT vs HFXO +1.58 %, VDD 3013 mV, DC/DC 3013-3014 mV. |
+| A #7 | `625706a172298173` | `E7:85:97:65:F2:16` (advertising seen on the scanner) | 11/11 pass | `ble_beacon_min` (default, 5 s), 2026-11-27 | Assembled 2026-11-27, no rework. Crystal start 371 us, HFINT vs HFXO +2.66 % (highest so far, limit 3 %), VDD 3010 mV, DC/DC 3010-3012 mV. |
 
 **BLE addresses:** `ble_sensor` advertises with the *identity* address, a fixed static random address derived from the
 chip's factory address registers (FICR `DEVICEADDR`, top two bits set). It does not rotate. The address is not the
 same as the device ID above. The values in the table were taken from the scanner. With a board connected,
 `python firmware\N52\hwtest\scripts\hwtest.py soc` prints the address the script expects ("BLE address"); that
-derivation has not been compared with these three yet.
+derivation matched the scanner on A #4 to A #7 (ble_beacon_min, 2026-11-27); A #1 to A #3 were taken from the scanner directly.
 
 ### Hwtest results (last run per board)
 
